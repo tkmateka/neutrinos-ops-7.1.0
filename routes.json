@@ -1,0 +1,33 @@
+{
+    "routes": [
+        {
+            "component": "welcomeComponent",
+            "path": "welcome"
+        },
+        {
+            "component": "emp_home_dahsboardComponent",
+            "path": "employee",
+            "children": [
+                {
+                    "component": "home_empComponent",
+                    "path": "home",
+                    "children": []
+                },
+                {
+                    "path": "hr",
+                    "component": "emp_hrComponent"
+                }
+            ]
+        },
+        {
+            "path": "''",
+            "redirectTo": "welcome",
+            "pathMatch": "full",
+            "default": true
+        },
+        {
+            "path": "**",
+            "component": "PageNotFoundComponent"
+        }
+    ]
+}

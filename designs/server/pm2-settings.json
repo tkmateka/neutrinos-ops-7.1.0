@@ -1,0 +1,155 @@
+[
+    {
+        "displayName": "General",
+        "name": "general_settings",
+        "fields": [
+            {
+                "name": "name",
+                "type": "text",
+                "label": "Name ",
+                "errors": [],
+                "hints": [],
+                "pattern": "",
+                "value": "app",
+                "required": true,
+                "enabled": true
+            },
+            {
+                "name": "script",
+                "type": "text",
+                "label": "Script (script)",
+                "hints": [],
+                "errors": [],
+                "pattern": "",
+                "value": "./build/src/index.js",
+                "enabled": true
+            },
+            {
+                "name": "cwd",
+                "type": "text",
+                "label": "Current Working Directory (cwd)",
+                "hints": [],
+                "errors": [],
+                "pattern": "",
+                "value": "",
+                "enabled": false
+            },
+            {
+                "name": "interpreter",
+                "type": "text",
+                "label": "Interpreter",
+                "hints": [],
+                "errors": [],
+                "pattern": "",
+                "value": "",
+                "enabled": false
+            },
+            {
+                "name": "interpreter_args",
+                "type": "text",
+                "label": "Interpreter Args",
+                "hints": [],
+                "errors": [],
+                "pattern": "",
+                "value": "",
+                "enabled": false
+            },
+            {
+                "name": "node_args",
+                "type": "text",
+                "label": "Node Args",
+                "hints": [],
+                "errors": [],
+                "pattern": "",
+                "value": "",
+                "enabled": false
+            }
+        ]
+    },
+    {
+        "displayName": "Advanced Settings",
+        "name": "advanced_settings",
+        "fields": [
+            {
+                "name": "instances",
+                "type": "number",
+                "label": "Instances",
+                "hints": [],
+                "errors": [],
+                "pattern": "",
+                "value": 2,
+                "enabled": true
+            },
+            {
+                "name": "exec_mode",
+                "type": "text",
+                "label": "Exec Mode",
+                "hints": [],
+                "errors": [],
+                "pattern": "",
+                "value": "",
+                "enabled": false
+            },
+            {
+                "name": "watch",
+                "type": "boolean",
+                "label": "Watch",
+                "hints": [],
+                "errors": [],
+                "pattern": "",
+                "value": false,
+                "enabled": false
+            },
+            {
+                "name": "ignore_watch",
+                "type": "array",
+                "label": "Ingore Watch List",
+                "hints": [],
+                "errors": [],
+                "pattern": "",
+                "value": "",
+                "enabled": false
+            },
+            {
+                "name": "max_memory_restart",
+                "type": "text",
+                "label": "Max Memoery Restart",
+                "hints": [],
+                "errors": [],
+                "pattern": "",
+                "value": "",
+                "enabled": false
+            },
+            {
+                "name": "env",
+                "type": "object",
+                "label": "env",
+                "hints": [],
+                "errors": [],
+                "pattern": "",
+                "value": "",
+                "enabled": false
+            },
+            {
+                "name": "env_",
+                "type": "object",
+                "label": "env_",
+                "hints": [],
+                "errors": [],
+                "pattern": "",
+                "value": "",
+                "enabled": false
+            },
+            {
+                "name": "instance_var",
+                "type": "text",
+                "label": "Instance Var",
+                "hints": [],
+                "errors": [],
+                "pattern": "",
+                "value": "",
+                "enabled": false
+            }
+        ]
+    }
+]

@@ -1,0 +1,95 @@
+<div fxLayout="row wrap" class="fullHeightMinusTopBar homeBG" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false" fxFill>
+  <div fxLayout="column wrap" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" *ngIf="spinner">
+    <mat-progress-spinner></mat-progress-spinner>
+  </div>
+  <div fxLayout="column wrap" fxFlex="100" fxLayoutGap="1em" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" *ngIf="!spinner">
+    <div fxLayout="row wrap" class="greyShadow" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false">
+      <div fxLayout="column wrap" class="minWidth250" fxFlex="20" fxLayoutGap="1em" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+        <div fxLayout="row wrap" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false"><img imgSrc="{{proImg}}" class="profileImage"></div>
+        <div fxLayout="column wrap" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false">
+          <div class="textAlignCenter">
+            <h3>{{currentUser.givenName}} {{currentUser.surname}}</h3>
+            <b>{{currentUser.emailId}}</b>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div fxLayout="column wrap" class="greyShadow" fxFlex="100" fxLayoutGap="2em" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+      <div fxLayout="row wrap" fxLayoutAlign="start stretch" [fxShow]="false" [fxHide]="true">
+        <div fxLayout="column wrap" fxFlex="100" fxLayoutGap="0.7em" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+          <div fxLayout="row wrap" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+            <div>
+              <h3>Notifications</h3>
+            </div>
+          </div>
+          <div fxLayout="row wrap" fxLayoutAlign="space-between center" [fxShow]="true" [fxHide]="false">
+            <div fxLayout="column wrap" fxFlex="49" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+              <div fxLayout="row wrap" class="notificationBox whiteBackground" fxLayoutAlign="space-between center" [fxShow]="true" [fxHide]="false">
+                <div fxLayout="column wrap" fxFlex="30" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false"><img imgSrc="Web/leaveImg.png"></div>
+                <div fxLayout="column wrap" class="smallFont" fxFlex="70" fxLayoutGap="10px" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+                  <h3>
+                    Leave Application</h3>
+                  <div>
+                    <p>Duration - 11/09/2020 - 14/09/2020</p>
+                    <p>Status - Approved</p>
+                  </div>
+                  <div fxLayout="row wrap" class="cursorPointer" fxLayoutGap="3px" fxLayoutAlign="start center" [fxShow]="true" [fxHide]="false">
+                    <div fxLayout="column wrap" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+                      <mat-icon>add_circle</mat-icon>
+                    </div>
+                    <div fxLayout="column wrap" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+                      <h5>
+                        View Application</h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div fxLayout="column wrap" fxFlex="49" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+              <div fxLayout="row wrap" class="notificationBox whiteBackground" fxLayoutAlign="space-between center" [fxShow]="true" [fxHide]="false">
+                <div fxLayout="column wrap" fxFlex="30" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false"><img imgSrc="Web/accidentReportImage.png"></div>
+                <div fxLayout="column wrap" class="smallFont" fxFlex="70" fxLayoutGap="10px" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+                  <h3>
+                    Accident Report</h3>
+                  <div>
+                    <p>Date &amp; Time - 08/09/2020 - 11:30 AM</p>
+                    <p>Status - Pending</p>
+                  </div>
+                  <div fxLayout="row wrap" class="cursorPointer" fxLayoutGap="3px" fxLayoutAlign="start center" [fxShow]="true" [fxHide]="false">
+                    <div fxLayout="column wrap" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+                      <mat-icon>add_circle</mat-icon>
+                    </div>
+                    <div fxLayout="column wrap" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+                      <h5>
+                        View Report</h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div fxLayout="row wrap" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+        <div fxLayout="column wrap" fxFlex="100" fxLayoutGap="0.7em" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+          <div fxLayout="row wrap" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+            <div>
+              <h3>Category</h3>
+            </div>
+          </div>
+          <div fxLayout="row wrap" fxLayoutAlign="space-between center" [fxShow]="true" [fxHide]="false">
+            <div fxLayout="column wrap" class="notificationBox {{cat.bg}} paddingTopBottom15px cursorPointer" fxFlex="23" fxLayoutGap="1em" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false" *ngFor="let cat of categories" (click)="goTo(cat.link)">
+              <div fxLayout="row wrap" class="blackBoxHeight" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false">
+                <mat-icon>{{cat.icon}}</mat-icon>
+              </div>
+              <div fxLayout="row wrap" class="blackBoxHeight" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false">
+                <h4 class="textAlignCenter">
+                  {{cat.name}}</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

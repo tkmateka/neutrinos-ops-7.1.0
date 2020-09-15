@@ -1,0 +1,36 @@
+<div fxLayout="row wrap" class="loggedOnBG" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" fxFill="fxFill">
+  <div fxLayout="column wrap" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" fxFill="fxFill">
+    <div fxLayout="row wrap" class="blackTopBar" fxLayoutAlign="space-between center" [fxShow]="true" [fxHide]="false">
+      <div fxLayout="column wrap" class="cursorPointer" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" (click)="goHome()"><img imgSrc="Web/lightLogo.png"></div>
+      <div fxLayout="column wrap" fxFlex="20" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+        <div fxLayout="row wrap" fxLayoutGap="1em" fxLayoutAlign="end center" [fxShow]="true" [fxHide]="false">
+          <mat-icon class="whiteColor boldFont cursorPointer notification" matBadge="{{notificationsMessages.length}}" matBadgeColor="warn" [matMenuTriggerFor]="menu" [ngClass]="{ &apos;disabled&apos; : !notificationsMessages.length }">notifications</mat-icon>
+          <mat-icon class="whiteColor logout boldFont cursorPointer" (click)="logout()">power_settings_new</mat-icon>
+        </div>
+      </div>
+    </div>
+    <div fxLayout="row wrap" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+      <div>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item *ngFor="let not of notificationsMessages" matTooltip="{{not.message}}" matTooltipPosition="before" (click)="openDialog(not)">{{not.message}}</button>
+        </mat-menu>
+      </div>
+    </div>
+    <mat-sidenav-container class="sideNavContainer">
+      <mat-sidenav #sidenav class="sidenav" [mode]="&apos;side&apos;" [position]="&apos;start&apos;" [opened]="true">
+        <div fxLayout="column wrap" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+          <div fxLayout="row wrap" class="sidenavItem boldFont cursorPointer" fxLayoutAlign="space-between center" [fxShow]="true" [fxHide]="false" *ngFor="let item of sidenavItems; let i = index;" [class.selectedSidenavItem]="item.link == selectedLink" routerLinkActive="active" routerLink="{{item.link}}">
+            <div fxLayout="column wrap" fxFlex="20" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+              <mat-icon>{{item.icon}}</mat-icon>
+            </div>
+            <div fxLayout="column wrap" fxFlex="80" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+              <div>
+                {{item.name}}</div>
+            </div>
+          </div>
+        </div>
+      </mat-sidenav>
+      <router-outlet (activate)="selectItem()"></router-outlet>
+    </mat-sidenav-container>
+  </div>
+</div>

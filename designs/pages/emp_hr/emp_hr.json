@@ -1,0 +1,13 @@
+{
+    "appPageId": "e86b38d2-ed0c-2ad8-da02-a966a0cbf1cf",
+    "appPageName": "emp_hr",
+    "componentName": "emp_hrComponent",
+    "selectorName": "bh-emp_hr",
+    "htmlFileName": "emp_hr.template.html",
+    "tsFileName": "emp_hr.component.ts",
+    "bkd": {
+        "designerHtml": "",
+        "designerReference": {},
+        "ts": ""
+    }
+}

@@ -1,0 +1,13 @@
+{
+    "appPageId": "9f0a3b2f-0e34-a4f0-1031-f3467f9cce99",
+    "appPageName": "welcome",
+    "componentName": "welcomeComponent",
+    "selectorName": "bh-welcome",
+    "htmlFileName": "welcome.template.html",
+    "tsFileName": "welcome.component.ts",
+    "bkd": {
+        "designerHtml": "",
+        "designerReference": {},
+        "ts": ""
+    }
+}
