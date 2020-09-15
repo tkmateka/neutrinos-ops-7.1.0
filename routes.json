@@ -16,6 +16,19 @@
                 {
                     "path": "hr",
                     "component": "emp_hrComponent"
+                },
+                {
+                    "component": "operations_empComponent",
+                    "path": "operations",
+                    "children": []
+                },
+                {
+                    "path": "operations/visa",
+                    "component": "visaComponent"
+                },
+                {
+                    "component": "visa_detailsComponent",
+                    "path": "operations/visa/:country"
                 }
             ]
         },

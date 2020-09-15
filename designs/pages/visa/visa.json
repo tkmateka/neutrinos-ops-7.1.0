@@ -1,0 +1,13 @@
+{
+    "appPageId": "ee029717-7b5e-7cf8-e73e-995bcc0d2880",
+    "appPageName": "visa",
+    "componentName": "visaComponent",
+    "selectorName": "bh-visa",
+    "htmlFileName": "visa.template.html",
+    "tsFileName": "visa.component.ts",
+    "bkd": {
+        "designerHtml": "",
+        "designerReference": {},
+        "ts": ""
+    }
+}

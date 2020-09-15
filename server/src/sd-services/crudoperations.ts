@@ -91,7 +91,7 @@ export class crudoperations {
   private mountAllPaths() {
     log.debug('mounting all paths for service :: crudoperations');
 
-    this.swaggerDocument['paths']['/get'] = {
+    this.swaggerDocument['paths']['/employee'] = {
       post: {
         summary: '',
         description: '',
@@ -102,7 +102,7 @@ export class crudoperations {
       }
     };
     this.app['post'](
-      `${this.serviceBasePath}/get`,
+      `${this.serviceBasePath}/employee`,
       cookieParser(),
       this.sdService.getMiddlesWaresBySequenceId(
         null,
@@ -119,10 +119,51 @@ export class crudoperations {
             res,
             next
           );
-          bh = await this.sd_RVC9aeq2D2dloX7k(bh);
+          bh = await this.sd_3PpQ5CyDuIvxzNwv(bh);
           //appendnew_next_sd_aQuIKbwWtrSXmaJY
         } catch (e) {
           return await this.errorHandler(bh, e, 'sd_aQuIKbwWtrSXmaJY');
+        }
+      },
+      this.sdService.getMiddlesWaresBySequenceId(
+        null,
+        'post',
+        this.generatedMiddlewares
+      )
+    );
+
+    this.swaggerDocument['paths']['/visa'] = {
+      post: {
+        summary: '',
+        description: '',
+        consumes: [],
+        produces: [],
+        parameters: [],
+        responses: {}
+      }
+    };
+    this.app['post'](
+      `${this.serviceBasePath}/visa`,
+      cookieParser(),
+      this.sdService.getMiddlesWaresBySequenceId(
+        null,
+        'pre',
+        this.generatedMiddlewares
+      ),
+
+      async (req, res, next) => {
+        let bh = {};
+        try {
+          bh = this.sdService.__constructDefault(
+            { local: {}, input: {} },
+            req,
+            res,
+            next
+          );
+          bh = await this.sd_h2cZ4sqFLgvogBNg(bh);
+          //appendnew_next_sd_eNq7M6PYOfRnDGkB
+        } catch (e) {
+          return await this.errorHandler(bh, e, 'sd_eNq7M6PYOfRnDGkB');
         }
       },
       this.sdService.getMiddlesWaresBySequenceId(
@@ -137,11 +178,23 @@ export class crudoperations {
 
   //appendnew_flow_crudoperations_Start
 
+  async sd_3PpQ5CyDuIvxzNwv(bh) {
+    try {
+      bh.collection = 'employees';
+      console.log(bh);
+      bh = await this.sd_RVC9aeq2D2dloX7k(bh);
+      //appendnew_next_sd_3PpQ5CyDuIvxzNwv
+      return bh;
+    } catch (e) {
+      return await this.errorHandler(bh, e, 'sd_3PpQ5CyDuIvxzNwv');
+    }
+  }
+
   async sd_RVC9aeq2D2dloX7k(bh) {
     try {
       bh.local.result = await MongoPersistance.getInstance().find(
         'sd_MiIIcvLvPF3Wgg3L',
-        'employees',
+        bh.collection,
         bh.input.body,
         {}
       );
@@ -161,6 +214,17 @@ export class crudoperations {
       return bh;
     } catch (e) {
       return await this.errorHandler(bh, e, 'sd_bSW0jynsplxdLORq');
+    }
+  }
+  async sd_h2cZ4sqFLgvogBNg(bh) {
+    try {
+      bh.collection = 'visa';
+      console.log(bh);
+      bh = await this.sd_RVC9aeq2D2dloX7k(bh);
+      //appendnew_next_sd_h2cZ4sqFLgvogBNg
+      return bh;
+    } catch (e) {
+      return await this.errorHandler(bh, e, 'sd_h2cZ4sqFLgvogBNg');
     }
   }
   //appendnew_node

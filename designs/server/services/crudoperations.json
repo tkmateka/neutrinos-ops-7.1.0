@@ -15,8 +15,8 @@
         "z": "sd_EpL0cWVkZjg5r4YB",
         "viewType": "server",
         "nodeType": "start",
-        "name": "Get",
-        "path": "/get",
+        "name": "Get Employee",
+        "path": "/employee",
         "uploadpath": "",
         "summary": "",
         "description": "",
@@ -27,7 +27,7 @@
         "filetype": "path",
         "acceptFileUpload": false,
         "httpOptions": {
-            "/get": {
+            "/employee": {
                 "post": {
                     "summary": "",
                     "description": "",
@@ -47,11 +47,11 @@
         "inputs": 0,
         "outputs": 1,
         "category": "HTTP",
-        "x": 145,
-        "y": 180,
+        "x": 205,
+        "y": 40,
         "wires": [
             [
-                "sd_RVC9aeq2D2dloX7k"
+                "sd_3PpQ5CyDuIvxzNwv"
             ]
         ],
         "generateNext": true,
@@ -65,7 +65,7 @@
         "nodeType": "flow",
         "name": "",
         "databaseConfig": "sd_MiIIcvLvPF3Wgg3L",
-        "collection": "\"employees\"",
+        "collection": "bh.collection",
         "resultMapping": "bh.local.result",
         "operation": "find",
         "argumentArray": [
@@ -94,8 +94,8 @@
         "category": "Storage",
         "__ssdTypeInputs__": {
             "collection": {
-                "type": "str",
-                "value": "employees",
+                "type": "bh",
+                "value": "collection",
                 "constant": false
             },
             "resultMapping": {
@@ -120,8 +120,8 @@
                 "constant": false
             }
         },
-        "x": 305,
-        "y": 180,
+        "x": 405,
+        "y": 220,
         "wires": [
             [
                 "sd_bSW0jynsplxdLORq"
@@ -154,6 +154,7 @@
             "obj": "bh.local.result",
             "send": "bh.local.result"
         },
+        "cookies": [],
         "inputs": 1,
         "outputs": 0,
         "editableListData": {
@@ -165,9 +166,95 @@
             "cookies": "Map"
         },
         "category": "HTTP",
-        "x": 445,
-        "y": 180,
+        "x": 545,
+        "y": 220,
         "wires": [],
+        "generateNext": false,
+        "generated": true
+    },
+    {
+        "id": "sd_3PpQ5CyDuIvxzNwv",
+        "type": "Script",
+        "z": "sd_EpL0cWVkZjg5r4YB",
+        "viewType": "common",
+        "nodeType": "flow",
+        "name": "",
+        "script": "bh.collection = 'employees';\nconsole.log(bh);",
+        "category": "Function",
+        "x": 305,
+        "y": 40,
+        "wires": [
+            [
+                "sd_RVC9aeq2D2dloX7k"
+            ]
+        ],
+        "generateNext": false,
+        "generated": true
+    },
+    {
+        "id": "sd_eNq7M6PYOfRnDGkB",
+        "type": "HttpIn",
+        "z": "sd_EpL0cWVkZjg5r4YB",
+        "viewType": "server",
+        "nodeType": "start",
+        "name": "Get Visa Details",
+        "path": "/visa",
+        "uploadpath": "",
+        "summary": "",
+        "description": "",
+        "method": "post",
+        "sequenceId": "",
+        "consumes": "",
+        "produces": "",
+        "filetype": "path",
+        "acceptFileUpload": false,
+        "httpOptions": {
+            "/visa": {
+                "post": {
+                    "summary": "",
+                    "description": "",
+                    "consumes": [],
+                    "produces": [],
+                    "parameters": [],
+                    "responses": {}
+                }
+            }
+        },
+        "editableListData": {
+            "responses": [],
+            "params": [],
+            "produces": [],
+            "consumes": []
+        },
+        "inputs": 0,
+        "outputs": 1,
+        "category": "HTTP",
+        "x": 205,
+        "y": 140,
+        "wires": [
+            [
+                "sd_h2cZ4sqFLgvogBNg"
+            ]
+        ],
+        "generateNext": true,
+        "serviceName": "crudoperations"
+    },
+    {
+        "id": "sd_h2cZ4sqFLgvogBNg",
+        "type": "Script",
+        "z": "sd_EpL0cWVkZjg5r4YB",
+        "viewType": "common",
+        "nodeType": "flow",
+        "name": "",
+        "script": "bh.collection = 'visa';\nconsole.log(bh);",
+        "category": "Function",
+        "x": 305,
+        "y": 140,
+        "wires": [
+            [
+                "sd_RVC9aeq2D2dloX7k"
+            ]
+        ],
         "generateNext": false,
         "generated": true
     }

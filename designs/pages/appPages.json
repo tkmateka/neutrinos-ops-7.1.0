@@ -22,5 +22,23 @@
         "componentName": "emp_hrComponent",
         "isEntry": false,
         "createDate": "2020-09-15T19:53:51.211Z"
+    },
+    "b379c5c6-0d0c-cb95-dbfc-876b9c034ebb": {
+        "appPageName": "operations_emp",
+        "componentName": "operations_empComponent",
+        "isEntry": false,
+        "createDate": "2020-09-15T21:48:30.049Z"
+    },
+    "a6f0da25-2816-06d4-9a23-8b42de0a2675": {
+        "appPageName": "visa",
+        "componentName": "visaComponent",
+        "isEntry": false,
+        "createDate": "2020-09-15T21:59:01.891Z"
+    },
+    "6549fc04-0789-669e-bce8-5a736bfc4697": {
+        "appPageName": "Visa_details",
+        "componentName": "visa_detailsComponent",
+        "isEntry": false,
+        "createDate": "2020-09-15T22:47:25.100Z"
     }
 }

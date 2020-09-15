@@ -43,13 +43,13 @@ export class home_empComponent extends NBaseComponent implements OnInit {
         this.spinner = true;
         if (this.neutrinosOAuth.userInfo) {
             console.log(this.neutrinosOAuth.userInfo);
-            this.ssd.POST('get', { 'emailId': this.neutrinosOAuth.userInfo.username }).subscribe(res => {
+            this.ssd.POST('employee', { 'emailId': this.neutrinosOAuth.userInfo.username }).subscribe(res => {
                 console.log(res);
                 if (res[0]) {
                     this.spinner = false;
                     this.currentUser = res[0];
                     this.proImg = (this.currentUser.profileImage) ? this.currentUser.profileImage : ((this.currentUser.gender == "male") ? "Web/man.png" : "Web/woman.png");
-                    localStorage.setItem('user', this.currentUser);
+                    localStorage.setItem('user', JSON.stringify(this.currentUser));
                     this.router.navigate(['/employee/home']);
                 }
             }, err => {

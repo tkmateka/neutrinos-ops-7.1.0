@@ -1,0 +1,13 @@
+{
+    "appPageId": "4a392883-35e5-9341-724b-9c2618f16194",
+    "appPageName": "operations_emp",
+    "componentName": "operations_empComponent",
+    "selectorName": "bh-operations_emp",
+    "htmlFileName": "operations_emp.template.html",
+    "tsFileName": "operations_emp.component.ts",
+    "bkd": {
+        "designerHtml": "",
+        "designerReference": {},
+        "ts": ""
+    }
+}

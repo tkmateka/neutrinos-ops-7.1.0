@@ -16,6 +16,12 @@ window['neutrinos'] = {
 }
 
 //CORE_REFERENCE_IMPORTS
+//CORE_REFERENCE_IMPORT-visa_detailsComponent
+import { visa_detailsComponent } from '../components/visa_detailsComponent/visa_details.component';
+//CORE_REFERENCE_IMPORT-visaComponent
+import { visaComponent } from '../components/visaComponent/visa.component';
+//CORE_REFERENCE_IMPORT-operations_empComponent
+import { operations_empComponent } from '../components/operations_empComponent/operations_emp.component';
 //CORE_REFERENCE_IMPORT-emp_hrComponent
 import { emp_hrComponent } from '../components/emp_hrComponent/emp_hr.component';
 //CORE_REFERENCE_IMPORT-home_empComponent
@@ -61,6 +67,12 @@ export const appDeclarations = [
   NMapComponent,
   ArtImgSrcDirective,
   //CORE_REFERENCE_PUSH_TO_DEC_ARRAY
+//CORE_REFERENCE_PUSH_TO_DEC_ARRAY-visa_detailsComponent
+visa_detailsComponent,
+//CORE_REFERENCE_PUSH_TO_DEC_ARRAY-visaComponent
+visaComponent,
+//CORE_REFERENCE_PUSH_TO_DEC_ARRAY-operations_empComponent
+operations_empComponent,
 //CORE_REFERENCE_PUSH_TO_DEC_ARRAY-emp_hrComponent
 emp_hrComponent,
 //CORE_REFERENCE_PUSH_TO_DEC_ARRAY-home_empComponent
@@ -99,5 +111,6 @@ ssd_integrationService,
 // CORE_REFERENCE_PUSH_TO_ROUTE_ARRAY_START
 export const appRoutes = [{path: 'welcome', component: welcomeComponent},{path: 'employee', component: emp_home_dahsboardComponent,
 children: [{path: 'home', component: home_empComponent,
-children: []},{path: 'hr', component: emp_hrComponent}]},{path: '', redirectTo: 'welcome', pathMatch: 'full'},{path: '**', component: PageNotFoundComponent}]
+children: []},{path: 'hr', component: emp_hrComponent},{path: 'operations', component: operations_empComponent,
+children: []},{path: 'operations/visa', component: visaComponent},{path: 'operations/visa/:country', component: visa_detailsComponent}]},{path: '', redirectTo: 'welcome', pathMatch: 'full'},{path: '**', component: PageNotFoundComponent}]
 // CORE_REFERENCE_PUSH_TO_ROUTE_ARRAY_END

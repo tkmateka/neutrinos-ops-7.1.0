@@ -1,0 +1,53 @@
+<div fxLayout="row wrap" class="fullHeightMinusTopBar visaBG" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" fxFill>
+  <div fxLayout="column wrap" fxFlex="100" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+    <div fxLayout="row wrap" class="breadcrumHeight paddingLeft whiteColor" fxLayoutAlign="start center" [fxShow]="true" [fxHide]="false">
+      <div class="textAlignCenter">
+        <h3>Visa</h3>
+      </div>
+    </div>
+    <div fxLayout="row wrap" class="whiteBackground breadcrumHeight marginBottom2Em paddingLeft" fxLayoutAlign="start center" [fxShow]="true" [fxHide]="false">
+      <div class="textAlignCenter">
+        <b>
+          <span class="cursorPointer hoverRed" (click)="goTo(&apos;/employee/operations&apos;)">Operations</span> &gt;
+          <span class="redColor"> Visa</span></b></div>
+    </div>
+    <div fxLayout="column wrap" fxLayoutGap="1.5em" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+      <div fxLayout="row wrap" fxLayoutAlign="space-between center" [fxShow]="true" [fxHide]="false">
+        <div fxLayout="column wrap" class="marginBottom1Em" fxFlex="30" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" *ngFor="let country of countries" (click)="selectCountry(country.name)" [class.greyButton]="selectedCountry == country.name">
+          <div fxLayout="row wrap" class="whiteBackground cursorPointer navRectangle" fxLayoutAlign="space-between center" [fxShow]="true" [fxHide]="false">
+            <div fxLayout="column wrap" fxFlex="20" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><img imgSrc="Web/flags/{{country.image}}"></div>
+            <div fxLayout="column wrap" fxFlex="75" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+              <h4>
+                {{country.name}}</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div fxLayout="row wrap" class="greyShadow" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false" *ngIf="isOther">
+        <div fxLayout="column wrap" fxFlex="100" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+          <div fxLayout="row wrap" fxLayoutAlign="space-between end" [fxShow]="true" [fxHide]="false">
+            <div fxLayout="column wrap" class="whiteColor" fxFlex="38" fxLayoutGap=".5em" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><label>
+                <p>Country Name</p>
+              </label>
+              <div class="inputField-container">
+                <mat-form-field [floatLabel]="&apos;never&apos;" appearance="legacy">
+                  <input matInput type="text" [(ngModel)]="countryName" name="countryName" placeholder="Please enter the Country Name" required>
+                </mat-form-field>
+              </div>
+            </div>
+            <div fxLayout="column wrap" class="whiteColor" fxFlex="38" fxLayoutGap=".5em" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><label>
+                <p>Type of Visa</p>
+              </label>
+              <div class="inputField-container">
+                <mat-form-field [floatLabel]="&apos;never&apos;" appearance="legacy">
+                  <input matInput type="text" [(ngModel)]="typeOfVisa" name="typeOfVisa" placeholder="Please enter the type of Visa" required>
+                </mat-form-field>
+              </div>
+            </div>
+            <div fxLayout="column wrap" fxFlex="18" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><button mat-raised-button class="darkGreyBackground redColor boldFont cursorPointer btnHeight" (click)="addOtherCountry()">Add Country</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

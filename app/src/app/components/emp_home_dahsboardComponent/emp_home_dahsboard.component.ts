@@ -44,6 +44,7 @@ export class emp_home_dahsboardComponent extends NBaseComponent implements OnIni
     }
 
     logout() {
+        localStorage.clear();
         this.neutrinosOAuth.logout('welcome');
     }
 
@@ -53,7 +54,11 @@ export class emp_home_dahsboardComponent extends NBaseComponent implements OnIni
 
     selectItem() {
         console.log(this.router.url);
-        this.selectedLink = this.router.url;
+        if(this.router.url.includes('/employee/operations/visa')) {
+            this.selectedLink = '/employee/operations';
+        } else {
+            this.selectedLink = this.router.url;
+        }
     }
 
     getNotifications() {
