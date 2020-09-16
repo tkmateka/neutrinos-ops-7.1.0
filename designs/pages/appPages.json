@@ -40,5 +40,11 @@
         "componentName": "visa_detailsComponent",
         "isEntry": false,
         "createDate": "2020-09-15T22:47:25.100Z"
+    },
+    "7f5333d8-18ae-60df-256f-be2bcd18f8c0": {
+        "appPageName": "travel",
+        "componentName": "travelComponent",
+        "isEntry": false,
+        "createDate": "2020-09-15T23:11:41.194Z"
     }
 }

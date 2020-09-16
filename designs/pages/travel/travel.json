@@ -1,0 +1,13 @@
+{
+    "appPageId": "c65bd469-1f95-e6a6-5e23-bd47601b91dc",
+    "appPageName": "travel",
+    "componentName": "travelComponent",
+    "selectorName": "bh-travel",
+    "htmlFileName": "travel.template.html",
+    "tsFileName": "travel.component.ts",
+    "bkd": {
+        "designerHtml": "",
+        "designerReference": {},
+        "ts": ""
+    }
+}

@@ -29,6 +29,10 @@
                 {
                     "component": "visa_detailsComponent",
                     "path": "operations/visa/:country"
+                },
+                {
+                    "path": "operations/travel",
+                    "component": "travelComponent"
                 }
             ]
         },

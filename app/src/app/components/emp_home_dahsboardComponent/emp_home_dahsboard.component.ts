@@ -54,7 +54,7 @@ export class emp_home_dahsboardComponent extends NBaseComponent implements OnIni
 
     selectItem() {
         console.log(this.router.url);
-        if(this.router.url.includes('/employee/operations/visa')) {
+        if(this.router.url.includes('/employee/operations/')) {
             this.selectedLink = '/employee/operations';
         } else {
             this.selectedLink = this.router.url;
