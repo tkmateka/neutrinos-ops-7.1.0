@@ -44,8 +44,7 @@ export class emp_home_dahsboardComponent extends NBaseComponent implements OnIni
     }
 
     logout() {
-        localStorage.clear();
-        this.neutrinosOAuth.logout('welcome');
+        this.neutrinosOAuth.logout('/welcome');
     }
 
     goHome() {

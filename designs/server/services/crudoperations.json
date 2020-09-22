@@ -38,6 +38,7 @@
                 }
             }
         },
+        "uploadFileOptions": {},
         "editableListData": {
             "responses": [],
             "params": [],
@@ -66,6 +67,7 @@
         "name": "",
         "databaseConfig": "sd_MiIIcvLvPF3Wgg3L",
         "collection": "bh.collection",
+        "options": "",
         "resultMapping": "bh.local.result",
         "operation": "find",
         "argumentArray": [
@@ -120,15 +122,16 @@
                 "constant": false
             }
         },
-        "x": 405,
-        "y": 220,
+        "x": 425,
+        "y": 80,
         "wires": [
             [
                 "sd_bSW0jynsplxdLORq"
             ]
         ],
         "generateNext": false,
-        "generated": true
+        "generated": true,
+        "serviceName": "crudoperations"
     },
     {
         "id": "sd_bSW0jynsplxdLORq",
@@ -167,10 +170,11 @@
         },
         "category": "HTTP",
         "x": 545,
-        "y": 220,
+        "y": 80,
         "wires": [],
         "generateNext": false,
-        "generated": true
+        "generated": true,
+        "serviceName": "crudoperations"
     },
     {
         "id": "sd_3PpQ5CyDuIvxzNwv",
@@ -220,6 +224,7 @@
                 }
             }
         },
+        "uploadFileOptions": {},
         "editableListData": {
             "responses": [],
             "params": [],
@@ -253,6 +258,390 @@
         "wires": [
             [
                 "sd_RVC9aeq2D2dloX7k"
+            ]
+        ],
+        "generateNext": false,
+        "generated": true
+    },
+    {
+        "id": "sd_9n8UaiIhRUUhMMjV",
+        "type": "HttpIn",
+        "z": "sd_EpL0cWVkZjg5r4YB",
+        "viewType": "server",
+        "nodeType": "start",
+        "name": "Send Request",
+        "path": "/sendRequest",
+        "uploadpath": "",
+        "summary": "",
+        "description": "",
+        "method": "post",
+        "sequenceId": "",
+        "consumes": "",
+        "produces": "",
+        "filetype": "path",
+        "acceptFileUpload": false,
+        "httpOptions": {
+            "/sendRequest": {
+                "post": {
+                    "summary": "",
+                    "description": "",
+                    "consumes": [],
+                    "produces": [],
+                    "parameters": [],
+                    "responses": {}
+                }
+            }
+        },
+        "editableListData": {
+            "responses": [],
+            "params": [],
+            "produces": [],
+            "consumes": []
+        },
+        "inputs": 0,
+        "outputs": 1,
+        "category": "HTTP",
+        "x": 185,
+        "y": 260,
+        "wires": [
+            [
+                "sd_NKwElQmIiv7yWqLF"
+            ]
+        ],
+        "generateNext": true,
+        "serviceName": "crudoperations"
+    },
+    {
+        "id": "sd_Kx8hQYyDyHPotS5z",
+        "type": "Mongodb",
+        "z": "sd_EpL0cWVkZjg5r4YB",
+        "viewType": "server",
+        "nodeType": "flow",
+        "name": "",
+        "databaseConfig": "sd_MiIIcvLvPF3Wgg3L",
+        "collection": "bh.collection",
+        "resultMapping": "bh.local.result",
+        "operation": "insertOne",
+        "argumentArray": [
+            "document"
+        ],
+        "aggregate": "",
+        "operations": "",
+        "query": "bh.input.body",
+        "fieldOrSpec": "",
+        "filter": "bh.filter",
+        "key": "",
+        "docId": "",
+        "indexName": "",
+        "replacement": "",
+        "update": "bh.updateDoc",
+        "xAxis": "",
+        "yAxis": "",
+        "indexes": "",
+        "docs": "",
+        "document": "bh.input.body",
+        "newName": "",
+        "doc": "",
+        "filePath": "",
+        "fileName": "",
+        "pipeline": "",
+        "category": "Storage",
+        "__ssdTypeInputs__": {
+            "collection": {
+                "type": "bh",
+                "value": "collection",
+                "constant": false
+            },
+            "resultMapping": {
+                "type": "bh.local",
+                "value": "result",
+                "constant": false
+            },
+            "options": {
+                "type": "bh",
+                "value": "",
+                "nullable": "true",
+                "constant": false
+            },
+            "query": {
+                "type": "bh.input",
+                "value": "body",
+                "constant": false
+            },
+            "document": {
+                "type": "bh.input",
+                "value": "body",
+                "constant": false
+            },
+            "filter": {
+                "type": "bh",
+                "value": "filter",
+                "constant": false
+            },
+            "update": {
+                "type": "bh",
+                "value": "updateDoc",
+                "constant": false
+            }
+        },
+        "x": 405,
+        "y": 260,
+        "wires": [
+            [
+                "sd_FXCn9valFWflpHZ3"
+            ]
+        ],
+        "generateNext": false,
+        "generated": true
+    },
+    {
+        "id": "sd_FXCn9valFWflpHZ3",
+        "type": "HttpOut",
+        "z": "sd_EpL0cWVkZjg5r4YB",
+        "viewType": "server",
+        "nodeType": "flow",
+        "name": "",
+        "headers": {},
+        "responseBody": {
+            "type": "bh.local",
+            "value": "result",
+            "ssd_typedInputField": true
+        },
+        "httpcode": {
+            "type": "num",
+            "value": 200,
+            "ssd_typedInputField": true
+        },
+        "responseType": "obj",
+        "responseMapping": {
+            "status": 200,
+            "obj": "bh.local.result",
+            "send": "bh.local.result"
+        },
+        "inputs": 1,
+        "outputs": 0,
+        "editableListData": {
+            "headers": []
+        },
+        "cookiesList": {},
+        "switchStates": {
+            "headers": "Map",
+            "cookies": "Map"
+        },
+        "category": "HTTP",
+        "x": 525,
+        "y": 260,
+        "wires": [],
+        "generateNext": false,
+        "generated": true
+    },
+    {
+        "id": "sd_NKwElQmIiv7yWqLF",
+        "type": "Script",
+        "z": "sd_EpL0cWVkZjg5r4YB",
+        "viewType": "common",
+        "nodeType": "flow",
+        "name": "",
+        "script": "console.log(\"before \",bh);\n\nbh.collection = bh.input.body.collection;\ndelete bh.input.body.collection;\nbh.input.body = bh.input.body.data;\nconsole.log(bh);",
+        "category": "Function",
+        "x": 285,
+        "y": 260,
+        "wires": [
+            [
+                "sd_Kx8hQYyDyHPotS5z"
+            ]
+        ],
+        "generateNext": false,
+        "generated": true
+    },
+    {
+        "id": "sd_Ol4SqevB9uIyL7jf",
+        "type": "HttpIn",
+        "z": "sd_EpL0cWVkZjg5r4YB",
+        "viewType": "server",
+        "nodeType": "start",
+        "name": "Update Request",
+        "path": "/updateRequest",
+        "uploadpath": "",
+        "summary": "",
+        "description": "",
+        "method": "post",
+        "sequenceId": "",
+        "consumes": "",
+        "produces": "",
+        "filetype": "path",
+        "acceptFileUpload": false,
+        "httpOptions": {
+            "/updateRequest": {
+                "post": {
+                    "summary": "",
+                    "description": "",
+                    "consumes": [],
+                    "produces": [],
+                    "parameters": [],
+                    "responses": {}
+                }
+            }
+        },
+        "editableListData": {
+            "responses": [],
+            "params": [],
+            "produces": [],
+            "consumes": []
+        },
+        "inputs": 0,
+        "outputs": 1,
+        "category": "HTTP",
+        "x": 185,
+        "y": 380,
+        "wires": [
+            [
+                "sd_vLyxQdqVpPN2SiN5"
+            ]
+        ],
+        "generateNext": true,
+        "serviceName": "crudoperations"
+    },
+    {
+        "id": "sd_P9lzQ0A5wBOCCgt5",
+        "type": "Mongodb",
+        "z": "sd_EpL0cWVkZjg5r4YB",
+        "viewType": "server",
+        "nodeType": "flow",
+        "name": "",
+        "databaseConfig": "sd_MiIIcvLvPF3Wgg3L",
+        "collection": "bh.collection",
+        "resultMapping": "bh.local.result",
+        "operation": "updateOne",
+        "argumentArray": [
+            "filter",
+            "update"
+        ],
+        "aggregate": "",
+        "operations": "",
+        "query": "bh.input.body",
+        "fieldOrSpec": "",
+        "filter": "bh.filter",
+        "key": "",
+        "docId": "",
+        "indexName": "",
+        "replacement": "",
+        "update": "bh.updateDoc",
+        "xAxis": "",
+        "yAxis": "",
+        "indexes": "",
+        "docs": "",
+        "document": "bh.input.body",
+        "newName": "",
+        "doc": "",
+        "filePath": "",
+        "fileName": "",
+        "pipeline": "",
+        "category": "Storage",
+        "__ssdTypeInputs__": {
+            "collection": {
+                "type": "bh",
+                "value": "collection",
+                "constant": false
+            },
+            "resultMapping": {
+                "type": "bh.local",
+                "value": "result",
+                "constant": false
+            },
+            "options": {
+                "type": "bh",
+                "value": "",
+                "nullable": "true",
+                "constant": false
+            },
+            "query": {
+                "type": "bh.input",
+                "value": "body",
+                "constant": false
+            },
+            "document": {
+                "type": "bh.input",
+                "value": "body",
+                "constant": false
+            },
+            "filter": {
+                "type": "bh",
+                "value": "filter",
+                "constant": false
+            },
+            "update": {
+                "type": "bh",
+                "value": "updateDoc",
+                "constant": false
+            }
+        },
+        "x": 405,
+        "y": 380,
+        "wires": [
+            [
+                "sd_v8a2kyLj4MnL0n48"
+            ]
+        ],
+        "generateNext": false,
+        "generated": true
+    },
+    {
+        "id": "sd_v8a2kyLj4MnL0n48",
+        "type": "HttpOut",
+        "z": "sd_EpL0cWVkZjg5r4YB",
+        "viewType": "server",
+        "nodeType": "flow",
+        "name": "",
+        "headers": {},
+        "responseBody": {
+            "type": "bh.local",
+            "value": "result",
+            "ssd_typedInputField": true
+        },
+        "httpcode": {
+            "type": "num",
+            "value": 200,
+            "ssd_typedInputField": true
+        },
+        "responseType": "obj",
+        "responseMapping": {
+            "status": 200,
+            "obj": "bh.local.result",
+            "send": "bh.local.result"
+        },
+        "cookies": [],
+        "inputs": 1,
+        "outputs": 0,
+        "editableListData": {
+            "headers": []
+        },
+        "cookiesList": {},
+        "switchStates": {
+            "headers": "Map",
+            "cookies": "Map"
+        },
+        "category": "HTTP",
+        "x": 525,
+        "y": 380,
+        "wires": [],
+        "generateNext": false,
+        "generated": true
+    },
+    {
+        "id": "sd_vLyxQdqVpPN2SiN5",
+        "type": "Script",
+        "z": "sd_EpL0cWVkZjg5r4YB",
+        "viewType": "common",
+        "nodeType": "flow",
+        "name": "",
+        "script": "console.log(\"before \",bh);\n\nbh.collection = bh.input.body.collection;\ndelete bh.input.body.collection;\nbh.input.body = bh.input.body.data;\nbh.updateDoc = {$set: bh.input.body};\nbh.filter = {requestId : bh.input.body.requestId};\nconsole.log(bh);",
+        "category": "Function",
+        "x": 285,
+        "y": 380,
+        "wires": [
+            [
+                "sd_P9lzQ0A5wBOCCgt5"
             ]
         ],
         "generateNext": false,

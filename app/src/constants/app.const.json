@@ -1,5 +1,7 @@
 {
-  "dataSource": {
-
-  }
+    "dataSource": {
+        "oneway": "neutrinos-rt",
+        "roundtrip": "neutrinos-rt",
+        "multicity": "neutrinos-rt"
+    }
 }

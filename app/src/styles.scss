@@ -16,6 +16,7 @@ $darkGrey: #4A4A4A;
 $lightGrey: #E5E5E5;
 $red: #ED1C24;
 $skyBlue: #8FCFD1;
+$green: #70ff70;
 $yellow: #F6EFA6;
 $orange: #F6AB6C;
 $pink: #DF5E88;
@@ -55,10 +56,10 @@ h1, h2, h3, h4, h5, h6, p {
 .textAlignCenter {
     text-align: center;
 }
-.whiteColor {
+.whiteColor, .greenButton {
     color: $white;
 }
-.redColor, .hoverRed:hover {
+.redColor, .hoverRed:hover, .logout:hover {
     color: $red;
 }
 .lightGreyColor {
@@ -94,7 +95,7 @@ h1, h2, h3, h4, h5, h6, p {
 .bigFont {
     font-size: 3.5em;
 }
-.boldFont {
+.boldFont, .redButton, .greenButton {
     font-weight: bold;
 }
 .cursorPointer {
@@ -103,7 +104,10 @@ h1, h2, h3, h4, h5, h6, p {
 .margin0 {
     margin: 0 !important;
 }
-.marginBottom2Em {
+.marginRight2 {
+    margin-right: 2em;
+}
+.marginBottom2Em, .breadcrum {
     margin-bottom: 2em;
 }
 .marginBottom1Em {
@@ -135,13 +139,16 @@ h1, h2, h3, h4, h5, h6, p {
     height: calc(100vh - 85px) !important;
     overflow-y: scroll;
 }
-.breadcrumHeight {
+.breadcrumHeight, .breadcrum {
+    height: 40px;
+}
+.breadcrum {
     height: 40px;
 }
 .height30px {
     height: 30px;
 }
-.paddingLeft {
+.paddingLeft, .breadcrum {
     padding-left: 20px;
 }
 .paddingTopBottom15px {
@@ -206,38 +213,35 @@ h1, h2, h3, h4, h5, h6, p {
         height: 100px;
     }
 }
-.logout:hover {
-    color: $red;
-}
 .navRectangle {
     height: 65px;
     padding: 7px;
 }
-.blackButton, .blackTopBar {
-    background: $black;
-}
-.greyButton, .blackButton:hover, .redButton:hover, .iconGreyRoundBg {
-    background: $grey;
-}
-.redButton{
-    background: $red;
-}
 .noBackground {
     background: none;
 }
-.skyBlueBackground {
+.blackButton, .blackTopBar {
+    background: $black;
+}
+.greyButton, .blackButton:hover, .iconGreyRoundBg {
+    background: $grey;
+}
+.skyBlueBackground, .greenButton:hover {
     background: $skyBlue !important;
+}
+.greenBackground, .greenButton {
+    background: $green !important;
 }
 .yellowBackground {
     background: $yellow !important;
 }
-.orangeBackground {
+.orangeBackground, .redButton:hover {
     background: $orange !important;
 }
 .pinkBackground {
     background: $pink !important;
 }
-.whiteBackground {
+.whiteBackground, .breadcrum {
     background: $white;
 }
 .loggedOffBG, .loggedOnBG, .homeBG, .operationsBG, .visaBG {
@@ -318,7 +322,7 @@ h1, h2, h3, h4, h5, h6, p {
     height: 50px;
     padding: 0 10px;
 }
-.sidenavItem:hover, .selectedSidenavItem {
+.sidenavItem:hover, .selectedSidenavItem, .redButton {
     color: $white;
     background: $red;
 }
@@ -341,7 +345,7 @@ h1, h2, h3, h4, h5, h6, p {
     }
 } 
 .whiteRadioButtons {
-    .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle, {
+    .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
         border-color: $red;
     }
     .mat-radio-button.mat-accent .mat-radio-inner-circle {
@@ -381,10 +385,10 @@ h1, h2, h3, h4, h5, h6, p {
         padding: 0 !important;
     }
 }
-.stepContentContainer {
+.tabContainer {
     border: solid 2px $grey;
     background: $greyShadowBG;
-    height: 64vh;
+    height: 68vh;
     margin: 0 20px;
     padding: 10px;
     overflow-x: auto;
@@ -433,6 +437,7 @@ h1, h2, h3, h4, h5, h6, p {
     .mat-button-toggle {
         background-color: $grey;
         color: $white;
+        width: 150px;
     }
     .mat-button-toggle-checked, .mat-button-toggle-button:hover {
         background-color: $black;

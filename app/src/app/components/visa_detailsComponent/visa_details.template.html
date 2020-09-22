@@ -14,7 +14,7 @@
     </div>
     <div fxLayout="column wrap" fxLayoutGap="1.5em" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
       <div fxLayout="row wrap" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false">
-        <div fxLayout="column wrap" class="stepContentContainer checklistContainer" fxFlex="100" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+        <div fxLayout="column wrap" class="tabContainer" fxFlex="100" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
           <mat-tab-group class="tabGroup">
             <mat-tab label="{{visaType.typeName}}" *ngFor="let visaType of visaDetails.visaTypes">
               <div fxLayout="column wrap" fxLayoutGap=".5em" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">

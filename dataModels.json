@@ -1,0 +1,271 @@
+{
+    "b2d1453b-22df-5df4-0969-2199930b0c52": {
+        "dataModelId": "b2d1453b-22df-5df4-0969-2199930b0c52",
+        "name": "oneway",
+        "description": "One-Way Schema",
+        "dataSource": "neutrinos-rt",
+        "fields": [
+            {
+                "name": "tripType",
+                "fieldType": 2,
+                "isArray": false,
+                "type": "string"
+            },
+            {
+                "name": "modeOfTransport",
+                "fieldType": 2,
+                "isArray": false,
+                "type": "string"
+            },
+            {
+                "name": "actionType",
+                "fieldType": 2,
+                "isArray": false,
+                "type": "string"
+            },
+            {
+                "name": "from",
+                "fieldType": 2,
+                "isArray": false,
+                "type": "string"
+            },
+            {
+                "name": "to",
+                "fieldType": 2,
+                "isArray": false,
+                "type": "string"
+            },
+            {
+                "name": "departureDate",
+                "fieldType": 3,
+                "isArray": false,
+                "type": "Date"
+            },
+            {
+                "name": "preferredTime",
+                "fieldType": 2,
+                "isArray": false,
+                "type": "string"
+            },
+            {
+                "name": "countryOfAccommodation",
+                "fieldType": 2,
+                "isArray": false,
+                "type": "string"
+            },
+            {
+                "name": "clientAddress",
+                "fieldType": 2,
+                "isArray": false,
+                "type": "string"
+            },
+            {
+                "name": "checkInDate",
+                "fieldType": 3,
+                "isArray": false,
+                "type": "Date"
+            },
+            {
+                "name": "checkOutDate",
+                "fieldType": 3,
+                "isArray": false,
+                "type": "Date"
+            },
+            {
+                "name": "isFlexi",
+                "fieldType": 4,
+                "isArray": false,
+                "type": "boolean"
+            },
+            {
+                "name": "employeeId",
+                "fieldType": 2,
+                "isArray": false,
+                "type": "string"
+            },
+            {
+                "name": "lineManager",
+                "fieldType": 2,
+                "isArray": false,
+                "type": "string"
+            },
+            {
+                "name": "lineManagerEmail",
+                "fieldType": 2,
+                "isArray": false,
+                "type": "string"
+            },
+            {
+                "name": "employeeName",
+                "fieldType": 2,
+                "isArray": false,
+                "type": "string"
+            },
+            {
+                "name": "emailId",
+                "fieldType": 2,
+                "isArray": false,
+                "type": "string"
+            },
+            {
+                "name": "status",
+                "fieldType": 2,
+                "isArray": false,
+                "type": "string"
+            },
+            {
+                "name": "isRead",
+                "fieldType": 4,
+                "isArray": false,
+                "type": "boolean"
+            },
+            {
+                "name": "requestId",
+                "fieldType": 2,
+                "isArray": false,
+                "type": "string"
+            }
+        ]
+    },
+    "24cd7d81-5a17-bf23-24c4-284e4c7f9b20": {
+        "dataModelId": "24cd7d81-5a17-bf23-24c4-284e4c7f9b20",
+        "name": "roundtrip",
+        "description": "Round-Trip Schema",
+        "dataSource": "neutrinos-rt",
+        "fields": [
+            {
+                "name": "tripType",
+                "fieldType": 2,
+                "isArray": false,
+                "type": "string"
+            },
+            {
+                "name": "modeOfTransport",
+                "fieldType": 2,
+                "isArray": false,
+                "type": "string"
+            },
+            {
+                "name": "actionType",
+                "fieldType": 2,
+                "isArray": false,
+                "type": "string"
+            },
+            {
+                "name": "from",
+                "fieldType": 2,
+                "isArray": false,
+                "type": "string"
+            },
+            {
+                "name": "to",
+                "fieldType": 2,
+                "isArray": false,
+                "type": "string"
+            },
+            {
+                "name": "departureDate",
+                "fieldType": 3,
+                "isArray": false,
+                "type": "Date"
+            },
+            {
+                "name": "preferredTime",
+                "fieldType": 2,
+                "isArray": false,
+                "type": "string"
+            },
+            {
+                "name": "countryOfAccommodation",
+                "fieldType": 2,
+                "isArray": false,
+                "type": "string"
+            },
+            {
+                "name": "clientAddress",
+                "fieldType": 2,
+                "isArray": false,
+                "type": "string"
+            },
+            {
+                "name": "checkInDate",
+                "fieldType": 3,
+                "isArray": false,
+                "type": "Date"
+            },
+            {
+                "name": "checkOutDate",
+                "fieldType": 3,
+                "isArray": false,
+                "type": "Date"
+            },
+            {
+                "name": "returnDate",
+                "fieldType": 3,
+                "isArray": false,
+                "type": "Date"
+            },
+            {
+                "name": "isFlexi",
+                "fieldType": 4,
+                "isArray": false,
+                "type": "boolean"
+            },
+            {
+                "name": "employeeId",
+                "fieldType": 2,
+                "isArray": false,
+                "type": "string"
+            },
+            {
+                "name": "lineManager",
+                "fieldType": 2,
+                "isArray": false,
+                "type": "string"
+            },
+            {
+                "name": "lineManagerEmail",
+                "fieldType": 2,
+                "isArray": false,
+                "type": "string"
+            },
+            {
+                "name": "employeeName",
+                "fieldType": 2,
+                "isArray": false,
+                "type": "string"
+            },
+            {
+                "name": "emailId",
+                "fieldType": 2,
+                "isArray": false,
+                "type": "string"
+            },
+            {
+                "name": "status",
+                "fieldType": 2,
+                "isArray": false,
+                "type": "string"
+            },
+            {
+                "name": "isRead",
+                "fieldType": 4,
+                "isArray": false,
+                "type": "boolean"
+            },
+            {
+                "name": "requestId",
+                "fieldType": 3,
+                "isArray": false,
+                "type": "Date"
+            }
+        ]
+    },
+    "1d2a4b67-be6a-cc50-d30e-fed12907e107": {
+        "dataModelId": "1d2a4b67-be6a-cc50-d30e-fed12907e107",
+        "name": "multicity",
+        "description": "Multi-City Schema",
+        "dataSource": "neutrinos-rt",
+        "fields": []
+    }
+}

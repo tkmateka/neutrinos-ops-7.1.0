@@ -845,7 +845,9 @@
                             },
                             {
                                 "_key": "class",
-                                "_value": "stepContentContainer checklistContainer",
+                                "_value": [
+                                    "tabContainer"
+                                ],
                                 "_type": "kv",
                                 "_attrDef": "p"
                             },
