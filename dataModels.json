@@ -260,12 +260,5 @@
                 "type": "Date"
             }
         ]
-    },
-    "1d2a4b67-be6a-cc50-d30e-fed12907e107": {
-        "dataModelId": "1d2a4b67-be6a-cc50-d30e-fed12907e107",
-        "name": "multicity",
-        "description": "Multi-City Schema",
-        "dataSource": "neutrinos-rt",
-        "fields": []
     }
 }

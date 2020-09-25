@@ -50,8 +50,8 @@
                     <mat-button-toggle value="train">Train</mat-button-toggle>
                   </mat-button-toggle-group>
                 </div>
-                <form #oneWayForm="ngForm" autocomplete="off">
-                  <div fxLayout="column wrap" fxFlex="99.7" fxLayoutGap="01.5em" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" *ngIf="tripType== &apos;one-way&apos;">
+                <form #oneWayForm="ngForm" autocomplete="off" *ngIf="tripType== &apos;one-way&apos;">
+                  <div fxLayout="column wrap" fxFlex="99.7" fxLayoutGap="01.5em" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
                     <div fxLayout="row wrap" class="inputRowHeight" fxLayoutAlign="space-between center" [fxShow]="true" [fxHide]="false">
                       <div fxLayout="column wrap" fxFlex="49" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><label>
                           <p>From<span class="redColor" id="from">*</span></p>
@@ -186,8 +186,8 @@
                     </div>
                   </div>
                 </form>
-                <form #roundTripForm="ngForm" autocomplete="off">
-                  <div fxLayout="column wrap" fxLayoutGap="1em" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" *ngIf="tripType == &apos;round-trip&apos;">
+                <form #roundTripForm="ngForm" autocomplete="off" *ngIf="tripType == &apos;round-trip&apos;">
+                  <div fxLayout="column wrap" fxLayoutGap="1em" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
                     <div fxLayout="row wrap" class="inputRowHeight" fxLayoutAlign="space-between center" [fxShow]="true" [fxHide]="false">
                       <div fxLayout="column wrap" fxFlex="49" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><label>
                           <p>From<span class="redColor" id="from">*</span></p>
@@ -341,17 +341,21 @@
                     </div>
                   </div>
                 </form>
-                <form #multiCityForm="ngForm" autocomplete="off">
-                  <div fxLayout="column wrap" fxLayoutGap="1em" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" *ngIf="tripType == &apos;multi-city&apos;">
-                    <div fxLayout="row wrap" fxLayoutAlign="space-between center" [fxShow]="true" [fxHide]="false">
-                      <div fxLayout="column wrap" fxFlex="90" fxLayoutGap="1em" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+                <form #multiCityForm="ngForm" autocomplete="off" *ngIf="tripType == &apos;multi-city&apos;">
+                  <div fxLayout="column wrap" fxLayoutGap="1em" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+                    <div fxLayout="row wrap" fxLayoutAlign="space-between center" [fxShow]="true" [fxHide]="false" *ngFor="let trp of multicityObj.tripList; let i = index;">
+                      <div fxLayout="column wrap" fxFlex="100" fxLayoutGap="1em" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+                        <div fxLayout="row wrap" fxLayoutAlign="space-between center" [fxShow]="true" [fxHide]="false">
+                          <div fxLayout="column wrap" fxFlex="20" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><button mat-raised-button class="greenButton" *ngIf="i == (multicityObj.tripList.length - 1)" (click)="addTrip()">Add</button></div>
+                          <div fxLayout="column wrap" fxFlex="20" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><button mat-raised-button class="redButton" *ngIf="multicityObj.tripList.length &gt; 1" (click)="removeTrip(i)">Remove</button></div>
+                        </div>
                         <div fxLayout="row wrap" class="inputRowHeight" fxLayoutAlign="space-between center" [fxShow]="true" [fxHide]="false">
                           <div fxLayout="column wrap" fxFlex="49" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><label>
                               <p>From<span class="redColor" id="from">*</span></p>
                             </label>
                             <div class="inputField-container">
                               <mat-form-field [floatLabel]="&apos;never&apos;" appearance="legacy">
-                                <input matInput type="text" placeholder="From" required class="capitalize">
+                                <input matInput type="text" placeholder="From" required [(ngModel)]="multicityObj.tripList[i][&apos;from&apos;]" name="from_{{i}}" class="capitalize">
                               </mat-form-field>
 
                               <div class="errDiv">
@@ -366,7 +370,7 @@
                             </label>
                             <div class="inputField-container">
                               <mat-form-field [floatLabel]="&apos;never&apos;" appearance="legacy">
-                                <input matInput type="text" placeholder="To" required class="capitalize">
+                                <input matInput type="text" placeholder="To" required [(ngModel)]="multicityObj.tripList[i][&apos;to&apos;]" name="to_{{i}}" class="capitalize">
                               </mat-form-field>
 
                               <div class="errDiv">
@@ -383,7 +387,7 @@
                             </label>
                             <div class="inputField-container">
                               <mat-form-field [floatLabel]="&apos;never&apos;" appearance="legacy">
-                                <input matInput [matDatepicker]="departureDate" readonly placeholder="Select Departure Date" (click)="departureDate.open()" data-date-format="DD/MM/YYYY" required [min]="minDate">
+                                <input matInput [matDatepicker]="departureDate" readonly placeholder="Select Departure Date" (click)="departureDate.open()" data-date-format="DD/MM/YYYY" required [min]="minDate" [(ngModel)]="multicityObj.tripList[i][&apos;departureDate&apos;]" name="departureDate_{{i}}">
                                 <mat-datepicker-toggle matSuffix [for]="departureDate"></mat-datepicker-toggle>
                                 <mat-datepicker #departureDate></mat-datepicker>
                               </mat-form-field>
@@ -400,7 +404,7 @@
                             </label>
                             <div class="inputField-container ">
                               <mat-form-field>
-                                <mat-select placeholder="Preferred Time" (opened)="select1([&apos;preferredTime&apos; + i])" (closed)="select2([&apos;preferredTime&apos; + i], &apos;Preferred Time&apos;)" [min]="minDate" [floatLabel]="&apos;never&apos;" appearance="legacy" required class="smallFont" #preferredTime{{i}}>
+                                <mat-select placeholder="Preferred Time" (opened)="select1([&apos;preferredTime&apos; + i])" (closed)="select2([&apos;preferredTime&apos; + i], &apos;Preferred Time&apos;)" [min]="minDate" [floatLabel]="&apos;never&apos;" appearance="legacy" required class="smallFont" #preferredTime{{i}} [(ngModel)]="multicityObj.tripList[i][&apos;preferredTime_&apos;]" name="preferredTime_{{i}}">
                                   <mat-option *ngFor="let sel of preferredTimes" value="{{sel}}">{{sel | titlecase}}</mat-option>
                                 </mat-select>
                               </mat-form-field>
@@ -419,7 +423,7 @@
                             </label>
                             <div class="inputField-container">
                               <mat-form-field [floatLabel]="&apos;never&apos;" appearance="legacy">
-                                <input matInput type="text" placeholder="In which Country do you need Accommodation" class="capitalize">
+                                <input matInput type="text" placeholder="In which Country do you need Accommodation" [(ngModel)]="multicityObj.tripList[i][&apos;countryOfAccommodation&apos;]" name="countryOfAccommodation_{{i}}" class="capitalize">
                               </mat-form-field>
 
                               <div class="errDiv">
@@ -432,7 +436,7 @@
                             </label>
                             <div class="inputField-container ">
                               <mat-form-field [floatLabel]="&apos;never&apos;" appearance="legacy">
-                                <input matInput type="text" placeholder="Please enter Client Address" class="capitalize">
+                                <input matInput type="text" placeholder="Please enter Client Address" [(ngModel)]="multicityObj.tripList[i][&apos;clientAddress&apos;]" name="clientAddress_{{i}}" class="capitalize">
                               </mat-form-field>
 
                               <div class="errDiv">
@@ -447,7 +451,7 @@
                             </label>
                             <div class="inputField-container">
                               <mat-form-field [floatLabel]="&apos;never&apos;" appearance="legacy">
-                                <input matInput [matDatepicker]="checkInDate" readonly placeholder="Select Departure Date" (click)="checkInDate.open()" data-date-format="DD/MM/YYYY" [min]="minDate">
+                                <input matInput [matDatepicker]="checkInDate" readonly placeholder="Select Departure Date" (click)="checkInDate.open()" data-date-format="DD/MM/YYYY" [min]="minDate" [(ngModel)]="multicityObj.tripList[i][&apos;checkInDate&apos;]" name="checkInDate_{{i}}">
                                 <mat-datepicker-toggle matSuffix [for]="checkInDate"></mat-datepicker-toggle>
                                 <mat-datepicker #checkInDate></mat-datepicker>
                               </mat-form-field>
@@ -462,7 +466,7 @@
                             </label>
                             <div class="inputField-container ">
                               <mat-form-field [floatLabel]="&apos;never&apos;" appearance="legacy">
-                                <input matInput [matDatepicker]="checkOutDate" readonly placeholder="Select Departure Date" (click)="checkOutDate.open()" data-date-format="DD/MM/YYYY" [min]="minDate">
+                                <input matInput [matDatepicker]="checkOutDate" readonly placeholder="Select Departure Date" (click)="checkOutDate.open()" data-date-format="DD/MM/YYYY" [min]="minDate" [(ngModel)]="multicityObj.tripList[i][&apos;checkOutDate&apos;]" name="checkOutDate_{{i}}">
                                 <mat-datepicker-toggle matSuffix [for]="checkOutDate"></mat-datepicker-toggle>
                                 <mat-datepicker #checkOutDate></mat-datepicker>
                               </mat-form-field>
@@ -474,22 +478,10 @@
                           </div>
                         </div>
                       </div>
-                      <div fxLayout="column wrap" fxFlex="10" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
-                        <div fxLayout="row wrap" class="inputRowHeight" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" fxFill>
-                          <div fxLayout="column wrap" class="addRemoveIconsContainer" fxFlex="100" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false">
-                            <mat-icon class="cursorPointer " title="add">add_circle</mat-icon>
-                          </div>
-                        </div>
-                        <div fxLayout="row wrap" class="inputRowHeight" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" fxFill>
-                          <div fxLayout="column wrap" class="addRemoveIconsContainer" fxFlex="100" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false">
-                            <mat-icon class="cursorPointer redColor" title="remove" (click)="remove(i)">remove_circle</mat-icon>
-                          </div>
-                        </div>
-                      </div>
                     </div>
                     <div fxLayout="row wrap" fxLayoutAlign="space-between center" [fxShow]="true" [fxHide]="false">
                       <div fxLayout="column wrap" fxFlex="49" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><button mat-raised-button class="redButton" (click)="newTicketForm.reset()">Cancel</button></div>
-                      <div fxLayout="column wrap" fxFlex="49" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><button mat-raised-button class="greenButton" (click)="onSubmit(newTicketForm)">Submit</button></div>
+                      <div fxLayout="column wrap" fxFlex="49" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><button mat-raised-button class="greenButton" (click)="onSubmit(&apos;multicityObj&apos;, newTicketForm)">Submit</button></div>
                     </div>
                   </div>
                 </form>

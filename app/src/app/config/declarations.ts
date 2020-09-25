@@ -16,6 +16,8 @@ window['neutrinos'] = {
 }
 
 //CORE_REFERENCE_IMPORTS
+//CORE_REFERENCE_IMPORT-commonService
+import { commonService } from '../services/common/common.service';
 //CORE_REFERENCE_IMPORT-travelComponent
 import { travelComponent } from '../components/travelComponent/travel.component';
 //CORE_REFERENCE_IMPORT-visa_detailsComponent
@@ -103,6 +105,8 @@ export const appProviders = [
   },
   NAuthGuardService,
   //CORE_REFERENCE_PUSH_TO_PRO_ARRAY
+//CORE_REFERENCE_PUSH_TO_PRO_ARRAY-commonService
+commonService,
 //CORE_REFERENCE_PUSH_TO_PRO_ARRAY-ssd_integrationService
 ssd_integrationService,
 

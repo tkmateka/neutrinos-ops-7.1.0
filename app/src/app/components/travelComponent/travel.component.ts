@@ -11,11 +11,11 @@ import { Observable } from 'rxjs';
 
 // Services
 import { ssd_integrationService } from '../../services/ssd_integration/ssd_integration.service';
+import { commonService } from '../../services/common/common.service';
 
 // Data Models
 import { oneway } from '../../models/oneway.model';
 import { roundtrip } from '../../models/roundtrip.model';
-import { multicity } from '../../models/multicity.model';
 
 @Component({
     selector: 'bh-travel',
@@ -46,16 +46,20 @@ export class travelComponent extends NBaseComponent implements OnInit, AfterView
         "16:00pm - 18:00pm", "18:00pm - 20:00pm", "20:00pm - 22:00pm", "22:00pm - 00:00am"
     ];
 
+    multicityObj = {};
+
     onewayMdl = new oneway();
     roundtripMdl = new roundtrip();
-    multicityMdl = new multicity();
 
     // @ViewChild('newTicketForm', { static: false }) newTicketForm: NgForm;
 
     constructor(private bdms: NDataModelService, private router: Router,
         private activatedRoute: ActivatedRoute, private ssd: ssd_integrationService,
-        private snackbar: NSnackbarService) {
+        private snackbar: NSnackbarService, private common: commonService) {
         super();
+
+        this.multicityObj = this.common.multicityObj;
+        console.log(this.multicityObj)
     }
 
     ngOnInit() {
@@ -76,11 +80,22 @@ export class travelComponent extends NBaseComponent implements OnInit, AfterView
         this.router.navigate([link]);
     }
 
+    // Value Change
     onValChange(field, val: string) {
         this[field] = val;
         if (field == 'modeOfTransport') {
             this.getTravelRequests();
         }
+    }
+
+    // Add 1 more trip (Multicity)
+    addTrip() {
+        this.multicityObj['tripList'].push(this.common.multicityObj.tripList[0]);
+    }
+
+    // Remove 1 trip from multicity
+    removeTrip(i) {
+        this.multicityObj['tripList'].splice(i, 1);
     }
 
     // Get Airports
@@ -223,7 +238,7 @@ export class travelComponent extends NBaseComponent implements OnInit, AfterView
                 console.log(res);
                 // this.generalService.openSnackBar("Request was successfully added", 'general-snackbar');
                 form.reset();
-                this[model] = (model == 'onewayMdl') ? new oneway() : (model == 'roundtripMdl') ? new roundtrip() : new multicity();
+                this[model] = (model == 'onewayMdl') ? new oneway() : (model == 'roundtripMdl') ? new roundtrip() : this.common.multicityObj;
                 this.getTravelRequests();
                 this.addAnotherTrip();
             }, err => {
