@@ -67,7 +67,6 @@ export class travelComponent extends NBaseComponent implements OnInit, AfterView
         this.getTravelRequests();
 
         // Function Calls
-        this.addAnotherTrip();
         this.getAirports();
     }
 
@@ -90,7 +89,16 @@ export class travelComponent extends NBaseComponent implements OnInit, AfterView
 
     // Add 1 more trip (Multicity)
     addTrip() {
-        this.multicityObj['tripList'].push(this.common.multicityObj.tripList[0]);
+        this.multicityObj['tripList'].push({
+            'checkInDate': null,
+            'checkOutDate': null,
+            'clientAddress': '',
+            'countryOfAccommodation': '',
+            'departureDate': null,
+            'from': '',
+            'preferredTime': '',
+            'to': '',
+        });
     }
 
     // Remove 1 trip from multicity
@@ -137,23 +145,6 @@ export class travelComponent extends NBaseComponent implements OnInit, AfterView
         //     this.generalService.openSnackBar(err['error']['error'], 'general-snackbar');
         //     console.log(err);
         //     this.spinner = false;
-        // });
-    }
-
-    // Apend a default trip in multi-city form
-    addAnotherTrip(form: any = {}, pickUp = "") {
-        if (form.invalid) { return false };
-
-        // this.newTicket.info.push({
-        //     "from": pickUp,
-        //     "to": "",
-        //     "departureDate": null,
-        //     "returnDate": null,
-        //     "preferredTime": "",
-        //     "countryOfAccommodation": "",
-        //     "clientAddress": "",
-        //     "checkInDate": null,
-        //     "checkOutDate": null
         // });
     }
 
@@ -239,8 +230,11 @@ export class travelComponent extends NBaseComponent implements OnInit, AfterView
                 // this.generalService.openSnackBar("Request was successfully added", 'general-snackbar');
                 form.reset();
                 this[model] = (model == 'onewayMdl') ? new oneway() : (model == 'roundtripMdl') ? new roundtrip() : this.common.multicityObj;
+                if(model == 'multicityObj') {
+                    this[model].tripList = [];
+                    this.addTrip();
+                }
                 this.getTravelRequests();
-                this.addAnotherTrip();
             }, err => {
                 this.spinner = false;
                 console.log(err);

@@ -21,6 +21,7 @@ $yellow: #F6EFA6;
 $orange: #F6AB6C;
 $pink: #DF5E88;
 $greyShadowBG: rgba(132, 130, 130, 0.5);
+$blackShaddow: rgba(0,0,0,.38);
 
 // DEFAULT STYLES
 ::-webkit-scrollbar {
@@ -265,6 +266,12 @@ h1, h2, h3, h4, h5, h6, p {
 }
 .visaBG {
     background-image: url('assets/Web/visa.png');
+}
+.formBorder {
+    background: $blackShaddow;
+    border: 1px solid $white;
+    border-radius: 6px;
+    padding: 1em;
 }
 .formsLink {
     a {
