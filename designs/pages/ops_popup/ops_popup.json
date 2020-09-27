@@ -1,0 +1,13 @@
+{
+    "appPageId": "9f33fa90-ffe3-9f15-4391-023adf406c7b",
+    "appPageName": "ops_popup",
+    "componentName": "ops_popupComponent",
+    "selectorName": "bh-ops_popup",
+    "htmlFileName": "ops_popup.template.html",
+    "tsFileName": "ops_popup.component.ts",
+    "bkd": {
+        "designerHtml": "",
+        "designerReference": {},
+        "ts": ""
+    }
+}

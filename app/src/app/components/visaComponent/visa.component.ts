@@ -49,10 +49,11 @@ export class visaComponent extends NBaseComponent implements OnInit {
             this.selectedCountry = country;
 
             let countryId = country.toLowerCase().replace(/ /g, "-");
+            let body = { 'countryId': countryId, 'collection': 'visa' };
 
             this.spinner = true;
 
-            this.ssd.POST('visa', { 'countryId': countryId }).subscribe(res => {
+            this.ssd.POST('getData', body).subscribe(res => {
                 console.log(res);
                 if (res[0]) {
                     localStorage.setItem('visaDetails', JSON.stringify(res[0]));

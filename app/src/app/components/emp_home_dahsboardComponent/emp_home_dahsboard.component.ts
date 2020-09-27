@@ -10,6 +10,7 @@ import { NeutrinosOAuthClientService } from 'neutrinos-oauth-client';
 
 // Services
 import { ssd_integrationService } from '../../services/ssd_integration/ssd_integration.service';
+import { dialogService } from '../../services/dialog/dialog.service';
 
 @Component({
     selector: 'bh-emp_home_dahsboard',
@@ -33,6 +34,7 @@ export class emp_home_dahsboardComponent extends NBaseComponent implements OnIni
         private activatedRoute: ActivatedRoute,
         public neutrinosOAuth: NeutrinosOAuthClientService,
         private snackbar: NSnackbarService,
+        private dialog: dialogService,
         private ssd: ssd_integrationService
     ) {
         super();
@@ -40,11 +42,17 @@ export class emp_home_dahsboardComponent extends NBaseComponent implements OnIni
 
     ngOnInit() {
         // call default functions
+        this.getUser();
         this.getNotifications();
     }
 
     logout() {
-        this.neutrinosOAuth.logout('/welcome');
+        // this.neutrinosOAuth.logout('/welcome');
+        this.neutrinosOAuth.logout().then(logoutSuccess => {
+            this.router.navigate(['/welcome']);
+        }).catch(logoutError => {
+            console.log(logoutError)
+        });
     }
 
     goHome() {
@@ -53,7 +61,7 @@ export class emp_home_dahsboardComponent extends NBaseComponent implements OnIni
 
     selectItem() {
         console.log(this.router.url);
-        if(this.router.url.includes('/employee/operations/')) {
+        if (this.router.url.includes('/employee/operations/')) {
             this.selectedLink = '/employee/operations';
         } else {
             this.selectedLink = this.router.url;
@@ -61,110 +69,128 @@ export class emp_home_dahsboardComponent extends NBaseComponent implements OnIni
     }
 
     getNotifications() {
-        //     this.notifications = [];
-        //     this.notificationsMessages = [];
+        this.notifications = [];
+        this.notificationsMessages = [];
 
-        //     let data = {
-        //         emailId: this.currentUser['emailId'],
-        //         collection: "travel"
-        //     }
+        // if(!this.currentUser['emailId']) {
+        //     // Session has expired
+        //     this.router.navigate(['/welcome']);
+        // }
 
-        //     this.spinner = true;
-        //     this.modelrService.POST('getNotifications', data).subscribe(res => {
-        //         console.log("reerererererererrererererrrerere", res);
-        //         this.notifications = res == {} ? [] : res;
+        let body = {
+            emailId: this.currentUser['emailId'],
+            collection: "travel"
+        }
 
-        //         for (let i = 0; i < this.notifications.length; i++) {
-        //             if (this.notifications[i]['emailId'] == this.currentUser['emailId']) {
-        //                 // Approved
-        //                 if ((this.notifications[i]['status'] == 'approved') && (this.notifications[i]['isRead'] == false)) {
-        //                     this.notificationsMessages.push({
-        //                         objectToUpdate: this.notifications[i],
-        //                         message: `${this.notifications[i]['lineManager']} has approved your ${this.notifications[i]['transportType']} ticket request.`
-        //                     });
-        //                 }
-        //                 // Declined
-        //                 if ((this.notifications[i]['status'] == 'declined') && (this.notifications[i]['isRead'] == false)) {
-        //                     this.notificationsMessages.push({
-        //                         objectToUpdate: this.notifications[i],
-        //                         message: `${this.notifications[i]['lineManager']} has declined your ${this.notifications[i]['transportType']} ticket request.`
-        //                     });
-        //                 }
-        //             }
+        this.spinner = true;
+        this.ssd.POST('getData', body).subscribe(res => {
+            console.log("reerererererererrererererrrerere", res);
+            this.notifications = res == {} ? [] : res;
 
-        //             if (this.notifications[i]['lineManagerEmail'] == this.currentUser['emailId']) {
-        //                 // Approval Requests
-        //                 if ((this.notifications[i]['status'] == "new") && (this.notifications[i]['isRead'] == false)) {
-        //                     this.notificationsMessages.push({
-        //                         objectToUpdate: this.notifications[i],
-        //                         message: `${this.notifications[i]['employeeName']} has requested your approval on his ${this.notifications[i]['transportType']} ticket application.`
-        //                     });
-        //                 }
-        //             }
-        //         }
+            for (let i = 0; i < this.notifications.length; i++) {
+                if (this.notifications[i]['emailId'] == this.currentUser['emailId']) {
+                    // Approved
+                    if ((this.notifications[i]['status'] == 'approved') && (this.notifications[i]['isRead'] == false)) {
+                        this.notificationsMessages.push({
+                            travel: this.notifications[i],
+                            message: `${this.notifications[i]['lineManager']} has approved your ${this.notifications[i]['modeOfTransport']} ticket request.`
+                        });
+                    }
+                    // Declined
+                    if ((this.notifications[i]['status'] == 'declined') && (this.notifications[i]['isRead'] == false)) {
+                        this.notificationsMessages.push({
+                            travel: this.notifications[i],
+                            message: `${this.notifications[i]['lineManager']} has declined your ${this.notifications[i]['modeOfTransport']} ticket request.`
+                        });
+                    }
+                }
 
-        //         console.log(this.notificationsMessages, "NNNNNNNNNNNNNNNNNNNNNNNNNN");
+                if (this.notifications[i]['lineManagerEmail'] == this.currentUser['emailId']) {
+                    // Approval Requests
+                    if ((this.notifications[i]['status'] == "new") && (this.notifications[i]['isRead'] == false)) {
+                        this.notificationsMessages.push({
+                            travel: this.notifications[i],
+                            message: `${this.notifications[i]['employeeName']} has requested your approval on his ${this.notifications[i]['modeOfTransport']} ticket application.`
+                        });
+                    }
+                }
+            }
 
-        //         this.spinner = false;
-        //     }, err => {
-        //         // this.generalService.openSnackBar(err['error']['error']);
-        //         console.log(err);
-        //         this.spinner = false;
-        //     });
+            console.log(this.notificationsMessages, "NNNNNNNNNNNNNNNNNNNNNNNNNN");
+
+            this.spinner = false;
+        }, err => {
+            // this.generalService.openSnackBar(err['error']['error']);
+            console.log(err);
+            this.spinner = false;
+        });
     }
 
-    // openDialog(notification) {
-    //     let data = notification;
-    //     let operation = 'approveOrDecline';
+    openDialog(notification) {
+        let data = notification;
+        let operation = 'updateRequest';
 
-    //     this.dialogService.viewNotification(data).subscribe(results => {
-    //         if (results) {
-    //             console.log(results);
+        this.dialog.viewNotification(data).subscribe(results => {
+            if (results) {
+                console.log(results);
+                delete results['travel']['_id'];
 
-    //             let email = {}
+                // let email = {}
 
-    //             if (results.objectToUpdate.isRead) {
-    //                 operation = 'markAsRead';
-    //             } else {
-    //                 email = {
-    //                     // toEmail: this.currentUser['lineManagerEmail'],
-    //                     toEmail: results['objectToUpdate']['emailId'],
-    //                     fromEmail: this.currentUser['givenName'] + " " + this.currentUser['surname'],
-    //                     cc: [],
-    //                     topic: "Travel Application",
-    //                     emailBody: this.currentUser['givenName'] + " " + this.currentUser['surname'] +
-    //                     ` has ${results['objectToUpdate']['status']} your ${results['objectToUpdate']['tripType']} ${results['objectToUpdate']['transportType']} ticket.`
-    //                 }
-    //             }
+                if (results.travel.isRead) {
+                    operation = 'updateRequest';
+                } else {
+                    // email = {
+                    //     // toEmail: this.currentUser['lineManagerEmail'],
+                    //     toEmail: results['travel']['emailId'],
+                    //     fromEmail: this.currentUser['givenName'] + " " + this.currentUser['surname'],
+                    //     cc: [],
+                    //     topic: "Travel Application",
+                    //     emailBody: this.currentUser['givenName'] + " " + this.currentUser['surname'] +
+                    //     ` has ${results['travel']['status']} your ${results['travel']['tripType']} ${results['travel']['modeOfTransport']} ticket.`
+                    // }
+                }
 
-    //             let body = {
-    //                 collection: 'travel',
-    //                 data: results['objectToUpdate'],
-    //                 email: email
-    //             }
+                let body = {
+                    collection: 'travel',
+                    data: results['travel'],
+                    // email: email
+                }
 
-    //             this.spinner = true;
-    //             this.modelrService.POST(operation, body).subscribe(res => {
-    //                 console.log(res)
-    //                 // Refresh Notifications
-    //                 this.getNotifications();
+                this.spinner = true;
+                this.ssd.POST(operation, body).subscribe(res => {
+                    console.log(res)
+                    // Refresh Notifications
+                    this.getNotifications();
 
-    //                 this.spinner = false;
-    //                 if (!results['objectToUpdate']['isRead']) {
-    //                     if (results['objectToUpdate']['status'] == 'approved') {
-    //                         this.generalService.openSnackBar(`You have successfully approved ${results['objectToUpdate']['employeeName']}'s request`, 'general-snackbar');
-    //                     } else {
-    //                         this.generalService.openSnackBar(`You have successfully declined ${results['objectToUpdate']['employeeName']}'s request`, 'general-snackbar');
-    //                     }
-    //                 }
+                    this.spinner = false;
+                    if (!results['travel']['isRead']) {
+                        if (results['travel']['status'] == 'approved') {
+                            // this.generalService.openSnackBar(`You have successfully approved ${results['travel']['employeeName']}'s request`, 'general-snackbar');
+                        } else {
+                            // this.generalService.openSnackBar(`You have successfully declined ${results['travel']['employeeName']}'s request`, 'general-snackbar');
+                        }
+                    }
+                }, err => {
+                    this.spinner = false;
+                    // this.generalService.openSnackBar(err['error']['error'], 'general-snackbar');
+                    console.log(err);
+                });
+            }
+        });
+    }
 
-
-    //             }, err => {
-    //                 this.spinner = false;
-    //                 this.generalService.openSnackBar(err['error']['error'], 'general-snackbar');
-    //                 console.log(err);
-    //             });
-    //         }
-    //     })
-    // }
+    // Get user details
+    getUser() {
+        let body = { 'emailId': this.neutrinosOAuth.userInfo.username, 'collection': 'employees' }
+        if (this.neutrinosOAuth.userInfo) {
+            this.ssd.POST('getData', body).subscribe(res => {
+                if (res[0]) {
+                    this.currentUser = res[0];
+                }
+            }, err => {
+                console.log(err);
+            })
+        }
+    }
 }

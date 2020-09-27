@@ -12,6 +12,7 @@ import { Observable } from 'rxjs';
 // Services
 import { ssd_integrationService } from '../../services/ssd_integration/ssd_integration.service';
 import { commonService } from '../../services/common/common.service';
+import { dialogService } from '../../services/dialog/dialog.service';
 
 // Data Models
 import { oneway } from '../../models/oneway.model';
@@ -37,6 +38,7 @@ export class travelComponent extends NBaseComponent implements OnInit, AfterView
     tripType: string = "one-way";
     modeOfTransport: string = "flight";
 
+    allTravelRequests: any = [];
     travelRequests: any = [];
 
     minDate = new Date();
@@ -46,27 +48,22 @@ export class travelComponent extends NBaseComponent implements OnInit, AfterView
         "16:00pm - 18:00pm", "18:00pm - 20:00pm", "20:00pm - 22:00pm", "22:00pm - 00:00am"
     ];
 
-    multicityObj = {};
 
-    onewayMdl = new oneway();
-    roundtripMdl = new roundtrip();
+    onewayMdl = {};
+    roundtripMdl = {};
+    multicityMdl = {};
 
-    // @ViewChild('newTicketForm', { static: false }) newTicketForm: NgForm;
-
-    constructor(private bdms: NDataModelService, private router: Router,
+    constructor(private bdms: NDataModelService, private router: Router, private dialog: dialogService,
         private activatedRoute: ActivatedRoute, private ssd: ssd_integrationService,
         private snackbar: NSnackbarService, private common: commonService) {
         super();
 
-        this.multicityObj = this.common.multicityObj;
-        console.log(this.multicityObj)
+        this.onewayMdl = this.common.getFormModel();
     }
 
     ngOnInit() {
         this.currentUser = JSON.parse(localStorage.getItem('user'));
-        this.getTravelRequests();
-
-        // Function Calls
+        //  Function Calls
         this.getAirports();
     }
 
@@ -85,17 +82,26 @@ export class travelComponent extends NBaseComponent implements OnInit, AfterView
         if (field == 'modeOfTransport') {
             this.getTravelRequests();
         }
+        if (field == 'tripType') {
+            this.clearModels();
+        }
+    }
+
+    clearModels() {
+        this.onewayMdl = this.common.getFormModel();
+        this.roundtripMdl = this.common.getFormModel();
+        this.multicityMdl = this.common.getFormModel();
     }
 
     // Add 1 more trip (Multicity)
-    addTrip() {
-        this.multicityObj['tripList'].push({
+    addTrip(city) {
+        this.multicityMdl['tripList'].push({
             'checkInDate': null,
             'checkOutDate': null,
             'clientAddress': '',
             'countryOfAccommodation': '',
             'departureDate': null,
-            'from': '',
+            'from': city,
             'preferredTime': '',
             'to': '',
         });
@@ -103,7 +109,7 @@ export class travelComponent extends NBaseComponent implements OnInit, AfterView
 
     // Remove 1 trip from multicity
     removeTrip(i) {
-        this.multicityObj['tripList'].splice(i, 1);
+        this.multicityMdl['tripList'].splice(i, 1);
     }
 
     // Get Airports
@@ -130,22 +136,28 @@ export class travelComponent extends NBaseComponent implements OnInit, AfterView
 
     // Get travel requests
     getTravelRequests() {
-        // let data = {
-        //     employeeId: this.currentUser['employeeId'],
-        //     collection: "travel",
-        //     transportType: this.transportType
-        // }
+        let body = {
+            employeeId: this.currentUser['employeeId'],
+            collection: "travel",
+            modeOfTransport: this.modeOfTransport
+        }
 
-        // this.spinner = true;
-        // this.modelrService.POST('getRequests', data).subscribe(res => {
-        //     console.log(res, "Travel Requests");
-        //     this.travelRequests = (res === {}) ? [] : res;
-        //     this.spinner = false;
-        // }, err => {
-        //     this.generalService.openSnackBar(err['error']['error'], 'general-snackbar');
-        //     console.log(err);
-        //     this.spinner = false;
-        // });
+        this.spinner = true;
+        this.travelRequests = [];
+        this.ssd.POST('getData', body).subscribe(res => {
+            console.log(res, "Travel Requests");
+            this.allTravelRequests = (res === {}) ? [] : res;
+            for (let i = 0; i < this.allTravelRequests.length; i++) {
+                if (this.allTravelRequests[i]['status'] == "new") {
+                    this.travelRequests.push(this.allTravelRequests[i]);
+                }
+            }
+            this.spinner = false;
+        }, err => {
+            // this.generalService.openSnackBar(err['error']['error'], 'general-snackbar');
+            console.log(err);
+            this.spinner = false;
+        });
     }
 
     // Open form pop ups
@@ -156,35 +168,35 @@ export class travelComponent extends NBaseComponent implements OnInit, AfterView
             indx: indx
         }
 
-        // this.dialogService.reScheduleTrip(data).subscribe(results => {
-        //     if (results) {
-        //         console.log(results);
-        //         if (results['name'] == action) {
-        //             let body = {
-        //                 collection: 'travel',
-        //                 data: results['update'],
-        //                 // email: results['email']
-        //             }
-        //             this.spinner = true;
-        //             this.modelrService.POST(operation, body).subscribe(res => {
-        //                 console.log(res)
-        //                 this.getTravelRequests();
+        this.dialog.reScheduleTrip(data).subscribe(results => {
+            if (results) {
+                console.log(results);
+                if (results['action'] == action) {
+                    delete results['travel']['_id'];
+                    let body = {
+                        collection: 'travel',
+                        data: results['travel']
+                    }
+                    this.spinner = true;
+                    this.ssd.POST('updateRequest', body).subscribe(res => {
+                        console.log(res)
+                        this.getTravelRequests();
 
-        //                 this.spinner = false;
-        //                 if (action == 'reschedule') {
-        //                     this.generalService.openSnackBar("Request was successfully updated", 'general-snackbar');
-        //                 } else {
-        //                     this.generalService.openSnackBar("Request was successfully deleted", 'general-snackbar');
-        //                 }
+                        this.spinner = false;
+                        if (action == 'reschedule') {
+                            // this.generalService.openSnackBar("Request was successfully updated", 'general-snackbar');
+                        } else {
+                            // this.generalService.openSnackBar("Request was successfully deleted", 'general-snackbar');
+                        }
 
-        //             }, err => {
-        //                 this.spinner = false;
-        //                 this.generalService.openSnackBar(err['error']['error'], 'general-snackbar');
-        //                 console.log(err);
-        //             });
-        //         }
-        //     }
-        // })
+                    }, err => {
+                        this.spinner = false;
+                        // this.generalService.openSnackBar(err['error']['error'], 'general-snackbar');
+                        console.log(err);
+                    });
+                }
+            }
+        });
     }
 
     // Submit form
@@ -229,12 +241,18 @@ export class travelComponent extends NBaseComponent implements OnInit, AfterView
                 console.log(res);
                 // this.generalService.openSnackBar("Request was successfully added", 'general-snackbar');
                 form.reset();
-                this[model] = (model == 'onewayMdl') ? new oneway() : (model == 'roundtripMdl') ? new roundtrip() : this.common.multicityObj;
-                if(model == 'multicityObj') {
-                    this[model].tripList = [];
-                    this.addTrip();
-                }
-                this.getTravelRequests();
+                this.clearModels();
+                this[model].tripList = [{
+                    'checkInDate': null,
+                    'checkOutDate': null,
+                    'clientAddress': '',
+                    'countryOfAccommodation': '',
+                    'departureDate': null,
+                    'from': '',
+                    'preferredTime': '',
+                    'to': '',
+                }];
+                // this.getTravelRequests();
             }, err => {
                 this.spinner = false;
                 console.log(err);

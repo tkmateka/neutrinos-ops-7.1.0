@@ -16,6 +16,12 @@ window['neutrinos'] = {
 }
 
 //CORE_REFERENCE_IMPORTS
+//CORE_REFERENCE_IMPORT-dialogService
+import { dialogService } from '../services/dialog/dialog.service';
+//CORE_REFERENCE_IMPORT-notification_popupComponent
+import { notification_popupComponent } from '../components/notification_popupComponent/notification_popup.component';
+//CORE_REFERENCE_IMPORT-ops_popupComponent
+import { ops_popupComponent } from '../components/ops_popupComponent/ops_popup.component';
 //CORE_REFERENCE_IMPORT-commonService
 import { commonService } from '../services/common/common.service';
 //CORE_REFERENCE_IMPORT-travelComponent
@@ -59,6 +65,8 @@ export const appBootstrap: any = [
 */
 export const appEntryComponents: any = [
   //CORE_REFERENCE_PUSH_TO_ENTRY_ARRAY
+  ops_popupComponent,
+  notification_popupComponent
 ];
 
 /**
@@ -71,6 +79,10 @@ export const appDeclarations = [
   NMapComponent,
   ArtImgSrcDirective,
   //CORE_REFERENCE_PUSH_TO_DEC_ARRAY
+//CORE_REFERENCE_PUSH_TO_DEC_ARRAY-notification_popupComponent
+notification_popupComponent,
+//CORE_REFERENCE_PUSH_TO_DEC_ARRAY-ops_popupComponent
+ops_popupComponent,
 //CORE_REFERENCE_PUSH_TO_DEC_ARRAY-travelComponent
 travelComponent,
 //CORE_REFERENCE_PUSH_TO_DEC_ARRAY-visa_detailsComponent
@@ -105,6 +117,8 @@ export const appProviders = [
   },
   NAuthGuardService,
   //CORE_REFERENCE_PUSH_TO_PRO_ARRAY
+//CORE_REFERENCE_PUSH_TO_PRO_ARRAY-dialogService
+dialogService,
 //CORE_REFERENCE_PUSH_TO_PRO_ARRAY-commonService
 commonService,
 //CORE_REFERENCE_PUSH_TO_PRO_ARRAY-ssd_integrationService

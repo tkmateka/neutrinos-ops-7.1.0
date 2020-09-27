@@ -57,7 +57,7 @@ h1, h2, h3, h4, h5, h6, p {
 .textAlignCenter {
     text-align: center;
 }
-.whiteColor, .greenButton {
+.whiteColor, .greenButton, .blackButton {
     color: $white;
 }
 .redColor, .hoverRed:hover, .logout:hover {
@@ -126,6 +126,19 @@ h1, h2, h3, h4, h5, h6, p {
 .opsPopup {
     margin: auto;
     width: 100%;
+    border: 1px solid $white;
+    border-radius: 6px;
+    mat-dialog-container {
+        background: $darkGrey;        
+    }
+    .mat-select-value {
+        color: white;
+    }
+}
+.rescheduleForm {
+    max-height: 60vh;
+    overflow-x: auto;
+    padding: 10px 0;
 }
 .loginPopup {
     margin: auto;

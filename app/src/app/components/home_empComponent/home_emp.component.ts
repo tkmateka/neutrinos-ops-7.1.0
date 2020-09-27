@@ -41,9 +41,10 @@ export class home_empComponent extends NBaseComponent implements OnInit {
     // Get user details
     getUser() {
         this.spinner = true;
+        let body = { 'emailId': this.neutrinosOAuth.userInfo.username, 'collection': 'employees' }
         if (this.neutrinosOAuth.userInfo) {
             console.log(this.neutrinosOAuth.userInfo);
-            this.ssd.POST('employee', { 'emailId': this.neutrinosOAuth.userInfo.username }).subscribe(res => {
+            this.ssd.POST('getData', body).subscribe(res => {
                 console.log(res);
                 if (res[0]) {
                     this.spinner = false;
