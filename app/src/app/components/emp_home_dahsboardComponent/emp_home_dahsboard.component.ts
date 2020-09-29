@@ -24,10 +24,11 @@ export class emp_home_dahsboardComponent extends NBaseComponent implements OnIni
     currentUser: any = {};
     selectedLink = "/employee/home";
     sidenavItems = [
-        { icon: "home", name: "Home", link: "/employee/home" },
-        { icon: "school", name: "Human Resource", link: "/employee/hr" },
-        { icon: "flight", name: "Operations", link: "/employee/operations" },
-        { icon: "person", name: "My Profile", link: "/employee/profile" }
+        { icon: "home", name: "Home", link: "/employee/home", show: true },
+        { icon: "inbox", name: "Requests", link: "/employee/requests", show: false },
+        { icon: "school", name: "Human Resource", link: "/employee/hr", show: true },
+        { icon: "flight", name: "Operations", link: "/employee/operations", show: true },
+        { icon: "person", name: "My Profile", link: "/employee/profile", show: true }
     ];
 
     constructor(private bdms: NDataModelService, private router: Router,
@@ -187,10 +188,15 @@ export class emp_home_dahsboardComponent extends NBaseComponent implements OnIni
             this.ssd.POST('getData', body).subscribe(res => {
                 if (res[0]) {
                     this.currentUser = res[0];
+                    if(this.currentUser['designation'] == "Line Manager"){
+                        this.sidenavItems[1]['show'] = true;
+                    }
                 }
             }, err => {
                 console.log(err);
             })
+        } else {
+            this.router.navigate(['/welcome']);
         }
     }
 }

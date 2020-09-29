@@ -392,7 +392,7 @@
                               </label>
                               <div class="inputField-container">
                                 <mat-form-field [floatLabel]="&apos;never&apos;" appearance="legacy">
-                                  <input matInput [matDatepicker]="departureDate" readonly placeholder="Select Departure Date" (click)="departureDate.open()" data-date-format="DD/MM/YYYY" required [min]="minDate" [(ngModel)]="multicityMdl.tripList[i][&apos;departureDate&apos;]" name="departureDate_{{i}}">
+                                  <input matInput [matDatepicker]="departureDate" readonly placeholder="Select Departure Date" (click)="departureDate.open()" data-date-format="DD/MM/YYYY" required [min]="multicityMdl.tripList[i - 1] ? multicityMdl.tripList[i - 1][&apos;departureDate&apos;] : minDate" [(ngModel)]="multicityMdl.tripList[i][&apos;departureDate&apos;]" name="departureDate_{{i}}">
                                   <mat-datepicker-toggle matSuffix [for]="departureDate"></mat-datepicker-toggle>
                                   <mat-datepicker #departureDate></mat-datepicker>
                                 </mat-form-field>

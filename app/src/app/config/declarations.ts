@@ -16,6 +16,8 @@ window['neutrinos'] = {
 }
 
 //CORE_REFERENCE_IMPORTS
+//CORE_REFERENCE_IMPORT-requestsComponent
+import { requestsComponent } from '../components/requestsComponent/requests.component';
 //CORE_REFERENCE_IMPORT-dialogService
 import { dialogService } from '../services/dialog/dialog.service';
 //CORE_REFERENCE_IMPORT-notification_popupComponent
@@ -79,6 +81,8 @@ export const appDeclarations = [
   NMapComponent,
   ArtImgSrcDirective,
   //CORE_REFERENCE_PUSH_TO_DEC_ARRAY
+//CORE_REFERENCE_PUSH_TO_DEC_ARRAY-requestsComponent
+requestsComponent,
 //CORE_REFERENCE_PUSH_TO_DEC_ARRAY-notification_popupComponent
 notification_popupComponent,
 //CORE_REFERENCE_PUSH_TO_DEC_ARRAY-ops_popupComponent
@@ -134,5 +138,5 @@ ssd_integrationService,
 export const appRoutes = [{path: 'welcome', component: welcomeComponent},{path: 'employee', component: emp_home_dahsboardComponent,
 children: [{path: 'home', component: home_empComponent,
 children: []},{path: 'hr', component: emp_hrComponent},{path: 'operations', component: operations_empComponent,
-children: []},{path: 'operations/visa', component: visaComponent},{path: 'operations/visa/:country', component: visa_detailsComponent},{path: 'operations/travel', component: travelComponent}]},{path: '', redirectTo: 'welcome', pathMatch: 'full'},{path: '**', component: PageNotFoundComponent}]
+children: []},{path: 'operations/visa', component: visaComponent},{path: 'operations/visa/:country', component: visa_detailsComponent},{path: 'operations/travel', component: travelComponent},{path: 'requests', component: requestsComponent}]},{path: '', redirectTo: 'welcome', pathMatch: 'full'},{path: '**', component: PageNotFoundComponent}]
 // CORE_REFERENCE_PUSH_TO_ROUTE_ARRAY_END

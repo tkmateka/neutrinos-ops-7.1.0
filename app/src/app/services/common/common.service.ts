@@ -15,6 +15,8 @@ export class commonService {
             'lineManagerEmail': '',
             'modeOfTransport': '',
             'requestId': '',
+            'department': '',
+            'requestDate': '',
             'status': '',
             'tripList': [{
                 'checkInDate': null,

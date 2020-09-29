@@ -1,6 +1,10 @@
 {
     "classes": [
         "darkGreyBackground",
+        "reqTable",
+        "mat-header-cell",
+        "mat-cell",
+        "mat-footer-cell",
         "mat-progress-spinner",
         "mat-spinner",
         "disabled",
@@ -66,6 +70,7 @@
         "yellowBackground",
         "orangeBackground",
         "pinkBackground",
+        "redBackground",
         "whiteBackground",
         "loggedOffBG",
         "loggedOnBG",

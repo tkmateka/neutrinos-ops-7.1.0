@@ -206,11 +206,13 @@ export class travelComponent extends NBaseComponent implements OnInit, AfterView
 
         if (form.invalid) { return false };
 
+        this[model].requestDate = new Date();
         this[model].isFlexi = this.isFlexi;
         this[model].tripType = this.tripType;
         this[model].actionType = this.actionType;
         this[model].modeOfTransport = this.modeOfTransport;
         this[model].employeeId = this.currentUser['employeeId'];
+        this[model].department = this.currentUser['department'];
         this[model].lineManager = this.currentUser['lineManager'];
         this[model].lineManagerEmail = this.currentUser['lineManagerEmail'];
         this[model].employeeName = this.currentUser['givenName'] + " " + this.currentUser['surname'];
