@@ -17,7 +17,8 @@ $lightGrey: #E5E5E5;
 $red: #ED1C24;
 $skyBlue: #8FCFD1;
 $green: #70ff70;
-$yellow: #F6EFA6;
+$yellow: rgb(255, 234, 0);
+$yellowish: #F6EFA6;
 $orange: #F6AB6C;
 $pink: #DF5E88;
 $greyShadowBG: rgba(132, 130, 130, 0.5);
@@ -77,6 +78,11 @@ h1, h2, h3, h4, h5, h6, p {
 .redColor, .hoverRed:hover, .logout:hover {
     color: $red;
 }
+.blueLinkText {
+    color: $skyBlue !important;
+    text-decoration: underline;
+    cursor: pointer;
+}
 .lightGreyColor {
     color: $lightGrey;
 }
@@ -110,7 +116,7 @@ h1, h2, h3, h4, h5, h6, p {
 .bigFont {
     font-size: 3.5em;
 }
-.boldFont, .redButton, .greenButton {
+.boldFont, .redButton, .greenButton, .blueLinkText:hover {
     font-weight: bold;
 }
 .cursorPointer {
@@ -129,7 +135,7 @@ h1, h2, h3, h4, h5, h6, p {
     margin-bottom: 1em;
 }
 .marginBottom1_5Em {
-    margin-bottom: 1.5em;
+    margin-bottom: 1.5em !important;
 }
 .marginTop1Em {
     margin-top: 1em;
@@ -260,8 +266,11 @@ h1, h2, h3, h4, h5, h6, p {
 .greenBackground, .greenButton {
     background: $green !important;
 }
+.OriginalYellowBG {
+    background: $yellow;
+}
 .yellowBackground {
-    background: $yellow !important;
+    background: $yellowish !important;
 }
 .orangeBackground, .redButton:hover {
     background: $orange !important;

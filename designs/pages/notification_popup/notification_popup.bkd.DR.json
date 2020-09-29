@@ -134,12 +134,6 @@
                     "_value": "false",
                     "_type": "kv",
                     "_attrDef": "p"
-                },
-                {
-                    "_key": "*ngIf",
-                    "_value": "!isLogout",
-                    "_type": "kv",
-                    "_attrDef": "c"
                 }
             ],
             "23a4fefc-6ef9-4274-70b4-7ca0832fadfe": {
@@ -415,7 +409,7 @@
                             },
                             {
                                 "_key": "html",
-                                "_value": "Request Approval Notification",
+                                "_value": "Request Details",
                                 "_type": "a",
                                 "_attrDef": "p"
                             }
@@ -1079,7 +1073,10 @@
                                         },
                                         {
                                             "_key": "class",
-                                            "_value": "",
+                                            "_value": [
+                                                "marginBottom1_5Em",
+                                                "formBorder"
+                                            ],
                                             "_type": "dav",
                                             "_attrDef": "p"
                                         },
@@ -1127,7 +1124,7 @@
                                         },
                                         {
                                             "_key": "*ngIf",
-                                            "_value": "trip.tripType == 'multi-city'",
+                                            "_value": "data.travel.tripType == 'multi-city'",
                                             "_type": "kv",
                                             "_attrDef": "c"
                                         }

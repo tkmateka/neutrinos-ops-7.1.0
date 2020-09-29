@@ -1,8 +1,8 @@
 <div fxLayout="row wrap" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false" fxFill>
-  <div fxLayout="column wrap" fxFlex="100" fxLayoutGap="1em" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" *ngIf="!isLogout">
+  <div fxLayout="column wrap" fxFlex="100" fxLayoutGap="1em" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
     <div fxLayout="row wrap" class="whiteColor" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false">
       <h3>
-        Request Approval Notification</h3>
+        Request Details</h3>
     </div>
     <div fxLayout="row wrap" class="whiteColor" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false">
       <p class="textAlignCenter">
@@ -13,7 +13,7 @@
         <form #roundTripForm="ngForm" autocomplete="off">
           <div fxLayout="column wrap" fxFlex="99" fxLayoutGap="1em" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" *ngIf="data.travel.tripType != &apos;round-trip&apos;">
             <div fxLayout="column wrap" class fxLayoutGap="1em" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" *ngFor="let trip of data.travel.tripList; let i = index">
-              <div fxLayout="row wrap" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" *ngIf="trip.tripType == &apos;multi-city&apos;">
+              <div fxLayout="row wrap" class="marginBottom1_5Em formBorder" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" *ngIf="data.travel.tripType == &apos;multi-city&apos;">
                 <h4 class="whiteColor">
                   Trip - {{i + 1}}</h4>
               </div>

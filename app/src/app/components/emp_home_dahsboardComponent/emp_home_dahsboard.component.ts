@@ -44,7 +44,6 @@ export class emp_home_dahsboardComponent extends NBaseComponent implements OnIni
     ngOnInit() {
         // call default functions
         this.getUser();
-        this.getNotifications();
     }
 
     logout() {
@@ -73,10 +72,10 @@ export class emp_home_dahsboardComponent extends NBaseComponent implements OnIni
         this.notifications = [];
         this.notificationsMessages = [];
 
-        // if(!this.currentUser['emailId']) {
-        //     // Session has expired
-        //     this.router.navigate(['/welcome']);
-        // }
+        if (!this.currentUser['emailId']) {
+            // Session has expired
+            this.router.navigate(['/welcome']);
+        }
 
         let body = {
             emailId: this.currentUser['emailId'],
@@ -85,7 +84,6 @@ export class emp_home_dahsboardComponent extends NBaseComponent implements OnIni
 
         this.spinner = true;
         this.ssd.POST('getData', body).subscribe(res => {
-            console.log("reerererererererrererererrrerere", res);
             this.notifications = res == {} ? [] : res;
 
             for (let i = 0; i < this.notifications.length; i++) {
@@ -117,8 +115,6 @@ export class emp_home_dahsboardComponent extends NBaseComponent implements OnIni
                 }
             }
 
-            console.log(this.notificationsMessages, "NNNNNNNNNNNNNNNNNNNNNNNNNN");
-
             this.spinner = false;
         }, err => {
             // this.generalService.openSnackBar(err['error']['error']);
@@ -133,34 +129,19 @@ export class emp_home_dahsboardComponent extends NBaseComponent implements OnIni
 
         this.dialog.viewNotification(data).subscribe(results => {
             if (results) {
-                console.log(results);
                 delete results['travel']['_id'];
-
-                // let email = {}
 
                 if (results.travel.isRead) {
                     operation = 'updateRequest';
-                } else {
-                    // email = {
-                    //     // toEmail: this.currentUser['lineManagerEmail'],
-                    //     toEmail: results['travel']['emailId'],
-                    //     fromEmail: this.currentUser['givenName'] + " " + this.currentUser['surname'],
-                    //     cc: [],
-                    //     topic: "Travel Application",
-                    //     emailBody: this.currentUser['givenName'] + " " + this.currentUser['surname'] +
-                    //     ` has ${results['travel']['status']} your ${results['travel']['tripType']} ${results['travel']['modeOfTransport']} ticket.`
-                    // }
                 }
 
                 let body = {
                     collection: 'travel',
-                    data: results['travel'],
-                    // email: email
+                    data: results['travel']
                 }
 
                 this.spinner = true;
                 this.ssd.POST(operation, body).subscribe(res => {
-                    console.log(res)
                     // Refresh Notifications
                     this.getNotifications();
 
@@ -188,9 +169,10 @@ export class emp_home_dahsboardComponent extends NBaseComponent implements OnIni
             this.ssd.POST('getData', body).subscribe(res => {
                 if (res[0]) {
                     this.currentUser = res[0];
-                    if(this.currentUser['designation'] == "Line Manager"){
+                    if (this.currentUser['designation'] == "Line Manager") {
                         this.sidenavItems[1]['show'] = true;
                     }
+                    this.getNotifications();
                 }
             }, err => {
                 console.log(err);

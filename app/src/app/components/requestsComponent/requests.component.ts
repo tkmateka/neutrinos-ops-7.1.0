@@ -4,6 +4,7 @@ import { NBaseComponent } from '../../../../../app/baseClasses/nBase.component';
 
 // Services
 import { ssd_integrationService } from '../../services/ssd_integration/ssd_integration.service';
+import { dialogService } from '../../services/dialog/dialog.service';
 
 @Component({
     selector: 'bh-requests',
@@ -20,7 +21,7 @@ export class requestsComponent extends NBaseComponent implements OnInit {
     requestsCells: any = ['Requested By', 'Request Date', 'Type Of Request', 'Travel Date', 'Department', 'Manager', 'Status', 'View Ticket'];
     requestsDataSource: any = [];
 
-    constructor(private ssd: ssd_integrationService) {
+    constructor(private ssd: ssd_integrationService, private dialog: dialogService) {
         super();
     }
 
@@ -31,23 +32,18 @@ export class requestsComponent extends NBaseComponent implements OnInit {
     }
 
     // Difference between two dates in Days using angular
-    calculateDiff(receivedDate, a, b) {
-        console.log(a);
-        console.log(b);
+    calculateDiff(receivedDate) {
         let oneDay = 1000 * 3600 * 24;
         let currentDate = new Date().getTime();
         receivedDate = new Date(receivedDate).getTime();
         let result = receivedDate - currentDate;
-
-        console.log(Math.floor(result / oneDay));
         return Math.floor(result / oneDay);
     }
 
     // Get travel requests
     getTravelRequests() {
         let body = {
-            // lineManagerEmail: this.currentUser['emailId'],
-            emailId: this.currentUser['emailId'],
+            lineManagerEmail: this.currentUser['emailId'],
             collection: "travel"
         }
 
@@ -63,6 +59,7 @@ export class requestsComponent extends NBaseComponent implements OnInit {
                     this.newRequests.push(this.allRequests[i]);
                     // Table Data
                     requestsData.push({
+                        'requestId': this.allRequests[i]['requestId'],
                         'requestedBy': this.allRequests[i]['employeeName'],
                         'requestDate': this.allRequests[i]['requestDate'],
                         'typeOfRequest': (this.allRequests[i]['modeOfTransport'].toLowerCase() == 'visa') ? this.allRequests[i]['modeOfTransport'] : `${this.allRequests[i]['modeOfTransport']} Travel`,
@@ -80,6 +77,38 @@ export class requestsComponent extends NBaseComponent implements OnInit {
             // this.generalService.openSnackBar(err['error']['error'], 'general-snackbar');
             console.log(err);
             this.spinner = false;
+        });
+    }
+
+    viewMore(rId) {
+        console.log(rId);
+        let data = {};
+        for(let k = 0; k < this.allRequests.length; k++) {
+            if(this.allRequests[k]['requestId'] == rId) {
+                data['travel'] = this.allRequests[k];
+                break;
+            }
+        }
+        let operation = 'updateRequest';
+
+        this.dialog.viewNotification(data).subscribe(results => {
+            if (results) {
+                delete results['travel']['_id'];
+
+                let body = {
+                    collection: 'travel',
+                    data: results['travel']
+                }
+
+                this.spinner = true;
+                this.ssd.POST(operation, body).subscribe(res => {
+                    this.spinner = false;
+                }, err => {
+                    this.spinner = false;
+                    // this.generalService.openSnackBar(err['error']['error'], 'general-snackbar');
+                    console.log(err);
+                });
+            }
         });
     }
 }

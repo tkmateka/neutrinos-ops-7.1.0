@@ -22,16 +22,16 @@
                 <td mat-cell *matCellDef="let element; let INDEX = index;">{{element[column] | date}}</td>
               </div>
               <div *ngIf="(requestsCells[i] != &apos;Status&apos;) &amp;&amp; ((requestsCells[i] != &apos;Request Date&apos;) &amp;&amp; (requestsCells[i] != &apos;Travel Date&apos;))">
-                <td mat-cell *matCellDef="let element; let INDEX = index;">{{element[column]}}</td>
+                <td mat-cell *matCellDef="let element; let INDEX = index;" [class.blueLinkText]="requestsCells[i] == &apos;View Ticket&apos;" (click)="viewMore(element[&apos;requestId&apos;])">{{element[column]}}</td>
               </div>
               <div *ngIf="(requestsCells[i] == &apos;Status&apos;) &amp;&amp; ((requestsCells[i] != &apos;Request Date&apos;) &amp;&amp; (requestsCells[i] != &apos;Travel Date&apos;))">
-                <td mat-cell *matCellDef="let element; let INDEX = index;" [ngClass]="{ &apos;redBackground&apos;:(calculateDiff(element[&apos;travelDate&apos;]) &lt;= 3), &apos;yellowBackground&apos;:((calculateDiff(element[&apos;travelDate&apos;]) &gt; 3) &amp;&amp; (calculateDiff(element[&apos;travelDate&apos;]) &lt; 7)), &apos;greenBackground&apos;: (calculateDiff(element[&apos;travelDate&apos;]) &gt; 6)}">
+                <td mat-cell *matCellDef="let element; let INDEX = index;" [ngClass]="{ &apos;redBackground&apos;:(calculateDiff(element[&apos;travelDate&apos;]) &lt;= 3), &apos;OriginalYellowBG&apos;:((calculateDiff(element[&apos;travelDate&apos;]) &gt; 3) &amp;&amp; (calculateDiff(element[&apos;travelDate&apos;]) &lt; 7)), &apos;greenBackground&apos;: (calculateDiff(element[&apos;travelDate&apos;]) &gt; 6)}">
                   {{element[column]}}</td>
               </div>
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="requestsColumns; sticky: true"></tr>
-            <tr mat-row *matRowDef="let row; columns: requestsColumns;"></tr>
+            <tr mat-row #rowId *matRowDef="let row; columns: requestsColumns;"></tr>
           </table>
         </div>
       </div>

@@ -15,7 +15,6 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 
 export class notification_popupComponent extends NBaseComponent implements OnInit {
     comment = "";
-    isLogout = false;
     currentUser: any = {};
     minDate = new Date();
     preferredTimes: string[] = [
@@ -53,7 +52,7 @@ export class notification_popupComponent extends NBaseComponent implements OnIni
             });
         }
         this.data.travel.status = action;
-        this.data.travel.approvalComment = this.comment;
+        this.data.travel.comment.push(this.comment);
         this.closeDialog(this.data);
     }
 
