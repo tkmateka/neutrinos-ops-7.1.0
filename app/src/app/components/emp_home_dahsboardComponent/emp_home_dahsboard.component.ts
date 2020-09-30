@@ -22,13 +22,14 @@ export class emp_home_dahsboardComponent extends NBaseComponent implements OnIni
     notificationsMessages = [];
     notifications: any = [];
     currentUser: any = {};
-    selectedLink = "/employee/home";
+    selectedLink = "/ops-app/home";
     sidenavItems = [
-        { icon: "home", name: "Home", link: "/employee/home", show: true },
-        { icon: "inbox", name: "Requests", link: "/employee/requests", show: false },
-        { icon: "school", name: "Human Resource", link: "/employee/hr", show: true },
-        { icon: "flight", name: "Operations", link: "/employee/operations", show: true },
-        { icon: "person", name: "My Profile", link: "/employee/profile", show: true }
+        { icon: "home", name: "Home", link: "/ops-app/home", show: true },
+        { icon: "inbox", name: "Requests", link: "/ops-app/requests", show: false },
+        { icon: "school", name: "Human Resource", link: "/ops-app/hr", show: true },
+        { icon: "flight", name: "Operations", link: "/ops-app/operations", show: true },
+        { icon: "merge_type", name: "Operations Management", link: "/ops-app/operations-management", show: true },
+        { icon: "person", name: "My Profile", link: "/ops-app/profile", show: true }
     ];
 
     constructor(private bdms: NDataModelService, private router: Router,
@@ -56,13 +57,13 @@ export class emp_home_dahsboardComponent extends NBaseComponent implements OnIni
     }
 
     goHome() {
-        this.router.navigate(['/employee/home']);
+        this.router.navigate(['/ops-app/home']);
     }
 
     selectItem() {
         console.log(this.router.url);
-        if (this.router.url.includes('/employee/operations/')) {
-            this.selectedLink = '/employee/operations';
+        if (this.router.url.includes('/ops-app/operations/')) {
+            this.selectedLink = '/ops-app/operations';
         } else {
             this.selectedLink = this.router.url;
         }
@@ -171,6 +172,9 @@ export class emp_home_dahsboardComponent extends NBaseComponent implements OnIni
                     this.currentUser = res[0];
                     if (this.currentUser['designation'] == "Line Manager") {
                         this.sidenavItems[1]['show'] = true;
+                    }
+                    if ((this.currentUser['designation'] == "Operations Manager") || (this.currentUser['designation'] == "Operations Admin")) {
+                        this.sidenavItems[4]['show'] = true;
                     }
                     this.getNotifications();
                 }

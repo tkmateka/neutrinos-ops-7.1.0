@@ -6,7 +6,7 @@
         },
         {
             "component": "emp_home_dahsboardComponent",
-            "path": "employee",
+            "path": "ops-app",
             "children": [
                 {
                     "component": "home_empComponent",
@@ -37,6 +37,10 @@
                 {
                     "component": "requestsComponent",
                     "path": "requests"
+                },
+                {
+                    "path": "operations-management",
+                    "component": "ops_managementComponent"
                 }
             ]
         },

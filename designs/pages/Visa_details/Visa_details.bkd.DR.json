@@ -686,7 +686,7 @@
                             },
                             {
                                 "_key": "html",
-                                "_value": "<b>\n    <span class=\"cursorPointer hoverRed\" (click)=\"goTo('/employee/operations')\">Operations</span> > \n    <span class=\"cursorPointer hoverRed\" (click)=\"goTo('/employee/operations/visa')\">Visa</span> >\n    <span class=\"redColor\"> {{visaDetails.countryName}} Visa</span></b>",
+                                "_value": "<b>\n    <span class=\"cursorPointer hoverRed\" (click)=\"goTo('/ops-app/operations')\">Operations</span> > \n    <span class=\"cursorPointer hoverRed\" (click)=\"goTo('/ops-app/operations/visa')\">Visa</span> >\n    <span class=\"redColor\"> {{visaDetails.countryName}} Visa</span></b>",
                                 "_type": "a",
                                 "_attrDef": "p"
                             }

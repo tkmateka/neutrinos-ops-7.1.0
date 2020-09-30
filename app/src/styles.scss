@@ -284,7 +284,7 @@ h1, h2, h3, h4, h5, h6, p {
 .whiteBackground, .breadcrum {
     background: $white;
 }
-.loggedOffBG, .loggedOnBG, .homeBG, .operationsBG, .visaBG {
+.loggedOffBG, .loggedOnBG, .homeBG, .operationsBG,  .opsManagementBG, .visaBG {
     background-position: center;
     background-size: cover;
     padding: 20px;
@@ -300,8 +300,19 @@ h1, h2, h3, h4, h5, h6, p {
 .homeBG {
     background-image: url('assets/Web/home.png');
 }
-.operationsBG {
+.operationsBG,  .opsManagementBG {
     background-image: url('assets/Web/operations.png');
+}
+.opsManagementBG {
+    height: calc(100vh - 65px) !important;
+    overflow-y: scroll;
+    .mat-tab-group.mat-primary .mat-ink-bar {
+        background-color: $red;
+        height: 5px;
+    }
+    .mat-select-value {
+        color: $white !important;
+    }
 }
 .visaBG {
     background-image: url('assets/Web/visa.png');
