@@ -1,0 +1,14 @@
+{
+    "appPageId": "e64cee55-893a-6937-13a0-be3aac7d84b3",
+    "appPageName": "ops_management",
+    "componentName": "ops_managementComponent",
+    "selectorName": "bh-ops_management",
+    "htmlFileName": "ops_management.template.html",
+    "tsFileName": "ops_management.component.ts",
+    "createDate": "2020-09-29T22:43:16.600Z",
+    "bkd": {
+        "designerHtml": "",
+        "designerReference": {},
+        "ts": ""
+    }
+}

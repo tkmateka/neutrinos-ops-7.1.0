@@ -19,13 +19,15 @@
     <mat-sidenav-container class="sideNavContainer">
       <mat-sidenav #sidenav class="sidenav" [mode]="&apos;side&apos;" [position]="&apos;start&apos;" [opened]="true">
         <div fxLayout="column wrap" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
-          <div fxLayout="row wrap" class="sidenavItem boldFont cursorPointer" fxLayoutAlign="space-between center" [fxShow]="true" [fxHide]="false" *ngFor="let item of sidenavItems; let i = index;" [class.selectedSidenavItem]="item.link == selectedLink" routerLinkActive="active" routerLink="{{item.link}}">
-            <div fxLayout="column wrap" fxFlex="20" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
-              <mat-icon>{{item.icon}}</mat-icon>
-            </div>
-            <div fxLayout="column wrap" fxFlex="80" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
-              <div>
-                {{item.name}}</div>
+          <div fxLayout="column wrap" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" *ngFor="let item of sidenavItems; let i = index;">
+            <div fxLayout="row wrap" class="sidenavItem boldFont cursorPointer" fxLayoutAlign="space-between center" [fxShow]="true" [fxHide]="false" [class.selectedSidenavItem]="item.link == selectedLink" routerLinkActive="active" routerLink="{{item.link}}" *ngIf="item.show">
+              <div fxLayout="column wrap" fxFlex="20" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+                <mat-icon>{{item.icon}}</mat-icon>
+              </div>
+              <div fxLayout="column wrap" fxFlex="80" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+                <div>
+                  {{item.name}}</div>
+              </div>
             </div>
           </div>
         </div>

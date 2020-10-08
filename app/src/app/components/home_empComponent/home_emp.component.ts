@@ -22,9 +22,9 @@ export class home_empComponent extends NBaseComponent implements OnInit {
     currentUser: any = {};
     proImg = "";
     categories = [
-        { icon: "school", name: "Human Resource", link: "/employee/hr", bg: "skyBlueBackground" },
-        { icon: "flight", name: "Operations", link: "/employee/operations", bg: "yellowBackground" },
-        { icon: "person", name: "My Profile", link: "/employee/profile", bg: "orangeBackground" },
+        { icon: "school", name: "Human Resource", link: "/ops-app/hr", bg: "skyBlueBackground" },
+        { icon: "flight", name: "Operations", link: "/ops-app/operations", bg: "yellowBackground" },
+        { icon: "person", name: "My Profile", link: "/ops-app/profile", bg: "orangeBackground" },
         { icon: "info", name: "About Neutrinos", link: "https://www.neutrinos.co/", bg: "pinkBackground" }
     ]
 
@@ -41,16 +41,17 @@ export class home_empComponent extends NBaseComponent implements OnInit {
     // Get user details
     getUser() {
         this.spinner = true;
+        let body = { 'emailId': this.neutrinosOAuth.userInfo.username, 'collection': 'employees' }
         if (this.neutrinosOAuth.userInfo) {
             console.log(this.neutrinosOAuth.userInfo);
-            this.ssd.POST('get', { 'emailId': this.neutrinosOAuth.userInfo.username }).subscribe(res => {
+            this.ssd.POST('getData', body).subscribe(res => {
                 console.log(res);
                 if (res[0]) {
                     this.spinner = false;
                     this.currentUser = res[0];
                     this.proImg = (this.currentUser.profileImage) ? this.currentUser.profileImage : ((this.currentUser.gender == "male") ? "Web/man.png" : "Web/woman.png");
-                    localStorage.setItem('user', this.currentUser);
-                    this.router.navigate(['/employee/home']);
+                    localStorage.setItem('user', JSON.stringify(this.currentUser));
+                    this.router.navigate(['/ops-app/home']);
                 }
             }, err => {
                 console.log(err);

@@ -26,7 +26,7 @@ export class welcomeComponent extends NBaseComponent implements OnInit {
     }
 
     login() {
-        this.neutrinosOAuth.login('employee/home')
+        this.neutrinosOAuth.login('ops-app/home');
     }
 
 }

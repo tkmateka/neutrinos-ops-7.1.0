@@ -1,0 +1,45 @@
+<div fxLayout="row wrap" class="fullHeightMinusTopBar loggedOnBG" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" fxFill>
+  <div fxLayout="column wrap" fxFlex="100" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+    <div fxLayout="row wrap" class="breadcrumHeight paddingLeft" fxLayoutAlign="start center" [fxShow]="true" [fxHide]="false">
+      <div class="textAlignCenter">
+        <h3>{{visaDetails.countryName}}</h3>
+      </div>
+    </div>
+    <div fxLayout="row wrap" class="whiteBackground breadcrumHeight marginBottom2Em paddingLeft" fxLayoutAlign="start center" [fxShow]="true" [fxHide]="false">
+      <div class="textAlignCenter">
+        <b>
+          <span class="cursorPointer hoverRed" (click)="goTo(&apos;/ops-app/operations&apos;)">Operations</span> &gt;
+          <span class="cursorPointer hoverRed" (click)="goTo(&apos;/ops-app/operations/visa&apos;)">Visa</span> &gt;
+          <span class="redColor"> {{visaDetails.countryName}} Visa</span></b></div>
+    </div>
+    <div fxLayout="column wrap" fxLayoutGap="1.5em" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+      <div fxLayout="row wrap" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false">
+        <div fxLayout="column wrap" class="tabContainer" fxFlex="100" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+          <mat-tab-group class="tabGroup">
+            <mat-tab label="{{visaType.typeName}}" *ngFor="let visaType of visaDetails.visaTypes">
+              <div fxLayout="column wrap" fxLayoutGap=".5em" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+                <div fxLayout="row wrap" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+                  <h3>
+                    {{visaType.typeName}}</h3>
+                </div>
+                <div fxLayout="row wrap" class="checkbox smallFont" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" *ngFor="let checkField of visaType.typeChecklist; let i = index">
+                  <div fxLayout="column wrap" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+                    <mat-checkbox [(ngModel)]="checkField.isChecked" name="checkField{{i}}" labelPosition="right" checked="false" [disableRipple]="true">{{checkField.label}}</mat-checkbox>
+                  </div>
+                </div>
+                <div fxLayout="row wrap" class="smallFont marginTop1Em" fxLayoutAlign="space-between center" [fxShow]="true" [fxHide]="false" *ngIf="visaType.formLinks">
+                  <div fxLayout="column wrap" fxFlex="48" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><button mat-raised-button class="darkGreyBackground redColor boldFont cursorPointer btnHeight">Upload File</button></div>
+                  <div fxLayout="column wrap" class="formsLink" fxFlex="48" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false">
+                    <div>
+                      <a href="{{visaType.formLinks}}" target="_blank">Go to {{visaType.typeName}} Forms</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </mat-tab>
+          </mat-tab-group>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

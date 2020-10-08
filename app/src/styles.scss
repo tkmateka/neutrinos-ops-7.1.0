@@ -16,10 +16,13 @@ $darkGrey: #4A4A4A;
 $lightGrey: #E5E5E5;
 $red: #ED1C24;
 $skyBlue: #8FCFD1;
-$yellow: #F6EFA6;
+$green: #70ff70;
+$yellow: rgb(255, 234, 0);
+$yellowish: #F6EFA6;
 $orange: #F6AB6C;
 $pink: #DF5E88;
 $greyShadowBG: rgba(132, 130, 130, 0.5);
+$blackShaddow: rgba(0,0,0,.38);
 
 // DEFAULT STYLES
 ::-webkit-scrollbar {
@@ -42,6 +45,20 @@ $greyShadowBG: rgba(132, 130, 130, 0.5);
 h1, h2, h3, h4, h5, h6, p {
   margin: 0em;
 }
+.reqTable {
+    width: 100%;
+    background: $greyShadowBG;
+    th.mat-header-cell {
+        background: $blackShaddow;
+        font-weight: bold;
+        font-size: 14px;
+    }
+    th.mat-header-cell, .mat-cell, .mat-footer-cell {
+        color: white;
+        text-align: center;
+        padding: 2px !important;
+    }
+}
 .mat-progress-spinner circle, .mat-spinner circle {
     stroke: $red;
 }
@@ -55,11 +72,16 @@ h1, h2, h3, h4, h5, h6, p {
 .textAlignCenter {
     text-align: center;
 }
-.whiteColor {
+.whiteColor, .greenButton, .blackButton {
     color: $white;
 }
-.redColor, .hoverRed:hover {
+.redColor, .hoverRed:hover, .logout:hover {
     color: $red;
+}
+.blueLinkText {
+    color: $skyBlue !important;
+    text-decoration: underline;
+    cursor: pointer;
 }
 .lightGreyColor {
     color: $lightGrey;
@@ -94,7 +116,7 @@ h1, h2, h3, h4, h5, h6, p {
 .bigFont {
     font-size: 3.5em;
 }
-.boldFont {
+.boldFont, .redButton, .greenButton, .blueLinkText:hover {
     font-weight: bold;
 }
 .cursorPointer {
@@ -103,14 +125,17 @@ h1, h2, h3, h4, h5, h6, p {
 .margin0 {
     margin: 0 !important;
 }
-.marginBottom2Em {
+.marginRight2 {
+    margin-right: 2em;
+}
+.marginBottom2Em, .breadcrum {
     margin-bottom: 2em;
 }
 .marginBottom1Em {
     margin-bottom: 1em;
 }
 .marginBottom1_5Em {
-    margin-bottom: 1.5em;
+    margin-bottom: 1.5em !important;
 }
 .marginTop1Em {
     margin-top: 1em;
@@ -121,6 +146,19 @@ h1, h2, h3, h4, h5, h6, p {
 .opsPopup {
     margin: auto;
     width: 100%;
+    border: 1px solid $white;
+    border-radius: 6px;
+    mat-dialog-container {
+        background: $darkGrey;        
+    }
+    .mat-select-value {
+        color: white;
+    }
+}
+.rescheduleForm {
+    max-height: 60vh;
+    overflow-x: auto;
+    padding: 10px 0;
 }
 .loginPopup {
     margin: auto;
@@ -135,13 +173,16 @@ h1, h2, h3, h4, h5, h6, p {
     height: calc(100vh - 85px) !important;
     overflow-y: scroll;
 }
-.breadcrumHeight {
+.breadcrumHeight, .breadcrum {
+    height: 40px;
+}
+.breadcrum {
     height: 40px;
 }
 .height30px {
     height: 30px;
 }
-.paddingLeft {
+.paddingLeft, .breadcrum {
     padding-left: 20px;
 }
 .paddingTopBottom15px {
@@ -206,41 +247,44 @@ h1, h2, h3, h4, h5, h6, p {
         height: 100px;
     }
 }
-.logout:hover {
-    color: $red;
-}
 .navRectangle {
     height: 65px;
     padding: 7px;
 }
-.blackButton, .blackTopBar {
-    background: $black;
-}
-.greyButton, .blackButton:hover, .redButton:hover, .iconGreyRoundBg {
-    background: $grey;
-}
-.redButton{
-    background: $red;
-}
 .noBackground {
     background: none;
 }
-.skyBlueBackground {
+.blackButton, .blackTopBar {
+    background: $black;
+}
+.greyButton, .blackButton:hover, .iconGreyRoundBg {
+    background: $grey;
+}
+.skyBlueBackground, .greenButton:hover {
     background: $skyBlue !important;
 }
-.yellowBackground {
-    background: $yellow !important;
+.greenBackground, .greenButton {
+    background: $green !important;
 }
-.orangeBackground {
+.OriginalYellowBG {
+    background: $yellow;
+}
+.yellowBackground {
+    background: $yellowish !important;
+}
+.orangeBackground, .redButton:hover {
     background: $orange !important;
 }
 .pinkBackground {
     background: $pink !important;
 }
-.whiteBackground {
+.redBackground {
+    background: $red !important;
+}
+.whiteBackground, .breadcrum {
     background: $white;
 }
-.loggedOffBG, .loggedOnBG, .homeBG, .operationsBG, .visaBG {
+.loggedOffBG, .loggedOnBG, .homeBG, .operationsBG,  .opsManagementBG, .visaBG {
     background-position: center;
     background-size: cover;
     padding: 20px;
@@ -256,11 +300,28 @@ h1, h2, h3, h4, h5, h6, p {
 .homeBG {
     background-image: url('assets/Web/home.png');
 }
-.operationsBG {
+.operationsBG,  .opsManagementBG {
     background-image: url('assets/Web/operations.png');
+}
+.opsManagementBG {
+    height: calc(100vh - 65px) !important;
+    overflow-y: scroll;
+    .mat-tab-group.mat-primary .mat-ink-bar {
+        background-color: $red;
+        height: 5px;
+    }
+    .mat-select-value {
+        color: $white !important;
+    }
 }
 .visaBG {
     background-image: url('assets/Web/visa.png');
+}
+.formBorder {
+    background: $blackShaddow;
+    border: 1px solid $white;
+    border-radius: 6px;
+    padding: 1em;
 }
 .formsLink {
     a {
@@ -318,7 +379,7 @@ h1, h2, h3, h4, h5, h6, p {
     height: 50px;
     padding: 0 10px;
 }
-.sidenavItem:hover, .selectedSidenavItem {
+.sidenavItem:hover, .selectedSidenavItem, .redButton {
     color: $white;
     background: $red;
 }
@@ -341,7 +402,7 @@ h1, h2, h3, h4, h5, h6, p {
     }
 } 
 .whiteRadioButtons {
-    .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle, {
+    .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
         border-color: $red;
     }
     .mat-radio-button.mat-accent .mat-radio-inner-circle {
@@ -381,10 +442,10 @@ h1, h2, h3, h4, h5, h6, p {
         padding: 0 !important;
     }
 }
-.stepContentContainer {
+.tabContainer {
     border: solid 2px $grey;
     background: $greyShadowBG;
-    height: 64vh;
+    height: 68vh;
     margin: 0 20px;
     padding: 10px;
     overflow-x: auto;
@@ -433,6 +494,7 @@ h1, h2, h3, h4, h5, h6, p {
     .mat-button-toggle {
         background-color: $grey;
         color: $white;
+        width: 150px;
     }
     .mat-button-toggle-checked, .mat-button-toggle-button:hover {
         background-color: $black;
