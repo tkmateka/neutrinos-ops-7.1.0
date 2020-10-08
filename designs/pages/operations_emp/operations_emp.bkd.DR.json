@@ -548,7 +548,7 @@
                         },
                         {
                             "_key": "(click)",
-                            "_value": "goTo('employee/operations/visa')",
+                            "_value": "goTo('ops-app/operations/visa')",
                             "_type": "kv",
                             "_attrDef": "c"
                         }
@@ -1071,7 +1071,7 @@
                         },
                         {
                             "_key": "(click)",
-                            "_value": "goTo('employee/operations/travel')",
+                            "_value": "goTo('ops-app/operations/travel')",
                             "_type": "kv",
                             "_attrDef": "c"
                         }

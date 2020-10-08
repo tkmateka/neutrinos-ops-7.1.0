@@ -183,7 +183,8 @@
         "y": 260,
         "wires": [],
         "generateNext": false,
-        "generated": true
+        "generated": true,
+        "serviceName": "crudoperations"
     },
     {
         "id": "sd_NKwElQmIiv7yWqLF",
@@ -233,6 +234,7 @@
                 }
             }
         },
+        "uploadFileOptions": {},
         "editableListData": {
             "responses": [],
             "params": [],
@@ -407,6 +409,7 @@
         "name": "",
         "databaseConfig": "sd_MiIIcvLvPF3Wgg3L",
         "collection": "bh.collection",
+        "options": "",
         "resultMapping": "bh.local.result",
         "operation": "find",
         "argumentArray": [
@@ -495,6 +498,7 @@
             "obj": "bh.local.result",
             "send": "bh.local.result"
         },
+        "cookies": [],
         "inputs": 1,
         "outputs": 0,
         "editableListData": {
@@ -541,6 +545,7 @@
                 }
             }
         },
+        "uploadFileOptions": {},
         "editableListData": {
             "responses": [],
             "params": [],
@@ -574,6 +579,114 @@
         "wires": [
             [
                 "sd_RVC9aeq2D2dloX7k"
+            ]
+        ],
+        "generateNext": false,
+        "generated": true
+    },
+    {
+        "id": "sd_zSFrTfa3QtCt5g2O",
+        "type": "HttpIn",
+        "z": "sd_EpL0cWVkZjg5r4YB",
+        "viewType": "server",
+        "nodeType": "start",
+        "name": "",
+        "path": "test",
+        "uploadpath": "",
+        "summary": "",
+        "description": "",
+        "method": "get",
+        "sequenceId": "",
+        "consumes": "",
+        "produces": "",
+        "filetype": "path",
+        "acceptFileUpload": false,
+        "httpOptions": {
+            "test": {
+                "get": {
+                    "summary": "",
+                    "description": "",
+                    "consumes": [],
+                    "produces": [],
+                    "parameters": [],
+                    "responses": {}
+                }
+            }
+        },
+        "editableListData": {
+            "responses": [],
+            "params": [],
+            "produces": [],
+            "consumes": []
+        },
+        "inputs": 0,
+        "outputs": 1,
+        "category": "HTTP",
+        "x": 200,
+        "y": 480,
+        "wires": [
+            [
+                "sd_IrxXueUlxjDLlPcj"
+            ]
+        ],
+        "generateNext": true,
+        "serviceName": "crudoperations"
+    },
+    {
+        "id": "sd_O8yGA4pCCqcBPxYQ",
+        "type": "HttpOut",
+        "z": "sd_EpL0cWVkZjg5r4YB",
+        "viewType": "server",
+        "nodeType": "flow",
+        "name": "",
+        "headers": {},
+        "responseBody": {
+            "type": "str",
+            "value": "works",
+            "ssd_typedInputField": true
+        },
+        "httpcode": {
+            "type": "num",
+            "value": 200,
+            "ssd_typedInputField": true
+        },
+        "responseType": "obj",
+        "responseMapping": {
+            "status": 200,
+            "obj": "\"works\"",
+            "send": "\"works\""
+        },
+        "inputs": 1,
+        "outputs": 0,
+        "editableListData": {
+            "headers": []
+        },
+        "cookiesList": {},
+        "switchStates": {
+            "headers": "Map",
+            "cookies": "Map"
+        },
+        "category": "HTTP",
+        "x": 425,
+        "y": 500,
+        "wires": [],
+        "generateNext": false,
+        "generated": true
+    },
+    {
+        "id": "sd_IrxXueUlxjDLlPcj",
+        "type": "Script",
+        "z": "sd_EpL0cWVkZjg5r4YB",
+        "viewType": "common",
+        "nodeType": "flow",
+        "name": "",
+        "script": "console.log('called');",
+        "category": "Function",
+        "x": 300,
+        "y": 500,
+        "wires": [
+            [
+                "sd_O8yGA4pCCqcBPxYQ"
             ]
         ],
         "generateNext": false,

@@ -57,7 +57,7 @@ export class visaComponent extends NBaseComponent implements OnInit {
                 console.log(res);
                 if (res[0]) {
                     localStorage.setItem('visaDetails', JSON.stringify(res[0]));
-                    this.router.navigate(['employee/operations/visa/' + res[0]['countryId']]);
+                    this.router.navigate(['ops-app/operations/visa/' + res[0]['countryId']]);
                     this.spinner = false;
                 }
             }, err => {

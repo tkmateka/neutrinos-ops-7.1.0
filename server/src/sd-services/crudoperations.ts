@@ -213,6 +213,47 @@ export class crudoperations {
         this.generatedMiddlewares
       )
     );
+
+    this.swaggerDocument['paths']['/test'] = {
+      get: {
+        summary: '',
+        description: '',
+        consumes: [],
+        produces: [],
+        parameters: [],
+        responses: {}
+      }
+    };
+    this.app['get'](
+      `${this.serviceBasePath}/test`,
+      cookieParser(),
+      this.sdService.getMiddlesWaresBySequenceId(
+        null,
+        'pre',
+        this.generatedMiddlewares
+      ),
+
+      async (req, res, next) => {
+        let bh = {};
+        try {
+          bh = this.sdService.__constructDefault(
+            { local: {}, input: {} },
+            req,
+            res,
+            next
+          );
+          bh = await this.sd_IrxXueUlxjDLlPcj(bh);
+          //appendnew_next_sd_zSFrTfa3QtCt5g2O
+        } catch (e) {
+          return await this.errorHandler(bh, e, 'sd_zSFrTfa3QtCt5g2O');
+        }
+      },
+      this.sdService.getMiddlesWaresBySequenceId(
+        null,
+        'post',
+        this.generatedMiddlewares
+      )
+    );
     //appendnew_flow_crudoperations_HttpIn
   }
   //   service flows_crudoperations
@@ -344,6 +385,25 @@ export class crudoperations {
       return bh;
     } catch (e) {
       return await this.errorHandler(bh, e, 'sd_bSW0jynsplxdLORq');
+    }
+  }
+  async sd_IrxXueUlxjDLlPcj(bh) {
+    try {
+      console.log('called');
+      await this.sd_O8yGA4pCCqcBPxYQ(bh);
+      //appendnew_next_sd_IrxXueUlxjDLlPcj
+      return bh;
+    } catch (e) {
+      return await this.errorHandler(bh, e, 'sd_IrxXueUlxjDLlPcj');
+    }
+  }
+  async sd_O8yGA4pCCqcBPxYQ(bh) {
+    try {
+      bh.web.res.status(200).send('works');
+
+      return bh;
+    } catch (e) {
+      return await this.errorHandler(bh, e, 'sd_O8yGA4pCCqcBPxYQ');
     }
   }
   //appendnew_node

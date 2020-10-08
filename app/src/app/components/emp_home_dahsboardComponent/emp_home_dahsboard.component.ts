@@ -43,6 +43,9 @@ export class emp_home_dahsboardComponent extends NBaseComponent implements OnIni
     }
 
     ngOnInit() {
+        if(!this.neutrinosOAuth.isLoggedIn){
+            return this.router.navigate(['/welcome']);
+        }
         // call default functions
         this.getUser();
     }
