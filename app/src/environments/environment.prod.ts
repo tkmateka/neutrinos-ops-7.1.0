@@ -2,7 +2,7 @@ export const environment = {
     "name": "prod",
     "properties": {
         "production": true,
-        "ssdURL": "https://neutri-ops-backend.herokuapp.com/api/",
+        "ssdURL": "http://localhost:8081/api/",
         "tenantName": "neutrinos",
         "appName": "NeutrinosOpsHr",
         "namespace": "com.neutrinos.NeutrinosOpsHr",
