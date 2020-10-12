@@ -8,7 +8,7 @@
             "dbOption": {
                 "name": "neutrinosOpsDB",
                 "type": "mongodb",
-                "url": "mongodb://localhost:27017/neutrinosOpsDB",
+                "url": "mongodb+srv://tkmateka:incomingvirus@neutrinosopsdb.z93ce.gcp.mongodb.net/neutrinosOpsDB?retryWrites=true&w=majority",
                 "options": ""
             },
             "disabledb": false,
@@ -37,7 +37,7 @@
             "oracle_synchronize": true,
             "mongodb_name": "neutrinosOpsDB",
             "mongodb_type": "mongodb",
-            "mongodb_url": "mongodb://localhost:27017/neutrinosOpsDB",
+            "mongodb_url": "mongodb+srv://tkmateka:incomingvirus@neutrinosopsdb.z93ce.gcp.mongodb.net/neutrinosOpsDB?retryWrites=true&w=majority",
             "mongodb_options": "",
             "mysql_name": "neutrinosOpsDB",
             "mysql_type": "mongodb",
@@ -221,7 +221,7 @@
                 },
                 "mongodb_url": {
                     "type": "str",
-                    "value": "mongodb://localhost:27017/neutrinosOpsDB"
+                    "value": "mongodb+srv://tkmateka:incomingvirus@neutrinosopsdb.z93ce.gcp.mongodb.net/neutrinosOpsDB?retryWrites=true&w=majority"
                 },
                 "mongodb_options": {
                     "type": "str",
@@ -412,13 +412,7 @@
                     "value": true
                 }
             },
-            "users": {
-                "sd_EpL0cWVkZjg5r4YB": [
-                    "sd_Kx8hQYyDyHPotS5z",
-                    "sd_P9lzQ0A5wBOCCgt5",
-                    "sd_RVC9aeq2D2dloX7k"
-                ]
-            }
+            "users": {}
         }
     }
 }
