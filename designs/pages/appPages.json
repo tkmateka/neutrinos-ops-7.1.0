@@ -70,5 +70,17 @@
         "componentName": "ops_managementComponent",
         "isEntry": false,
         "createDate": "2020-09-29T22:43:16.600Z"
+    },
+    "758b35ef-4b19-2109-9d19-82a0c1ce81bc": {
+        "appPageName": "emp_profile",
+        "componentName": "emp_profileComponent",
+        "isEntry": false,
+        "createDate": "2020-10-17T10:26:23.457Z"
+    },
+    "759cc668-3446-0621-8fa6-2d5a51d93fb8": {
+        "appPageName": "facilities_management",
+        "componentName": "facilities_managementComponent",
+        "isEntry": false,
+        "createDate": "2020-10-17T10:27:46.637Z"
     }
 }

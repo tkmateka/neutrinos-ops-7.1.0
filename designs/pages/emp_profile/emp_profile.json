@@ -1,0 +1,14 @@
+{
+    "appPageId": "758b35ef-4b19-2109-9d19-82a0c1ce81bc",
+    "appPageName": "emp_profile",
+    "componentName": "emp_profileComponent",
+    "selectorName": "bh-emp_profile",
+    "htmlFileName": "emp_profile.template.html",
+    "tsFileName": "emp_profile.component.ts",
+    "createDate": "2020-10-17T10:26:23.457Z",
+    "bkd": {
+        "designerHtml": "",
+        "designerReference": {},
+        "ts": ""
+    }
+}

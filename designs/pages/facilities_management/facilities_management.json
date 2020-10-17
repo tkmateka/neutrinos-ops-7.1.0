@@ -1,0 +1,14 @@
+{
+    "appPageId": "759cc668-3446-0621-8fa6-2d5a51d93fb8",
+    "appPageName": "facilities_management",
+    "componentName": "facilities_managementComponent",
+    "selectorName": "bh-facilities_management",
+    "htmlFileName": "facilities_management.template.html",
+    "tsFileName": "facilities_management.component.ts",
+    "createDate": "2020-10-17T10:27:46.637Z",
+    "bkd": {
+        "designerHtml": "",
+        "designerReference": {},
+        "ts": ""
+    }
+}

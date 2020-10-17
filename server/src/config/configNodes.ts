@@ -412,7 +412,13 @@ export default {
                     "value": true
                 }
             },
-            "users": {}
+            "users": {
+                "sd_EpL0cWVkZjg5r4YB": [
+                    "sd_Kx8hQYyDyHPotS5z",
+                    "sd_P9lzQ0A5wBOCCgt5",
+                    "sd_RVC9aeq2D2dloX7k"
+                ]
+            }
         }
     }
 }

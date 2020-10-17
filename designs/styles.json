@@ -131,6 +131,7 @@
         "mat-button-toggle",
         "mat-button-toggle-checked",
         "mat-button-toggle-button",
+        "facilityReqTxtArea",
         "mat-focused",
         "mat-form-field-label",
         "mat-form-field-required-marker",

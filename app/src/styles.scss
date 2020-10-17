@@ -501,6 +501,16 @@ h1, h2, h3, h4, h5, h6, p {
     }
 }
 
+// Facilities Management
+.facilityReqTxtArea {
+    height: 25vh !important;
+    textarea {
+        color: $white;
+        height: 22vh !important;
+        resize: none !important;
+    }
+}
+
 // Inputs
 .inputField-container .mat-form-field.mat-focused .mat-form-field-label {
     color: $darkGrey !important;
