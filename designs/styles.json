@@ -55,6 +55,7 @@
         "formsLink",
         "dateAndSelectWidth",
         "greyShadow",
+        "proFieldsContainer",
         "blackShadow",
         "notification",
         "mat-badge-content",

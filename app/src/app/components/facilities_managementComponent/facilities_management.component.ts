@@ -2,6 +2,7 @@
 import { Component, OnInit } from '@angular/core'
 import { NBaseComponent } from '../../../../../app/baseClasses/nBase.component';
 import { Router, ActivatedRoute } from '@angular/router';
+import { MatSelect, MatSelectChange } from '@angular/material';
 
 // Services
 import { ssd_integrationService } from '../../services/ssd_integration/ssd_integration.service';
@@ -18,7 +19,23 @@ export class facilities_managementComponent extends NBaseComponent implements On
     currentUser: any = {};
     requestTypes = ["Office Hygine", "Guest House Accommodation", "Event Booking Request", "Office Electrical Issues", "Other Request"];
     countries = ["South Africa", "India"];
-    facilities = {};
+    facilities = {
+            'emailId': '',
+            'employeeId': '',
+            'employeeName': '',
+            'isRead': false,
+            'lineManager': '',
+            'lineManagerEmail': '',
+            'requestId': null,
+            'requestDate': null,
+            'status': '',
+            'request': {
+                'requestType': '',
+                'country': '',
+                'request': ''
+            },
+            'comments': []
+        };
 
     constructor(private router: Router, private activatedRoute: ActivatedRoute,
         private ssd: ssd_integrationService, private common: commonService ) {

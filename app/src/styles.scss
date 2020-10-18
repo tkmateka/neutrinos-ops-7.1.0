@@ -214,7 +214,7 @@ h1, h2, h3, h4, h5, h6, p {
 .dateAndSelectWidth {
     width: 87% !important;
 }
-.greyShadow {
+.greyShadow, .proFieldsContainer {
     background: $greyShadowBG;
     padding: 1em;
     opacity: 0.8;
@@ -389,6 +389,10 @@ h1, h2, h3, h4, h5, h6, p {
 .profileImage {
     width: 100px;
     height: 100px;
+}
+.proFieldsContainer {
+    height: 48vh;
+    overflow: auto;
 }
 .iconGreyRoundBg {
     width: 70px;

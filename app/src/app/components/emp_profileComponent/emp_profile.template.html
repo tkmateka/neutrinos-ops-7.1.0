@@ -5,3 +5,34 @@
     </div>
   </div>
 </div>
+<div fxLayout="row wrap" class="fullHeightMinusTopBar homeBG" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false" fxFill>
+  <div fxLayout="column wrap" fxFlex="100" fxLayoutGap="1em" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" *ngIf="!spinner">
+    <div fxLayout="row wrap" class="greyShadow" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false">
+      <div fxLayout="column wrap" class="minWidth250" fxFlex="20" fxLayoutGap="1em" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+        <div fxLayout="row wrap" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false"><img imgSrc="{{proImg}}" class="profileImage"></div>
+        <div fxLayout="column wrap" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false">
+          <div class="textAlignCenter">
+            <h3>{{currentUser.givenName}} {{currentUser.surname}}</h3>
+            <b>{{currentUser.emailId}}</b>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div fxLayout="column wrap" class="proFieldsContainer" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+      <div fxLayout="row wrap" class fxLayoutAlign="space-between center" [fxShow]="true" [fxHide]="false">
+        <div fxLayout="column wrap" fxFlex="49" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" *ngFor="let edit of editableFields"><label>
+            <p>{{edit.label}}</p>
+          </label>
+          <div class="inputField-container">
+            <mat-form-field [floatLabel]="&apos;never&apos;" appearance="legacy">
+              <input matInput type="text" placeholder="{{edit.label}}" class="capitalize" [(ngModel)]="currentUser[edit.id]" name="{{edit.id}}" [readonly]="!edit.editable">
+            </mat-form-field>
+
+            <div class="errDiv">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
