@@ -772,7 +772,6 @@
                 "3b2c8674-6716-bfa8-07c7-0e35b43da34c": {
                     "paletteKey": "NG-tab",
                     "parentEditorKey": "5b3bffb9-d8c0-7e43-38f9-b235d17166fc",
-                    "isCommented": "false",
                     "designerReference": [
                         {
                             "_key": "componentLabel",
@@ -833,7 +832,6 @@
                     "a4ee5ae4-dec9-e30b-ca16-0a028b91c8d3": {
                         "paletteKey": "FlexLayoutRow",
                         "parentEditorKey": "3b2c8674-6716-bfa8-07c7-0e35b43da34c",
-                        "isCommented": "false",
                         "designerReference": [
                             {
                                 "_key": "componentLabel",
@@ -900,7 +898,6 @@
                         "94ff3b11-0044-21a9-4309-48be1cfa0ff9": {
                             "paletteKey": "FlexLayoutCol",
                             "parentEditorKey": "a4ee5ae4-dec9-e30b-ca16-0a028b91c8d3",
-                            "isCommented": "false",
                             "designerReference": [
                                 {
                                     "_key": "componentLabel",
@@ -968,7 +965,6 @@
                                 "paletteKey": "Html5",
                                 "parentEditorKey": "94ff3b11-0044-21a9-4309-48be1cfa0ff9",
                                 "isAdvancedComponent": true,
-                                "isCommented": "false",
                                 "designerReference": [
                                     {
                                         "_key": "style",
@@ -1155,7 +1151,6 @@
                                     "paletteKey": "html-editor",
                                     "parentEditorKey": "8e925a9f-f759-dfa5-a478-e686ba40ec7a",
                                     "isAdvancedChildComponent": true,
-                                    "isCommented": "false",
                                     "designerReference": [
                                         {
                                             "_key": "style",
@@ -1171,7 +1166,7 @@
                                         },
                                         {
                                             "_key": "html",
-                                            "_value": "<table mat-table [dataSource]=\"requestsDataSource\" #requestsTable class=\"reqTable mat-elevation-z8\">\r\n\t<ng-container *ngFor=\"let column of requestsColumns; let i = index\" [matColumnDef]=\"column\">\r\n\t\t<th mat-header-cell *matHeaderCellDef> {{requestsCells[i]}} </th>\r\n\t\t<div *ngIf=\"((requestsCells[i] == 'Request Date') || (requestsCells[i] == 'Travel Date'))\">\r\n\t\t\t<td mat-cell *matCellDef=\"let element; let INDEX = index;\">{{element[column] | date}}</td>\r\n\t\t</div>\r\n\t\t<div *ngIf=\"(requestsCells[i] != 'Status') && ((requestsCells[i] != 'Request Date') && (requestsCells[i] != 'Travel Date'))\">\r\n\t\t\t<td mat-cell *matCellDef=\"let element; let INDEX = index;\" [class.blueLinkText]=\"requestsCells[i] == 'View Ticket'\" (click)=\"viewMore(element['requestId'])\">{{element[column]}}</td>\r\n\t\t</div>\r\n\t\t<div *ngIf=\"(requestsCells[i] == 'Status') && ((requestsCells[i] != 'Request Date') && (requestsCells[i] != 'Travel Date'))\">\r\n\t\t\t<td mat-cell *matCellDef=\"let element; let INDEX = index;\"\r\n\t\t\t\t[ngClass]=\"{ 'redBackground':(calculateDiff(element['travelDate']) <= 3), 'OriginalYellowBG':((calculateDiff(element['travelDate']) > 3) && (calculateDiff(element['travelDate']) < 7)), 'greenBackground': (calculateDiff(element['travelDate']) > 6)}\">\r\n\t\t\t\t{{element[column]}}</td>\r\n\t\t</div>\r\n\t</ng-container>\r\n\r\n\t<tr mat-header-row *matHeaderRowDef=\"requestsColumns; sticky: true\"></tr>\r\n\t<tr mat-row #rowId *matRowDef=\"let row; columns: requestsColumns;\"></tr>\r\n</table>",
+                                            "_value": "<table mat-table [dataSource]=\"requestsDataSource\" #requestsTable class=\"reqTable mat-elevation-z8\">\r\n\t<ng-container *ngFor=\"let column of requestsColumns; let i = index\" [matColumnDef]=\"column\">\r\n\t\t<th mat-header-cell *matHeaderCellDef> {{requestsCells[i]}} </th>\r\n\t\t<div *ngIf=\"((requestsCells[i] == 'Request Date') || (requestsCells[i] == 'Travel Date'))\">\r\n\t\t\t<td mat-cell *matCellDef=\"let element; let INDEX = index;\">{{element[column] | date}}</td>\r\n\t\t</div>\r\n\t\t<div *ngIf=\"(requestsCells[i] != 'Status') && ((requestsCells[i] != 'Request Date') && (requestsCells[i] != 'Travel Date'))\">\r\n\t\t\t<td mat-cell *matCellDef=\"let element; let INDEX = index;\" [class.blueLinkText]=\"requestsCells[i] == 'View Ticket'\" (click)=\"viewMore(element['requestId'], false)\">{{element[column]}}</td>\r\n\t\t</div>\r\n\t\t<div *ngIf=\"(requestsCells[i] == 'Status') && ((requestsCells[i] != 'Request Date') && (requestsCells[i] != 'Travel Date'))\">\r\n\t\t\t<td mat-cell *matCellDef=\"let element; let INDEX = index;\"\r\n\t\t\t\t[ngClass]=\"{ 'redBackground':(calculateDiff(element['travelDate']) <= 3), 'OriginalYellowBG':((calculateDiff(element['travelDate']) > 3) && (calculateDiff(element['travelDate']) < 7)), 'greenBackground': (calculateDiff(element['travelDate']) > 6)}\">\r\n\t\t\t\t{{element[column]}}</td>\r\n\t\t</div>\r\n\t</ng-container>\r\n\r\n\t<tr mat-header-row *matHeaderRowDef=\"requestsColumns; sticky: true\"></tr>\r\n\t<tr mat-row #rowId *matRowDef=\"let row; columns: requestsColumns;\"></tr>\r\n</table>",
                                             "_type": "a",
                                             "_attrDef": "p"
                                         }
@@ -1578,7 +1573,7 @@
                                         },
                                         {
                                             "_key": "html",
-                                            "_value": "<table mat-table [dataSource]=\"requestsDataSource\" #requestsTable class=\"reqTable mat-elevation-z8\">\r\n\t<ng-container *ngFor=\"let column of requestsColumns; let i = index\" [matColumnDef]=\"column\">\r\n\t\t<th mat-header-cell *matHeaderCellDef> {{requestsCells[i]}} </th>\r\n\t\t<div *ngIf=\"((requestsCells[i] == 'Request Date') || (requestsCells[i] == 'Travel Date'))\">\r\n\t\t\t<td mat-cell *matCellDef=\"let element; let INDEX = index;\">{{element[column] | date}}</td>\r\n\t\t</div>\r\n\t\t<div *ngIf=\"(requestsCells[i] != 'Status') && ((requestsCells[i] != 'Request Date') && (requestsCells[i] != 'Travel Date'))\">\r\n\t\t\t<td mat-cell *matCellDef=\"let element; let INDEX = index;\" [class.blueLinkText]=\"requestsCells[i] == 'View Ticket'\" (click)=\"viewMore(element['requestId'])\">{{element[column]}}</td>\r\n\t\t</div>\r\n\t\t<div *ngIf=\"(requestsCells[i] == 'Status') && ((requestsCells[i] != 'Request Date') && (requestsCells[i] != 'Travel Date'))\">\r\n\t\t\t<td mat-cell *matCellDef=\"let element; let INDEX = index;\"\r\n\t\t\t\t[ngClass]=\"{ 'redBackground':(calculateDiff(element['travelDate']) <= 3), 'OriginalYellowBG':((calculateDiff(element['travelDate']) > 3) && (calculateDiff(element['travelDate']) < 7)), 'greenBackground': (calculateDiff(element['travelDate']) > 6)}\">\r\n\t\t\t\t{{element[column]}}</td>\r\n\t\t</div>\r\n\t</ng-container>\r\n\r\n\t<tr mat-header-row *matHeaderRowDef=\"requestsColumns; sticky: true\"></tr>\r\n\t<tr mat-row #rowId *matRowDef=\"let row; columns: requestsColumns;\"></tr>\r\n</table>",
+                                            "_value": "<table mat-table [dataSource]=\"requestsDataSource\" #requestsTable class=\"reqTable mat-elevation-z8\">\r\n\t<ng-container *ngFor=\"let column of requestsColumns; let i = index\" [matColumnDef]=\"column\">\r\n\t\t<th mat-header-cell *matHeaderCellDef> {{requestsCells[i]}} </th>\r\n\t\t<div *ngIf=\"((requestsCells[i] == 'Request Date') || (requestsCells[i] == 'Travel Date'))\">\r\n\t\t\t<td mat-cell *matCellDef=\"let element; let INDEX = index;\">{{element[column] | date}}</td>\r\n\t\t</div>\r\n\t\t<div *ngIf=\"(requestsCells[i] != 'Status') && ((requestsCells[i] != 'Request Date') && (requestsCells[i] != 'Travel Date'))\">\r\n\t\t\t<td mat-cell *matCellDef=\"let element; let INDEX = index;\" [class.blueLinkText]=\"requestsCells[i] == 'View Ticket'\" (click)=\"viewMore(element['requestId'], false)\">{{element[column]}}</td>\r\n\t\t</div>\r\n\t\t<div *ngIf=\"(requestsCells[i] == 'Status') && ((requestsCells[i] != 'Request Date') && (requestsCells[i] != 'Travel Date'))\">\r\n\t\t\t<td mat-cell *matCellDef=\"let element; let INDEX = index;\"\r\n\t\t\t\t[ngClass]=\"{ 'redBackground':(calculateDiff(element['travelDate']) <= 3), 'OriginalYellowBG':((calculateDiff(element['travelDate']) > 3) && (calculateDiff(element['travelDate']) < 7)), 'greenBackground': (calculateDiff(element['travelDate']) > 6)}\">\r\n\t\t\t\t{{element[column]}}</td>\r\n\t\t</div>\r\n\t</ng-container>\r\n\r\n\t<tr mat-header-row *matHeaderRowDef=\"requestsColumns; sticky: true\"></tr>\r\n\t<tr mat-row #rowId *matRowDef=\"let row; columns: requestsColumns;\"></tr>\r\n</table>",
                                             "_type": "a",
                                             "_attrDef": "p"
                                         }
@@ -1985,7 +1980,7 @@
                                         },
                                         {
                                             "_key": "html",
-                                            "_value": "<table mat-table [dataSource]=\"requestsDataSource\" #requestsTable class=\"reqTable mat-elevation-z8\">\r\n\t<ng-container *ngFor=\"let column of requestsColumns; let i = index\" [matColumnDef]=\"column\">\r\n\t\t<th mat-header-cell *matHeaderCellDef> {{requestsCells[i]}} </th>\r\n\t\t<div *ngIf=\"((requestsCells[i] == 'Request Date') || (requestsCells[i] == 'Travel Date'))\">\r\n\t\t\t<td mat-cell *matCellDef=\"let element; let INDEX = index;\">{{element[column] | date}}</td>\r\n\t\t</div>\r\n\t\t<div *ngIf=\"(requestsCells[i] != 'Status') && ((requestsCells[i] != 'Request Date') && (requestsCells[i] != 'Travel Date'))\">\r\n\t\t\t<td mat-cell *matCellDef=\"let element; let INDEX = index;\" [class.blueLinkText]=\"requestsCells[i] == 'View Ticket'\" (click)=\"viewMore(element['requestId'])\">{{element[column]}}</td>\r\n\t\t</div>\r\n\t\t<div *ngIf=\"(requestsCells[i] == 'Status') && ((requestsCells[i] != 'Request Date') && (requestsCells[i] != 'Travel Date'))\">\r\n\t\t\t<td mat-cell *matCellDef=\"let element; let INDEX = index;\"\r\n\t\t\t\t[ngClass]=\"{ 'redBackground':(calculateDiff(element['travelDate']) <= 3), 'OriginalYellowBG':((calculateDiff(element['travelDate']) > 3) && (calculateDiff(element['travelDate']) < 7)), 'greenBackground': (calculateDiff(element['travelDate']) > 6)}\">\r\n\t\t\t\t{{element[column]}}</td>\r\n\t\t</div>\r\n\t</ng-container>\r\n\r\n\t<tr mat-header-row *matHeaderRowDef=\"requestsColumns; sticky: true\"></tr>\r\n\t<tr mat-row #rowId *matRowDef=\"let row; columns: requestsColumns;\"></tr>\r\n</table>",
+                                            "_value": "<table mat-table [dataSource]=\"requestsDataSource\" #requestsTable class=\"reqTable mat-elevation-z8\">\r\n\t<ng-container *ngFor=\"let column of requestsColumns; let i = index\" [matColumnDef]=\"column\">\r\n\t\t<th mat-header-cell *matHeaderCellDef> {{requestsCells[i]}} </th>\r\n\t\t<div *ngIf=\"((requestsCells[i] == 'Request Date') || (requestsCells[i] == 'Travel Date'))\">\r\n\t\t\t<td mat-cell *matCellDef=\"let element; let INDEX = index;\">{{element[column] | date}}</td>\r\n\t\t</div>\r\n\t\t<div *ngIf=\"(requestsCells[i] != 'Status') && ((requestsCells[i] != 'Request Date') && (requestsCells[i] != 'Travel Date'))\">\r\n\t\t\t<td mat-cell *matCellDef=\"let element; let INDEX = index;\" [class.blueLinkText]=\"requestsCells[i] == 'View Ticket'\" (click)=\"viewMore(element['requestId'], false)\">{{element[column]}}</td>\r\n\t\t</div>\r\n\t\t<div *ngIf=\"(requestsCells[i] == 'Status') && ((requestsCells[i] != 'Request Date') && (requestsCells[i] != 'Travel Date'))\">\r\n\t\t\t<td mat-cell *matCellDef=\"let element; let INDEX = index;\"\r\n\t\t\t\t[ngClass]=\"{ 'redBackground':(calculateDiff(element['travelDate']) <= 3), 'OriginalYellowBG':((calculateDiff(element['travelDate']) > 3) && (calculateDiff(element['travelDate']) < 7)), 'greenBackground': (calculateDiff(element['travelDate']) > 6)}\">\r\n\t\t\t\t{{element[column]}}</td>\r\n\t\t</div>\r\n\t</ng-container>\r\n\r\n\t<tr mat-header-row *matHeaderRowDef=\"requestsColumns; sticky: true\"></tr>\r\n\t<tr mat-row #rowId *matRowDef=\"let row; columns: requestsColumns;\"></tr>\r\n</table>",
                                             "_type": "a",
                                             "_attrDef": "p"
                                         }
@@ -1995,7 +1990,7 @@
                         }
                     }
                 },
-                "5b191a60-24ff-72f4-878a-9daaeef5f048": {
+                "4eefb2ee-f16d-6b60-7d8e-0c249ffba179": {
                     "paletteKey": "NG-tab",
                     "parentEditorKey": "5b3bffb9-d8c0-7e43-38f9-b235d17166fc",
                     "designerReference": [
@@ -2021,6 +2016,413 @@
                         {
                             "_key": "label",
                             "_value": "Declined Requests",
+                            "_type": "kv",
+                            "_attrDef": "p"
+                        },
+                        {
+                            "_key": "[disabled]",
+                            "_value": "",
+                            "_type": "kv",
+                            "_attrDef": "p"
+                        },
+                        {
+                            "_key": "[isActive]",
+                            "_value": "",
+                            "_type": "kv",
+                            "_attrDef": "p"
+                        },
+                        {
+                            "_key": "position",
+                            "_value": "",
+                            "_type": "kv",
+                            "_attrDef": "p"
+                        },
+                        {
+                            "_key": "index",
+                            "_value": "",
+                            "_type": "kv",
+                            "_attrDef": "p"
+                        },
+                        {
+                            "_key": "origin",
+                            "_value": "",
+                            "_type": "kv",
+                            "_attrDef": "p"
+                        }
+                    ],
+                    "f591d7dc-2a33-2f86-0dff-cf70072c4500": {
+                        "paletteKey": "FlexLayoutRow",
+                        "parentEditorKey": "4eefb2ee-f16d-6b60-7d8e-0c249ffba179",
+                        "designerReference": [
+                            {
+                                "_key": "componentLabel",
+                                "_value": "Row",
+                                "_type": "kv",
+                                "_attrDef": "p",
+                                "_useAsLabel": true
+                            },
+                            {
+                                "_key": "style",
+                                "_value": "",
+                                "_type": "kv",
+                                "_attrDef": "p"
+                            },
+                            {
+                                "_key": "class",
+                                "_value": "",
+                                "_type": "dav",
+                                "_attrDef": "p"
+                            },
+                            {
+                                "_key": "fxFlex",
+                                "_value": "",
+                                "_type": "kv",
+                                "_attrDef": "p"
+                            },
+                            {
+                                "_key": "fxLayoutGap",
+                                "_value": "",
+                                "_type": "kv",
+                                "_attrDef": "p"
+                            },
+                            {
+                                "_key": "wrap",
+                                "_value": "wrap",
+                                "_type": "a",
+                                "_attrDef": "p"
+                            },
+                            {
+                                "_key": "layoutAlign",
+                                "_value": "start",
+                                "_type": "a",
+                                "_attrDef": "p"
+                            },
+                            {
+                                "_key": "pLayoutAlign",
+                                "_value": "stretch",
+                                "_type": "a",
+                                "_attrDef": "p"
+                            },
+                            {
+                                "_key": "[fxShow]",
+                                "_value": "true",
+                                "_type": "kv",
+                                "_attrDef": "p"
+                            },
+                            {
+                                "_key": "[fxHide]",
+                                "_value": "false",
+                                "_type": "kv",
+                                "_attrDef": "p"
+                            }
+                        ],
+                        "c63769b5-e050-b792-e0c2-2b504b390e21": {
+                            "paletteKey": "FlexLayoutCol",
+                            "parentEditorKey": "f591d7dc-2a33-2f86-0dff-cf70072c4500",
+                            "designerReference": [
+                                {
+                                    "_key": "componentLabel",
+                                    "_value": "Column",
+                                    "_type": "kv",
+                                    "_attrDef": "p",
+                                    "_useAsLabel": true
+                                },
+                                {
+                                    "_key": "style",
+                                    "_value": "",
+                                    "_type": "kv",
+                                    "_attrDef": "p"
+                                },
+                                {
+                                    "_key": "class",
+                                    "_value": "",
+                                    "_type": "dav",
+                                    "_attrDef": "p"
+                                },
+                                {
+                                    "_key": "fxFlex",
+                                    "_value": "100",
+                                    "_type": "kv",
+                                    "_attrDef": "p"
+                                },
+                                {
+                                    "_key": "fxLayoutGap",
+                                    "_value": "",
+                                    "_type": "kv",
+                                    "_attrDef": "p"
+                                },
+                                {
+                                    "_key": "wrap",
+                                    "_value": "wrap",
+                                    "_type": "a",
+                                    "_attrDef": "p"
+                                },
+                                {
+                                    "_key": "layoutAlign",
+                                    "_value": "start",
+                                    "_type": "a",
+                                    "_attrDef": "p"
+                                },
+                                {
+                                    "_key": "pLayoutAlign",
+                                    "_value": "stretch",
+                                    "_type": "a",
+                                    "_attrDef": "p"
+                                },
+                                {
+                                    "_key": "[fxShow]",
+                                    "_value": "true",
+                                    "_type": "kv",
+                                    "_attrDef": "p"
+                                },
+                                {
+                                    "_key": "[fxHide]",
+                                    "_value": "false",
+                                    "_type": "kv",
+                                    "_attrDef": "p"
+                                }
+                            ],
+                            "6e876c33-098d-2f2c-ee58-d556f59feeed": {
+                                "paletteKey": "Html5",
+                                "parentEditorKey": "c63769b5-e050-b792-e0c2-2b504b390e21",
+                                "isAdvancedComponent": true,
+                                "designerReference": [
+                                    {
+                                        "_key": "style",
+                                        "_value": "",
+                                        "_type": "kv",
+                                        "_attrDef": "p"
+                                    },
+                                    {
+                                        "_key": "class",
+                                        "_value": "",
+                                        "_type": "dav",
+                                        "_attrDef": "p"
+                                    },
+                                    {
+                                        "_key": "htmlElement",
+                                        "_value": "div",
+                                        "_type": "dav",
+                                        "_attrDef": "p",
+                                        "_useAsLabel": true
+                                    },
+                                    {
+                                        "_key": "tagType",
+                                        "_value": "",
+                                        "_type": "a",
+                                        "_attrDef": "p",
+                                        "_visibility": false
+                                    },
+                                    {
+                                        "_key": "name",
+                                        "_value": "",
+                                        "_type": "kv",
+                                        "_attrDef": "p",
+                                        "_visibility": false
+                                    },
+                                    {
+                                        "_key": "sandbox",
+                                        "_value": "",
+                                        "_type": "kv",
+                                        "_attrDef": "p",
+                                        "_visibility": false
+                                    },
+                                    {
+                                        "_key": "src",
+                                        "_value": "",
+                                        "_type": "kv",
+                                        "_attrDef": "p",
+                                        "_visibility": false
+                                    },
+                                    {
+                                        "_key": "srcdoc",
+                                        "_value": "",
+                                        "_type": "kv",
+                                        "_attrDef": "p",
+                                        "_visibility": false
+                                    },
+                                    {
+                                        "_key": "width",
+                                        "_value": "",
+                                        "_type": "kv",
+                                        "_attrDef": "p",
+                                        "_visibility": false
+                                    },
+                                    {
+                                        "_key": "[autoplay]",
+                                        "_value": "",
+                                        "_type": "kv",
+                                        "_attrDef": "p",
+                                        "_visibility": false
+                                    },
+                                    {
+                                        "_key": "[loop]",
+                                        "_value": "",
+                                        "_type": "kv",
+                                        "_attrDef": "p",
+                                        "_visibility": false
+                                    },
+                                    {
+                                        "_key": "data",
+                                        "_value": "",
+                                        "_type": "kv",
+                                        "_attrDef": "p",
+                                        "_visibility": false
+                                    },
+                                    {
+                                        "_key": "audioSource",
+                                        "_value": [],
+                                        "_type": "a",
+                                        "_attrDef": "p",
+                                        "_visibility": false
+                                    },
+                                    {
+                                        "_key": "videoSource",
+                                        "_value": [],
+                                        "_type": "a",
+                                        "_attrDef": "p",
+                                        "_visibility": false
+                                    },
+                                    {
+                                        "_key": "audioDatasource",
+                                        "_value": "",
+                                        "_type": "a",
+                                        "_attrDef": "p",
+                                        "_visibility": false
+                                    },
+                                    {
+                                        "_key": "audioSrc",
+                                        "_value": "",
+                                        "_type": "a",
+                                        "_attrDef": "p",
+                                        "_visibility": false
+                                    },
+                                    {
+                                        "_key": "audioType",
+                                        "_value": "",
+                                        "_type": "a",
+                                        "_attrDef": "p",
+                                        "_visibility": false
+                                    },
+                                    {
+                                        "_key": "videoDatasource",
+                                        "_value": "",
+                                        "_type": "a",
+                                        "_attrDef": "p",
+                                        "_visibility": false
+                                    },
+                                    {
+                                        "_key": "videoSrc",
+                                        "_value": "",
+                                        "_type": "a",
+                                        "_attrDef": "p",
+                                        "_visibility": false
+                                    },
+                                    {
+                                        "_key": "videoType",
+                                        "_value": "",
+                                        "_type": "a",
+                                        "_attrDef": "p",
+                                        "_visibility": false
+                                    },
+                                    {
+                                        "_key": "(audioplay)",
+                                        "_value": "",
+                                        "_type": "a",
+                                        "_attrDef": "p",
+                                        "_visibility": false
+                                    },
+                                    {
+                                        "_key": "(videoplay)",
+                                        "_value": "",
+                                        "_type": "a",
+                                        "_attrDef": "p",
+                                        "_visibility": false
+                                    },
+                                    {
+                                        "_key": "(audiopause)",
+                                        "_value": "",
+                                        "_type": "kv",
+                                        "_attrDef": "p",
+                                        "_visibility": false
+                                    },
+                                    {
+                                        "_key": "(videopause)",
+                                        "_value": "",
+                                        "_type": "kv",
+                                        "_attrDef": "p",
+                                        "_visibility": false
+                                    },
+                                    {
+                                        "_key": "(audioended)",
+                                        "_value": "",
+                                        "_type": "kv",
+                                        "_attrDef": "p",
+                                        "_visibility": false
+                                    },
+                                    {
+                                        "_key": "(videoended)",
+                                        "_value": "",
+                                        "_type": "kv",
+                                        "_attrDef": "p",
+                                        "_visibility": false
+                                    }
+                                ],
+                                "6ca043f8-3dfc-9256-c757-3dc8b40c62c2": {
+                                    "paletteKey": "html-editor",
+                                    "parentEditorKey": "6e876c33-098d-2f2c-ee58-d556f59feeed",
+                                    "isAdvancedChildComponent": true,
+                                    "designerReference": [
+                                        {
+                                            "_key": "style",
+                                            "_value": "",
+                                            "_type": "kv",
+                                            "_attrDef": "p"
+                                        },
+                                        {
+                                            "_key": "class",
+                                            "_value": "",
+                                            "_type": "dav",
+                                            "_attrDef": "p"
+                                        },
+                                        {
+                                            "_key": "html",
+                                            "_value": "<table mat-table [dataSource]=\"requestsDataSource\" #requestsTable class=\"reqTable mat-elevation-z8\">\r\n\t<ng-container *ngFor=\"let column of requestsColumns; let i = index\" [matColumnDef]=\"column\">\r\n\t\t<th mat-header-cell *matHeaderCellDef> {{requestsCells[i]}} </th>\r\n\t\t<div *ngIf=\"((requestsCells[i] == 'Request Date') || (requestsCells[i] == 'Travel Date'))\">\r\n\t\t\t<td mat-cell *matCellDef=\"let element; let INDEX = index;\">{{element[column] | date}}</td>\r\n\t\t</div>\r\n\t\t<div *ngIf=\"(requestsCells[i] != 'Status') && ((requestsCells[i] != 'Request Date') && (requestsCells[i] != 'Travel Date'))\">\r\n\t\t\t<td mat-cell *matCellDef=\"let element; let INDEX = index;\" [class.blueLinkText]=\"requestsCells[i] == 'View Ticket'\" (click)=\"viewMore(element['requestId'], false)\">{{element[column]}}</td>\r\n\t\t</div>\r\n\t\t<div *ngIf=\"(requestsCells[i] == 'Status') && ((requestsCells[i] != 'Request Date') && (requestsCells[i] != 'Travel Date'))\">\r\n\t\t\t<td mat-cell *matCellDef=\"let element; let INDEX = index;\"\r\n\t\t\t\t[ngClass]=\"{ 'redBackground':(calculateDiff(element['travelDate']) <= 3), 'OriginalYellowBG':((calculateDiff(element['travelDate']) > 3) && (calculateDiff(element['travelDate']) < 7)), 'greenBackground': (calculateDiff(element['travelDate']) > 6)}\">\r\n\t\t\t\t{{element[column]}}</td>\r\n\t\t</div>\r\n\t</ng-container>\r\n\r\n\t<tr mat-header-row *matHeaderRowDef=\"requestsColumns; sticky: true\"></tr>\r\n\t<tr mat-row #rowId *matRowDef=\"let row; columns: requestsColumns;\"></tr>\r\n</table>",
+                                            "_type": "a",
+                                            "_attrDef": "p"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "5b191a60-24ff-72f4-878a-9daaeef5f048": {
+                    "paletteKey": "NG-tab",
+                    "parentEditorKey": "5b3bffb9-d8c0-7e43-38f9-b235d17166fc",
+                    "designerReference": [
+                        {
+                            "_key": "componentLabel",
+                            "_value": "Facilities Management Requests",
+                            "_type": "kv",
+                            "_attrDef": "p",
+                            "_useAsLabel": true
+                        },
+                        {
+                            "_key": "style",
+                            "_value": "",
+                            "_type": "kv",
+                            "_attrDef": "p"
+                        },
+                        {
+                            "_key": "class",
+                            "_value": "",
+                            "_type": "kv",
+                            "_attrDef": "p"
+                        },
+                        {
+                            "_key": "label",
+                            "_value": "Facilities Management Requests",
                             "_type": "kv",
                             "_attrDef": "p"
                         },
@@ -2392,7 +2794,7 @@
                                         },
                                         {
                                             "_key": "html",
-                                            "_value": "<table mat-table [dataSource]=\"requestsDataSource\" #requestsTable class=\"reqTable mat-elevation-z8\">\r\n\t<ng-container *ngFor=\"let column of requestsColumns; let i = index\" [matColumnDef]=\"column\">\r\n\t\t<th mat-header-cell *matHeaderCellDef> {{requestsCells[i]}} </th>\r\n\t\t<div *ngIf=\"((requestsCells[i] == 'Request Date') || (requestsCells[i] == 'Travel Date'))\">\r\n\t\t\t<td mat-cell *matCellDef=\"let element; let INDEX = index;\">{{element[column] | date}}</td>\r\n\t\t</div>\r\n\t\t<div *ngIf=\"(requestsCells[i] != 'Status') && ((requestsCells[i] != 'Request Date') && (requestsCells[i] != 'Travel Date'))\">\r\n\t\t\t<td mat-cell *matCellDef=\"let element; let INDEX = index;\" [class.blueLinkText]=\"requestsCells[i] == 'View Ticket'\" (click)=\"viewMore(element['requestId'])\">{{element[column]}}</td>\r\n\t\t</div>\r\n\t\t<div *ngIf=\"(requestsCells[i] == 'Status') && ((requestsCells[i] != 'Request Date') && (requestsCells[i] != 'Travel Date'))\">\r\n\t\t\t<td mat-cell *matCellDef=\"let element; let INDEX = index;\"\r\n\t\t\t\t[ngClass]=\"{ 'redBackground':(calculateDiff(element['travelDate']) <= 3), 'OriginalYellowBG':((calculateDiff(element['travelDate']) > 3) && (calculateDiff(element['travelDate']) < 7)), 'greenBackground': (calculateDiff(element['travelDate']) > 6)}\">\r\n\t\t\t\t{{element[column]}}</td>\r\n\t\t</div>\r\n\t</ng-container>\r\n\r\n\t<tr mat-header-row *matHeaderRowDef=\"requestsColumns; sticky: true\"></tr>\r\n\t<tr mat-row #rowId *matRowDef=\"let row; columns: requestsColumns;\"></tr>\r\n</table>",
+                                            "_value": "<table mat-table [dataSource]=\"facilitiesRequestsDataSource\" #requestsTable class=\"reqTable mat-elevation-z8\">\r\n\t<ng-container *ngFor=\"let column of facilitiesRequestsColumns; let i = index\" [matColumnDef]=\"column\">\r\n\t\t<th mat-header-cell *matHeaderCellDef> {{facilitiesRequestsCells[i]}} </th>\r\n\t\t<div *ngIf=\"facilitiesRequestsCells[i] == 'Request Date'\">\r\n\t\t\t<td mat-cell *matCellDef=\"let element; let INDEX = index;\">{{element[column] | date}}</td>\r\n\t\t</div>\r\n\t\t<div *ngIf=\"facilitiesRequestsCells[i] != 'Request Date'\">\r\n\t\t\t<td mat-cell *matCellDef=\"let element; let INDEX = index;\" [class.blueLinkText]=\"facilitiesRequestsCells[i] == 'View Ticket'\" (click)=\"viewMore(element['requestId'], true)\">{{element[column]}}</td>\r\n\t\t</div>\r\n\t</ng-container>\r\n\r\n\t<tr mat-header-row *matHeaderRowDef=\"facilitiesRequestsColumns; sticky: true\"></tr>\r\n\t<tr mat-row #rowId *matRowDef=\"let row; columns: facilitiesRequestsColumns;\"></tr>\r\n</table>",
                                             "_type": "a",
                                             "_attrDef": "p"
                                         }

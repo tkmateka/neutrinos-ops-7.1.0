@@ -40,6 +40,7 @@ export class commonService {
             'employeeId': '',
             'employeeName': '',
             'isRead': false,
+            'department': '',
             'lineManager': '',
             'lineManagerEmail': '',
             'requestId': null,

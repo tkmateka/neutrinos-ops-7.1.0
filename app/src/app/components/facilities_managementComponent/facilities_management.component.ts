@@ -24,6 +24,7 @@ export class facilities_managementComponent extends NBaseComponent implements On
             'employeeId': '',
             'employeeName': '',
             'isRead': false,
+            'department': '',
             'lineManager': '',
             'lineManagerEmail': '',
             'requestId': null,
@@ -62,6 +63,7 @@ export class facilities_managementComponent extends NBaseComponent implements On
         this.facilities.employeeId = this.currentUser['employeeId'];
         this.facilities.employeeName = this.currentUser['givenName'] + " " + this.currentUser['surname'];
         this.facilities.isRead = false;
+        this.facilities.department = this.currentUser['department'];
         this.facilities.lineManager = this.currentUser['lineManager'];
         this.facilities.lineManagerEmail = this.currentUser['lineManagerEmail'];
         this.facilities.requestId = new Date().getTime();

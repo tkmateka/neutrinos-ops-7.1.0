@@ -1,5 +1,5 @@
 <div fxLayout="row wrap" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false" fxFill>
-  <div fxLayout="column wrap" fxFlex="100" fxLayoutGap="1em" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+  <div fxLayout="column wrap" fxFlex="100" fxLayoutGap="1em" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" *ngIf="data.travel">
     <div fxLayout="row wrap" class="whiteColor" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false">
       <h3>
         Request Details</h3>
@@ -161,21 +161,17 @@
                 </div>
               </div>
               <div fxLayout="row wrap" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" *ngIf="data.travel.comments &amp;&amp; data.travel.comments.length">
-                <div fxLayout="column wrap" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
-                  <div fxLayout="row wrap" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" *ngFor="let com of data.travel.comments">
-                    <div fxLayout="column wrap" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
-                      <div fxLayout="row wrap" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
-                        <p>
-                          <b>{{com.from}}</b></p>
-                        <p>
-                          {{com.date | date}}</p>
-                      </div>
-                      <div fxLayout="row wrap" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
-                        <p>
-                          {{com.comment}}</p>
-                      </div>
-                    </div>
-                  </div>
+                <div fxLayout="column wrap" fxFlex="100" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" *ngIf="data.travel.comments.length">
+                  <mat-card *ngFor="let com of data.travel.comments" class="marginBottom1Em">
+                    <mat-card-title>{{com.from}}</mat-card-title>
+
+                    <mat-card-subtitle>{{com.date | date}}</mat-card-subtitle>
+
+                    <mat-card-content>
+                      <p>
+                        {{com.comment}}</p>
+                    </mat-card-content>
+                  </mat-card>
                 </div>
               </div>
             </div>
@@ -344,7 +340,7 @@
               </div>
               <div fxLayout="row wrap" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" *ngIf="data.travel.comments &amp;&amp; data.travel.comments.length">
                 <div fxLayout="column wrap" fxFlex="100" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" *ngIf="data.travel.comments.length">
-                  <mat-card *ngFor="let com of data.travel.comments">
+                  <mat-card *ngFor="let com of data.travel.comments" class="marginBottom1Em">
                     <mat-card-title>{{com.from}}</mat-card-title>
 
                     <mat-card-subtitle>{{com.date | date}}</mat-card-subtitle>
@@ -362,12 +358,122 @@
       </div>
     </div>
     <div fxLayout="row wrap" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false" *ngIf="data.travel.emailId == currentUser.emailId">
-      <div fxLayout="column wrap" fxFlex="40" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><button mat-raised-button class="btnHeight redButton whiteColor  boldFont cursorPointer boldFont" (click)="markAsRead()">Ok</button></div>
+      <div fxLayout="column wrap" fxFlex="40" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><button mat-raised-button class="btnHeight redButton whiteColor  boldFont cursorPointer boldFont" (click)="markAsRead(&apos;travel&apos;)">Ok</button></div>
     </div>
     <div fxLayout="row wrap" fxLayoutAlign="space-between center" [fxShow]="true" [fxHide]="false" *ngIf="data.travel.emailId != currentUser.emailId">
       <div fxLayout="column wrap" fxFlex="32" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><button mat-raised-button class="blackButton" (click)="closeDialog()">Leave Unread</button></div>
-      <div fxLayout="column wrap" fxFlex="32" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><button mat-raised-button class="greenButton" (click)="approveDeclineRequest(&apos;approved&apos;)">Approve</button></div>
-      <div fxLayout="column wrap" fxFlex="32" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><button mat-raised-button class="redButton" (click)="approveDeclineRequest(&apos;declined&apos;)">Decline</button></div>
+      <div fxLayout="column wrap" fxFlex="32" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><button mat-raised-button class="greenButton" (click)="approveDeclineRequest(&apos;approved&apos;, &apos;travel&apos;)">Approve</button></div>
+      <div fxLayout="column wrap" fxFlex="32" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><button mat-raised-button class="redButton" (click)="approveDeclineRequest(&apos;declined&apos;, &apos;travel&apos;)">Decline</button></div>
+    </div>
+  </div>
+  <div fxLayout="column wrap" fxFlex="100" fxLayoutGap="1em" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" *ngIf="data.facility">
+    <div fxLayout="row wrap" class="whiteColor" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false">
+      <h3>
+        Request Details</h3>
+    </div>
+    <div fxLayout="row wrap" class="whiteColor" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false">
+      <p class="textAlignCenter">
+        {{data.message}}</p>
+    </div>
+    <div fxLayout="row wrap" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+      <div fxLayout="column wrap" class="rescheduleForm" fxFlex="100" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+        <form #roundTripForm="ngForm" autocomplete="off">
+          <div fxLayout="column wrap" fxFlex="99" fxLayoutGap="1em" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+            <div fxLayout="column wrap" class fxLayoutGap="1em" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+              <div fxLayout="row wrap" class="inputRowHeight" fxLayoutAlign="space-between center" [fxShow]="true" [fxHide]="false">
+                <div fxLayout="column wrap" fxFlex="49" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><label>
+                    <p>Request Type<span class="redColor" id="requestType">*</span></p>
+                  </label>
+                  <div class="inputField-container">
+                    <mat-form-field>
+                      <mat-select (opened)="select1(requestType)" (closed)="select2(requestType, &apos;Request Type&apos;)" [floatLabel]="&apos;never&apos;" appearance="legacy" #requestType required class="smallFont" [(ngModel)]="data.facility.request.requestType" name="requestType">
+                        <mat-option *ngFor="let sel of requestTypes" value="{{sel}}">{{sel | titlecase}}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+
+                    <div class="errDiv">
+                      <mat-error *ngIf="submitted &amp;&amp; roundTripForm.controls.requestType?.invalid &amp;&amp; (roundTripForm.controls.requestType.dirty || roundTripForm.controls.requestType.touched)">
+                        <span *ngIf="roundTripForm.controls.requestType.errors?.required">This field is required</span>
+                      </mat-error>
+                    </div>
+                  </div>
+                </div>
+                <div fxLayout="column wrap" fxFlex="49" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><label>
+                    <p>Country<span class="redColor" id="country">*</span></p>
+                  </label>
+                  <div class="inputField-container">
+                    <mat-form-field>
+                      <mat-select (opened)="select1(country)" (closed)="select2(country, &apos;Country&apos;)" [floatLabel]="&apos;never&apos;" appearance="legacy" #country required class="smallFont" [(ngModel)]="data.facility.request.country" name="country">
+                        <mat-option *ngFor="let sel of countries" value="{{sel}}">{{sel | titlecase}}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+
+                    <div class="errDiv">
+                      <mat-error *ngIf="submitted &amp;&amp; roundTripForm.controls.country?.invalid &amp;&amp; (roundTripForm.controls.country.dirty || roundTripForm.controls.country.touched)">
+                        <span *ngIf="roundTripForm.controls.country.errors?.required">This field is required</span>
+                      </mat-error>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div fxLayout="row wrap" class="inputRowHeight" fxLayoutAlign="space-between center" [fxShow]="true" [fxHide]="false">
+                <div fxLayout="column wrap" fxFlex="100" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><label>
+                    <p>Request Type<span class="redColor" id="requestType">*</span></p>
+                  </label>
+                  <div class="inputField-container">
+                    <mat-form-field [floatLabel]="&apos;never&apos;" appearance="legacy">
+                      <input matInput type="text" placeholder="Request Type" required class="capitalize" [(ngModel)]="data.facility.request.requestType" name="requestType">
+                    </mat-form-field>
+
+                    <div class="errDiv">
+                      <mat-error *ngIf="submitted &amp;&amp; roundTripForm.controls.requestType?.invalid &amp;&amp; (roundTripForm.controls.requestType.dirty || roundTripForm.controls.requestType.touched)">
+                        <span *ngIf="roundTripForm.controls.requestType.errors?.required">This field is required</span>
+                      </mat-error>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div fxLayout="row wrap" class="inputRowHeight" fxLayoutAlign="space-between center" [fxShow]="true" [fxHide]="false">
+                <div fxLayout="column wrap" fxFlex="100" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><label>
+                    <p>Add A Comment</p>
+                  </label>
+                  <div class="inputField-container">
+                    <mat-form-field [floatLabel]="&apos;never&apos;" appearance="legacy">
+                      <input matInput type="text" placeholder="Add a comment" class="capitalize" [(ngModel)]="comment" name="comment">
+                    </mat-form-field>
+
+                    <div class="errDiv">
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div fxLayout="row wrap" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" *ngIf="data.travel.comments &amp;&amp; data.travel.comments.length">
+                <div fxLayout="column wrap" fxFlex="100" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" *ngIf="data.travel.comments.length">
+                  <mat-card *ngFor="let com of data.travel.comments" class="marginBottom1Em">
+                    <mat-card-title>{{com.from}}</mat-card-title>
+
+                    <mat-card-subtitle>{{com.date | date}}</mat-card-subtitle>
+
+                    <mat-card-content>
+                      <p>
+                        {{com.comment}}</p>
+                    </mat-card-content>
+                  </mat-card>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div fxLayout="row wrap" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false" *ngIf="data.facility.emailId == currentUser.emailId">
+      <div fxLayout="column wrap" fxFlex="40" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><button mat-raised-button class="btnHeight redButton whiteColor  boldFont cursorPointer boldFont" (click)="markAsRead(&apos;facility&apos;)">Ok</button></div>
+    </div>
+    <div fxLayout="row wrap" fxLayoutAlign="space-between center" [fxShow]="true" [fxHide]="false" *ngIf="data.facility.emailId != currentUser.emailId">
+      <div fxLayout="column wrap" fxFlex="32" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><button mat-raised-button class="blackButton" (click)="closeDialog()">Leave Unread</button></div>
+      <div fxLayout="column wrap" fxFlex="32" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><button mat-raised-button class="greenButton" (click)="approveDeclineRequest(&apos;approved&apos;, &apos;travel&apos;)">Approve</button></div>
+      <div fxLayout="column wrap" fxFlex="32" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><button mat-raised-button class="redButton" (click)="approveDeclineRequest(&apos;declined&apos;, &apos;travel&apos;)">Decline</button></div>
     </div>
   </div>
 </div>
