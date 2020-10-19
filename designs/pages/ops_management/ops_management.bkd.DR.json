@@ -363,9 +363,7 @@
                 },
                 {
                     "_key": "class",
-                    "_value": [
-                        "opsManTab"
-                    ],
+                    "_value": [],
                     "_type": "dav",
                     "_attrDef": "p"
                 },

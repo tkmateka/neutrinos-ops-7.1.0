@@ -357,10 +357,10 @@
         </form>
       </div>
     </div>
-    <div fxLayout="row wrap" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false" *ngIf="data.travel.emailId == currentUser.emailId">
+    <div fxLayout="row wrap" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false" *ngIf="(data.travel.emailId == currentUser.emailId) || (data.travel.status != &apos;new&apos;)">
       <div fxLayout="column wrap" fxFlex="40" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><button mat-raised-button class="btnHeight redButton whiteColor  boldFont cursorPointer boldFont" (click)="markAsRead(&apos;travel&apos;)">Ok</button></div>
     </div>
-    <div fxLayout="row wrap" fxLayoutAlign="space-between center" [fxShow]="true" [fxHide]="false" *ngIf="data.travel.emailId != currentUser.emailId">
+    <div fxLayout="row wrap" fxLayoutAlign="space-between center" [fxShow]="true" [fxHide]="false" *ngIf="(data.travel.emailId != currentUser.emailId) &amp;&amp; (data.travel.status == &apos;new&apos;)">
       <div fxLayout="column wrap" fxFlex="32" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><button mat-raised-button class="blackButton" (click)="closeDialog()">Leave Unread</button></div>
       <div fxLayout="column wrap" fxFlex="32" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><button mat-raised-button class="greenButton" (click)="approveDeclineRequest(&apos;approved&apos;, &apos;travel&apos;)">Approve</button></div>
       <div fxLayout="column wrap" fxFlex="32" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><button mat-raised-button class="redButton" (click)="approveDeclineRequest(&apos;declined&apos;, &apos;travel&apos;)">Decline</button></div>

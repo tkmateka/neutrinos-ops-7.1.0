@@ -51,8 +51,6 @@ export class ops_managementComponent extends NBaseComponent implements OnInit {
         let query = (indx == 0) ? 'approved' : (indx == 1) ? 'new' : (indx == 2) ? 'complete' : (indx == 3) ? 'declined' : 'facilities';
 
         let body = {
-            // lineManagerEmail: this.currentUser['emailId'],
-            emailId: this.currentUser['emailId'],
             status: query,
             collection: (indx == 4) ? "facilities" : "travel"
         }
