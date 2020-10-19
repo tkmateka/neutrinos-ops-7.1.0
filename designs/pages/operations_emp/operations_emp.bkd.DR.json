@@ -1591,6 +1591,12 @@
                             "_value": "false",
                             "_type": "kv",
                             "_attrDef": "p"
+                        },
+                        {
+                            "_key": "(click)",
+                            "_value": "goTo('ops-app/operations/facilities')",
+                            "_type": "kv",
+                            "_attrDef": "c"
                         }
                     ],
                     "a17d29e8-cfa0-4530-94dd-01f7a74a3376": {

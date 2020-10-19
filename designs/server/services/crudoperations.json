@@ -183,8 +183,7 @@
         "y": 260,
         "wires": [],
         "generateNext": false,
-        "generated": true,
-        "serviceName": "crudoperations"
+        "generated": true
     },
     {
         "id": "sd_NKwElQmIiv7yWqLF",
@@ -234,7 +233,6 @@
                 }
             }
         },
-        "uploadFileOptions": {},
         "editableListData": {
             "responses": [],
             "params": [],
@@ -388,7 +386,7 @@
         "viewType": "common",
         "nodeType": "flow",
         "name": "",
-        "script": "console.log(\"before \",bh);\n\nbh.collection = bh.input.body.collection;\ndelete bh.input.body.collection;\nbh.input.body = bh.input.body.data;\nbh.updateDoc = {$set: bh.input.body};\nbh.filter = {requestId : bh.input.body.requestId};\nconsole.log(bh);",
+        "script": "bh.collection = bh.input.body.collection;\ndelete bh.input.body.collection;\nbh.input.body = bh.input.body.data;\nbh.updateDoc = {$set: bh.input.body};\nbh.filter = {requestId : bh.input.body.requestId};\nconsole.log(bh);",
         "category": "Function",
         "x": 305,
         "y": 380,
@@ -579,114 +577,6 @@
         "wires": [
             [
                 "sd_RVC9aeq2D2dloX7k"
-            ]
-        ],
-        "generateNext": false,
-        "generated": true
-    },
-    {
-        "id": "sd_zSFrTfa3QtCt5g2O",
-        "type": "HttpIn",
-        "z": "sd_EpL0cWVkZjg5r4YB",
-        "viewType": "server",
-        "nodeType": "start",
-        "name": "",
-        "path": "test",
-        "uploadpath": "",
-        "summary": "",
-        "description": "",
-        "method": "get",
-        "sequenceId": "",
-        "consumes": "",
-        "produces": "",
-        "filetype": "path",
-        "acceptFileUpload": false,
-        "httpOptions": {
-            "test": {
-                "get": {
-                    "summary": "",
-                    "description": "",
-                    "consumes": [],
-                    "produces": [],
-                    "parameters": [],
-                    "responses": {}
-                }
-            }
-        },
-        "editableListData": {
-            "responses": [],
-            "params": [],
-            "produces": [],
-            "consumes": []
-        },
-        "inputs": 0,
-        "outputs": 1,
-        "category": "HTTP",
-        "x": 200,
-        "y": 480,
-        "wires": [
-            [
-                "sd_IrxXueUlxjDLlPcj"
-            ]
-        ],
-        "generateNext": true,
-        "serviceName": "crudoperations"
-    },
-    {
-        "id": "sd_O8yGA4pCCqcBPxYQ",
-        "type": "HttpOut",
-        "z": "sd_EpL0cWVkZjg5r4YB",
-        "viewType": "server",
-        "nodeType": "flow",
-        "name": "",
-        "headers": {},
-        "responseBody": {
-            "type": "str",
-            "value": "works",
-            "ssd_typedInputField": true
-        },
-        "httpcode": {
-            "type": "num",
-            "value": 200,
-            "ssd_typedInputField": true
-        },
-        "responseType": "obj",
-        "responseMapping": {
-            "status": 200,
-            "obj": "\"works\"",
-            "send": "\"works\""
-        },
-        "inputs": 1,
-        "outputs": 0,
-        "editableListData": {
-            "headers": []
-        },
-        "cookiesList": {},
-        "switchStates": {
-            "headers": "Map",
-            "cookies": "Map"
-        },
-        "category": "HTTP",
-        "x": 425,
-        "y": 500,
-        "wires": [],
-        "generateNext": false,
-        "generated": true
-    },
-    {
-        "id": "sd_IrxXueUlxjDLlPcj",
-        "type": "Script",
-        "z": "sd_EpL0cWVkZjg5r4YB",
-        "viewType": "common",
-        "nodeType": "flow",
-        "name": "",
-        "script": "console.log('called');",
-        "category": "Function",
-        "x": 300,
-        "y": 500,
-        "wires": [
-            [
-                "sd_O8yGA4pCCqcBPxYQ"
             ]
         ],
         "generateNext": false,

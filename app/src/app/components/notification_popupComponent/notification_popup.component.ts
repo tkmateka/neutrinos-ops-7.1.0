@@ -17,6 +17,8 @@ export class notification_popupComponent extends NBaseComponent implements OnIni
     comment = "";
     currentUser: any = {};
     minDate = new Date();
+    countries = ["South Africa", "India"];
+    requestTypes = ["Office Hygine", "Guest House Accommodation", "Event Booking Request", "Office Electrical Issues", "Other Request"];
     preferredTimes: string[] = [
         "00:00am - 02:00am", "02:00am - 04:00am", "04:00am - 06:00am", "06:00am - 08:00am",
         "08:00am - 10:00am", "10:00am - 12:00pm", "12:00pm - 14:00pm", "14:00pm - 16:00pm",
@@ -38,26 +40,25 @@ export class notification_popupComponent extends NBaseComponent implements OnIni
         this.dialogRef.close(data);
     }
 
-    approveDeclineRequest(action){
+    approveDeclineRequest(action, key){
         if((action != 'approved') && !this.comment) {
             // Comment is required if the trip is Declined
             return false;
         }
         if(this.comment) {
-            this.data.travel.comments.push({
+            this.data[key].comments.push({
                 'from': `${this.currentUser['givenName']} ${this.currentUser['surname']}`,
                 'fromEmail': this.currentUser['emailId'],
                 'date': new Date(),
                 'comment': this.comment
             });
         }
-        this.data.travel.status = action;
-        this.data.travel.comment.push(this.comment);
+        this.data[key].status = action;
         this.closeDialog(this.data);
     }
 
-    markAsRead(){
-        this.data.travel.isRead = true;
+    markAsRead(key){
+        this.data[key].isRead = true;
         this.closeDialog(this.data);
     }
 

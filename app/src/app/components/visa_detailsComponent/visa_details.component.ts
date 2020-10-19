@@ -12,7 +12,11 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 
 export class visa_detailsComponent extends NBaseComponent implements OnInit {
-    visaDetails = {};
+    visaDetails = {
+        countryName: "",
+        countryId: "",
+        visaTypes: []
+    };
 
     constructor(private bdms: NDataModelService, private router: Router,
         private activatedRoute: ActivatedRoute) {

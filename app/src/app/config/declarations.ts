@@ -16,6 +16,10 @@ window['neutrinos'] = {
 }
 
 //CORE_REFERENCE_IMPORTS
+//CORE_REFERENCE_IMPORT-facilities_managementComponent
+import { facilities_managementComponent } from '../components/facilities_managementComponent/facilities_management.component';
+//CORE_REFERENCE_IMPORT-emp_profileComponent
+import { emp_profileComponent } from '../components/emp_profileComponent/emp_profile.component';
 //CORE_REFERENCE_IMPORT-ops_managementComponent
 import { ops_managementComponent } from '../components/ops_managementComponent/ops_management.component';
 //CORE_REFERENCE_IMPORT-requestsComponent
@@ -83,6 +87,10 @@ export const appDeclarations = [
   NMapComponent,
   ArtImgSrcDirective,
   //CORE_REFERENCE_PUSH_TO_DEC_ARRAY
+//CORE_REFERENCE_PUSH_TO_DEC_ARRAY-facilities_managementComponent
+facilities_managementComponent,
+//CORE_REFERENCE_PUSH_TO_DEC_ARRAY-emp_profileComponent
+emp_profileComponent,
 //CORE_REFERENCE_PUSH_TO_DEC_ARRAY-ops_managementComponent
 ops_managementComponent,
 //CORE_REFERENCE_PUSH_TO_DEC_ARRAY-requestsComponent
@@ -142,5 +150,5 @@ ssd_integrationService,
 export const appRoutes = [{path: 'welcome', component: welcomeComponent},{path: 'ops-app', component: emp_home_dahsboardComponent,
 children: [{path: 'home', component: home_empComponent,
 children: []},{path: 'hr', component: emp_hrComponent},{path: 'operations', component: operations_empComponent,
-children: []},{path: 'operations/visa', component: visaComponent},{path: 'operations/visa/:country', component: visa_detailsComponent},{path: 'operations/travel', component: travelComponent},{path: 'requests', component: requestsComponent},{path: 'operations-management', component: ops_managementComponent}]},{path: '', redirectTo: 'welcome', pathMatch: 'full'},{path: '**', component: PageNotFoundComponent}]
+children: []},{path: 'operations/visa', component: visaComponent},{path: 'operations/visa/:country', component: visa_detailsComponent},{path: 'operations/travel', component: travelComponent},{path: 'operations/facilities', component: facilities_managementComponent},{path: 'requests', component: requestsComponent},{path: 'operations-management', component: ops_managementComponent},{path: 'profile', component: emp_profileComponent}]},{path: '', redirectTo: 'welcome', pathMatch: 'full'},{path: '**', component: PageNotFoundComponent}]
 // CORE_REFERENCE_PUSH_TO_ROUTE_ARRAY_END

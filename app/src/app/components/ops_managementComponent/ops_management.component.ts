@@ -18,9 +18,14 @@ export class ops_managementComponent extends NBaseComponent implements OnInit {
     newRequests: any = [];
     allRequests: any = [];
     requestTypes: any = ['new', 'approved', 'completed', 'declined'];
+
+    requestsDataSource: any = [];
     requestsColumns: any = ['requestedBy', 'requestDate', 'typeOfRequest', 'travelDate', 'department', 'manager', 'status', 'viewTicket'];
     requestsCells: any = ['Requested By', 'Request Date', 'Type Of Request', 'Travel Date', 'Department', 'Manager', 'Status', 'View Ticket'];
-    requestsDataSource: any = [];
+
+    facilitiesRequestsDataSource: any = [];
+    facilitiesRequestsColumns: any = ['requestedBy', 'requestDate', 'typeOfRequest', 'country', 'department', 'manager', 'status', 'viewTicket'];
+    facilitiesRequestsCells: any = ['Requested By', 'Request Date', 'Type Of Request', 'Country', 'Department', 'Manager', 'Status', 'View Ticket'];
 
     constructor(private ssd: ssd_integrationService, private dialog: dialogService) {
         super();
@@ -43,13 +48,17 @@ export class ops_managementComponent extends NBaseComponent implements OnInit {
 
     // Get travel requests
     getTravelRequests(indx) {
-        let query = (indx == 0) ? 'approved' : (indx == 1) ? 'new' : (indx == 2) ? 'complete' : 'declined';
-        
+        let query = (indx == 0) ? 'approved' : (indx == 1) ? 'new' : (indx == 2) ? 'complete' : (indx == 3) ? 'declined' : 'facilities';
+
         let body = {
             // lineManagerEmail: this.currentUser['emailId'],
             emailId: this.currentUser['emailId'],
             status: query,
-            collection: "travel"
+            collection: (indx == 4) ? "facilities" : "travel"
+        }
+
+        if(indx == 4){
+            delete body.status;
         }
 
         this.spinner = true;
@@ -61,19 +70,41 @@ export class ops_managementComponent extends NBaseComponent implements OnInit {
             this.allRequests = (res === {}) ? [] : res;
             for (let i = 0; i < this.allRequests.length; i++) {
                 // Table Data
-                requestsData.push({
-                    'requestId': this.allRequests[i]['requestId'],
-                    'requestedBy': this.allRequests[i]['employeeName'],
-                    'requestDate': this.allRequests[i]['requestDate'],
-                    'typeOfRequest': (this.allRequests[i]['modeOfTransport'].toLowerCase() == 'visa') ? this.allRequests[i]['modeOfTransport'] : `${this.allRequests[i]['modeOfTransport']} Travel`,
-                    'travelDate': this.allRequests[i]['tripList'][0]['departureDate'],
-                    'department': this.allRequests[i]['department'],
-                    'manager': this.allRequests[i]['lineManager'],
-                    'status': this.allRequests[i]['status'],
-                    'viewTicket': 'View More'
-                });
+                if (indx === 4) {
+                    requestsData.push({
+                        'requestId': this.allRequests[i]['requestId'],
+                        'requestedBy': this.allRequests[i]['employeeName'],
+                        'requestDate': this.allRequests[i]['requestDate'],
+                        'typeOfRequest': this.allRequests[i]['request']['requestType'],
+                        'country': this.allRequests[i]['request']['country'],
+                        'department': this.allRequests[i]['department'],
+                        'manager': this.allRequests[i]['lineManager'],
+                        'status': this.allRequests[i]['status'],
+                        'viewTicket': 'View More'
+                    });
+                } else {
+                    requestsData.push({
+                        'requestId': this.allRequests[i]['requestId'],
+                        'requestedBy': this.allRequests[i]['employeeName'],
+                        'requestDate': this.allRequests[i]['requestDate'],
+                        'typeOfRequest': (this.allRequests[i]['modeOfTransport'].toLowerCase() == 'visa') ? this.allRequests[i]['modeOfTransport'] : `${this.allRequests[i]['modeOfTransport']} Travel`,
+                        'travelDate': new Date(this.allRequests[i]['tripList'][0]['departureDate']),
+                        'department': this.allRequests[i]['department'],
+                        'manager': this.allRequests[i]['lineManager'],
+                        'status': this.allRequests[i]['status'],
+                        'viewTicket': 'View More'
+                    });
+                }
             }
-            this.requestsDataSource = [...requestsData];
+
+            if (indx === 4) {
+                requestsData = requestsData.sort((a, b) => a.travelDate - b.travelDate);
+                this.facilitiesRequestsDataSource = [...requestsData];
+            } else {
+                requestsData = requestsData.sort((a, b) => a.travelDate - b.travelDate);
+                this.requestsDataSource = [...requestsData];
+            }
+
             this.spinner = false;
         }, err => {
             // this.generalService.openSnackBar(err['error']['error'], 'general-snackbar');
@@ -82,24 +113,31 @@ export class ops_managementComponent extends NBaseComponent implements OnInit {
         });
     }
 
-    viewMore(rId) {
+    viewMore(rId, isFacility) {
         console.log(rId);
         let data = {};
         for (let k = 0; k < this.allRequests.length; k++) {
             if (this.allRequests[k]['requestId'] == rId) {
-                data['travel'] = this.allRequests[k];
+                if(isFacility){
+                    data['facility'] = this.allRequests[k];
+                } else {
+                    data['travel'] = this.allRequests[k];
+                }
+                
                 break;
             }
         }
         let operation = 'updateRequest';
 
         this.dialog.viewNotification(data).subscribe(results => {
-            if (results) {
-                delete results['travel']['_id'];
+            let key = isFacility ? 'facility' : 'travel';
+
+            if (results[key]) {
+                delete results[key]['_id'];
 
                 let body = {
-                    collection: 'travel',
-                    data: results['travel']
+                    collection: key,
+                    data: results[key]
                 }
 
                 this.spinner = true;

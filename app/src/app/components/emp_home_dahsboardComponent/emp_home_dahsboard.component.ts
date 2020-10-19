@@ -28,7 +28,7 @@ export class emp_home_dahsboardComponent extends NBaseComponent implements OnIni
         { icon: "inbox", name: "Requests", link: "/ops-app/requests", show: false },
         { icon: "school", name: "Human Resource", link: "/ops-app/hr", show: true },
         { icon: "flight", name: "Operations", link: "/ops-app/operations", show: true },
-        { icon: "merge_type", name: "Operations Management", link: "/ops-app/operations-management", show: true },
+        { icon: "merge_type", name: "Operations Management", link: "/ops-app/operations-management", show: false },
         { icon: "person", name: "My Profile", link: "/ops-app/profile", show: true }
     ];
 
@@ -82,7 +82,8 @@ export class emp_home_dahsboardComponent extends NBaseComponent implements OnIni
         }
 
         let body = {
-            emailId: this.currentUser['emailId'],
+            // emailId: this.currentUser['emailId'],
+            // lineManagerEmail: this.currentUser['emailId'],
             collection: "travel"
         }
 
@@ -93,14 +94,14 @@ export class emp_home_dahsboardComponent extends NBaseComponent implements OnIni
             for (let i = 0; i < this.notifications.length; i++) {
                 if (this.notifications[i]['emailId'] == this.currentUser['emailId']) {
                     // Approved
-                    if ((this.notifications[i]['status'] == 'approved') && (this.notifications[i]['isRead'] == false)) {
+                    if ((this.notifications[i]['status'] == 'approved') && (!this.notifications[i]['isRead'])) {
                         this.notificationsMessages.push({
                             travel: this.notifications[i],
                             message: `${this.notifications[i]['lineManager']} has approved your ${this.notifications[i]['modeOfTransport']} ticket request.`
                         });
                     }
                     // Declined
-                    if ((this.notifications[i]['status'] == 'declined') && (this.notifications[i]['isRead'] == false)) {
+                    if ((this.notifications[i]['status'] == 'declined') && (!this.notifications[i]['isRead'])) {
                         this.notificationsMessages.push({
                             travel: this.notifications[i],
                             message: `${this.notifications[i]['lineManager']} has declined your ${this.notifications[i]['modeOfTransport']} ticket request.`
@@ -110,7 +111,7 @@ export class emp_home_dahsboardComponent extends NBaseComponent implements OnIni
 
                 if (this.notifications[i]['lineManagerEmail'] == this.currentUser['emailId']) {
                     // Approval Requests
-                    if ((this.notifications[i]['status'] == "new") && (this.notifications[i]['isRead'] == false)) {
+                    if ((this.notifications[i]['status'] == "new") && (!this.notifications[i]['isRead'])) {
                         this.notificationsMessages.push({
                             travel: this.notifications[i],
                             message: `${this.notifications[i]['employeeName']} has requested your approval on his ${this.notifications[i]['modeOfTransport']} ticket application.`
@@ -168,6 +169,7 @@ export class emp_home_dahsboardComponent extends NBaseComponent implements OnIni
 
     // Get user details
     getUser() {
+        console.log(this.neutrinosOAuth.userInfo)
         let body = { 'emailId': this.neutrinosOAuth.userInfo.username, 'collection': 'employees' }
         if (this.neutrinosOAuth.userInfo) {
             this.ssd.POST('getData', body).subscribe(res => {

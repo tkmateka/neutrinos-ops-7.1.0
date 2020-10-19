@@ -58,7 +58,7 @@ export class travelComponent extends NBaseComponent implements OnInit, AfterView
         private snackbar: NSnackbarService, private common: commonService) {
         super();
 
-        this.onewayMdl = this.common.getFormModel();
+        this.onewayMdl = this.common.getTravelModel();
     }
 
     ngOnInit() {
@@ -88,9 +88,9 @@ export class travelComponent extends NBaseComponent implements OnInit, AfterView
     }
 
     clearModels() {
-        this.onewayMdl = this.common.getFormModel();
-        this.roundtripMdl = this.common.getFormModel();
-        this.multicityMdl = this.common.getFormModel();
+        this.onewayMdl = this.common.getTravelModel();
+        this.roundtripMdl = this.common.getTravelModel();
+        this.multicityMdl = this.common.getTravelModel();
     }
 
     // Add 1 more trip (Multicity)

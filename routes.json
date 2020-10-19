@@ -35,12 +35,20 @@
                     "component": "travelComponent"
                 },
                 {
-                    "component": "requestsComponent",
-                    "path": "requests"
+                    "component": "facilities_managementComponent",
+                    "path": "operations/facilities"
+                },
+                {
+                    "path": "requests",
+                    "component": "requestsComponent"
                 },
                 {
                     "path": "operations-management",
                     "component": "ops_managementComponent"
+                },
+                {
+                    "component": "emp_profileComponent",
+                    "path": "profile"
                 }
             ]
         },

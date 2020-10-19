@@ -1,11 +1,16 @@
-<div fxLayout="row wrap" class="fullHeightMinusTopBar homeBG" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false" fxFill>
-  <div fxLayout="column wrap" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" *ngIf="spinner">
-    <mat-progress-spinner></mat-progress-spinner>
+<div fxLayout="row wrap" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+  <div>
+    <div fxLayout="row wrap" fxLayoutAlign="start stretch" fxShow="true" fxHide="false" *ngIf="spinner">
+      <mat-spinner style="position: fixed; z-index: 999;   height: 2em;   width: 2em;   overflow: show;   margin: auto;   top: 0;   left: 0;   bottom: 0;   right: 0;" id="2d474ed4-5064-2e80-1146-ba27d907aef5"></mat-spinner>
+    </div>
   </div>
+</div>
+<div fxLayout="row wrap" class="fullHeightMinusTopBar homeBG" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false" fxFill>
   <div fxLayout="column wrap" fxFlex="100" fxLayoutGap="1em" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" *ngIf="!spinner">
     <div fxLayout="row wrap" class="greyShadow" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false">
       <div fxLayout="column wrap" class="minWidth250" fxFlex="20" fxLayoutGap="1em" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
-        <div fxLayout="row wrap" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false"><img imgSrc="{{proImg}}" class="profileImage"></div>
+        <div fxLayout="row wrap" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false" *ngIf="!proImg.includes(&apos;http&apos;)"><img imgSrc="{{proImg}}" class="profileImage"></div>
+        <div fxLayout="row wrap" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false" *ngIf="proImg.includes(&apos;http&apos;)"><img [src]="proImg" class="profileImage"></div>
         <div fxLayout="column wrap" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false">
           <div class="textAlignCenter">
             <h3>{{currentUser.givenName}} {{currentUser.surname}}</h3>

@@ -248,44 +248,6 @@
             ]
         },
         {
-            "name": "neutrinos-mongo-session-plugin",
-            "description": "Mongo Session Plugin",
-            "displayName": "Mongo Session Plugin",
-            "default": true,
-            "dependencies": [
-                {
-                    "name": "ndefault-mongo-session",
-                    "packageType": "studio-nodes",
-                    "displayName": "Mongo Session",
-                    "nodes": {
-                        "server": [
-                            {
-                                "name": "GlobalMongoSession",
-                                "dependencies": [
-                                    {
-                                        "name": "mongodb",
-                                        "version": "3.5.2"
-                                    },
-                                    {
-                                        "name": "mongodb-extended-json",
-                                        "version": "1.10.2"
-                                    },
-                                    {
-                                        "name": "neutrinos-mongodb-session-store",
-                                        "version": "0.0.1"
-                                    },
-                                    {
-                                        "name": "@types/express-session",
-                                        "version": "1.17.0"
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        {
             "name": "neutrinos-sql-plugin",
             "description": "SQL Plugin",
             "displayName": "SQL Plugin",

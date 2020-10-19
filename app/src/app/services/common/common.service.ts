@@ -3,20 +3,20 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class commonService {
-    getFormModel() {
+    getTravelModel() {
         return {
             'actionType': '',
             'emailId': '',
             'employeeId': '',
             'employeeName': '',
-            'isFlexi': '',
-            'isRead': '',
+            'isFlexi': false,
+            'isRead': false,
             'lineManager': '',
             'lineManagerEmail': '',
             'modeOfTransport': '',
-            'requestId': '',
+            'requestId': null,
             'department': '',
-            'requestDate': '',
+            'requestDate': null,
             'status': '',
             'tripList': [{
                 'checkInDate': null,
@@ -31,6 +31,27 @@ export class commonService {
             }],
             'comments': [],
             'tripType': ''
+        }
+    };
+
+    getFacilitiesModel() {
+        return {
+            'emailId': '',
+            'employeeId': '',
+            'employeeName': '',
+            'isRead': false,
+            'department': '',
+            'lineManager': '',
+            'lineManagerEmail': '',
+            'requestId': null,
+            'requestDate': null,
+            'status': '',
+            'request': {
+                'requestType': '',
+                'country': '',
+                'request': ''
+            },
+            'comments': []
         }
     };
 }
