@@ -12543,7 +12543,7 @@
                     },
                     {
                         "_key": "*ngIf",
-                        "_value": "data.travel.emailId == currentUser.emailId",
+                        "_value": "(data.travel.emailId == currentUser.emailId) || (data.travel.status != 'new')",
                         "_type": "kv",
                         "_attrDef": "c"
                     }
@@ -12744,7 +12744,7 @@
                     },
                     {
                         "_key": "*ngIf",
-                        "_value": "data.travel.emailId != currentUser.emailId",
+                        "_value": "(data.travel.emailId != currentUser.emailId) && (data.travel.status == 'new')",
                         "_type": "kv",
                         "_attrDef": "c"
                     }
