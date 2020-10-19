@@ -448,9 +448,9 @@
                   </div>
                 </div>
               </div>
-              <div fxLayout="row wrap" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" *ngIf="data.travel.comments &amp;&amp; data.travel.comments.length">
-                <div fxLayout="column wrap" fxFlex="100" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" *ngIf="data.travel.comments.length">
-                  <mat-card *ngFor="let com of data.travel.comments" class="marginBottom1Em">
+              <div fxLayout="row wrap" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" *ngIf="data.facility.comments &amp;&amp; data.facility.comments.length">
+                <div fxLayout="column wrap" fxFlex="100" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" *ngIf="data.facility.comments.length">
+                  <mat-card *ngFor="let com of data.facility.comments" class="marginBottom1Em">
                     <mat-card-title>{{com.from}}</mat-card-title>
 
                     <mat-card-subtitle>{{com.date | date}}</mat-card-subtitle>
