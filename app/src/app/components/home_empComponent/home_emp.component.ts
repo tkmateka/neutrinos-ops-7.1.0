@@ -44,12 +44,18 @@ export class home_empComponent extends NBaseComponent implements OnInit {
         let body = { 'emailId': this.neutrinosOAuth.userInfo.username, 'collection': 'employees' }
         if (this.neutrinosOAuth.userInfo) {
             console.log(this.neutrinosOAuth.userInfo);
+            if(this.neutrinosOAuth.userInfo.additional && this.neutrinosOAuth.userInfo.additional.picture) {
+                this.proImg = this.neutrinosOAuth.userInfo.additional.picture;
+            }
             this.ssd.POST('getData', body).subscribe(res => {
                 console.log(res);
                 if (res[0]) {
                     this.spinner = false;
                     this.currentUser = res[0];
-                    this.proImg = (this.currentUser.profileImage) ? this.currentUser.profileImage : ((this.currentUser.gender == "male") ? "Web/man.png" : "Web/woman.png");
+                    if(!this.proImg) {
+                        this.proImg = (this.currentUser.profileImage) ? this.currentUser.profileImage : ((this.currentUser.gender == "male") ? "Web/man.png" : "Web/woman.png");
+                    }  
+                    this.currentUser['profileImageprofileImage'] = this.proImg;               
                     localStorage.setItem('user', JSON.stringify(this.currentUser));
                     this.router.navigate(['/ops-app/home']);
                 }

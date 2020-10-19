@@ -25,7 +25,7 @@ export class emp_profileComponent extends NBaseComponent implements OnInit {
     ngOnInit() {
         this.currentUser = JSON.parse(localStorage.getItem('user'));
         console.log(this.currentUser);
-        this.proImg = (this.currentUser.profileImage) ? this.currentUser.profileImage : ((this.currentUser.gender == "male") ? "Web/man.png" : "Web/woman.png");
+        this.proImg = this.currentUser['profileImageprofileImage'];
         this.editableFields = [
             { label: "Blood Group", id: "bloodGroup", editable: true },
             { label: "Cell Number", id: "cellNumber", editable: true },

@@ -9,7 +9,8 @@
   <div fxLayout="column wrap" fxFlex="100" fxLayoutGap="1em" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" *ngIf="!spinner">
     <div fxLayout="row wrap" class="greyShadow" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false">
       <div fxLayout="column wrap" class="minWidth250" fxFlex="20" fxLayoutGap="1em" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
-        <div fxLayout="row wrap" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false"><img imgSrc="{{proImg}}" class="profileImage"></div>
+        <div fxLayout="row wrap" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false" *ngIf="!proImg.includes(&apos;http&apos;)"><img imgSrc="{{proImg}}" class="profileImage"></div>
+        <div fxLayout="row wrap" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false" *ngIf="proImg.includes(&apos;http&apos;)"><img [src]="proImg" class="profileImage"></div>
         <div fxLayout="column wrap" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false">
           <div class="textAlignCenter">
             <h3>{{currentUser.givenName}} {{currentUser.surname}}</h3>
