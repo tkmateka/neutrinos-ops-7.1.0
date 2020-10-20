@@ -26,7 +26,7 @@ export class emp_home_dahsboardComponent extends NBaseComponent implements OnIni
     sidenavItems = [
         { icon: "home", name: "Home", link: "/ops-app/home", show: true },
         { icon: "inbox", name: "Requests", link: "/ops-app/requests", show: false },
-        { icon: "school", name: "Human Resource", link: "/ops-app/hr", show: true },
+        { icon: "school", name: "Human Resource", link: "/ops-app/hr", show: false },
         { icon: "flight", name: "Operations", link: "/ops-app/operations", show: true },
         { icon: "merge_type", name: "Operations Management", link: "/ops-app/operations-management", show: false },
         { icon: "person", name: "My Profile", link: "/ops-app/profile", show: true }

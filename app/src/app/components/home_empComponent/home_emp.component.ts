@@ -20,12 +20,15 @@ export class home_empComponent extends NBaseComponent implements OnInit {
 
     spinner = false;
     currentUser: any = {};
+    catFlex = 32;
     proImg = "";
     categories = [
-        { icon: "school", name: "Human Resource", link: "/ops-app/hr", bg: "skyBlueBackground" },
-        { icon: "flight", name: "Operations", link: "/ops-app/operations", bg: "yellowBackground" },
-        { icon: "person", name: "My Profile", link: "/ops-app/profile", bg: "orangeBackground" },
-        { icon: "info", name: "About Neutrinos", link: "https://www.neutrinos.co/", bg: "pinkBackground" }
+        { icon: "inbox", name: "Requests", link: "/ops-app/requests", show: false, bg: "greenBackground" },
+        { icon: "school", name: "Human Resource", link: "/ops-app/hr", show: false, bg: "skyBlueBackground" },
+        { icon: "flight", name: "Operations", link: "/ops-app/operations", show: true, bg: "yellowBackground" },
+        { icon: "merge_type", name: "Operations Management", link: "/ops-app/operations-management", show: false, bg: "greenBackground" },
+        { icon: "person", name: "My Profile", link: "/ops-app/profile", show: true, bg: "orangeBackground" },
+        { icon: "info", name: "About Neutrinos", link: "https://www.neutrinos.co/", show: true, bg: "pinkBackground" }
     ]
 
     constructor(private bdms: NDataModelService, private router: Router,
@@ -35,7 +38,22 @@ export class home_empComponent extends NBaseComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.getUser();
+        this.currentUser = JSON.parse(localStorage.getItem('user'));
+        if (!this.currentUser['designation']) {
+            this.getUser();
+        } else {
+            if (!this.proImg) {
+                this.proImg = (this.currentUser.profileImage) ? this.currentUser.profileImage : ((this.currentUser.gender == "male") ? "Web/man.png" : "Web/woman.png");
+            }
+            if (this.currentUser['designation'] == "Line Manager") {
+                this.categories[0]['show'] = true;
+                this.catFlex = 23;
+            }
+            if ((this.currentUser['designation'] == "Operations Manager") || (this.currentUser['designation'] == "Operations Admin")) {
+                this.categories[3]['show'] = true;
+                this.catFlex = 23;
+            }
+        }
     }
 
     // Get user details
@@ -44,7 +62,7 @@ export class home_empComponent extends NBaseComponent implements OnInit {
         let body = { 'emailId': this.neutrinosOAuth.userInfo.username, 'collection': 'employees' }
         if (this.neutrinosOAuth.userInfo) {
             console.log(this.neutrinosOAuth.userInfo);
-            if(this.neutrinosOAuth.userInfo.additional && this.neutrinosOAuth.userInfo.additional.picture) {
+            if (this.neutrinosOAuth.userInfo.additional && this.neutrinosOAuth.userInfo.additional.picture) {
                 this.proImg = this.neutrinosOAuth.userInfo.additional.picture;
             }
             this.ssd.POST('getData', body).subscribe(res => {
@@ -52,12 +70,19 @@ export class home_empComponent extends NBaseComponent implements OnInit {
                 if (res[0]) {
                     this.spinner = false;
                     this.currentUser = res[0];
-                    if(!this.proImg) {
+                    if (!this.proImg) {
                         this.proImg = (this.currentUser.profileImage) ? this.currentUser.profileImage : ((this.currentUser.gender == "male") ? "Web/man.png" : "Web/woman.png");
-                    }  
-                    this.currentUser['profileImageprofileImage'] = this.proImg;               
+                    }
+                    if (this.currentUser['designation'] == "Line Manager") {
+                        this.categories[0]['show'] = true;
+                        this.catFlex = 23;
+                    }
+                    if ((this.currentUser['designation'] == "Operations Manager") || (this.currentUser['designation'] == "Operations Admin")) {
+                        this.categories[3]['show'] = true;
+                        this.catFlex = 23;
+                    }
+                    this.currentUser['profileImageprofileImage'] = this.proImg;
                     localStorage.setItem('user', JSON.stringify(this.currentUser));
-                    this.router.navigate(['/ops-app/home']);
                 }
             }, err => {
                 console.log(err);
@@ -71,6 +96,6 @@ export class home_empComponent extends NBaseComponent implements OnInit {
             window.open(link, '_blank');
         } else {
             this.router.navigate([link]);
-        }        
+        }
     }
 }
