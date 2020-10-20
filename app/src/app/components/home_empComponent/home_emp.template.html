@@ -83,7 +83,7 @@
             </div>
           </div>
           <div fxLayout="row wrap" fxLayoutAlign="space-between center" [fxShow]="true" [fxHide]="false">
-            <div fxLayout="column wrap" class="notificationBox {{cat.bg}} paddingTopBottom15px cursorPointer" fxFlex="23" fxLayoutGap="1em" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false" *ngFor="let cat of categories" (click)="goTo(cat.link)">
+            <div fxLayout="column wrap" class="notificationBox {{cat.bg}} paddingTopBottom15px cursorPointer" fxFlex="{{catFlex}}" fxLayoutGap="1em" fxLayoutAlign="center center" [fxShow]="cat.show" [fxHide]="!cat.show" *ngFor="let cat of categories" (click)="goTo(cat.link)">
               <div fxLayout="row wrap" class="blackBoxHeight" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false">
                 <mat-icon>{{cat.icon}}</mat-icon>
               </div>
