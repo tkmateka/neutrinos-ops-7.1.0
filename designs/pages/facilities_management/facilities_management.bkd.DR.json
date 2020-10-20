@@ -978,7 +978,7 @@
                             },
                             {
                                 "_key": "html",
-                                "_value": "<b>\r\n    <span class=\"cursorPointer hoverRed\" (click)=\"goTo('/ops-app/operations')\">Operations</span> \r\n    <span class=\"redColor\"> Facility Management</span>\r\n</b>",
+                                "_value": "<b>\r\n    <span class=\"cursorPointer hoverRed\" (click)=\"goTo('/ops-app/operations')\">Operations > </span> \r\n    <span class=\"redColor\"> Facility Management</span>\r\n</b>",
                                 "_type": "a",
                                 "_attrDef": "p"
                             }
