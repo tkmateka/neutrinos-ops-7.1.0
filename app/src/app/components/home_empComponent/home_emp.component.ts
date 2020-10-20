@@ -28,7 +28,7 @@ export class home_empComponent extends NBaseComponent implements OnInit {
         { icon: "flight", name: "Operations", link: "/ops-app/operations", show: true, bg: "yellowBackground" },
         { icon: "merge_type", name: "Operations Management", link: "/ops-app/operations-management", show: false, bg: "greenBackground" },
         { icon: "person", name: "My Profile", link: "/ops-app/profile", show: true, bg: "orangeBackground" },
-        { icon: "info", name: "About Neutrinos", link: "https://www.neutrinos.co/", show: true, bg: "pinkBackground" }
+        { icon: "info", name: "About Neutrinos", link: "https://goneutrinos.com/", show: true, bg: "pinkBackground" }
     ]
 
     constructor(private bdms: NDataModelService, private router: Router,
