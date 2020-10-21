@@ -143,6 +143,11 @@ h1, h2, h3, h4, h5, h6, p {
 .minWidth250 {
     min-width: 250px;
 } 
+.matOptions {
+    line-height: 1.5 !important;
+    height: auto !important;
+    padding: 10px !important;
+}
 .opsPopup {
     margin: auto;
     width: 100%;

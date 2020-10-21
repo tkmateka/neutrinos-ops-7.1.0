@@ -43,7 +43,7 @@ export class emp_home_dahsboardComponent extends NBaseComponent implements OnIni
     }
 
     ngOnInit() {
-        if(!this.neutrinosOAuth.isLoggedIn){
+        if (!this.neutrinosOAuth.isLoggedIn) {
             return this.router.navigate(['/welcome']);
         }
         // call default functions
@@ -82,43 +82,72 @@ export class emp_home_dahsboardComponent extends NBaseComponent implements OnIni
         }
 
         let body = {
-            // emailId: this.currentUser['emailId'],
-            // lineManagerEmail: this.currentUser['emailId'],
             collection: "travel"
         }
 
         this.spinner = true;
         this.ssd.POST('getData', body).subscribe(res => {
-            this.notifications = res == {} ? [] : res;
+            this.notifications = (res == {}) ? [] : res;
 
-            for (let i = 0; i < this.notifications.length; i++) {
-                if (this.notifications[i]['emailId'] == this.currentUser['emailId']) {
-                    // Approved
-                    if ((this.notifications[i]['status'] == 'approved') && (!this.notifications[i]['isRead'])) {
-                        this.notificationsMessages.push({
-                            travel: this.notifications[i],
-                            message: `${this.notifications[i]['lineManager']} has approved your ${this.notifications[i]['modeOfTransport']} ticket request.`
-                        });
+            if (this.currentUser['designation'] != 'Operations Manager') {
+                for (let i = 0; i < this.notifications.length; i++) {
+                    if (this.notifications[i]['emailId'] == this.currentUser['emailId']) {
+                        // Approved
+                        if ((this.notifications[i]['status'] == 'approved') && (!this.notifications[i]['isRead'])) {
+                            this.notificationsMessages.push({
+                                travel: this.notifications[i],
+                                message: `${this.notifications[i]['lineManager']} has approved your ${this.notifications[i]['modeOfTransport']} ticket request.`,
+                                requestDate: this.notifications[i]['requestDate']
+                            });
+                        }
+                        // Declined
+                        if ((this.notifications[i]['status'] == 'declined') && (!this.notifications[i]['isRead'])) {
+                            this.notificationsMessages.push({
+                                travel: this.notifications[i],
+                                message: `${this.notifications[i]['lineManager']} has declined your ${this.notifications[i]['modeOfTransport']} ticket request.`,
+                                requestDate: this.notifications[i]['requestDate']
+                            });
+                        }
                     }
-                    // Declined
-                    if ((this.notifications[i]['status'] == 'declined') && (!this.notifications[i]['isRead'])) {
-                        this.notificationsMessages.push({
-                            travel: this.notifications[i],
-                            message: `${this.notifications[i]['lineManager']} has declined your ${this.notifications[i]['modeOfTransport']} ticket request.`
-                        });
+
+                    if (this.notifications[i]['lineManagerEmail'] == this.currentUser['emailId']) {
+                        // Approval Requests
+                        if ((this.notifications[i]['status'] == "new") && (!this.notifications[i]['isRead'])) {
+                            this.notificationsMessages.push({
+                                travel: this.notifications[i],
+                                message: `${this.notifications[i]['employeeName']} has requested your approval on his ${this.notifications[i]['modeOfTransport']} ticket application.`,
+                                requestDate: this.notifications[i]['requestDate']
+                            });
+                        }
                     }
                 }
-
-                if (this.notifications[i]['lineManagerEmail'] == this.currentUser['emailId']) {
-                    // Approval Requests
-                    if ((this.notifications[i]['status'] == "new") && (!this.notifications[i]['isRead'])) {
-                        this.notificationsMessages.push({
-                            travel: this.notifications[i],
-                            message: `${this.notifications[i]['employeeName']} has requested your approval on his ${this.notifications[i]['modeOfTransport']} ticket application.`
-                        });
-                    }
+            } else {
+                let facBody = {
+                    collection: "facilities"
                 }
+                
+                this.ssd.POST('getData', facBody).subscribe((facRes:any[]) => {
+                    let facility = [];
+                    facility = facRes;
+                    this.notifications = this.notifications.concat(facility);
+
+                    for (let i = 0; i < facility.length; i++) {
+                        // Facilities Requests
+                        if ((facility[i]['status'] == "new") && (!facility[i]['isRead'])) {
+                            this.notificationsMessages.push({
+                                travel: facility[i],
+                                message: `${facility[i]['employeeName']} has requested your assistance on the ${facility[i]['request']['requestType']}.`,
+                                requestDate: facility[i]['requestDate']
+                            });
+                        }
+                    }
+                }, facErr => {
+                    // this.generalService.openSnackBar(facErr['error']['error']);
+                    console.log(facErr);
+                });
             }
+
+            this.notifications = this.notifications.sort((a, b) => a.requestDate - b.requestDate);
 
             this.spinner = false;
         }, err => {

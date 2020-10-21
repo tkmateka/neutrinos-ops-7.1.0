@@ -213,6 +213,47 @@ export class crudoperations {
         this.generatedMiddlewares
       )
     );
+
+    this.swaggerDocument['paths']['/search'] = {
+      post: {
+        summary: '',
+        description: '',
+        consumes: [],
+        produces: [],
+        parameters: [],
+        responses: {}
+      }
+    };
+    this.app['post'](
+      `${this.serviceBasePath}/search`,
+      cookieParser(),
+      this.sdService.getMiddlesWaresBySequenceId(
+        null,
+        'pre',
+        this.generatedMiddlewares
+      ),
+
+      async (req, res, next) => {
+        let bh = {};
+        try {
+          bh = this.sdService.__constructDefault(
+            { local: {}, input: {} },
+            req,
+            res,
+            next
+          );
+          bh = await this.sd_PWzpIka0bRT07zmV(bh);
+          //appendnew_next_sd_uP2Fae5IQ6oZIKGr
+        } catch (e) {
+          return await this.errorHandler(bh, e, 'sd_uP2Fae5IQ6oZIKGr');
+        }
+      },
+      this.sdService.getMiddlesWaresBySequenceId(
+        null,
+        'post',
+        this.generatedMiddlewares
+      )
+    );
     //appendnew_flow_crudoperations_HttpIn
   }
   //   service flows_crudoperations
@@ -342,6 +383,50 @@ export class crudoperations {
       return bh;
     } catch (e) {
       return await this.errorHandler(bh, e, 'sd_bSW0jynsplxdLORq');
+    }
+  }
+  async sd_PWzpIka0bRT07zmV(bh) {
+    try {
+      bh.collection = bh.input.body.collection;
+      bh.filter = {
+        city: {
+          $regex: new RegExp(bh.input.body.searchString, 'i')
+        }
+      };
+      delete bh.input.body;
+
+      bh = await this.sd_w0YNWQPoyjRzHKwf(bh);
+      //appendnew_next_sd_PWzpIka0bRT07zmV
+      return bh;
+    } catch (e) {
+      return await this.errorHandler(bh, e, 'sd_PWzpIka0bRT07zmV');
+    }
+  }
+
+  async sd_w0YNWQPoyjRzHKwf(bh) {
+    try {
+      bh.local.result = await MongoPersistance.getInstance().find(
+        'sd_MiIIcvLvPF3Wgg3L',
+        bh.collection,
+        bh.filter,
+        {}
+      );
+      await this.sd_v3ZDLCBfJWvAg57q(bh);
+      //appendnew_next_sd_w0YNWQPoyjRzHKwf
+    } catch (e) {
+      await this.errorHandler(bh, e, 'sd_w0YNWQPoyjRzHKwf');
+    }
+
+    return bh;
+  }
+
+  async sd_v3ZDLCBfJWvAg57q(bh) {
+    try {
+      bh.web.res.status(200).send(bh.local.result);
+
+      return bh;
+    } catch (e) {
+      return await this.errorHandler(bh, e, 'sd_v3ZDLCBfJWvAg57q');
     }
   }
   //appendnew_node

@@ -1,11 +1,10 @@
 /*DEFAULT GENERATED TEMPLATE. DO NOT CHANGE SELECTOR TEMPLATE_URL AND CLASS NAME*/
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core'
+import { Component, OnInit, ViewChild } from '@angular/core'
 // import { BDataModelService } from '../service/bDataModel.service';
 import { NDataModelService, NSnackbarService } from 'neutrinos-seed-services';
 import { NBaseComponent } from '../../../../../app/baseClasses/nBase.component';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
 import { MatSelect, MatSelectChange } from '@angular/material';
 import { Observable } from 'rxjs';
 
@@ -23,10 +22,11 @@ import { roundtrip } from '../../models/roundtrip.model';
     templateUrl: './travel.template.html'
 })
 
-export class travelComponent extends NBaseComponent implements OnInit, AfterViewInit {
+export class travelComponent extends NBaseComponent implements OnInit {
 
     airports = [];
-    filteredAirports = [];
+    // filteredAirports: Observable<any[]>;
+    filteredAirports: any[];
 
     block: boolean = false;
     spinner: boolean = false;
@@ -63,12 +63,6 @@ export class travelComponent extends NBaseComponent implements OnInit, AfterView
 
     ngOnInit() {
         this.currentUser = JSON.parse(localStorage.getItem('user'));
-        //  Function Calls
-        this.getAirports();
-    }
-
-    ngAfterViewInit() {
-
     }
 
     // Navigate
@@ -93,6 +87,37 @@ export class travelComponent extends NBaseComponent implements OnInit, AfterView
         this.multicityMdl = this.common.getTravelModel();
     }
 
+    // Airport Search
+    search(str) {
+        console.log(str);
+        if (str.length < 3) {
+            return false
+        } else if (str.length == 3) {
+            this.spinner = true;
+            let body = {
+                collection: 'airports',
+                searchString: str
+            }
+            this.ssd.POST('search', body).subscribe((res: any[]) => {
+                this.airports = res;
+                this.filteredAirports = this.airports;
+                console.log(this.airports);
+                this.spinner = false;
+            }, err => {
+                this.spinner = false;
+                console.log(err);
+            });
+        } else {
+            this.filteredAirports = this._filterAirports(str);
+        };
+    }
+
+    // Filter Airports
+    private _filterAirports(value: string): any[] {
+        const filterValue = value.toLowerCase();
+        return this.airports.filter(airport => airport.city.toLowerCase().indexOf(filterValue) === 0);
+    }
+
     // Add 1 more trip (Multicity)
     addTrip(city) {
         this.multicityMdl['tripList'].push({
@@ -110,28 +135,6 @@ export class travelComponent extends NBaseComponent implements OnInit, AfterView
     // Remove 1 trip from multicity
     removeTrip(i) {
         this.multicityMdl['tripList'].splice(i, 1);
-    }
-
-    // Get Airports
-    getAirports() {
-        // this.spinner = true;
-        // this.modelrService.getAirports('getAirports').subscribe(res => {
-        //     console.log(res[0]['airports'], "Airports");
-        //     this.airports = (res[0]['airports']) ? res[0]['airports'] : [];
-        //     this.spinner = false;
-        // }, err => {
-        //     console.log(err);
-        //     this.spinner = false;
-        // });
-    }
-
-    // Filter airports From 
-    filterAir(searchString) {
-        const filterValue = searchString.toLowerCase();
-        if (filterValue.length < 2) {
-            this.filteredAirports = [];
-        }
-        this.filteredAirports = this.airports.filter(airport => airport.airportName.toLowerCase().includes(filterValue));
     }
 
     // Get travel requests
@@ -225,15 +228,7 @@ export class travelComponent extends NBaseComponent implements OnInit, AfterView
 
         let body = {
             data: this[model],
-            collection: "travel",
-            // email: {
-            //     toEmail: 'tkmateka@gmail.com',
-            //     fromEmail: this.currentUser['givenName'] + " " + this.currentUser['surname'],
-            //     // cc: ['raghudas.panicker@neutrinos.co'],
-            //     topic: "Travel Application",
-            //     emailBody: this.currentUser['givenName'] + " " + this.currentUser['surname'] +
-            //         ` has requested a new ${this.transportType} ${this.tripType} trip ticket.`
-            // }
+            collection: "travel"
         }
 
         if (this.currentUser['employeeId']) {

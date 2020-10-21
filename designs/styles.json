@@ -37,6 +37,7 @@
         "marginBottom1_5Em",
         "marginTop1Em",
         "minWidth250",
+        "matOptions",
         "opsPopup",
         "mat-select-value",
         "rescheduleForm",
