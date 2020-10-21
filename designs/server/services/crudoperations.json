@@ -183,7 +183,8 @@
         "y": 260,
         "wires": [],
         "generateNext": false,
-        "generated": true
+        "generated": true,
+        "serviceName": "crudoperations"
     },
     {
         "id": "sd_NKwElQmIiv7yWqLF",
@@ -233,6 +234,7 @@
                 }
             }
         },
+        "uploadFileOptions": {},
         "editableListData": {
             "responses": [],
             "params": [],
@@ -577,6 +579,204 @@
         "wires": [
             [
                 "sd_RVC9aeq2D2dloX7k"
+            ]
+        ],
+        "generateNext": false,
+        "generated": true
+    },
+    {
+        "id": "sd_uP2Fae5IQ6oZIKGr",
+        "type": "HttpIn",
+        "z": "sd_EpL0cWVkZjg5r4YB",
+        "viewType": "server",
+        "nodeType": "start",
+        "name": "Search",
+        "path": "/search",
+        "uploadpath": "",
+        "summary": "",
+        "description": "",
+        "method": "post",
+        "sequenceId": "",
+        "consumes": "",
+        "produces": "",
+        "filetype": "path",
+        "acceptFileUpload": false,
+        "httpOptions": {
+            "/search": {
+                "post": {
+                    "summary": "",
+                    "description": "",
+                    "consumes": [],
+                    "produces": [],
+                    "parameters": [],
+                    "responses": {}
+                }
+            }
+        },
+        "uploadFileOptions": {},
+        "editableListData": {
+            "responses": [],
+            "params": [],
+            "produces": [],
+            "consumes": []
+        },
+        "inputs": 0,
+        "outputs": 1,
+        "category": "HTTP",
+        "x": 205,
+        "y": 500,
+        "wires": [
+            [
+                "sd_PWzpIka0bRT07zmV"
+            ]
+        ],
+        "generateNext": true,
+        "serviceName": "crudoperations"
+    },
+    {
+        "id": "sd_w0YNWQPoyjRzHKwf",
+        "type": "Mongodb",
+        "z": "sd_EpL0cWVkZjg5r4YB",
+        "viewType": "server",
+        "nodeType": "flow",
+        "name": "",
+        "databaseConfig": "sd_MiIIcvLvPF3Wgg3L",
+        "collection": "bh.collection",
+        "resultMapping": "bh.local.result",
+        "operation": "find",
+        "argumentArray": [
+            "query"
+        ],
+        "aggregate": "bh",
+        "operations": "",
+        "query": "bh.filter",
+        "fieldOrSpec": "",
+        "filter": "bh.filter",
+        "key": "",
+        "docId": "",
+        "indexName": "",
+        "replacement": "",
+        "update": "bh.updateDoc",
+        "xAxis": "",
+        "yAxis": "",
+        "indexes": "",
+        "docs": "",
+        "document": "bh.input.body",
+        "newName": "",
+        "doc": "",
+        "filePath": "",
+        "fileName": "",
+        "pipeline": "",
+        "category": "Storage",
+        "__ssdTypeInputs__": {
+            "collection": {
+                "type": "bh",
+                "value": "collection",
+                "constant": false
+            },
+            "resultMapping": {
+                "type": "bh.local",
+                "value": "result",
+                "constant": false
+            },
+            "options": {
+                "type": "bh",
+                "value": "",
+                "nullable": "true",
+                "constant": false
+            },
+            "query": {
+                "type": "bh",
+                "value": "filter",
+                "constant": false
+            },
+            "document": {
+                "type": "bh.input",
+                "value": "body",
+                "constant": false
+            },
+            "filter": {
+                "type": "bh",
+                "value": "filter",
+                "constant": false
+            },
+            "update": {
+                "type": "bh",
+                "value": "updateDoc",
+                "constant": false
+            },
+            "aggregate": {
+                "type": "bh",
+                "value": "",
+                "constant": false
+            }
+        },
+        "x": 425,
+        "y": 500,
+        "wires": [
+            [
+                "sd_v3ZDLCBfJWvAg57q"
+            ]
+        ],
+        "generateNext": false,
+        "generated": true
+    },
+    {
+        "id": "sd_v3ZDLCBfJWvAg57q",
+        "type": "HttpOut",
+        "z": "sd_EpL0cWVkZjg5r4YB",
+        "viewType": "server",
+        "nodeType": "flow",
+        "name": "",
+        "headers": {},
+        "responseBody": {
+            "type": "bh.local",
+            "value": "result",
+            "ssd_typedInputField": true
+        },
+        "httpcode": {
+            "type": "num",
+            "value": 200,
+            "ssd_typedInputField": true
+        },
+        "responseType": "obj",
+        "responseMapping": {
+            "status": 200,
+            "obj": "bh.local.result",
+            "send": "bh.local.result"
+        },
+        "cookies": [],
+        "inputs": 1,
+        "outputs": 0,
+        "editableListData": {
+            "headers": []
+        },
+        "cookiesList": {},
+        "switchStates": {
+            "headers": "Map",
+            "cookies": "Map"
+        },
+        "category": "HTTP",
+        "x": 545,
+        "y": 500,
+        "wires": [],
+        "generateNext": false,
+        "generated": true
+    },
+    {
+        "id": "sd_PWzpIka0bRT07zmV",
+        "type": "Script",
+        "z": "sd_EpL0cWVkZjg5r4YB",
+        "viewType": "common",
+        "nodeType": "flow",
+        "name": "",
+        "script": "bh.collection = bh.input.body.collection;\nbh.filter = {\n    city: {\n        $regex: new RegExp(bh.input.body.searchString, \"i\")\n    }\n};\ndelete bh.input.body;\n",
+        "category": "Function",
+        "x": 305,
+        "y": 500,
+        "wires": [
+            [
+                "sd_w0YNWQPoyjRzHKwf"
             ]
         ],
         "generateNext": false,

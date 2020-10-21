@@ -60,7 +60,14 @@
                             </label>
                             <div class="inputField-container">
                               <mat-form-field [floatLabel]="&apos;never&apos;" appearance="legacy">
-                                <input matInput type="text" placeholder="From" required class="capitalize" [(ngModel)]="onewayMdl.tripList[0].from" name="from">
+                                <input matInput type="text" placeholder="Search by City Name" required class="capitalize" aria-label="Search Airport" [matAutocomplete]="searchFrom" [(ngModel)]="onewayMdl.tripList[0].from" name="from" (input)="search(onewayMdl.tripList[0].from)">
+
+                                <mat-autocomplete autoActiveFirstOption #searchFrom="matAutocomplete">
+                                  <mat-option *ngFor="let option of filteredAirports" [value]="option.name" class="matOptions">
+                                    <p class="smallFont"><b>{{option.name}}</b></p>
+                                    <small>{{option.city}} | {{option.country}}</small>
+                                  </mat-option>
+                                </mat-autocomplete>
                               </mat-form-field>
 
                               <div class="errDiv">
@@ -75,7 +82,14 @@
                             </label>
                             <div class="inputField-container">
                               <mat-form-field [floatLabel]="&apos;never&apos;" appearance="legacy">
-                                <input matInput type="text" placeholder="To" required class="capitalize" [(ngModel)]="onewayMdl.tripList[0].to" name="to">
+                                <input matInput type="text" placeholder="Search by City Name" required class="capitalize" aria-label="Search Airport" [matAutocomplete]="searchTo" [(ngModel)]="onewayMdl.tripList[0].to" name="to" (input)="search(onewayMdl.tripList[0].to)">
+
+                                <mat-autocomplete autoActiveFirstOption #searchTo="matAutocomplete">
+                                  <mat-option *ngFor="let option of filteredAirports" [value]="option.name" class="matOptions">
+                                    <p class="smallFont"><b>{{option.name}}</b></p>
+                                    <small>{{option.city}} | {{option.country}}</small>
+                                  </mat-option>
+                                </mat-autocomplete>
                               </mat-form-field>
 
                               <div class="errDiv">
@@ -198,7 +212,14 @@
                             </label>
                             <div class="inputField-container">
                               <mat-form-field [floatLabel]="&apos;never&apos;" appearance="legacy">
-                                <input matInput type="text" placeholder="From" required class="capitalize" [(ngModel)]="roundtripMdl.tripList[0].from" name="from">
+                                <input matInput type="text" placeholder="Search by City Name" required class="capitalize" aria-label="Search Airport" [matAutocomplete]="searchFrom" [(ngModel)]="roundtripMdl.tripList[0].from" name="from" (input)="search(roundtripMdl.tripList[0].from)">
+
+                                <mat-autocomplete autoActiveFirstOption #searchFrom="matAutocomplete">
+                                  <mat-option *ngFor="let option of filteredAirports" [value]="option.name" class="matOptions">
+                                    <p class="smallFont"><b>{{option.name}}</b></p>
+                                    <small>{{option.city}} | {{option.country}}</small>
+                                  </mat-option>
+                                </mat-autocomplete>
                               </mat-form-field>
 
                               <div class="errDiv">
@@ -213,7 +234,14 @@
                             </label>
                             <div class="inputField-container">
                               <mat-form-field [floatLabel]="&apos;never&apos;" appearance="legacy">
-                                <input matInput type="text" placeholder="To" required class="capitalize" [(ngModel)]="roundtripMdl.tripList[0].to" name="to">
+                                <input matInput type="text" placeholder="Search by City Name" required class="capitalize" aria-label="Search Airport" [matAutocomplete]="searchTo" [(ngModel)]="roundtripMdl.tripList[0].to" name="to" (input)="search(roundtripMdl.tripList[0].to)">
+
+                                <mat-autocomplete autoActiveFirstOption #searchTo="matAutocomplete">
+                                  <mat-option *ngFor="let option of filteredAirports" [value]="option.name" class="matOptions">
+                                    <p class="smallFont"><b>{{option.name}}</b></p>
+                                    <small>{{option.city}} | {{option.country}}</small>
+                                  </mat-option>
+                                </mat-autocomplete>
                               </mat-form-field>
 
                               <div class="errDiv">
@@ -351,7 +379,7 @@
                       <div fxLayout="row wrap" class="formBorder" fxLayoutAlign="space-between center" [fxShow]="true" [fxHide]="false" *ngFor="let trp of multicityMdl.tripList; let i = index;">
                         <div fxLayout="column wrap" fxFlex="100" fxLayoutGap="1em" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
                           <div fxLayout="row wrap" fxLayoutAlign="space-between center" [fxShow]="true" [fxHide]="false">
-                            <div fxLayout="column wrap" fxFlex="20" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><button mat-raised-button class="greenButton" *ngIf="i == (multicityMdl.tripList.length - 1)" (click)="addTrip(multicityMdl.tripList[i][&apos;from&apos;])" [disabled]="multiCityForm.invalid">Add</button></div>
+                            <div fxLayout="column wrap" fxFlex="20" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><button mat-raised-button class="greenButton" *ngIf="i == (multicityMdl.tripList.length - 1)" (click)="addTrip(multicityMdl.tripList[i][&apos;to&apos;])" [disabled]="multiCityForm.invalid">Add</button></div>
                             <div fxLayout="column wrap" fxFlex="20" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><button mat-raised-button class="redButton" *ngIf="multicityMdl.tripList.length &gt; 1" (click)="removeTrip(i)">Remove</button></div>
                           </div>
                           <div fxLayout="row wrap" class="inputRowHeight" fxLayoutAlign="space-between center" [fxShow]="true" [fxHide]="false">
@@ -360,7 +388,14 @@
                               </label>
                               <div class="inputField-container">
                                 <mat-form-field [floatLabel]="&apos;never&apos;" appearance="legacy">
-                                  <input matInput type="text" placeholder="From" required [disabled]="i &gt; 0" [(ngModel)]="multicityMdl.tripList[i][&apos;from&apos;]" name="from_{{i}}" class="capitalize">
+                                  <input matInput type="text" placeholder="Search by City Name" required class="capitalize" aria-label="Search Airport" [matAutocomplete]="searchFrom" [(ngModel)]="multicityMdl.tripList[i][&apos;from&apos;]" name="from_{{i}}" (input)="search(multicityMdl.tripList[i][&apos;from&apos;])" [disabled]="i &gt; 0">
+
+                                  <mat-autocomplete autoActiveFirstOption #searchFrom="matAutocomplete">
+                                    <mat-option *ngFor="let option of filteredAirports" [value]="option.name" class="matOptions">
+                                      <p class="smallFont"><b>{{option.name}}</b></p>
+                                      <small>{{option.city}} | {{option.country}}</small>
+                                    </mat-option>
+                                  </mat-autocomplete>
                                 </mat-form-field>
 
                                 <div class="errDiv">
@@ -375,7 +410,14 @@
                               </label>
                               <div class="inputField-container">
                                 <mat-form-field [floatLabel]="&apos;never&apos;" appearance="legacy">
-                                  <input matInput type="text" placeholder="To" required [(ngModel)]="multicityMdl.tripList[i][&apos;to&apos;]" name="to_{{i}}" class="capitalize">
+                                  <input matInput type="text" placeholder="Search by City Name" required class="capitalize" aria-label="Search Airport" [matAutocomplete]="searchTo" [(ngModel)]="multicityMdl.tripList[i][&apos;to&apos;]" name="to_{{i}}" (input)="search(multicityMdl.tripList[i][&apos;to&apos;])">
+
+                                  <mat-autocomplete autoActiveFirstOption #searchTo="matAutocomplete">
+                                    <mat-option *ngFor="let option of filteredAirports" [value]="option.name" class="matOptions">
+                                      <p class="smallFont"><b>{{option.name}}</b></p>
+                                      <small>{{option.city}} | {{option.country}}</small>
+                                    </mat-option>
+                                  </mat-autocomplete>
                                 </mat-form-field>
 
                                 <div class="errDiv">
