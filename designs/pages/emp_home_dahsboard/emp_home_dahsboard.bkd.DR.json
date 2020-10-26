@@ -233,7 +233,7 @@
                         },
                         {
                             "_key": "fxFlex",
-                            "_value": "",
+                            "_value": "15",
                             "_type": "kv",
                             "_attrDef": "p"
                         },
@@ -299,7 +299,9 @@
                             },
                             {
                                 "_key": "class",
-                                "_value": "",
+                                "_value": [
+                                    "minWidth250"
+                                ],
                                 "_type": "kv",
                                 "_attrDef": "p"
                             },
