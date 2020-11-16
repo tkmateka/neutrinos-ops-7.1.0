@@ -2,11 +2,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { environment } from 'environments/environment';
+
 
 @Injectable()
 export class ssd_integrationService {
 
-    modelerUrl = "http://localhost:8081/api/";
+    modelerUrl = environment.properties.ssdURL;
     // modelerUrl = "https://neutri-ops-backend.herokuapp.com:8081/api/";
 
     constructor(private http: HttpClient) { };

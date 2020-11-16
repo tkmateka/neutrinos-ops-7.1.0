@@ -415,7 +415,7 @@
                 },
                 {
                     "_key": "*ngIf",
-                    "_value": "!spinner",
+                    "_value": "!spinner && currentUser",
                     "_type": "kv",
                     "_attrDef": "c"
                 }

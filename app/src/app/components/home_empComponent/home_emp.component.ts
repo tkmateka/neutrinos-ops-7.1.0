@@ -38,10 +38,10 @@ export class home_empComponent extends NBaseComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.currentUser = JSON.parse(localStorage.getItem('user'));
+        this.currentUser = JSON.parse(localStorage.getItem('user')) || {};
         
         // Check if user session is still valid
-        if (this.currentUser['emailId'] == this.neutrinosOAuth.userInfo.username) {
+        if (this.currentUser && (this.currentUser['emailId'] == this.neutrinosOAuth.userInfo.username)) {
             if (!this.proImg) {
                 this.proImg = (this.currentUser['profileImageprofileImage']) ? this.currentUser['profileImageprofileImage'] : ((this.currentUser.gender == "male") ? "Web/man.png" : "Web/woman.png");
             }

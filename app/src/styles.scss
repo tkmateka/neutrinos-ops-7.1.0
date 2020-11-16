@@ -454,7 +454,7 @@ h1, h2, h3, h4, h5, h6, p {
 .tabContainer {
     border: solid 2px $grey;
     background: $greyShadowBG;
-    height: 68vh;
+    height: 73vh;
     margin: 0 20px;
     padding: 10px;
     overflow-x: auto;
@@ -490,6 +490,11 @@ h1, h2, h3, h4, h5, h6, p {
     .mat-tab-label.mat-tab-label-active {
         background: $black;
         color: $white;
+    }
+    mat-tab-body {
+        height: 60vh;
+        overflow-y: auto;
+        overflow-x: hidden;
     }
 }
 .checklistContainer {

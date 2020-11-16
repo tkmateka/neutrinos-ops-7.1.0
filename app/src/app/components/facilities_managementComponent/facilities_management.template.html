@@ -36,7 +36,7 @@
                           </label>
                           <div [class.selectField]="facilities[&apos;requestType&apos;]" class="inputField-container">
                             <mat-form-field>
-                              <mat-select placeholder="Request Type" (opened)="select1(requestType)" (closed)="select2(requestType, &apos;Request Type&apos;)" [floatLabel]="never" appearance="legacy" [(ngModel)]="facilities[&apos;request&apos;][&apos;requestType&apos;]" name="requestType" #requestType required class="smallFont">
+                              <mat-select placeholder="Request Type" (opened)="select1(requestType)" (closed)="select2(requestType, &apos;Request Type&apos;)" floatLabel="never" appearance="legacy" [(ngModel)]="facilities[&apos;request&apos;][&apos;requestType&apos;]" name="requestType" #requestType required class="smallFont">
                                 <mat-option *ngFor="let sel of requestTypes" value="{{sel}}">{{sel | titlecase}}</mat-option>
                               </mat-select>
                             </mat-form-field>
@@ -53,7 +53,7 @@
                           </label>
                           <div [class.selectField]="facilities[&apos;country&apos;]" class="inputField-container">
                             <mat-form-field>
-                              <mat-select placeholder="Country" (opened)="select1(country)" (closed)="select2(country, &apos;Country&apos;)" [floatLabel]="never" appearance="legacy" [(ngModel)]="facilities[&apos;request&apos;][&apos;country&apos;]" name="country" #country required class="smallFont">
+                              <mat-select placeholder="Country" (opened)="select1(country)" (closed)="select2(country, &apos;Country&apos;)" floatLabel="never" appearance="legacy" [(ngModel)]="facilities[&apos;request&apos;][&apos;country&apos;]" name="country" #country required class="smallFont">
                                 <mat-option *ngFor="let sel of countries" value="{{sel}}">{{sel | titlecase}}</mat-option>
                               </mat-select>
                             </mat-form-field>

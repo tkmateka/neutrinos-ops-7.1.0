@@ -1,7 +1,7 @@
 <div fxLayout="row wrap" class="loggedOnBG" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" fxFill="fxFill">
   <div fxLayout="column wrap" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" fxFill="fxFill">
     <div fxLayout="row wrap" class="blackTopBar" fxLayoutAlign="space-between center" [fxShow]="true" [fxHide]="false">
-      <div fxLayout="column wrap" class="cursorPointer" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" (click)="goHome()"><img imgSrc="Web/lightLogo.png"></div>
+      <div fxLayout="column wrap" class="cursorPointer" fxFlex="15" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" (click)="goHome()"><img imgSrc="Web/lightLogo.png" class="minWidth250"></div>
       <div fxLayout="column wrap" fxFlex="20" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
         <div fxLayout="row wrap" fxLayoutGap="1em" fxLayoutAlign="end center" [fxShow]="true" [fxHide]="false">
           <mat-icon class="whiteColor boldFont cursorPointer notification" matBadge="{{notificationsMessages.length}}" matBadgeColor="warn" [matMenuTriggerFor]="menu" [ngClass]="{ &apos;disabled&apos; : !notificationsMessages.length }">notifications</mat-icon>

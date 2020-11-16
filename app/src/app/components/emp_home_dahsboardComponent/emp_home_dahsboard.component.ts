@@ -125,8 +125,8 @@ export class emp_home_dahsboardComponent extends NBaseComponent implements OnIni
                 let facBody = {
                     collection: "facilities"
                 }
-                
-                this.ssd.POST('getData', facBody).subscribe((facRes:any[]) => {
+
+                this.ssd.POST('getData', facBody).subscribe((facRes: any[]) => {
                     let facility = [];
                     facility = facRes;
                     this.notifications = this.notifications.concat(facility);
@@ -204,6 +204,8 @@ export class emp_home_dahsboardComponent extends NBaseComponent implements OnIni
             this.ssd.POST('getData', body).subscribe(res => {
                 if (res[0]) {
                     this.currentUser = res[0];
+                    console.log(this.currentUser)
+                    // localStorage.setItem('user', this.currentUser);
                     if (this.currentUser['designation'] == "Line Manager") {
                         this.sidenavItems[1]['show'] = true;
                     }
