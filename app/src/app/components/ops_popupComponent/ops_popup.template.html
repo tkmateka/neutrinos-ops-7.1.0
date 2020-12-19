@@ -8,7 +8,7 @@
         </div>
         <div fxLayout="row wrap" class fxLayoutAlign="space-between center" [fxShow]="true" [fxHide]="false">
           <div fxLayout="column wrap" fxFlex="49" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" *ngFor="let edit of editableFields"><label>
-              <p>{{edit.label}}</p>
+              <p>{{edit.label}}<span class="redColor" *ngIf="edit.required">*</span></p>
             </label>
             <div *ngIf="edit.type == &apos;input&apos;" class="inputField-container">
               <mat-form-field [floatLabel]="&apos;never&apos;" appearance="legacy">

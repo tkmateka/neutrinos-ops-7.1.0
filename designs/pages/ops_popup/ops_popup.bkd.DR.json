@@ -902,7 +902,7 @@
                                         },
                                         {
                                             "_key": "html",
-                                            "_value": "<p>{{edit.label}}</p>",
+                                            "_value": "<p>{{edit.label}}<span class=\"redColor\" *ngIf=\"edit.required\">*</span></p>",
                                             "_type": "a",
                                             "_attrDef": "p"
                                         }

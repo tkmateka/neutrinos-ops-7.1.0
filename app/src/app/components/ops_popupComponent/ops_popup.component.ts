@@ -50,17 +50,21 @@ export class ops_popupComponent extends NBaseComponent implements OnInit {
         // this.reschedule.checkOutDate = this.data.travel.info[this.data.indx]['checkOutDate'] ? this.data.travel.info[this.data.indx]['checkOutDate'] : null;
 
         this.editableFields = [
-            { label: "Blood Group", id: "bloodGroup", type: "input", value: "" },
-            { label: "Cell Number", id: "cellNumber", type: "input", value: "" },
-            { label: "Date Of Birth", id: "dateOfBirth", type: "date", value: null },
-            { label: "Date Of Joining", id: "dateOfJoining", type: "date", value: null },
-            { label: "Department", id: "department", type: "input", value: "" },
-            { label: "Designation", id: "designation", type: "input", value: "" },
-            { label: "Employee Id", id: "employeeId", type: "input", value: "" },
-            { label: "Gender", id: "gender", type: "select", value: "", options: ['Male', 'Female'] },
-            { label: "Line Manager", id: "lineManager", type: "input", value: "" },
-            { label: "LineManager Email", id: "lineManagerEmail", type: "input", value: "" },
-            { label: "Vertical Head", id: "verticalHead", type: "input", value: "" }
+            { label: "Given Name", id: "givenName", type: "input", required: true, value: "" },
+            { label: "Surname", id: "surname", type: "input", required: true, value: "" },
+            { label: "ID Number", id: "idNumber", type: "input", required: true, value: "" },
+            { label: "Gender", id: "gender", type: "select", required: true, value: "", options: ['Male', 'Female'] },
+            { label: "Employee Id", id: "employeeId", type: "input", required: true, value: "" },
+            { label: "Cell Number", id: "cellNumber", type: "input", required: false, value: "" },
+            { label: "Email Id", id: "emailId", type: "input", required: true, value: "" },
+            { label: "Date Of Birth", id: "dateOfBirth", type: "date", required: true, value: null },
+            { label: "Date Of Joining", id: "dateOfJoining", type: "date", required: true, value: null },
+            { label: "Blood Group", id: "bloodGroup", type: "input", required: false, value: "" },
+            { label: "Department", id: "department", type: "input", required: true, value: "" },
+            { label: "Designation", id: "designation", type: "input", required: true, value: "" },
+            { label: "Line Manager", id: "lineManager", type: "input", required: true, value: "" },
+            { label: "LineManager Email", id: "lineManagerEmail", type: "input", required: true, value: "" },
+            { label: "Vertical Head Full Name", id: "verticalHead", type: "input", required: true, value: "" }
         ]
     }
 
