@@ -23,4 +23,12 @@ export class dialogService {
             data: data
         }).afterClosed();
     }
+
+    addNewUser(data) {
+        return this.dialog.open(ops_popupComponent, {
+            hasBackdrop: false,
+            panelClass: 'opsPopup',
+            data: data
+        }).afterClosed();
+    }
 }

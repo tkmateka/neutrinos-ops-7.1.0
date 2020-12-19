@@ -157,6 +157,14 @@ export class emp_home_dahsboardComponent extends NBaseComponent implements OnIni
         });
     }
 
+    addNewUser() {
+        this.dialog.addNewUser('addNewUser').subscribe(results => {
+            if (results) {
+                console.log(results);
+            }
+        });
+    }
+
     openDialog(notification) {
         let data = notification;
         let operation = 'updateRequest';

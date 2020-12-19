@@ -1,4 +1,52 @@
 <div fxLayout="row wrap" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" fxFill>
+  <div fxLayout="column wrap" class fxFlex="100" fxLayoutGap="1em" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" *ngIf="!spinner">
+    <div fxLayout="row wrap" class="proFieldsContainer height90vh" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+      <div fxLayout="column wrap" fxLayoutGap="1em" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+        <div fxLayout="row wrap" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false">
+          <h1 class="whiteColor textAlignCenter">
+            Add New User</h1>
+        </div>
+        <div fxLayout="row wrap" class fxLayoutAlign="space-between center" [fxShow]="true" [fxHide]="false">
+          <div fxLayout="column wrap" fxFlex="49" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" *ngFor="let edit of editableFields"><label>
+              <p>{{edit.label}}</p>
+            </label>
+            <div *ngIf="edit.type == &apos;input&apos;" class="inputField-container">
+              <mat-form-field [floatLabel]="&apos;never&apos;" appearance="legacy">
+                <input matInput type="text" placeholder="{{edit.label}}" class="capitalize" [(ngModel)]="edit.value" name="{{edit.id}}">
+              </mat-form-field>
+
+              <div class="errDiv">
+              </div>
+            </div>
+            <div *ngIf="edit.type == &apos;date&apos;" class="inputField-container">
+              <mat-form-field [floatLabel]="&apos;never&apos;" appearance="legacy">
+                <input matInput [matDatepicker]="dynamicDate" readonly placeholder="{{edit.label}}" (click)="dynamicDate.open()" data-date-format="DD/MM/YYYY" required [min]="minDate" [(ngModel)]="edit.value" name="{{edit.id}}">
+                <mat-datepicker-toggle matSuffix [for]="dynamicDate"></mat-datepicker-toggle>
+                <mat-datepicker #dynamicDate></mat-datepicker>
+              </mat-form-field>
+
+              <div class="errDiv">
+              </div>
+            </div>
+            <div *ngIf="edit.type == &apos;select&apos;" class="inputField-container">
+              <mat-form-field>
+                <mat-select (opened)="select1(dynamicSelect)" (closed)="select2(dynamicSelect, edit.label)" [floatLabel]="&apos;never&apos;" appearance="legacy" #dynamicSelect required class="smallFont" [(ngModel)]="edit.value" name="{{edit.id}}">
+                  <mat-option *ngFor="let sel of edit.options" value="{{sel}}">{{sel | titlecase}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <div class="errDiv">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div fxLayout="row wrap" fxLayoutAlign="space-around center" [fxShow]="true" [fxHide]="false">
+          <div fxLayout="column wrap" fxFlex="45" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><button mat-raised-button class="redButton" (click)=" closeDialog()">Cancel</button></div>
+          <div fxLayout="column wrap" fxFlex="45" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><button mat-raised-button class="greenButton" (click)="save()">Save</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
   <div fxLayout="column wrap" fxFlex="100" fxLayoutGap="1em" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" *ngIf="data.action == &apos;reschedule&apos;">
     <div fxLayout="row wrap" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false">
       <h1 class="whiteColor">

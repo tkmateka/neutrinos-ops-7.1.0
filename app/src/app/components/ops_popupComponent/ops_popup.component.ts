@@ -18,6 +18,7 @@ export class ops_popupComponent extends NBaseComponent implements OnInit {
     showAccommodation: boolean = false;
 
     currentUser: any = {};
+    editableFields = [];
     minDate = new Date();
     preferredTimes: string[] = [
         "00:00am - 02:00am", "02:00am - 04:00am", "04:00am - 06:00am", "06:00am - 08:00am",
@@ -47,6 +48,24 @@ export class ops_popupComponent extends NBaseComponent implements OnInit {
         // this.reschedule.clientAddress = this.data.travel.info[this.data.indx]['clientAddress'] ? this.data.travel.info[this.data.indx]['clientAddress'] : "";
         // this.reschedule.checkInDate = this.data.travel.info[this.data.indx]['checkInDate'] ? this.data.travel.info[this.data.indx]['checkInDate'] : null;
         // this.reschedule.checkOutDate = this.data.travel.info[this.data.indx]['checkOutDate'] ? this.data.travel.info[this.data.indx]['checkOutDate'] : null;
+
+        this.editableFields = [
+            { label: "Blood Group", id: "bloodGroup", type: "input", value: "" },
+            { label: "Cell Number", id: "cellNumber", type: "input", value: "" },
+            { label: "Date Of Birth", id: "dateOfBirth", type: "date", value: null },
+            { label: "Date Of Joining", id: "dateOfJoining", type: "date", value: null },
+            { label: "Department", id: "department", type: "input", value: "" },
+            { label: "Designation", id: "designation", type: "input", value: "" },
+            { label: "Employee Id", id: "employeeId", type: "input", value: "" },
+            { label: "Gender", id: "gender", type: "select", value: "", options: ['Male', 'Female'] },
+            { label: "Line Manager", id: "lineManager", type: "input", value: "" },
+            { label: "LineManager Email", id: "lineManagerEmail", type: "input", value: "" },
+            { label: "Vertical Head", id: "verticalHead", type: "input", value: "" }
+        ]
+    }
+
+    save() {
+        console.log(this.editableFields);
     }
 
     re_schedule(form) {
@@ -55,7 +74,7 @@ export class ops_popupComponent extends NBaseComponent implements OnInit {
             this.falseSubmitted = true;
             return false
         };
-        
+
         this.dialogRef.close(this.data);
     }
 
@@ -64,7 +83,7 @@ export class ops_popupComponent extends NBaseComponent implements OnInit {
             this.falseSubmitted = true;
             return false;
         };
-        
+
         this.data.travel['reason'] = reason;
         this.data.travel['status'] = 'cancelled';
 

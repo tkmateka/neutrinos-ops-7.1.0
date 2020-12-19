@@ -494,6 +494,55 @@
                                 "_attrDef": "p"
                             }
                         ],
+                        "8e41d874-cd17-b1cc-f429-42e3eae4b63c": {
+                            "paletteKey": "NG-icon",
+                            "parentEditorKey": "c3f7903b-6ab8-6681-7346-a784e44d9ec7",
+                            "designerReference": [
+                                {
+                                    "_key": "style",
+                                    "_value": "",
+                                    "_type": "kv",
+                                    "_attrDef": "p"
+                                },
+                                {
+                                    "_key": "class",
+                                    "_value": "whiteColor logout boldFont cursorPointer",
+                                    "_type": "kv",
+                                    "_attrDef": "p"
+                                },
+                                {
+                                    "_key": "IconName",
+                                    "_value": "person_add",
+                                    "_type": "a",
+                                    "_attrDef": "p",
+                                    "_useAsLabel": true
+                                },
+                                {
+                                    "_key": "[inline]",
+                                    "_value": "",
+                                    "_type": "kv",
+                                    "_attrDef": "p"
+                                },
+                                {
+                                    "_key": "color",
+                                    "_value": "",
+                                    "_type": "kv",
+                                    "_attrDef": "p"
+                                },
+                                {
+                                    "_key": "*ngIf",
+                                    "_value": "currentUser['designation'] == 'Operations Manager'",
+                                    "_type": "kv",
+                                    "_attrDef": "c"
+                                },
+                                {
+                                    "_key": "(click)",
+                                    "_value": "addNewUser()",
+                                    "_type": "kv",
+                                    "_attrDef": "c"
+                                }
+                            ]
+                        },
                         "0ea30c11-e1b3-aefe-9b30-17fd7c5433cd": {
                             "paletteKey": "NG-icon",
                             "parentEditorKey": "c3f7903b-6ab8-6681-7346-a784e44d9ec7",
