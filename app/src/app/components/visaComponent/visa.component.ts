@@ -71,7 +71,7 @@ export class visaComponent extends NBaseComponent implements OnInit {
             this.countries.pop();
             this.countries.push({ name: this.countryName, image: "worldwide.png" });
             this.isOther = false;
-            // this.generalService.openSnackBar("Operations will get back to you with the new country checklist", 'general-snackbar');
+            this.snackbar.openSnackBar("Operations will get back to you with the new country checklist");
         }
     }
 }

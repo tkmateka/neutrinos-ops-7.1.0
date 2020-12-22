@@ -1,5 +1,6 @@
 /*DEFAULT GENERATED TEMPLATE. DO NOT CHANGE SELECTOR TEMPLATE_URL AND CLASS NAME*/
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit } from '@angular/core';
+import { NDataModelService, NSnackbarService } from 'neutrinos-seed-services';
 import { NBaseComponent } from '../../../../../app/baseClasses/nBase.component';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatSelect, MatSelectChange } from '@angular/material';
@@ -38,8 +39,8 @@ export class facilities_managementComponent extends NBaseComponent implements On
             'comments': []
         };
 
-    constructor(private router: Router, private activatedRoute: ActivatedRoute,
-        private ssd: ssd_integrationService, private common: commonService ) {
+    constructor(private bdms: NDataModelService, private router: Router, private activatedRoute: ActivatedRoute,
+        private ssd: ssd_integrationService, private common: commonService, private snackbar: NSnackbarService ) {
         super();
 
         this.facilities = this.common.getFacilitiesModel();
@@ -90,14 +91,14 @@ export class facilities_managementComponent extends NBaseComponent implements On
             this.ssd.POST('sendRequest', body).subscribe(res => {
                 this.spinner = false;
                 console.log(res);
-                // this.generalService.openSnackBar("Request was successfully added", 'general-snackbar');
+                this.snackbar.openSnackBar("Request was successfully added");
                 form.reset();
                 this.facilities = this.common.getFacilitiesModel();
                 // this.getTravelRequests();
             }, err => {
                 this.spinner = false;
                 console.log(err);
-                // this.generalService.openSnackBar(err['error']['error'], 'general-snackbar');
+                this.snackbar.openSnackBar(err['error']['error']);
             });
         }
     }

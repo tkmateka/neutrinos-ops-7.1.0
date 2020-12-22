@@ -1,6 +1,7 @@
 /*DEFAULT GENERATED TEMPLATE. DO NOT CHANGE SELECTOR TEMPLATE_URL AND CLASS NAME*/
 import { Component, OnInit } from '@angular/core'
 import { NBaseComponent } from '../../../../../app/baseClasses/nBase.component';
+import { NDataModelService, NSnackbarService } from 'neutrinos-seed-services';
 
 // Services
 import { ssd_integrationService } from '../../services/ssd_integration/ssd_integration.service';
@@ -22,7 +23,8 @@ export class requestsComponent extends NBaseComponent implements OnInit {
     requestsColumns: any = ['requestedBy', 'requestDate', 'typeOfRequest', 'travelDate', 'department', 'status', 'viewTicket'];
     requestsCells: any = ['Requested By', 'Request Date', 'Type Of Request', 'Travel Date', 'Department', 'Status', 'View Ticket'];
 
-    constructor(private ssd: ssd_integrationService, private dialog: dialogService) {
+    constructor(private ssd: ssd_integrationService, private dialog: dialogService,
+        private bdms: NDataModelService, private snackbar: NSnackbarService) {
         super();
     }
 
@@ -76,7 +78,7 @@ export class requestsComponent extends NBaseComponent implements OnInit {
             this.requestsDataSource = [...requestsData];
             this.spinner = false;
         }, err => {
-            // this.generalService.openSnackBar(err['error']['error'], 'general-snackbar');
+            this.snackbar.openSnackBar(err['error']['error']);
             console.log(err);
             this.spinner = false;
         });
@@ -107,7 +109,7 @@ export class requestsComponent extends NBaseComponent implements OnInit {
                     this.spinner = false;
                 }, err => {
                     this.spinner = false;
-                    // this.generalService.openSnackBar(err['error']['error'], 'general-snackbar');
+                    this.snackbar.openSnackBar(err['error']['error']);
                     console.log(err);
                 });
             }

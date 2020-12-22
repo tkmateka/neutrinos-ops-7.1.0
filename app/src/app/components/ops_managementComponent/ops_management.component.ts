@@ -1,6 +1,7 @@
 /*DEFAULT GENERATED TEMPLATE. DO NOT CHANGE SELECTOR TEMPLATE_URL AND CLASS NAME*/
 import { Component, OnInit } from '@angular/core'
 import { NBaseComponent } from '../../../../../app/baseClasses/nBase.component';
+import { NDataModelService, NSnackbarService } from 'neutrinos-seed-services';
 
 // Services
 import { ssd_integrationService } from '../../services/ssd_integration/ssd_integration.service';
@@ -27,7 +28,8 @@ export class ops_managementComponent extends NBaseComponent implements OnInit {
     facilitiesRequestsColumns: any = ['requestedBy', 'requestDate', 'typeOfRequest', 'country', 'department', 'manager', 'status', 'viewTicket'];
     facilitiesRequestsCells: any = ['Requested By', 'Request Date', 'Type Of Request', 'Country', 'Department', 'Manager', 'Status', 'View Ticket'];
 
-    constructor(private ssd: ssd_integrationService, private dialog: dialogService) {
+    constructor(private ssd: ssd_integrationService, private dialog: dialogService,
+        private bdms: NDataModelService, private snackbar: NSnackbarService) {
         super();
     }
 
@@ -55,7 +57,7 @@ export class ops_managementComponent extends NBaseComponent implements OnInit {
             collection: (indx == 4) ? "facilities" : "travel"
         }
 
-        if(indx == 4){
+        if (indx == 4) {
             delete body.status;
         }
 
@@ -105,7 +107,7 @@ export class ops_managementComponent extends NBaseComponent implements OnInit {
 
             this.spinner = false;
         }, err => {
-            // this.generalService.openSnackBar(err['error']['error'], 'general-snackbar');
+            this.snackbar.openSnackBar(err['error']['error']);
             console.log(err);
             this.spinner = false;
         });
@@ -116,12 +118,12 @@ export class ops_managementComponent extends NBaseComponent implements OnInit {
         let data = {};
         for (let k = 0; k < this.allRequests.length; k++) {
             if (this.allRequests[k]['requestId'] == rId) {
-                if(isFacility){
+                if (isFacility) {
                     data['facility'] = this.allRequests[k];
                 } else {
                     data['travel'] = this.allRequests[k];
                 }
-                
+
                 break;
             }
         }
@@ -143,7 +145,7 @@ export class ops_managementComponent extends NBaseComponent implements OnInit {
                     this.spinner = false;
                 }, err => {
                     this.spinner = false;
-                    // this.generalService.openSnackBar(err['error']['error'], 'general-snackbar');
+                    this.snackbar.openSnackBar(err['error']['error']);
                     console.log(err);
                 });
             }

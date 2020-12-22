@@ -89,6 +89,7 @@
         "formBorder",
         "orangeColor",
         "errDiv",
+        "mat-error",
         "welcomeLogoHeight",
         "watermark",
         "inputField-container",

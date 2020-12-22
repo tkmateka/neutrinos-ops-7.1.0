@@ -142,7 +142,7 @@ export class emp_home_dahsboardComponent extends NBaseComponent implements OnIni
                         }
                     }
                 }, facErr => {
-                    // this.generalService.openSnackBar(facErr['error']['error']);
+                    this.snackbar.openSnackBar(facErr['error']['error']);
                     console.log(facErr);
                 });
             }
@@ -151,7 +151,7 @@ export class emp_home_dahsboardComponent extends NBaseComponent implements OnIni
 
             this.spinner = false;
         }, err => {
-            // this.generalService.openSnackBar(err['error']['error']);
+            this.snackbar.openSnackBar(err['error']['error']);
             console.log(err);
             this.spinner = false;
         });
@@ -160,7 +160,24 @@ export class emp_home_dahsboardComponent extends NBaseComponent implements OnIni
     addNewUser() {
         this.dialog.addNewUser('addNewUser').subscribe(results => {
             if (results) {
-                console.log(results);
+                let body = {
+                    data: results,
+                    collection: "employees"
+                }
+                body['data']['profileImage'] = "";
+
+                this.spinner = true;
+
+                // Add new user
+                this.ssd.POST('sendRequest', body).subscribe(res => {
+                    this.spinner = false;
+                    console.log(res);
+                    this.snackbar.openSnackBar("User was successfully added");
+                }, err => {
+                    this.spinner = false;
+                    console.log(err);
+                    this.snackbar.openSnackBar(err['error']['error']);
+                });
             }
         });
     }
@@ -190,14 +207,14 @@ export class emp_home_dahsboardComponent extends NBaseComponent implements OnIni
                     this.spinner = false;
                     if (!results['travel']['isRead']) {
                         if (results['travel']['status'] == 'approved') {
-                            // this.generalService.openSnackBar(`You have successfully approved ${results['travel']['employeeName']}'s request`, 'general-snackbar');
+                            this.snackbar.openSnackBar(`You have successfully approved ${results['travel']['employeeName']}'s request`);
                         } else {
-                            // this.generalService.openSnackBar(`You have successfully declined ${results['travel']['employeeName']}'s request`, 'general-snackbar');
+                            this.snackbar.openSnackBar(`You have successfully declined ${results['travel']['employeeName']}'s request`);
                         }
                     }
                 }, err => {
                     this.spinner = false;
-                    // this.generalService.openSnackBar(err['error']['error'], 'general-snackbar');
+                    this.snackbar.openSnackBar(err['error']['error']);
                     console.log(err);
                 });
             }
@@ -224,7 +241,7 @@ export class emp_home_dahsboardComponent extends NBaseComponent implements OnIni
                 }
             }, err => {
                 console.log(err);
-            })
+            });
         } else {
             this.router.navigate(['/welcome']);
         }
