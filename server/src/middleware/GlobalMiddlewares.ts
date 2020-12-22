@@ -19,7 +19,7 @@ export let Middlewares = {
   },
 
   sd_7EmxxOk703exD5hF: () => {
-    let sess: expressSession.SessionOptions = {
+    let sess = {
       cookie: {
         secure: false,
         httpOnly: false,

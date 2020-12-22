@@ -67,7 +67,6 @@
         "name": "",
         "databaseConfig": "sd_MiIIcvLvPF3Wgg3L",
         "collection": "bh.collection",
-        "options": "",
         "resultMapping": "bh.local.result",
         "operation": "insertOne",
         "argumentArray": [
@@ -263,7 +262,6 @@
         "name": "",
         "databaseConfig": "sd_MiIIcvLvPF3Wgg3L",
         "collection": "bh.collection",
-        "options": "",
         "resultMapping": "bh.local.result",
         "operation": "updateOne",
         "argumentArray": [
@@ -642,6 +640,7 @@
         "name": "",
         "databaseConfig": "sd_MiIIcvLvPF3Wgg3L",
         "collection": "bh.collection",
+        "options": "",
         "resultMapping": "bh.local.result",
         "operation": "find",
         "argumentArray": [

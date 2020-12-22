@@ -4,6 +4,7 @@
       <div fxLayout="column wrap" class="cursorPointer" fxFlex="15" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" (click)="goHome()"><img imgSrc="Web/lightLogo.png" class="minWidth250"></div>
       <div fxLayout="column wrap" fxFlex="20" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
         <div fxLayout="row wrap" fxLayoutGap="1em" fxLayoutAlign="end center" [fxShow]="true" [fxHide]="false">
+          <mat-icon class="whiteColor logout boldFont cursorPointer" *ngIf="currentUser[&apos;designation&apos;] == &apos;Operations Manager&apos;" (click)="addNewUser()">person_add</mat-icon>
           <mat-icon class="whiteColor boldFont cursorPointer notification" matBadge="{{notificationsMessages.length}}" matBadgeColor="warn" [matMenuTriggerFor]="menu" [ngClass]="{ &apos;disabled&apos; : !notificationsMessages.length }">notifications</mat-icon>
           <mat-icon class="whiteColor logout boldFont cursorPointer" (click)="logout()">power_settings_new</mat-icon>
         </div>

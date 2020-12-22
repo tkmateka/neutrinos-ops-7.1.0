@@ -157,7 +157,7 @@ export class travelComponent extends NBaseComponent implements OnInit {
             }
             this.spinner = false;
         }, err => {
-            // this.generalService.openSnackBar(err['error']['error'], 'general-snackbar');
+            this.snackbar.openSnackBar(err['error']['error']);
             console.log(err);
             this.spinner = false;
         });
@@ -187,14 +187,14 @@ export class travelComponent extends NBaseComponent implements OnInit {
 
                         this.spinner = false;
                         if (action == 'reschedule') {
-                            // this.generalService.openSnackBar("Request was successfully updated", 'general-snackbar');
+                            this.snackbar.openSnackBar("Request was successfully updated");
                         } else {
-                            // this.generalService.openSnackBar("Request was successfully deleted", 'general-snackbar');
+                            this.snackbar.openSnackBar("Request was successfully deleted");
                         }
 
                     }, err => {
                         this.spinner = false;
-                        // this.generalService.openSnackBar(err['error']['error'], 'general-snackbar');
+                        this.snackbar.openSnackBar(err['error']['error']);
                         console.log(err);
                     });
                 }
@@ -236,7 +236,7 @@ export class travelComponent extends NBaseComponent implements OnInit {
             this.ssd.POST('sendRequest', body).subscribe(res => {
                 this.spinner = false;
                 console.log(res);
-                // this.generalService.openSnackBar("Request was successfully added", 'general-snackbar');
+                this.snackbar.openSnackBar("Request was successfully added");
                 form.reset();
                 this.clearModels();
                 this[model].tripList = [{
@@ -253,7 +253,7 @@ export class travelComponent extends NBaseComponent implements OnInit {
             }, err => {
                 this.spinner = false;
                 console.log(err);
-                // this.generalService.openSnackBar(err['error']['error'], 'general-snackbar');
+                this.snackbar.openSnackBar(err['error']['error']);
             });
         }
     }
