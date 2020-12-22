@@ -9,7 +9,8 @@
       <div class="textAlignCenter">
         <b>
           <span class="cursorPointer hoverRed" (click)="goTo(&apos;/ops-app/operations&apos;)">Operations</span> &gt;
-          <span class="redColor"> Visa</span></b></div>
+          <span class="redColor"> Visa</span></b>
+      </div>
     </div>
     <div fxLayout="column wrap" fxLayoutGap="1.5em" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
       <div fxLayout="row wrap" fxLayoutAlign="space-between center" [fxShow]="true" [fxHide]="false">
@@ -18,7 +19,8 @@
             <div fxLayout="column wrap" fxFlex="20" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><img imgSrc="Web/flags/{{country.image}}"></div>
             <div fxLayout="column wrap" fxFlex="75" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
               <h4>
-                {{country.name}}</h4>
+                {{country.name}}
+              </h4>
             </div>
           </div>
         </div>

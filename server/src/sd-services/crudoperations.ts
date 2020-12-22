@@ -1,19 +1,18 @@
-import { SDBaseService } from '../services/SDBaseService';
-import * as httpStatusCodes from 'http-status-codes';
-import { Middleware } from '../middleware/Middleware';
-import log from '../utils/Logger';
-import * as cookieParser from 'cookie-parser';
-import { Readable } from 'stream';
-import { setInterval } from 'timers';
-import * as settings from '../config/config';
-import { Issuer, custom } from 'openid-client';
-import * as crypto from 'crypto';
-import * as url from 'url';
-
 let instance = null;
 //CORE_REFERENCE_IMPORTS
 //append_imports_start
 
+import * as httpStatusCodes from 'http-status-codes'; //_splitter_
+import * as cookieParser from 'cookie-parser'; //_splitter_
+import { Readable } from 'stream'; //_splitter_
+import { setInterval } from 'timers'; //_splitter_
+import { Issuer, custom } from 'openid-client'; //_splitter_
+import * as crypto from 'crypto'; //_splitter_
+import * as url from 'url'; //_splitter_
+import { SDBaseService } from '../services/SDBaseService'; //_splitter_
+import { Middleware } from '../middleware/Middleware'; //_splitter_
+import * as settings from '../config/config'; //_splitter_
+import log from '../utils/Logger'; //_splitter_
 import { MongoPersistance } from '../utils/ndefault-mongodb/Mongodb/MongoPersistance'; //_splitter_
 import * as mongodb from 'mongodb'; //_splitter_
 //append_imports_end
@@ -36,7 +35,7 @@ export class crudoperations {
   ) {
     this.serviceName = 'crudoperations';
     this.app = app;
-    this.serviceBasePath = `${this.app.settings.base}`;
+    this.serviceBasePath = this.app.settings.base;
     this.generatedMiddlewares = generatedeMiddlewares;
     this.swaggerDocument = swaggerDocument;
     this.globalTimers = globalTimers;
@@ -67,11 +66,20 @@ export class crudoperations {
   private mountCalls(routeCall, middlewareCall) {
     if (routeCall) {
       this.mountAllPaths();
+      this.mountAllListeners();
     }
     if (middlewareCall) {
       this.generatedMiddlewares[this.serviceName] = {};
       this.mountAllMiddlewares();
       this.mountTimers();
+    }
+  }
+
+  async mountAllListeners() {
+    try {
+      //append_listeners
+    } catch (e) {
+      throw e;
     }
   }
 
@@ -91,16 +99,27 @@ export class crudoperations {
   private mountAllPaths() {
     log.debug('mounting all paths for service :: crudoperations');
 
-    this.swaggerDocument['paths']['/sendRequest'] = {
-      post: {
+    if (!this.swaggerDocument['paths']['/sendRequest']) {
+      this.swaggerDocument['paths']['/sendRequest'] = {
+        post: {
+          summary: '',
+          description: '',
+          consumes: [],
+          produces: [],
+          parameters: [],
+          responses: {}
+        }
+      };
+    } else {
+      this.swaggerDocument['paths']['/sendRequest']['post'] = {
         summary: '',
         description: '',
         consumes: [],
         produces: [],
         parameters: [],
         responses: {}
-      }
-    };
+      };
+    }
     this.app['post'](
       `${this.serviceBasePath}/sendRequest`,
       cookieParser(),
@@ -132,16 +151,27 @@ export class crudoperations {
       )
     );
 
-    this.swaggerDocument['paths']['/updateRequest'] = {
-      post: {
+    if (!this.swaggerDocument['paths']['/updateRequest']) {
+      this.swaggerDocument['paths']['/updateRequest'] = {
+        post: {
+          summary: '',
+          description: '',
+          consumes: [],
+          produces: [],
+          parameters: [],
+          responses: {}
+        }
+      };
+    } else {
+      this.swaggerDocument['paths']['/updateRequest']['post'] = {
         summary: '',
         description: '',
         consumes: [],
         produces: [],
         parameters: [],
         responses: {}
-      }
-    };
+      };
+    }
     this.app['post'](
       `${this.serviceBasePath}/updateRequest`,
       cookieParser(),
@@ -173,16 +203,27 @@ export class crudoperations {
       )
     );
 
-    this.swaggerDocument['paths']['/getData'] = {
-      post: {
+    if (!this.swaggerDocument['paths']['/getData']) {
+      this.swaggerDocument['paths']['/getData'] = {
+        post: {
+          summary: '',
+          description: '',
+          consumes: [],
+          produces: [],
+          parameters: [],
+          responses: {}
+        }
+      };
+    } else {
+      this.swaggerDocument['paths']['/getData']['post'] = {
         summary: '',
         description: '',
         consumes: [],
         produces: [],
         parameters: [],
         responses: {}
-      }
-    };
+      };
+    }
     this.app['post'](
       `${this.serviceBasePath}/getData`,
       cookieParser(),
@@ -214,16 +255,27 @@ export class crudoperations {
       )
     );
 
-    this.swaggerDocument['paths']['/search'] = {
-      post: {
+    if (!this.swaggerDocument['paths']['/search']) {
+      this.swaggerDocument['paths']['/search'] = {
+        post: {
+          summary: '',
+          description: '',
+          consumes: [],
+          produces: [],
+          parameters: [],
+          responses: {}
+        }
+      };
+    } else {
+      this.swaggerDocument['paths']['/search']['post'] = {
         summary: '',
         description: '',
         consumes: [],
         produces: [],
         parameters: [],
         responses: {}
-      }
-    };
+      };
+    }
     this.app['post'](
       `${this.serviceBasePath}/search`,
       cookieParser(),
@@ -258,6 +310,8 @@ export class crudoperations {
   }
   //   service flows_crudoperations
 
+  //appendnew_flow_crudoperations_listen
+
   //appendnew_flow_crudoperations_Start
 
   async sd_NKwElQmIiv7yWqLF(bh) {
@@ -279,18 +333,17 @@ export class crudoperations {
   async sd_Kx8hQYyDyHPotS5z(bh) {
     try {
       bh.local.result = await MongoPersistance.getInstance().insertOne(
-        'sd_MiIIcvLvPF3Wgg3L',
+        'sd_ExcCPqDxVaxNWPUz',
         bh.collection,
         bh.input.body,
         {}
       );
       await this.sd_FXCn9valFWflpHZ3(bh);
       //appendnew_next_sd_Kx8hQYyDyHPotS5z
+      return bh;
     } catch (e) {
-      await this.errorHandler(bh, e, 'sd_Kx8hQYyDyHPotS5z');
+      return await this.errorHandler(bh, e, 'sd_Kx8hQYyDyHPotS5z');
     }
-
-    return bh;
   }
 
   async sd_FXCn9valFWflpHZ3(bh) {
@@ -302,6 +355,7 @@ export class crudoperations {
       return await this.errorHandler(bh, e, 'sd_FXCn9valFWflpHZ3');
     }
   }
+
   async sd_vLyxQdqVpPN2SiN5(bh) {
     try {
       bh.collection = bh.input.body.collection;
@@ -321,7 +375,7 @@ export class crudoperations {
   async sd_P9lzQ0A5wBOCCgt5(bh) {
     try {
       bh.local.result = await MongoPersistance.getInstance().updateOne(
-        'sd_MiIIcvLvPF3Wgg3L',
+        'sd_ExcCPqDxVaxNWPUz',
         bh.collection,
         bh.filter,
         bh.updateDoc,
@@ -329,11 +383,10 @@ export class crudoperations {
       );
       await this.sd_v8a2kyLj4MnL0n48(bh);
       //appendnew_next_sd_P9lzQ0A5wBOCCgt5
+      return bh;
     } catch (e) {
-      await this.errorHandler(bh, e, 'sd_P9lzQ0A5wBOCCgt5');
+      return await this.errorHandler(bh, e, 'sd_P9lzQ0A5wBOCCgt5');
     }
-
-    return bh;
   }
 
   async sd_v8a2kyLj4MnL0n48(bh) {
@@ -345,6 +398,7 @@ export class crudoperations {
       return await this.errorHandler(bh, e, 'sd_v8a2kyLj4MnL0n48');
     }
   }
+
   async sd_gQiLh3FQsbtLGWoL(bh) {
     try {
       console.log(bh);
@@ -362,18 +416,17 @@ export class crudoperations {
   async sd_RVC9aeq2D2dloX7k(bh) {
     try {
       bh.local.result = await MongoPersistance.getInstance().find(
-        'sd_MiIIcvLvPF3Wgg3L',
+        'sd_ExcCPqDxVaxNWPUz',
         bh.collection,
         bh.input.body,
         {}
       );
       await this.sd_bSW0jynsplxdLORq(bh);
       //appendnew_next_sd_RVC9aeq2D2dloX7k
+      return bh;
     } catch (e) {
-      await this.errorHandler(bh, e, 'sd_RVC9aeq2D2dloX7k');
+      return await this.errorHandler(bh, e, 'sd_RVC9aeq2D2dloX7k');
     }
-
-    return bh;
   }
 
   async sd_bSW0jynsplxdLORq(bh) {
@@ -385,6 +438,7 @@ export class crudoperations {
       return await this.errorHandler(bh, e, 'sd_bSW0jynsplxdLORq');
     }
   }
+
   async sd_PWzpIka0bRT07zmV(bh) {
     try {
       bh.collection = bh.input.body.collection;
@@ -406,18 +460,17 @@ export class crudoperations {
   async sd_w0YNWQPoyjRzHKwf(bh) {
     try {
       bh.local.result = await MongoPersistance.getInstance().find(
-        'sd_MiIIcvLvPF3Wgg3L',
+        'sd_ExcCPqDxVaxNWPUz',
         bh.collection,
         bh.filter,
         {}
       );
       await this.sd_v3ZDLCBfJWvAg57q(bh);
       //appendnew_next_sd_w0YNWQPoyjRzHKwf
+      return bh;
     } catch (e) {
-      await this.errorHandler(bh, e, 'sd_w0YNWQPoyjRzHKwf');
+      return await this.errorHandler(bh, e, 'sd_w0YNWQPoyjRzHKwf');
     }
-
-    return bh;
   }
 
   async sd_v3ZDLCBfJWvAg57q(bh) {
@@ -429,6 +482,7 @@ export class crudoperations {
       return await this.errorHandler(bh, e, 'sd_v3ZDLCBfJWvAg57q');
     }
   }
+
   //appendnew_node
 
   async errorHandler(bh, e, src) {

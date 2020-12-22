@@ -3,7 +3,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 // import { BDataModelService } from '../service/bDataModel.service';
 import { NDataModelService, NSnackbarService } from 'neutrinos-seed-services';
 import { NBaseComponent } from '../../../../../app/baseClasses/nBase.component';
-import { MatSelect, MatSelectChange } from '@angular/material';
+import { MatSelect, MatSelectChange } from '@angular/material/select';
 
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';

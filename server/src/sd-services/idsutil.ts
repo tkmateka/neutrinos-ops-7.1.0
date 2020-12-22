@@ -1,19 +1,18 @@
-import { SDBaseService } from '../services/SDBaseService';
-import * as httpStatusCodes from 'http-status-codes';
-import { Middleware } from '../middleware/Middleware';
-import log from '../utils/Logger';
-import * as cookieParser from 'cookie-parser';
-import { Readable } from 'stream';
-import { setInterval } from 'timers';
-import * as settings from '../config/config';
-import { Issuer, custom } from 'openid-client';
-import * as crypto from 'crypto';
-import * as url from 'url';
-
 let instance = null;
 //CORE_REFERENCE_IMPORTS
 //append_imports_start
 
+import * as httpStatusCodes from 'http-status-codes'; //_splitter_
+import * as cookieParser from 'cookie-parser'; //_splitter_
+import { Readable } from 'stream'; //_splitter_
+import { setInterval } from 'timers'; //_splitter_
+import { Issuer, custom } from 'openid-client'; //_splitter_
+import * as crypto from 'crypto'; //_splitter_
+import * as url from 'url'; //_splitter_
+import { SDBaseService } from '../services/SDBaseService'; //_splitter_
+import { Middleware } from '../middleware/Middleware'; //_splitter_
+import * as settings from '../config/config'; //_splitter_
+import log from '../utils/Logger'; //_splitter_
 //append_imports_end
 
 export class idsutil {
@@ -34,7 +33,7 @@ export class idsutil {
   ) {
     this.serviceName = 'idsutil';
     this.app = app;
-    this.serviceBasePath = `${this.app.settings.base}`;
+    this.serviceBasePath = this.app.settings.base;
     this.generatedMiddlewares = generatedeMiddlewares;
     this.swaggerDocument = swaggerDocument;
     this.globalTimers = globalTimers;
@@ -65,11 +64,20 @@ export class idsutil {
   private mountCalls(routeCall, middlewareCall) {
     if (routeCall) {
       this.mountAllPaths();
+      this.mountAllListeners();
     }
     if (middlewareCall) {
       this.generatedMiddlewares[this.serviceName] = {};
       this.mountAllMiddlewares();
       this.mountTimers();
+    }
+  }
+
+  async mountAllListeners() {
+    try {
+      //append_listeners
+    } catch (e) {
+      throw e;
     }
   }
 
@@ -92,79 +100,91 @@ export class idsutil {
   }
   //   service flows_idsutil
 
-  public async getIDSClientInstance(clientInstance = null, ...others) {
-    let bh = { input: { clientInstance: clientInstance }, local: {} };
+  //appendnew_flow_idsutil_listen
+
+  async getIDSClientInstance(clientInstance = null, ...others) {
     try {
-      bh = this.sdService.__constructDefault(bh);
-      bh = await this.sd_Fx2ITotCU30Uj9UH(bh);
-      //appendnew_next_getIDSClientInstance
-      //Start formatting output variables
-      let outputVariables = {
+      var bh = {
         input: {
-          clientInstance: bh.input.clientInstance
+          clientInstance: clientInstance
         },
         local: {}
       };
-      //End formatting output variables
-      return outputVariables;
+      bh = this.sdService.__constructDefault(bh);
+      bh = await this.sd_Fx2ITotCU30Uj9UH(bh);
+      //appendnew_next_getIDSClientInstance
+      return (
+        // formatting output variables
+        {
+          input: {
+            clientInstance: bh.input.clientInstance
+          },
+          local: {}
+        }
+      );
     } catch (e) {
       return await this.errorHandler(bh, e, 'sd_qMYpv1hu5S6zfFW1');
     }
   }
 
-  public async getAuthorizationParams(authParams = null, ...others) {
-    let bh = { input: { authParams: authParams }, local: {} };
+  async getAuthorizationParams(authParams = null, ...others) {
     try {
-      bh = this.sdService.__constructDefault(bh);
-      bh = await this.sd_oNjruAQlUTvASc5k(bh);
-      //appendnew_next_getAuthorizationParams
-      //Start formatting output variables
-      let outputVariables = {
+      var bh = {
         input: {
-          authParams: bh.input.authParams
+          authParams: authParams
         },
         local: {}
       };
-      //End formatting output variables
-      return outputVariables;
+      bh = this.sdService.__constructDefault(bh);
+      bh = await this.sd_oNjruAQlUTvASc5k(bh);
+      //appendnew_next_getAuthorizationParams
+      return (
+        // formatting output variables
+        {
+          input: {
+            authParams: bh.input.authParams
+          },
+          local: {}
+        }
+      );
     } catch (e) {
       return await this.errorHandler(bh, e, 'sd_QD4cWUAfL4J68wwC');
     }
   }
 
-  public async handleTokenExpiry(
-    existingSession = '',
-    newSession = '',
-    ...others
-  ) {
-    let bh = {
-      input: { existingSession: existingSession, newSession: newSession },
-      local: {}
-    };
+  async handleTokenExpiry(existingSession = '', newSession = '', ...others) {
     try {
-      bh = this.sdService.__constructDefault(bh);
-      bh = await this.sd_AeFrSnAEVns0yHG5(bh);
-      //appendnew_next_handleTokenExpiry
-      //Start formatting output variables
-      let outputVariables = {
+      var bh = {
         input: {
-          newSession: bh.input.newSession
+          existingSession: existingSession,
+          newSession: newSession
         },
         local: {}
       };
-      //End formatting output variables
-      return outputVariables;
+      bh = this.sdService.__constructDefault(bh);
+      bh = await this.sd_AeFrSnAEVns0yHG5(bh);
+      //appendnew_next_handleTokenExpiry
+      return (
+        // formatting output variables
+        {
+          input: {
+            newSession: bh.input.newSession
+          },
+          local: {}
+        }
+      );
     } catch (e) {
       return await this.errorHandler(bh, e, 'sd_18vo65LdHRkdp4ed');
     }
   }
+
   //appendnew_flow_idsutil_Start
 
-  //new_service_variable_client
+  //__server_service_designer_class_variable_declaration__client
   client: any;
   async sd_Fx2ITotCU30Uj9UH(bh) {
     try {
-      bh.local.client = this['client'];
+      bh.local.client = this.client;
       bh = await this.sd_cW8Va26l8ssjLlqT(bh);
       //appendnew_next_sd_Fx2ITotCU30Uj9UH
       return bh;
@@ -238,7 +258,7 @@ export class idsutil {
 
   async sd_dL9L4EvMIZdWT2cX(bh) {
     try {
-      this['client'] = bh.input.clientInstance;
+      this.client = bh.input.clientInstance;
       //appendnew_next_sd_dL9L4EvMIZdWT2cX
       return bh;
     } catch (e) {
@@ -248,13 +268,14 @@ export class idsutil {
 
   async sd_kvbAHl2ev85N8oWY(bh) {
     try {
-      bh.input.clientInstance = this['client'];
+      bh.input.clientInstance = this.client;
       //appendnew_next_sd_kvbAHl2ev85N8oWY
       return bh;
     } catch (e) {
       return await this.errorHandler(bh, e, 'sd_kvbAHl2ev85N8oWY');
     }
   }
+
   async sd_oNjruAQlUTvASc5k(bh) {
     try {
       bh.input.authParams = {
@@ -267,6 +288,7 @@ export class idsutil {
       return await this.errorHandler(bh, e, 'sd_oNjruAQlUTvASc5k');
     }
   }
+
   async sd_AeFrSnAEVns0yHG5(bh) {
     try {
       const tokenset = bh.input.existingSession.data.tokenset;
@@ -321,10 +343,10 @@ export class idsutil {
       return await this.errorHandler(bh, e, 'sd_zLDisDX82oxs2tks');
     }
   }
+
   async sd_iu6XkD5MetiBA6NN(bh) {
     try {
-      const idsutilInstance = idsutil.getInstance();
-      let outputVariables = await idsutilInstance.getIDSClientInstance(null);
+      let outputVariables = await this.getIDSClientInstance(null);
       bh.input.client = outputVariables.input.clientInstance;
 
       bh = await this.sd_xXNxINztiDtdyZvd(bh);
@@ -334,6 +356,7 @@ export class idsutil {
       return await this.errorHandler(bh, e, 'sd_iu6XkD5MetiBA6NN');
     }
   }
+
   async sd_xXNxINztiDtdyZvd(bh) {
     try {
       bh.local.refresh_token = await bh.input.client.introspect(
@@ -399,6 +422,7 @@ export class idsutil {
       return await this.errorHandler(bh, e, 'sd_bCXiqnIMyiE4obyF');
     }
   }
+
   async sd_7agIZ8XtStYZFJ9k(bh) {
     try {
       bh.input.newSession = false;
@@ -408,6 +432,7 @@ export class idsutil {
       return await this.errorHandler(bh, e, 'sd_7agIZ8XtStYZFJ9k');
     }
   }
+
   //appendnew_node
 
   async errorHandler(bh, e, src) {
@@ -429,7 +454,6 @@ export class idsutil {
       }
     }
   }
-
   async sd_Q5l20exyOolFsxl1(bh) {
     const nodes = ['handleTokenExpiry'];
     if (nodes.includes(bh.errorSource)) {
@@ -439,6 +463,5 @@ export class idsutil {
     }
     return false;
   }
-
   //appendnew_flow_idsutil_Catch
 }

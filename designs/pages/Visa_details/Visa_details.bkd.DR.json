@@ -1551,10 +1551,11 @@
                                                         "_attrDef": "p"
                                                     },
                                                     {
-                                                        "_key": "required",
-                                                        "_value": "",
-                                                        "_type": "a",
-                                                        "_attrDef": "p"
+                                                        "_key": "[required]",
+                                                        "_value": "false",
+                                                        "_type": "kv",
+                                                        "_attrDef": "p",
+                                                        "_visibility": true
                                                     },
                                                     {
                                                         "_key": "[(ngModel)]",

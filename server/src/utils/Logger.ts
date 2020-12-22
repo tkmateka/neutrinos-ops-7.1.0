@@ -15,14 +15,14 @@ class WinstonLogger {
 
         if (transportType.file) {
             transportConfig.transports.push(new DailyRotateFile({
-                filename: 'logs/console-%DATE%.log',
+                filename: config.logger.logFile ? config.logger.logFile : 'logs/console.log',
                 datePattern: 'DD-MM-YYYY',
                 maxSize: '10m',
                 maxFiles: '30d'
             }));
 
             transportConfig.exceptionHandlers.push(new DailyRotateFile({
-                filename: 'logs/exceptions-%DATE%.log',
+                filename: config.logger.exceptionFile ? config.logger.exceptionFile : 'logs/exception.log',
                 datePattern: 'DD-MM-YYYY',
                 maxSize: '10m'
             }));

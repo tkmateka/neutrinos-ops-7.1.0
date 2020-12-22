@@ -4,7 +4,9 @@
         "transport": [
             "file",
             "console"
-        ]
+        ],
+        "logFile": "logs/console.log",
+        "exceptionFile": "logs/exception.log"
     },
     "ids": {
         "client_id": "MnGsXjELI6AJJd2LXV8wp",

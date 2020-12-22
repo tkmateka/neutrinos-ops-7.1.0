@@ -10,7 +10,8 @@
         <b>
           <span class="cursorPointer hoverRed" (click)="goTo(&apos;/ops-app/operations&apos;)">Operations</span> &gt;
           <span class="cursorPointer hoverRed" (click)="goTo(&apos;/ops-app/operations/visa&apos;)">Visa</span> &gt;
-          <span class="redColor"> {{visaDetails.countryName}} Visa</span></b></div>
+          <span class="redColor"> {{visaDetails.countryName}} Visa</span></b>
+      </div>
     </div>
     <div fxLayout="column wrap" fxLayoutGap="1.5em" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
       <div fxLayout="row wrap" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false">
@@ -20,11 +21,12 @@
               <div fxLayout="column wrap" fxLayoutGap=".5em" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
                 <div fxLayout="row wrap" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
                   <h3>
-                    {{visaType.typeName}}</h3>
+                    {{visaType.typeName}}
+                  </h3>
                 </div>
                 <div fxLayout="row wrap" class="checkbox smallFont" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" *ngFor="let checkField of visaType.typeChecklist; let i = index">
                   <div fxLayout="column wrap" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
-                    <mat-checkbox [(ngModel)]="checkField.isChecked" name="checkField{{i}}" labelPosition="right" checked="false" [disableRipple]="true">{{checkField.label}}</mat-checkbox>
+                    <mat-checkbox [(ngModel)]="checkField.isChecked" name="checkField{{i}}" labelPosition="right" [required]="false" checked="false" [disableRipple]="true">{{checkField.label}}</mat-checkbox>
                   </div>
                 </div>
                 <div fxLayout="row wrap" class="smallFont marginTop1Em" fxLayoutAlign="space-between center" [fxShow]="true" [fxHide]="false" *ngIf="visaType.formLinks">

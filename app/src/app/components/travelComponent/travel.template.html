@@ -14,7 +14,8 @@
     </div>
     <div fxLayout="row wrap" class="breadcrum" fxLayoutAlign="start center" [fxShow]="true" [fxHide]="false">
       <p class>
-        <b><span class="cursorPointer hoverRed" (click)="goTo(&apos;/ops-app/operations&apos;)">Operations</span> &gt;<span class="redColor"> Travel</span></b></p>
+        <b><span class="cursorPointer hoverRed" (click)="goTo(&apos;/ops-app/operations&apos;)">Operations</span> &gt;<span class="redColor"> Travel</span></b>
+      </p>
     </div>
     <div fxLayout="row wrap" class="tabGroupContainer,marginTop1Em" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
       <div fxLayout="column wrap" class="tabContainer" fxFlex="100" fxLayoutGap="0.8em" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
@@ -34,15 +35,15 @@
                 <div fxLayout="column wrap" fxFlex="97" fxLayoutGap="1.5em" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" *ngIf="actionType == &apos;new-ticket&apos;">
                   <div fxLayout="row wrap" class="marginBottom1Em" fxLayoutAlign="space-between center" [fxShow]="true" [fxHide]="false">
                     <div fxLayout="column wrap" fxFlex="100" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
-                      <mat-radio-group [value]="tripType" class="whiteRadioButtons whiteColor" name="tripType">
-                        <mat-radio-button value="one-way" class="marginRight2" required (click)="onValChange(&apos;tripType&apos;, &apos;one-way&apos;)" [disableRipple]="true">One-Way</mat-radio-button>
-                        <mat-radio-button value="round-trip" class="marginRight2" required (click)="onValChange(&apos;tripType&apos;, &apos;round-trip&apos;)" [disableRipple]="true">Round-Trip</mat-radio-button>
-                        <mat-radio-button value="multicity" required (click)="onValChange(&apos;tripType&apos;, &apos;multi-city&apos;)" [disableRipple]="true">Multicity</mat-radio-button>
+                      <mat-radio-group [value]="tripType" class="whiteRadioButtons whiteColor" name="tripType" [required]="false">
+                        <mat-radio-button class="marginRight2" [required]="true" value="one-way" (click)="onValChange(&apos;tripType&apos;, &apos;one-way&apos;)" [disableRipple]="true">One-Way</mat-radio-button>
+                        <mat-radio-button class="marginRight2" [required]="true" value="round-trip" (click)="onValChange(&apos;tripType&apos;, &apos;round-trip&apos;)" [disableRipple]="true">Round-Trip</mat-radio-button>
+                        <mat-radio-button [required]="true" value="multicity" (click)="onValChange(&apos;tripType&apos;, &apos;multi-city&apos;)" [disableRipple]="true">Multicity</mat-radio-button>
                       </mat-radio-group>
                     </div>
                   </div>
                   <div fxLayout="row wrap" class="whiteColor checkbox" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
-                    <mat-checkbox [(ngModel)]="isFlexi" required>Flexi ?</mat-checkbox>
+                    <mat-checkbox [(ngModel)]="isFlexi" [required]="true">Flexi ?</mat-checkbox>
                   </div>
                   <div>
                     <mat-button-toggle-group name="modeOfTransport" aria-label="Transport Request" class="buttonToggleGroup" #group2="matButtonToggleGroup" [value]="modeOfTransport" [(ngModel)]="modeOfTransport">
@@ -542,31 +543,36 @@
                             <p>From</p>
                           </label>
                           <div class="inputField-container">
-                            <b>{{inf.from}}</b></div>
+                            <b>{{inf.from}}</b>
+                          </div>
                         </div>
                         <div fxLayout="column wrap" class="hideOverflow" fxFlex="18" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><label class="greyColor">
                             <p>To</p>
                           </label>
                           <div class="inputField-container">
-                            <b>{{inf.to}}</b></div>
+                            <b>{{inf.to}}</b>
+                          </div>
                         </div>
                         <div fxLayout="column wrap" class="hideOverflow" fxFlex="18" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><label class="greyColor">
                             <p>Departure Date</p>
                           </label>
                           <div class="inputField-container">
-                            <b>{{inf.departureDate | date}}</b></div>
+                            <b>{{inf.departureDate | date}}</b>
+                          </div>
                         </div>
                         <div fxLayout="column wrap" class="hideOverflow" fxFlex="18" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" *ngIf="travel.tripType == &apos;round-trip&apos;"><label class="greyColor">
                             <p>Return Date</p>
                           </label>
                           <div class="inputField-container">
-                            <b>{{inf.returnDate | date}}</b></div>
+                            <b>{{inf.returnDate | date}}</b>
+                          </div>
                         </div>
                         <div fxLayout="column wrap" class="hideOverflow" fxFlex="18" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><label class="greyColor">
                             <p>Preferred Time</p>
                           </label>
                           <div class="inputField-container">
-                            <b>{{inf.preferredTime}}</b></div>
+                            <b>{{inf.preferredTime}}</b>
+                          </div>
                         </div>
                         <div fxLayout="column wrap" fxFlex="3" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false">
                           <mat-icon class="cursorPointer redColor" (click)="openDialog(&apos;cancellation&apos;, travel, i, &apos;deleteRequest&apos;)" title="cancel" *ngIf="actionType == &apos;cancellation&apos;">cancel</mat-icon>
