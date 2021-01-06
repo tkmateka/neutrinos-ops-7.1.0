@@ -17,6 +17,7 @@ import { ssd_integrationService } from '../../services/ssd_integration/ssd_integ
 })
 
 export class ops_popupComponent extends NBaseComponent implements OnInit {
+    spinner: boolean = false;
     submitted: boolean = false;
     falseSubmitted: boolean = false;
     showAccommodation: boolean = false;
