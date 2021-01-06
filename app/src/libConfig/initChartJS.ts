@@ -22,14 +22,14 @@ export function initChartJS() {
          * turned on and drawn
          */
         afterDraw: function (chart, easing) {
-            if (chart.options.showAllTooltips && window.matchMedia("(min-width: 500px)").matches) {
-              // create an array of tooltips
+            if (chart.config.options['showAllTooltips'] && window.matchMedia("(min-width: 500px)").matches) {
+              	// create an array of tooltips
                 // we can't use the chart tooltip because there is only one tooltip per chart
-                chart.pluginTooltips = [];
+                chart['pluginTooltips'] = [];
                 chart.config.data.datasets.forEach(function (dataset, i) {
                     chart.getDatasetMeta(i).data.forEach(function (sector, j) {
-                        chart.pluginTooltips.push(new Chart.Tooltip({
-                            _chart: chart.chart,
+                        chart['pluginTooltips'].push(new (Chart as any).Tooltip({
+                            _chart: chart['chart'],
                             _chartInstance: chart,
                             _data: chart.data,
                             _options: chart['options'].tooltips,
@@ -41,15 +41,15 @@ export function initChartJS() {
                 // turn off normal tooltips 
                 chart.options.tooltips.enabled = false;
                 // we don't want the permanent tooltips to animate, so don't do anything till the animation runs atleast once
-                if (!chart.allTooltipsOnce) {
-                    if (easing !== 1)
+                if (!chart['allTooltipsOnce']) {
+                    if (easing as any !== 1)
                         return;
-                    chart.allTooltipsOnce= true;
+                    chart['allTooltipsOnce']= true;
                 }
 
                 // turn on tooltips
                 chart.options.tooltips.enabled = true;
-                Chart.helpers.each(chart.pluginTooltips, function (tooltip) {
+                Chart.helpers.each(chart['pluginTooltips'], function (tooltip) {
                     tooltip.initialize();
                     tooltip.update();
                     // we don't actually need this since we are not animating tooltips

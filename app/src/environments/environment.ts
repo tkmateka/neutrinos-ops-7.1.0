@@ -9,6 +9,7 @@ export const environment = {
         "googleMapKey": "AIzaSyCSTnVwijjv0CFRA4MEeS-H6PAQc87LEoU",
         "useDefaultExceptionUI": true,
         "isIDSEnabled": "true",
-        "webAppMountpoint": "web"
+        "webAppMountpoint": "web",
+        "NGFORAGE_MOBILE_DRIVER": "INDEXED_DB"
     }
 }

@@ -962,10 +962,16 @@
                         "_key": "hasBackdrop",
                         "_value": "",
                         "_type": "kv",
-                        "_attrDef": "p"
+                        "_attrDef": "c"
                     },
                     {
                         "_key": "(backdropClick)",
+                        "_value": "",
+                        "_type": "kv",
+                        "_attrDef": "p"
+                    },
+                    {
+                        "_key": "[hasBackdrop]",
                         "_value": "",
                         "_type": "kv",
                         "_attrDef": "p"

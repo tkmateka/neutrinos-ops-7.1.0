@@ -1971,7 +1971,7 @@
                                                             "_key": "selected",
                                                             "_value": "",
                                                             "_type": "kv",
-                                                            "_attrDef": "p"
+                                                            "_attrDef": "c"
                                                         },
                                                         {
                                                             "_key": "(change)",
@@ -1986,15 +1986,23 @@
                                                             "_attrDef": "p"
                                                         },
                                                         {
-                                                            "_key": "required",
-                                                            "_value": "",
-                                                            "_type": "a",
-                                                            "_attrDef": "p"
+                                                            "_key": "[required]",
+                                                            "_value": "false",
+                                                            "_type": "kv",
+                                                            "_attrDef": "p",
+                                                            "_visibility": true,
+                                                            "_customAttributeFlag": true
                                                         },
                                                         {
                                                             "_key": "label",
                                                             "_value": "",
                                                             "_type": "a",
+                                                            "_attrDef": "p"
+                                                        },
+                                                        {
+                                                            "_key": "[selected]",
+                                                            "_value": "",
+                                                            "_type": "kv",
                                                             "_attrDef": "p"
                                                         }
                                                     ],
@@ -2027,13 +2035,14 @@
                                                                 "_key": "value",
                                                                 "_value": "one-way",
                                                                 "_type": "kv",
-                                                                "_attrDef": "p"
+                                                                "_attrDef": "c"
                                                             },
                                                             {
-                                                                "_key": "required",
-                                                                "_value": "required",
-                                                                "_type": "a",
-                                                                "_attrDef": "p"
+                                                                "_key": "[required]",
+                                                                "_value": "true",
+                                                                "_type": "kv",
+                                                                "_attrDef": "p",
+                                                                "_visibility": true
                                                             },
                                                             {
                                                                 "_key": "label",
@@ -2057,7 +2066,7 @@
                                                                 "_key": "checked",
                                                                 "_value": "",
                                                                 "_type": "kv",
-                                                                "_attrDef": "p"
+                                                                "_attrDef": "c"
                                                             },
                                                             {
                                                                 "_key": "(change)",
@@ -2094,6 +2103,18 @@
                                                                 "_value": "onValChange('tripType', 'one-way')",
                                                                 "_type": "kv",
                                                                 "_attrDef": "c"
+                                                            },
+                                                            {
+                                                                "_key": "[value]",
+                                                                "_value": "",
+                                                                "_type": "kv",
+                                                                "_attrDef": "p"
+                                                            },
+                                                            {
+                                                                "_key": "[checked]",
+                                                                "_value": "",
+                                                                "_type": "kv",
+                                                                "_attrDef": "p"
                                                             }
                                                         ]
                                                     },
@@ -2126,13 +2147,14 @@
                                                                 "_key": "value",
                                                                 "_value": "round-trip",
                                                                 "_type": "kv",
-                                                                "_attrDef": "p"
+                                                                "_attrDef": "c"
                                                             },
                                                             {
-                                                                "_key": "required",
-                                                                "_value": "required",
-                                                                "_type": "a",
-                                                                "_attrDef": "p"
+                                                                "_key": "[required]",
+                                                                "_value": "true",
+                                                                "_type": "kv",
+                                                                "_attrDef": "p",
+                                                                "_visibility": true
                                                             },
                                                             {
                                                                 "_key": "label",
@@ -2156,7 +2178,7 @@
                                                                 "_key": "checked",
                                                                 "_value": "",
                                                                 "_type": "kv",
-                                                                "_attrDef": "p"
+                                                                "_attrDef": "c"
                                                             },
                                                             {
                                                                 "_key": "(change)",
@@ -2193,6 +2215,18 @@
                                                                 "_value": "onValChange('tripType', 'round-trip')",
                                                                 "_type": "kv",
                                                                 "_attrDef": "c"
+                                                            },
+                                                            {
+                                                                "_key": "[value]",
+                                                                "_value": "",
+                                                                "_type": "kv",
+                                                                "_attrDef": "p"
+                                                            },
+                                                            {
+                                                                "_key": "[checked]",
+                                                                "_value": "",
+                                                                "_type": "kv",
+                                                                "_attrDef": "p"
                                                             }
                                                         ]
                                                     },
@@ -2223,13 +2257,14 @@
                                                                 "_key": "value",
                                                                 "_value": "multicity",
                                                                 "_type": "kv",
-                                                                "_attrDef": "p"
+                                                                "_attrDef": "c"
                                                             },
                                                             {
-                                                                "_key": "required",
-                                                                "_value": "required",
-                                                                "_type": "a",
-                                                                "_attrDef": "p"
+                                                                "_key": "[required]",
+                                                                "_value": "true",
+                                                                "_type": "kv",
+                                                                "_attrDef": "p",
+                                                                "_visibility": true
                                                             },
                                                             {
                                                                 "_key": "label",
@@ -2253,7 +2288,7 @@
                                                                 "_key": "checked",
                                                                 "_value": "",
                                                                 "_type": "kv",
-                                                                "_attrDef": "p"
+                                                                "_attrDef": "c"
                                                             },
                                                             {
                                                                 "_key": "(change)",
@@ -2290,6 +2325,18 @@
                                                                 "_value": "onValChange('tripType', 'multi-city')",
                                                                 "_type": "kv",
                                                                 "_attrDef": "c"
+                                                            },
+                                                            {
+                                                                "_key": "[value]",
+                                                                "_value": "",
+                                                                "_type": "kv",
+                                                                "_attrDef": "p"
+                                                            },
+                                                            {
+                                                                "_key": "[checked]",
+                                                                "_value": "",
+                                                                "_type": "kv",
+                                                                "_attrDef": "p"
                                                             }
                                                         ]
                                                     }
@@ -2395,10 +2442,11 @@
                                                         "_attrDef": "p"
                                                     },
                                                     {
-                                                        "_key": "required",
-                                                        "_value": "required",
-                                                        "_type": "a",
-                                                        "_attrDef": "p"
+                                                        "_key": "[required]",
+                                                        "_value": "true",
+                                                        "_type": "kv",
+                                                        "_attrDef": "p",
+                                                        "_visibility": true
                                                     },
                                                     {
                                                         "_key": "[(ngModel)]",

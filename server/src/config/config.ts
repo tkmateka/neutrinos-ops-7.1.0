@@ -1,5 +1,10 @@
 export default {
-  logger: { level: 'debug', transport: ['file', 'console'] },
+  logger: {
+    level: 'debug',
+    transport: ['file', 'console'],
+    logFile: 'logs/console.log',
+    exceptionFile: 'logs/exception.log'
+  },
   ids: {
     client_id: 'MnGsXjELI6AJJd2LXV8wp',
     client_secret:

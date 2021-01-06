@@ -5,7 +5,7 @@ import { NDataModelService, NSnackbarService } from 'neutrinos-seed-services';
 import { NBaseComponent } from '../../../../../app/baseClasses/nBase.component';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { MatSelect, MatSelectChange } from '@angular/material';
+import { MatSelect, MatSelectChange } from '@angular/material/select';
 import { Observable } from 'rxjs';
 
 // Services

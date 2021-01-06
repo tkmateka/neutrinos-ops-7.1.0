@@ -2,11 +2,12 @@ import * as iconv from 'iconv-lite';
 import * as fs from 'fs';
 import * as path from 'path';
 import * as os from 'os';
+import { resolve } from 'path';
 
 let FileOutServiceInstance = null;
 
 export class FileOutService {
-    private constructor() {}
+    private constructor() { }
 
     static getInstance() {
         if (!FileOutServiceInstance) {
@@ -15,20 +16,20 @@ export class FileOutService {
         return FileOutServiceInstance;
     }
 
-        /**
-     * 
-     * @param fileInOptions {
-     *      path: path to the file to write
-     *      payload: buffer to be written
-     *      encoding: encoding of the buffer
-     *      appendNewLine: append EOL at the end of buffer
-     *      overwriteFile: if file already present, overwrite it
-     *      createDir: if directory not present in the path, create it
-     * }
-     * 
-     * all encodings supported by iconv-lite:
-     * https://github.com/ashtuchkin/iconv-lite/wiki/Supported-Encodings
-     */
+    /**
+ * 
+ * @param fileInOptions {
+ *      path: path to the file to write
+ *      payload: buffer to be written
+ *      encoding: encoding of the buffer
+ *      appendNewLine: append EOL at the end of buffer
+ *      overwriteFile: if file already present, overwrite it
+ *      createDir: if directory not present in the path, create it
+ * }
+ * 
+ * all encodings supported by iconv-lite:
+ * https://github.com/ashtuchkin/iconv-lite/wiki/Supported-Encodings
+ */
     fileOut(fileInOptions: {
         filepath: string,
         payload,
@@ -58,7 +59,7 @@ export class FileOutService {
         })
     }
 
-    private uploadFilePayload(fileInOptions: {
+    private async uploadFilePayload(fileInOptions: {
         filepath: string,
         payload,
         encoding?: string
@@ -82,10 +83,10 @@ export class FileOutService {
 
             if (fileInOptions.isStreaming) {
                 if (fileInOptions.overwriteFile) {
-                    this.createWriteStream(fileInOptions, { flags: 'w', autoClose: true})
+                    await this.createWriteStream(fileInOptions, { flags: 'w', autoClose: true })
                     return resolve();
                 } else {
-                    this.createWriteStream(fileInOptions, { flags: 'a', autoClose: true})
+                    await this.createWriteStream(fileInOptions, { flags: 'a', autoClose: true })
                     return resolve();
                 }
             } else {
@@ -96,7 +97,7 @@ export class FileOutService {
                 if (typeof data === "boolean") { data = data.toString(); }
                 if (typeof data === "number") { data = data.toString(); }
                 if ((fileInOptions.appendNewline) && (!Buffer.isBuffer(data))) { data += os.EOL; }
-    
+
                 if (fileInOptions.encoding) {
                     data = this.encode(data, fileInOptions.encoding);
                 }
@@ -118,6 +119,7 @@ export class FileOutService {
                                 if (err) {
                                     return reject(err);
                                 }
+                                return resolve();
                             });
                             if (err) {
                                 return reject(err);
@@ -130,21 +132,29 @@ export class FileOutService {
     }
 
     createWriteStream(fileInOptions, options) {
-        var wstream = fs.createWriteStream(fileInOptions.filepath, options);
-        if (fileInOptions.encoding) {
-            let str = '';
-            fileInOptions.payload.on('data', (data) => {
-                str += this.encode(data, fileInOptions.encoding);
-            });
-            wstream.on("open", function () {
-                wstream.end(str, function () {
-                    // console.log('writting' + str);
-        
+        return new Promise((resolve, reject) => {
+            var wstream = fs.createWriteStream(fileInOptions.filepath, options);
+            if (fileInOptions.encoding) {
+                let str = '';
+                fileInOptions.payload.on('data', (data) => {
+                    str += this.encode(data, fileInOptions.encoding);
                 });
-            })
-        } else {
-            fileInOptions.payload.pipe(wstream);
-        }
+                wstream.on("open", function () {
+                    wstream.end(str, function () {
+                        // console.log('writting' + str);
+                        return resolve();
+                    });
+                });
+            } else {
+                fileInOptions.payload.pipe(wstream);
+                fileInOptions.payload.on('end', function () {
+                    return resolve('file write');
+                });
+            }
+            wstream.on("error", function (err) {
+                return reject(err);
+            });
+        });
     }
 
     encode(data, enc) {

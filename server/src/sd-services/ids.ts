@@ -1,20 +1,19 @@
-import { SDBaseService } from '../services/SDBaseService';
-import * as httpStatusCodes from 'http-status-codes';
-import { Middleware } from '../middleware/Middleware';
-import log from '../utils/Logger';
-import * as cookieParser from 'cookie-parser';
-import { Readable } from 'stream';
-import { setInterval } from 'timers';
-import * as settings from '../config/config';
-import { Issuer, custom } from 'openid-client';
-import * as crypto from 'crypto';
-import * as url from 'url';
-
 let instance = null;
 //CORE_REFERENCE_IMPORTS
 //append_imports_start
 
-import { idsutil } from './idsutil'; //_splitter_
+import * as httpStatusCodes from 'http-status-codes'; //_splitter_
+import * as cookieParser from 'cookie-parser'; //_splitter_
+import { Readable } from 'stream'; //_splitter_
+import { setInterval } from 'timers'; //_splitter_
+import { Issuer, custom } from 'openid-client'; //_splitter_
+import * as crypto from 'crypto'; //_splitter_
+import * as url from 'url'; //_splitter_
+import { SDBaseService } from '../services/SDBaseService'; //_splitter_
+import { Middleware } from '../middleware/Middleware'; //_splitter_
+import * as settings from '../config/config'; //_splitter_
+import log from '../utils/Logger'; //_splitter_
+import * as sd_LYgtWlje40y5PE4W from './idsutil'; //_splitter_
 //append_imports_end
 
 export class ids {
@@ -35,7 +34,7 @@ export class ids {
   ) {
     this.serviceName = 'ids';
     this.app = app;
-    this.serviceBasePath = `${this.app.settings.base}`;
+    this.serviceBasePath = this.app.settings.base;
     this.generatedMiddlewares = generatedeMiddlewares;
     this.swaggerDocument = swaggerDocument;
     this.globalTimers = globalTimers;
@@ -66,11 +65,20 @@ export class ids {
   private mountCalls(routeCall, middlewareCall) {
     if (routeCall) {
       this.mountAllPaths();
+      this.mountAllListeners();
     }
     if (middlewareCall) {
       this.generatedMiddlewares[this.serviceName] = {};
       this.mountAllMiddlewares();
       this.mountTimers();
+    }
+  }
+
+  async mountAllListeners() {
+    try {
+      //append_listeners
+    } catch (e) {
+      throw e;
     }
   }
 
@@ -93,14 +101,13 @@ export class ids {
         try {
           bh = this.sdService.__constructDefault({ local: {} }, req, res, next);
           bh = await this.sd_TdusKAW5eaHtHJzn(bh);
-          //appendnew_next_mw_hrefstart
+          //appendnew_next_sd_MHoyGz1AiMXaE9vJ
         } catch (e) {
           return await this.errorHandler(bh, e, 'sd_MHoyGz1AiMXaE9vJ');
         }
       }
     );
     this.generatedMiddlewares[this.serviceName]['hrefstart'] = mw_hrefstart;
-
     let mw_Authorize: Middleware = new Middleware(
       this.serviceName,
       'Authorize',
@@ -109,29 +116,39 @@ export class ids {
         try {
           bh = this.sdService.__constructDefault({ local: {} }, req, res, next);
           bh = await this.sd_pnf7MidUymMQ6mCU(bh);
-          //appendnew_next_mw_Authorize
+          //appendnew_next_sd_V1aoHZLOcjX6yqLp
         } catch (e) {
           return await this.errorHandler(bh, e, 'sd_V1aoHZLOcjX6yqLp');
         }
       }
     );
     this.generatedMiddlewares[this.serviceName]['Authorize'] = mw_Authorize;
-
     //appendnew_flow_ids_MiddlewareStart
   }
   private mountAllPaths() {
     log.debug('mounting all paths for service :: ids');
 
-    this.swaggerDocument['paths']['/login'] = {
-      get: {
+    if (!this.swaggerDocument['paths']['/login']) {
+      this.swaggerDocument['paths']['/login'] = {
+        get: {
+          summary: '',
+          description: '',
+          consumes: [],
+          produces: [],
+          parameters: [],
+          responses: {}
+        }
+      };
+    } else {
+      this.swaggerDocument['paths']['/login']['get'] = {
         summary: '',
         description: '',
         consumes: [],
         produces: [],
         parameters: [],
         responses: {}
-      }
-    };
+      };
+    }
     this.app['get'](
       `${this.serviceBasePath}/login`,
       cookieParser(),
@@ -163,16 +180,27 @@ export class ids {
       )
     );
 
-    this.swaggerDocument['paths']['/login/cb'] = {
-      get: {
+    if (!this.swaggerDocument['paths']['/login/cb']) {
+      this.swaggerDocument['paths']['/login/cb'] = {
+        get: {
+          summary: '',
+          description: '',
+          consumes: [],
+          produces: [],
+          parameters: [],
+          responses: {}
+        }
+      };
+    } else {
+      this.swaggerDocument['paths']['/login/cb']['get'] = {
         summary: '',
         description: '',
         consumes: [],
         produces: [],
         parameters: [],
         responses: {}
-      }
-    };
+      };
+    }
     this.app['get'](
       `${this.serviceBasePath}/login/cb`,
       cookieParser(),
@@ -204,16 +232,27 @@ export class ids {
       )
     );
 
-    this.swaggerDocument['paths']['/user/info'] = {
-      get: {
+    if (!this.swaggerDocument['paths']['/user/info']) {
+      this.swaggerDocument['paths']['/user/info'] = {
+        get: {
+          summary: '',
+          description: '',
+          consumes: [],
+          produces: [],
+          parameters: [],
+          responses: {}
+        }
+      };
+    } else {
+      this.swaggerDocument['paths']['/user/info']['get'] = {
         summary: '',
         description: '',
         consumes: [],
         produces: [],
         parameters: [],
         responses: {}
-      }
-    };
+      };
+    }
     this.app['get'](
       `${this.serviceBasePath}/user/info`,
       cookieParser(),
@@ -245,16 +284,27 @@ export class ids {
       )
     );
 
-    this.swaggerDocument['paths']['/logout'] = {
-      get: {
+    if (!this.swaggerDocument['paths']['/logout']) {
+      this.swaggerDocument['paths']['/logout'] = {
+        get: {
+          summary: '',
+          description: '',
+          consumes: [],
+          produces: [],
+          parameters: [],
+          responses: {}
+        }
+      };
+    } else {
+      this.swaggerDocument['paths']['/logout']['get'] = {
         summary: '',
         description: '',
         consumes: [],
         produces: [],
         parameters: [],
         responses: {}
-      }
-    };
+      };
+    }
     this.app['get'](
       `${this.serviceBasePath}/logout`,
       cookieParser(),
@@ -286,16 +336,27 @@ export class ids {
       )
     );
 
-    this.swaggerDocument['paths']['/logout/cb'] = {
-      get: {
+    if (!this.swaggerDocument['paths']['/logout/cb']) {
+      this.swaggerDocument['paths']['/logout/cb'] = {
+        get: {
+          summary: '',
+          description: '',
+          consumes: [],
+          produces: [],
+          parameters: [],
+          responses: {}
+        }
+      };
+    } else {
+      this.swaggerDocument['paths']['/logout/cb']['get'] = {
         summary: '',
         description: '',
         consumes: [],
         produces: [],
         parameters: [],
         responses: {}
-      }
-    };
+      };
+    }
     this.app['get'](
       `${this.serviceBasePath}/logout/cb`,
       cookieParser(),
@@ -329,6 +390,8 @@ export class ids {
     //appendnew_flow_ids_HttpIn
   }
   //   service flows_ids
+
+  //appendnew_flow_ids_listen
 
   //appendnew_flow_ids_Start
 
@@ -399,19 +462,25 @@ export class ids {
   }
 
   async sd_q69QAfDxCmYTax7l(bh) {
-    let requestObject = bh.web.req;
-    if (requestObject.session) {
-      requestObject.session.data = bh.local.reqParams;
+    try {
+      let requestObject = bh.web.req;
+      if (requestObject.session) {
+        requestObject.session.data = bh.local.reqParams;
+      }
+      bh = await this.sd_zQ8Dtu20npUUpuau(bh);
+      //appendnew_next_sd_q69QAfDxCmYTax7l
+      return bh;
+    } catch (e) {
+      return await this.errorHandler(bh, e, 'sd_q69QAfDxCmYTax7l');
     }
-    bh = await this.sd_zQ8Dtu20npUUpuau(bh);
-    //appendnew_next_sd_q69QAfDxCmYTax7l
-    return bh;
   }
 
   async sd_zQ8Dtu20npUUpuau(bh) {
     try {
-      const idsutilInstance = idsutil.getInstance();
-      let outputVariables = await idsutilInstance.getIDSClientInstance(null);
+      const sd_LYgtWlje40y5PE4WInstance: sd_LYgtWlje40y5PE4W.idsutil = sd_LYgtWlje40y5PE4W.idsutil.getInstance();
+      let outputVariables = await sd_LYgtWlje40y5PE4WInstance.getIDSClientInstance(
+        null
+      );
       bh.input.client = outputVariables.input.clientInstance;
 
       bh = await this.sd_3gsqsWGXj2GhtqUH(bh);
@@ -421,10 +490,13 @@ export class ids {
       return await this.errorHandler(bh, e, 'sd_zQ8Dtu20npUUpuau');
     }
   }
+
   async sd_3gsqsWGXj2GhtqUH(bh) {
     try {
-      const idsutilInstance = idsutil.getInstance();
-      let outputVariables = await idsutilInstance.getAuthorizationParams(null);
+      const sd_LYgtWlje40y5PE4WInstance: sd_LYgtWlje40y5PE4W.idsutil = sd_LYgtWlje40y5PE4W.idsutil.getInstance();
+      let outputVariables = await sd_LYgtWlje40y5PE4WInstance.getAuthorizationParams(
+        null
+      );
       bh.input.authParams = outputVariables.input.authParams;
 
       bh = await this.sd_hC2GslHjFKmWdTi0(bh);
@@ -434,6 +506,7 @@ export class ids {
       return await this.errorHandler(bh, e, 'sd_3gsqsWGXj2GhtqUH');
     }
   }
+
   async sd_hC2GslHjFKmWdTi0(bh) {
     try {
       const authorizationRequest = Object.assign(
@@ -458,10 +531,11 @@ export class ids {
       return await this.errorHandler(bh, e, 'sd_hC2GslHjFKmWdTi0');
     }
   }
-  async sd_iMSqxDO4EvTELR9O(bh) {
-    bh.web.res.set(bh.local.redirectHeaders);
 
+  async sd_iMSqxDO4EvTELR9O(bh) {
     try {
+      bh.web.res.set(bh.local.redirectHeaders);
+
       bh.web.res.status(302).send('redirecting');
 
       return bh;
@@ -469,6 +543,7 @@ export class ids {
       return await this.errorHandler(bh, e, 'sd_iMSqxDO4EvTELR9O');
     }
   }
+
   async sd_r4R4pUk1mW9yhyjy(bh) {
     try {
       bh.local.res = {
@@ -482,6 +557,7 @@ export class ids {
       return await this.errorHandler(bh, e, 'sd_r4R4pUk1mW9yhyjy');
     }
   }
+
   async sd_AeoJudIQGnBzD5bQ(bh) {
     try {
       bh.web.res.status(404).send(bh.local.res.message);
@@ -491,6 +567,7 @@ export class ids {
       return await this.errorHandler(bh, e, 'sd_AeoJudIQGnBzD5bQ');
     }
   }
+
   async sd_TdusKAW5eaHtHJzn(bh) {
     try {
       const protocol =
@@ -505,10 +582,10 @@ export class ids {
       return await this.errorHandler(bh, e, 'sd_TdusKAW5eaHtHJzn');
     }
   }
+
   async sd_UTCCTNWVlpklXv4x(bh) {
     try {
       bh.web.next();
-
       return bh;
     } catch (e) {
       return await this.errorHandler(bh, e, 'sd_UTCCTNWVlpklXv4x');
@@ -516,21 +593,28 @@ export class ids {
   }
 
   async sd_U2kMIKq4kCoMhwJA(bh) {
-    let requestObject = bh.web.req;
-    if (requestObject.session) {
-      bh.input.sessionParams = JSON.parse(
-        JSON.stringify(requestObject.session)
-      );
+    try {
+      let requestObject = bh.web.req;
+      if (requestObject.session) {
+        bh.input.sessionParams = JSON.parse(
+          JSON.stringify(requestObject.session)
+        );
+      }
+
+      bh = await this.sd_js574RtqA5PcnyT7(bh);
+      //appendnew_next_sd_U2kMIKq4kCoMhwJA
+      return bh;
+    } catch (e) {
+      return await this.errorHandler(bh, e, 'sd_U2kMIKq4kCoMhwJA');
     }
-    bh = await this.sd_js574RtqA5PcnyT7(bh);
-    //appendnew_next_sd_U2kMIKq4kCoMhwJA
-    return bh;
   }
 
   async sd_js574RtqA5PcnyT7(bh) {
     try {
-      const idsutilInstance = idsutil.getInstance();
-      let outputVariables = await idsutilInstance.getIDSClientInstance(null);
+      const sd_LYgtWlje40y5PE4WInstance: sd_LYgtWlje40y5PE4W.idsutil = sd_LYgtWlje40y5PE4W.idsutil.getInstance();
+      let outputVariables = await sd_LYgtWlje40y5PE4WInstance.getIDSClientInstance(
+        null
+      );
       bh.input.client = outputVariables.input.clientInstance;
 
       bh = await this.sd_JOmwCD0zud34mgUa(bh);
@@ -540,6 +624,7 @@ export class ids {
       return await this.errorHandler(bh, e, 'sd_js574RtqA5PcnyT7');
     }
   }
+
   async sd_JOmwCD0zud34mgUa(bh) {
     try {
       const params = bh.input.client.callbackParams(bh.web.req);
@@ -571,13 +656,17 @@ export class ids {
   }
 
   async sd_MBSKiANUA1uEgtaA(bh) {
-    let requestObject = bh.web.req;
-    if (requestObject.session) {
-      requestObject.session.data = bh.local.userDetails;
+    try {
+      let requestObject = bh.web.req;
+      if (requestObject.session) {
+        requestObject.session.data = bh.local.userDetails;
+      }
+      bh = await this.sd_VrWJNKT9Q4fYTaLQ(bh);
+      //appendnew_next_sd_MBSKiANUA1uEgtaA
+      return bh;
+    } catch (e) {
+      return await this.errorHandler(bh, e, 'sd_MBSKiANUA1uEgtaA');
     }
-    bh = await this.sd_VrWJNKT9Q4fYTaLQ(bh);
-    //appendnew_next_sd_MBSKiANUA1uEgtaA
-    return bh;
   }
 
   async sd_VrWJNKT9Q4fYTaLQ(bh) {
@@ -634,6 +723,7 @@ export class ids {
       return await this.errorHandler(bh, e, 'sd_Cs2Z4d3BzOi0g5w2');
     }
   }
+
   async sd_NWeHZ3rQQp89hTTl(bh) {
     try {
       bh.web.res.status(200).send(bh.local.htmlResponse);
@@ -643,6 +733,7 @@ export class ids {
       return await this.errorHandler(bh, e, 'sd_NWeHZ3rQQp89hTTl');
     }
   }
+
   async sd_7wXkj0ZSsCpg0fQd(bh) {
     try {
       bh.local.redirectHeaders = {
@@ -655,10 +746,11 @@ export class ids {
       return await this.errorHandler(bh, e, 'sd_7wXkj0ZSsCpg0fQd');
     }
   }
-  async sd_bBswx17pa0Pq9a28(bh) {
-    bh.web.res.set(bh.local.redirectHeaders);
 
+  async sd_bBswx17pa0Pq9a28(bh) {
     try {
+      bh.web.res.set(bh.local.redirectHeaders);
+
       bh.web.res.status(302).send('Redirecting');
 
       return bh;
@@ -668,13 +760,18 @@ export class ids {
   }
 
   async sd_d6Mb8d1yaxUvy6oV(bh) {
-    let requestObject = bh.web.req;
-    if (requestObject.session) {
-      bh.local.session = JSON.parse(JSON.stringify(requestObject.session));
+    try {
+      let requestObject = bh.web.req;
+      if (requestObject.session) {
+        bh.local.session = JSON.parse(JSON.stringify(requestObject.session));
+      }
+
+      await this.sd_LhbPCG2HJOLJYE89(bh);
+      //appendnew_next_sd_d6Mb8d1yaxUvy6oV
+      return bh;
+    } catch (e) {
+      return await this.errorHandler(bh, e, 'sd_d6Mb8d1yaxUvy6oV');
     }
-    await this.sd_LhbPCG2HJOLJYE89(bh);
-    //appendnew_next_sd_d6Mb8d1yaxUvy6oV
-    return bh;
   }
 
   async sd_LhbPCG2HJOLJYE89(bh) {
@@ -686,6 +783,7 @@ export class ids {
       return await this.errorHandler(bh, e, 'sd_LhbPCG2HJOLJYE89');
     }
   }
+
   async sd_qr9HfvOvGRiIsWJg(bh) {
     try {
       bh.web.res.redirect('/api/login');
@@ -697,13 +795,20 @@ export class ids {
   }
 
   async sd_SWSj4Fi33zQZfHO2(bh) {
-    let requestObject = bh.web.req;
-    if (requestObject.session) {
-      bh.local.sessionData = JSON.parse(JSON.stringify(requestObject.session));
+    try {
+      let requestObject = bh.web.req;
+      if (requestObject.session) {
+        bh.local.sessionData = JSON.parse(
+          JSON.stringify(requestObject.session)
+        );
+      }
+
+      bh = await this.sd_EwGrASMdnoyRbapm(bh);
+      //appendnew_next_sd_SWSj4Fi33zQZfHO2
+      return bh;
+    } catch (e) {
+      return await this.errorHandler(bh, e, 'sd_SWSj4Fi33zQZfHO2');
     }
-    bh = await this.sd_EwGrASMdnoyRbapm(bh);
-    //appendnew_next_sd_SWSj4Fi33zQZfHO2
-    return bh;
   }
 
   async sd_EwGrASMdnoyRbapm(bh) {
@@ -730,19 +835,25 @@ export class ids {
   }
 
   async sd_bkTVO569WydrEIfi(bh) {
-    let requestObject = bh.web.req;
-    if (requestObject.session) {
-      requestObject.session.data = bh.local.sessionData.data;
+    try {
+      let requestObject = bh.web.req;
+      if (requestObject.session) {
+        requestObject.session.data = bh.local.sessionData.data;
+      }
+      bh = await this.sd_HLCvfD8WPlEhMjua(bh);
+      //appendnew_next_sd_bkTVO569WydrEIfi
+      return bh;
+    } catch (e) {
+      return await this.errorHandler(bh, e, 'sd_bkTVO569WydrEIfi');
     }
-    bh = await this.sd_HLCvfD8WPlEhMjua(bh);
-    //appendnew_next_sd_bkTVO569WydrEIfi
-    return bh;
   }
 
   async sd_HLCvfD8WPlEhMjua(bh) {
     try {
-      const idsutilInstance = idsutil.getInstance();
-      let outputVariables = await idsutilInstance.getIDSClientInstance(null);
+      const sd_LYgtWlje40y5PE4WInstance: sd_LYgtWlje40y5PE4W.idsutil = sd_LYgtWlje40y5PE4W.idsutil.getInstance();
+      let outputVariables = await sd_LYgtWlje40y5PE4WInstance.getIDSClientInstance(
+        null
+      );
       bh.input.client = outputVariables.input.clientInstance;
 
       bh = await this.sd_1EDYmCrCYz58N8GQ(bh);
@@ -828,6 +939,7 @@ export class ids {
       return await this.errorHandler(bh, e, 'sd_XCYUJA72dKvbu9nH');
     }
   }
+
   async sd_HvJrYVncH4Phjh6w(bh) {
     try {
       bh.web.res.status(200).send(bh.local.res);
@@ -837,6 +949,7 @@ export class ids {
       return await this.errorHandler(bh, e, 'sd_HvJrYVncH4Phjh6w');
     }
   }
+
   async sd_Id1i6B4xLZIwz0Bx(bh) {
     try {
       bh.local.res = {
@@ -851,36 +964,43 @@ export class ids {
   }
 
   async sd_vNsKdqaR9w6Cv3FN(bh) {
-    let requestObject = bh.web.req;
-    if (requestObject.session) {
-      bh.local.sessionData = JSON.parse(JSON.stringify(requestObject.session));
+    try {
+      let requestObject = bh.web.req;
+      if (requestObject.session) {
+        bh.local.sessionData = JSON.parse(
+          JSON.stringify(requestObject.session)
+        );
+      }
+
+      bh = await this.sd_yhmkE5njsXW9iRZq(bh);
+      //appendnew_next_sd_vNsKdqaR9w6Cv3FN
+      return bh;
+    } catch (e) {
+      return await this.errorHandler(bh, e, 'sd_vNsKdqaR9w6Cv3FN');
     }
-    bh = await this.sd_yhmkE5njsXW9iRZq(bh);
-    //appendnew_next_sd_vNsKdqaR9w6Cv3FN
-    return bh;
   }
 
   async sd_yhmkE5njsXW9iRZq(bh) {
-    let requestObject = bh.web.req;
-    if (requestObject.session) {
-      let p = function() {
-        return new Promise((resolve, reject) => {
-          requestObject.session.destroy(function(error) {
-            if (error) {
-              return reject(error);
-            }
-            return resolve();
+    try {
+      let requestObject = bh.web.req;
+      if (requestObject.session) {
+        let p = function() {
+          return new Promise((resolve, reject) => {
+            requestObject.session.destroy(function(error) {
+              if (error) {
+                return reject(error);
+              }
+              return resolve();
+            });
           });
-        });
-      };
-      try {
+        };
         await p();
-        bh = await this.sd_ZDpHlE8Ti33nYG1e(bh);
-        //appendnew_next_sd_yhmkE5njsXW9iRZq
-      } catch (e) {
-        return await this.errorHandler(bh, e, 'sd_yhmkE5njsXW9iRZq');
       }
+      bh = await this.sd_ZDpHlE8Ti33nYG1e(bh);
+      //appendnew_next_sd_yhmkE5njsXW9iRZq
       return bh;
+    } catch (e) {
+      return await this.errorHandler(bh, e, 'sd_yhmkE5njsXW9iRZq');
     }
   }
 
@@ -937,6 +1057,7 @@ export class ids {
       return await this.errorHandler(bh, e, 'sd_tP3Y6lEeO1vs9z4h');
     }
   }
+
   async sd_a3ObSqP1mcjlMB9n(bh) {
     try {
       bh.web.res.status(200).send(bh.local.res);
@@ -946,6 +1067,7 @@ export class ids {
       return await this.errorHandler(bh, e, 'sd_a3ObSqP1mcjlMB9n');
     }
   }
+
   async sd_aAP51SMy8k5m2bw0(bh) {
     try {
       bh.local.redirectHeaders = {
@@ -958,10 +1080,11 @@ export class ids {
       return await this.errorHandler(bh, e, 'sd_aAP51SMy8k5m2bw0');
     }
   }
-  async sd_JkGCiRJ8MZ5kzpWr(bh) {
-    bh.web.res.set(bh.local.redirectHeaders);
 
+  async sd_JkGCiRJ8MZ5kzpWr(bh) {
     try {
+      bh.web.res.set(bh.local.redirectHeaders);
+
       bh.web.res.status(302).send('redirecting');
 
       return bh;
@@ -969,6 +1092,7 @@ export class ids {
       return await this.errorHandler(bh, e, 'sd_JkGCiRJ8MZ5kzpWr');
     }
   }
+
   async sd_pnf7MidUymMQ6mCU(bh) {
     try {
       bh.local = {};
@@ -981,13 +1105,20 @@ export class ids {
   }
 
   async sd_2VHwjWXVOXrHa7mg(bh) {
-    let requestObject = bh.web.req;
-    if (requestObject.session) {
-      bh.local.sessionData = JSON.parse(JSON.stringify(requestObject.session));
+    try {
+      let requestObject = bh.web.req;
+      if (requestObject.session) {
+        bh.local.sessionData = JSON.parse(
+          JSON.stringify(requestObject.session)
+        );
+      }
+
+      bh = await this.sd_reoYLaRk0g3GP07r(bh);
+      //appendnew_next_sd_2VHwjWXVOXrHa7mg
+      return bh;
+    } catch (e) {
+      return await this.errorHandler(bh, e, 'sd_2VHwjWXVOXrHa7mg');
     }
-    bh = await this.sd_reoYLaRk0g3GP07r(bh);
-    //appendnew_next_sd_2VHwjWXVOXrHa7mg
-    return bh;
   }
 
   async sd_reoYLaRk0g3GP07r(bh) {
@@ -1045,8 +1176,8 @@ export class ids {
 
   async sd_uhosxP0fWlQR2FXo(bh) {
     try {
-      const idsutilInstance = idsutil.getInstance();
-      let outputVariables = await idsutilInstance.handleTokenExpiry(
+      const sd_LYgtWlje40y5PE4WInstance: sd_LYgtWlje40y5PE4W.idsutil = sd_LYgtWlje40y5PE4W.idsutil.getInstance();
+      let outputVariables = await sd_LYgtWlje40y5PE4WInstance.handleTokenExpiry(
         bh.local.sessionData,
         null
       );
@@ -1093,26 +1224,26 @@ export class ids {
   }
 
   async sd_v1oLKpGEZMCoTkF5(bh) {
-    let requestObject = bh.web.req;
-    if (requestObject.session) {
-      let p = function() {
-        return new Promise((resolve, reject) => {
-          requestObject.session.destroy(function(error) {
-            if (error) {
-              return reject(error);
-            }
-            return resolve();
+    try {
+      let requestObject = bh.web.req;
+      if (requestObject.session) {
+        let p = function() {
+          return new Promise((resolve, reject) => {
+            requestObject.session.destroy(function(error) {
+              if (error) {
+                return reject(error);
+              }
+              return resolve();
+            });
           });
-        });
-      };
-      try {
+        };
         await p();
-        bh = await this.sd_4EOqxbfkQF5AISPS(bh);
-        //appendnew_next_sd_v1oLKpGEZMCoTkF5
-      } catch (e) {
-        return await this.errorHandler(bh, e, 'sd_v1oLKpGEZMCoTkF5');
       }
+      bh = await this.sd_4EOqxbfkQF5AISPS(bh);
+      //appendnew_next_sd_v1oLKpGEZMCoTkF5
       return bh;
+    } catch (e) {
+      return await this.errorHandler(bh, e, 'sd_v1oLKpGEZMCoTkF5');
     }
   }
 
@@ -1129,6 +1260,7 @@ export class ids {
       return await this.errorHandler(bh, e, 'sd_4EOqxbfkQF5AISPS');
     }
   }
+
   async sd_JlkeesWEWqxF1e32(bh) {
     try {
       bh.web.res.status(403).send(bh.local.res);
@@ -1183,19 +1315,22 @@ export class ids {
   }
 
   async sd_5Q55UuVUfJVpdHiD(bh) {
-    let requestObject = bh.web.req;
-    if (requestObject.session) {
-      requestObject.session.data = bh.local.newSession;
+    try {
+      let requestObject = bh.web.req;
+      if (requestObject.session) {
+        requestObject.session.data = bh.local.newSession;
+      }
+      await this.sd_4uF8I9kr6jfXbbwG(bh);
+      //appendnew_next_sd_5Q55UuVUfJVpdHiD
+      return bh;
+    } catch (e) {
+      return await this.errorHandler(bh, e, 'sd_5Q55UuVUfJVpdHiD');
     }
-    await this.sd_4uF8I9kr6jfXbbwG(bh);
-    //appendnew_next_sd_5Q55UuVUfJVpdHiD
-    return bh;
   }
 
   async sd_4uF8I9kr6jfXbbwG(bh) {
     try {
       bh.web.next();
-
       return bh;
     } catch (e) {
       return await this.errorHandler(bh, e, 'sd_4uF8I9kr6jfXbbwG');
@@ -1244,6 +1379,7 @@ export class ids {
       return await this.errorHandler(bh, e, 'sd_qmph0z3kZr2gtOj9');
     }
   }
+
   async sd_wXihf2uQYbUxakN4(bh) {
     try {
       bh.local.res = { code: 'NO_SESSION', message: 'Session not present' };
@@ -1254,6 +1390,7 @@ export class ids {
       return await this.errorHandler(bh, e, 'sd_wXihf2uQYbUxakN4');
     }
   }
+
   //appendnew_node
 
   async errorHandler(bh, e, src) {
@@ -1276,7 +1413,6 @@ export class ids {
       }
     }
   }
-
   async sd_K0xcL58QRoiE3nH8(bh) {
     const nodes = [
       'sd_3gsqsWGXj2GhtqUH',
@@ -1297,7 +1433,6 @@ export class ids {
     }
     return false;
   }
-
   async sd_G86gDGinhKGGOBYD(bh) {
     const nodes = ['sd_uhosxP0fWlQR2FXo'];
     if (nodes.includes(bh.errorSource)) {
@@ -1307,6 +1442,5 @@ export class ids {
     }
     return false;
   }
-
   //appendnew_flow_ids_Catch
 }

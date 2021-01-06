@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { NDataModelService, NSnackbarService } from 'neutrinos-seed-services';
 import { NBaseComponent } from '../../../../../app/baseClasses/nBase.component';
 import { Router, ActivatedRoute } from '@angular/router';
-import { MatSelect, MatSelectChange } from '@angular/material';
+import { MatSelect, MatSelectChange } from '@angular/material/select';
 
 // Services
 import { ssd_integrationService } from '../../services/ssd_integration/ssd_integration.service';

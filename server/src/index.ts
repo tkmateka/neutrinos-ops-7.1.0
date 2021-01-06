@@ -66,6 +66,7 @@ console.log("process.env.pm_id", process.env.pm_id);
         let generatedMiddlewares: any = {};
         let swaggerDocument = {
             swagger: "2.0",
+            basePath: contextPath,
             paths: {}
         };
         let globalTimers = [];
