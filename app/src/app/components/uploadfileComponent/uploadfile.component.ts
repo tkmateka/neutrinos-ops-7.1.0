@@ -14,7 +14,9 @@ import { ssd_integrationService } from '../../services/ssd_integration/ssd_integ
 export class uploadfileComponent extends NBaseComponent implements OnInit {
 
     spinner: boolean = false;
+    imageUrl: string = "";
     localUrl: string | ArrayBuffer;
+    selectedImages: any[] = [];
     mongoUrl: any[] = [];
     currentUser: any = {};
 
@@ -29,21 +31,19 @@ export class uploadfileComponent extends NBaseComponent implements OnInit {
 
     getImages() {
         this.spinner = true;
-        // this.currentUser.emailId.split('@').shift()
-        
-        let body = { 'collection': 'images' };
+
+        let body = { 'collection': this.currentUser.emailId.split('@').shift() + "-images" };
 
         // Get All Employees
         this.ssd.POST('getData', body).subscribe(res => {
-            console.log(res);
             if (res) {
-                let images:any = [];
+                this.mongoUrl = [];
+                let images: any = [];
                 images = res;
 
                 for (let i = 0; i < images.length; i++) {
                     this.mongoUrl.push(this.sanitizer.bypassSecurityTrustResourceUrl(res[i]['path']));
                 }
-                    
                 this.spinner = false;
             }
         }, err => {
@@ -56,33 +56,35 @@ export class uploadfileComponent extends NBaseComponent implements OnInit {
         if (event.target.files && event.target.files[0]) {
             let reader = new FileReader();
             let name = event.target.files[0]['name'];
+            let url = window.URL.createObjectURL(event.target.files[0]);
 
-            reader.onloadend = (event) => {
-                console.log(event);
-                console.log(reader.result);
+            reader.onloadend = () => {
                 this.localUrl = reader.result;
-                this.onSubmit(name, this.localUrl);
-            };
 
+                this.selectedImages.push({
+                    name: name,
+                    image: this.localUrl,
+                    url: this.sanitizer.bypassSecurityTrustResourceUrl(url)
+                });
+                console.log(this.selectedImages);
+            };
             reader.readAsDataURL(event.target.files[0]);
         }
     }
 
-    onSubmit(name, url) {
+    onSubmit(image) {
         let body = {
-            collection: "images",
+            collection: this.currentUser.emailId.split('@').shift() + "-images",
             data: {
-                path: url,
-                name: name
+                path: image.image,
+                name: image.name
             }
         }
-        console.log(body);
 
-        // this.ssd.POST('uploadFiles', body).subscribe(res => {
         this.ssd.POST('sendRequest', body).subscribe(res => {
-            console.log(res);
-            if (typeof (res) === 'object') {
+            if (res) {
                 this.spinner = false;
+                this.getImages();
             }
         }, err => {
             this.spinner = false;

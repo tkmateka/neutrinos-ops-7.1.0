@@ -5,13 +5,29 @@
     </div>
   </div>
 </div>
-<div>
-  <input type="file" (change)="showPreviewImage($event)" multiple>
-  <img [src]="localUrl" *ngIf="localUrl" class="imgPlaceholder" width="100px" height="100px">
-
-  <h1>Received Images</h1>
-  <div *ngFor="let image of mongoUrl">
-    <img [src]="image" class="imgPlaceholder" width="200px" height="200px">
+<div fxLayout="row wrap" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+  <div fxLayout="column wrap" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+    <div>
+      <input type="file" (change)="showPreviewImage($event)">
+    </div>
   </div>
+  <div fxLayout="column wrap" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+    <div *ngFor="let sImg of selectedImages">
+      <img [src]="sImg.image" class="imgPlaceholder" width="100px" height="100px">
+      <a [href]="sImg.url" target="_blank">View</a>
+      <p (click)="onSubmit(sImg)">Upload</p>
+    </div>
+  </div>
+</div>
+<div fxLayout="row wrap" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+  <div>
 
+
+
+    <h1 style="margin-top:1em">Received Images</h1>
+    <div *ngFor="let image of mongoUrl">
+      <img [src]="image" class="imgPlaceholder" width="200px" height="200px">
+    </div>
+
+  </div>
 </div>
