@@ -15,6 +15,7 @@ import * as settings from '../config/config'; //_splitter_
 import log from '../utils/Logger'; //_splitter_
 import { MongoPersistance } from '../utils/ndefault-mongodb/Mongodb/MongoPersistance'; //_splitter_
 import * as mongodb from 'mongodb'; //_splitter_
+import { FileInService } from '../utils/ndefault-file/FileIn/FileInService'; //_splitter_
 //append_imports_end
 
 export class crudoperations {
@@ -306,6 +307,58 @@ export class crudoperations {
         this.generatedMiddlewares
       )
     );
+
+    if (!this.swaggerDocument['paths']['/uploadFiles']) {
+      this.swaggerDocument['paths']['/uploadFiles'] = {
+        post: {
+          summary: '',
+          description: '',
+          consumes: [],
+          produces: [],
+          parameters: [],
+          responses: {}
+        }
+      };
+    } else {
+      this.swaggerDocument['paths']['/uploadFiles']['post'] = {
+        summary: '',
+        description: '',
+        consumes: [],
+        produces: [],
+        parameters: [],
+        responses: {}
+      };
+    }
+    this.app['post'](
+      `${this.serviceBasePath}/uploadFiles`,
+      cookieParser(),
+      this.sdService.getMiddlesWaresBySequenceId(
+        null,
+        'pre',
+        this.generatedMiddlewares
+      ),
+
+      async (req, res, next) => {
+        let bh = {};
+        try {
+          bh = this.sdService.__constructDefault(
+            { local: {}, input: {} },
+            req,
+            res,
+            next
+          );
+          bh = await this.sd_W1GgdTlXQoOJuqKw(bh);
+          //appendnew_next_sd_jrHntLdyfBxZLq8M
+        } catch (e) {
+          return await this.errorHandler(bh, e, 'sd_jrHntLdyfBxZLq8M');
+        }
+      },
+      this.sdService.getMiddlesWaresBySequenceId(
+        null,
+        'post',
+        this.generatedMiddlewares
+      )
+    );
     //appendnew_flow_crudoperations_HttpIn
   }
   //   service flows_crudoperations
@@ -480,6 +533,62 @@ export class crudoperations {
       return bh;
     } catch (e) {
       return await this.errorHandler(bh, e, 'sd_v3ZDLCBfJWvAg57q');
+    }
+  }
+
+  async sd_W1GgdTlXQoOJuqKw(bh) {
+    try {
+      bh.collection = bh.input.body.collection;
+      delete bh.input.body.collection;
+      bh.input = bh.input.body;
+      bh = await this.fileBuffer(bh);
+      //appendnew_next_sd_W1GgdTlXQoOJuqKw
+      return bh;
+    } catch (e) {
+      return await this.errorHandler(bh, e, 'sd_W1GgdTlXQoOJuqKw');
+    }
+  }
+
+  async fileBuffer(bh) {
+    try {
+      let fileInServiceInstance = FileInService.getInstance();
+      bh.input.result = await fileInServiceInstance.fileIn({
+        filepath: bh.input.data.path,
+        format: 'buffer',
+        encoding: 'none'
+      });
+      bh = await this.sd_dk5nSP8LkIbZbx2f(bh);
+      //appendnew_next_fileBuffer
+      return bh;
+    } catch (e) {
+      return await this.errorHandler(bh, e, 'sd_iWUsaj0BhWyqGxO9');
+    }
+  }
+
+  async sd_dk5nSP8LkIbZbx2f(bh) {
+    try {
+      bh.local.result = await MongoPersistance.getInstance().uploadFile(
+        'sd_ExcCPqDxVaxNWPUz',
+        bh.collection,
+        bh.input.result,
+        bh.input.data.name,
+        {}
+      );
+      await this.sd_lqpbEmGFTgxw6DAT(bh);
+      //appendnew_next_sd_dk5nSP8LkIbZbx2f
+      return bh;
+    } catch (e) {
+      return await this.errorHandler(bh, e, 'sd_dk5nSP8LkIbZbx2f');
+    }
+  }
+
+  async sd_lqpbEmGFTgxw6DAT(bh) {
+    try {
+      bh.web.res.status(200).send(bh.local.result);
+
+      return bh;
+    } catch (e) {
+      return await this.errorHandler(bh, e, 'sd_lqpbEmGFTgxw6DAT');
     }
   }
 

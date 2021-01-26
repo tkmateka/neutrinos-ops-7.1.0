@@ -1,0 +1,17 @@
+<div fxLayout="row wrap" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+  <div>
+    <div fxLayout="row wrap" fxLayoutAlign="start stretch" fxShow="true" fxHide="false" *ngIf="spinner">
+      <mat-spinner style="position: fixed; z-index: 999;   height: 2em;   width: 2em;   overflow: show;   margin: auto;   top: 0;   left: 0;   bottom: 0;   right: 0;" id="2d474ed4-5064-2e80-1146-ba27d907aef5"></mat-spinner>
+    </div>
+  </div>
+</div>
+<div>
+  <input type="file" (change)="showPreviewImage($event)" multiple>
+  <img [src]="localUrl" *ngIf="localUrl" class="imgPlaceholder" width="100px" height="100px">
+
+  <h1>Received Images</h1>
+  <div *ngFor="let image of mongoUrl">
+    <img [src]="image" class="imgPlaceholder" width="200px" height="200px">
+  </div>
+
+</div>

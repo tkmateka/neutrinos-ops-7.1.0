@@ -424,14 +424,14 @@
             "dbOption": {
                 "name": "opsmanager",
                 "type": "mongodb",
-                "url": "mongodb+srv://opsmanager:opsmanager123@neutrinostravelapp.cggly.mongodb.net/neutrinosOpsDB?retryWrites=true&w=majority",
+                "url": "mongodb+srv://opsmanager:opsmanager@neutrinostravelapp.cggly.mongodb.net/neutrinosOpsDB?retryWrites=true&w=majority",
                 "options": ""
             },
             "disabledb": false,
             "selectedDB": "mongodb",
             "selectedOption": "mongodb",
             "dbCategory": "no-sql",
-            "mssql_name": "mongodb_0",
+            "mssql_name": "opsmanager",
             "mssql_type": "mongodb",
             "mssql_host": "localhost",
             "mssql_port": 1433,
@@ -457,7 +457,7 @@
             "mssql_options.localAddress": "",
             "mssql_options.readOnlyIntent": false,
             "mssql_options.encrypt": false,
-            "oracle_name": "mongodb_0",
+            "oracle_name": "opsmanager",
             "oracle_type": "mongodb",
             "oracle_host": "localhost",
             "oracle_port": 1521,
@@ -469,9 +469,9 @@
             "oracle_synchronize": true,
             "mongodb_name": "opsmanager",
             "mongodb_type": "mongodb",
-            "mongodb_url": "mongodb+srv://opsmanager:opsmanager123@neutrinostravelapp.cggly.mongodb.net/neutrinosOpsDB?retryWrites=true&w=majority",
+            "mongodb_url": "mongodb+srv://opsmanager:opsmanager@neutrinostravelapp.cggly.mongodb.net/neutrinosOpsDB?retryWrites=true&w=majority",
             "mongodb_options": "",
-            "mysql_name": "mongodb_0",
+            "mysql_name": "opsmanager",
             "mysql_type": "mongodb",
             "mysql_host": "localhost",
             "mysql_port": 3306,
@@ -492,7 +492,7 @@
             "mysql_trace": true,
             "mysql_multipleStatements": false,
             "mysql_flags": "flags",
-            "mariadb_name": "mongodb_0",
+            "mariadb_name": "opsmanager",
             "mariadb_type": "mongodb",
             "mariadb_host": "localhost",
             "mariadb_port": 3306,
@@ -513,7 +513,7 @@
             "mariadb_trace": true,
             "mariadb_multipleStatements": false,
             "mariadb_flags": "flags",
-            "postgres_name": "mongodb_0",
+            "postgres_name": "opsmanager",
             "postgres_type": "mongodb",
             "postgres_host": "localhost",
             "postgres_port": 5432,
@@ -655,7 +655,7 @@
                 },
                 "mongodb_url": {
                     "type": "str",
-                    "value": "mongodb+srv://opsmanager:opsmanager123@neutrinostravelapp.cggly.mongodb.net/neutrinosOpsDB?retryWrites=true&w=majority"
+                    "value": "mongodb+srv://opsmanager:opsmanager@neutrinostravelapp.cggly.mongodb.net/neutrinosOpsDB?retryWrites=true&w=majority"
                 },
                 "mongodb_options": {
                     "type": "str",
@@ -849,10 +849,11 @@
             "__n_excludedFromValidation__": {},
             "users": {
                 "sd_EpL0cWVkZjg5r4YB": [
-                    "sd_RVC9aeq2D2dloX7k",
                     "sd_Kx8hQYyDyHPotS5z",
                     "sd_P9lzQ0A5wBOCCgt5",
-                    "sd_w0YNWQPoyjRzHKwf"
+                    "sd_RVC9aeq2D2dloX7k",
+                    "sd_w0YNWQPoyjRzHKwf",
+                    "sd_dk5nSP8LkIbZbx2f"
                 ]
             }
         }

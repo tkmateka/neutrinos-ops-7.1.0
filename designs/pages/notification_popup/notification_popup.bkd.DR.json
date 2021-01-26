@@ -76,7 +76,7 @@
             "designerReference": [
                 {
                     "_key": "componentLabel",
-                    "_value": "Approval Notifications",
+                    "_value": "Travel Approval",
                     "_type": "kv",
                     "_attrDef": "p",
                     "_useAsLabel": true
@@ -13147,7 +13147,7 @@
             "designerReference": [
                 {
                     "_key": "componentLabel",
-                    "_value": "Approval Notifications",
+                    "_value": "Facility Approval",
                     "_type": "kv",
                     "_attrDef": "p",
                     "_useAsLabel": true
@@ -17279,7 +17279,7 @@
                             },
                             {
                                 "_key": "(click)",
-                                "_value": "approveDeclineRequest('approved', 'travel')",
+                                "_value": "approveDeclineRequest('approved', 'facility')",
                                 "_type": "kv",
                                 "_attrDef": "p"
                             },

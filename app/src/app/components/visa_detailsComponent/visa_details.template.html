@@ -1,3 +1,10 @@
+<div fxLayout="row wrap" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+  <div>
+    <div fxLayout="row wrap" fxLayoutAlign="start stretch" fxShow="true" fxHide="false" *ngIf="spinner">
+      <mat-spinner style="position: fixed; z-index: 999;   height: 2em;   width: 2em;   overflow: show;   margin: auto;   top: 0;   left: 0;   bottom: 0;   right: 0;" id="2d474ed4-5064-2e80-1146-ba27d907aef5"></mat-spinner>
+    </div>
+  </div>
+</div>
 <div fxLayout="row wrap" class="fullHeightMinusTopBar loggedOnBG" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" fxFill>
   <div fxLayout="column wrap" fxFlex="100" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
     <div fxLayout="row wrap" class="breadcrumHeight paddingLeft" fxLayoutAlign="start center" [fxShow]="true" [fxHide]="false">
@@ -14,7 +21,7 @@
       </div>
     </div>
     <div fxLayout="column wrap" fxLayoutGap="1.5em" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
-      <div fxLayout="row wrap" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false">
+      <div fxLayout="row wrap" class="fullWidth" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false">
         <div fxLayout="column wrap" class="tabContainer" fxFlex="100" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
           <mat-tab-group class="tabGroup">
             <mat-tab label="{{visaType.typeName}}" *ngFor="let visaType of visaDetails.visaTypes">
@@ -30,7 +37,7 @@
                   </div>
                 </div>
                 <div fxLayout="row wrap" class="smallFont marginTop1Em" fxLayoutAlign="space-between center" [fxShow]="true" [fxHide]="false" *ngIf="visaType.formLinks">
-                  <div fxLayout="column wrap" fxFlex="48" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><button mat-raised-button class="darkGreyBackground redColor boldFont cursorPointer btnHeight">Upload File</button></div>
+                  <div fxLayout="column wrap" fxFlex="48" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><button mat-raised-button class="darkGreyBackground,boldFont,cursorPointer,btnHeight" color="warn">Upload File</button></div>
                   <div fxLayout="column wrap" class="formsLink" fxFlex="48" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false">
                     <div>
                       <a href="{{visaType.formLinks}}" target="_blank">Go to {{visaType.typeName}} Forms</a>

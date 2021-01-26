@@ -66,6 +66,7 @@ export class ops_popupComponent extends NBaseComponent implements OnInit {
             { label: "Date Of Birth", id: "dateOfBirth", type: "date", required: true, value: null, minDate: null, maxDate: new Date() },
             { label: "Date Of Joining", id: "dateOfJoining", type: "date", required: true, value: null, minDate: null, maxDate: new Date() },
             { label: "Blood Group", id: "bloodGroup", type: "input", required: false, value: "", pattern: "" },
+            { label: "Employee Type", id: "empType", type: "select", required: true, value: "", pattern: "", options: ['Employee', 'Managers', 'Operations Team', 'Finance Team'] },
             { label: "Department", id: "department", type: "input", required: true, value: "", pattern: "[a-zA-Z ]*" },
             { label: "Designation", id: "designation", type: "input", required: true, value: "", pattern: "[a-zA-Z ]*" },
             { label: "Line Manager Full Name", id: "lineManager", type: "input", required: true, value: "", pattern: "[a-zA-Z ]*" },

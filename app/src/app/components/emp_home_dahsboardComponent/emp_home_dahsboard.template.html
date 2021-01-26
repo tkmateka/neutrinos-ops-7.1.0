@@ -1,11 +1,19 @@
+<div fxLayout="row wrap" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+  <div>
+    <div fxLayout="row wrap" fxLayoutAlign="start stretch" fxShow="true" fxHide="false" *ngIf="spinner">
+      <mat-spinner style="position: fixed; z-index: 999;   height: 2em;   width: 2em;   overflow: show;   margin: auto;   top: 0;   left: 0;   bottom: 0;   right: 0;" id="2d474ed4-5064-2e80-1146-ba27d907aef5"></mat-spinner>
+    </div>
+  </div>
+</div>
 <div fxLayout="row wrap" class="loggedOnBG" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" fxFill="fxFill">
   <div fxLayout="column wrap" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" fxFill="fxFill">
     <div fxLayout="row wrap" class="blackTopBar" fxLayoutAlign="space-between center" [fxShow]="true" [fxHide]="false">
       <div fxLayout="column wrap" class="cursorPointer" fxFlex="15" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" (click)="goHome()"><img imgSrc="Web/lightLogo.png" class="minWidth250"></div>
       <div fxLayout="column wrap" fxFlex="20" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
-        <div fxLayout="row wrap" fxLayoutGap="1em" fxLayoutAlign="end center" [fxShow]="true" [fxHide]="false">
+        <div fxLayout="row wrap" class="relative" fxLayoutGap="1em" fxLayoutAlign="end center" [fxShow]="true" [fxHide]="false">
           <mat-icon class="whiteColor logout boldFont cursorPointer" *ngIf="currentUser[&apos;designation&apos;] == &apos;Operations Manager&apos;" (click)="addNewUser()">person_add</mat-icon>
-          <mat-icon class="whiteColor boldFont cursorPointer notification" matBadge="{{notificationsMessages.length}}" matBadgeColor="warn" [matMenuTriggerFor]="menu" [ngClass]="{ &apos;disabled&apos; : !notificationsMessages.length }">notifications</mat-icon>
+          <mat-progress-spinner class="notificationSpinner" *ngIf="notificationLoading" [mode]="&apos;indeterminate&apos;" color="accent" [value]="50"></mat-progress-spinner>
+          <mat-icon class="whiteColor boldFont cursorPointer notification" matBadge="{{notificationsMessages.length}}" matBadgeColor="warn" [matMenuTriggerFor]="menu" [ngClass]="{ &apos;disabled&apos; : !notificationsMessages.length }" [matBadgeHidden]="notificationLoading">notifications</mat-icon>
           <mat-icon class="whiteColor logout boldFont cursorPointer" (click)="logout()">power_settings_new</mat-icon>
         </div>
       </div>

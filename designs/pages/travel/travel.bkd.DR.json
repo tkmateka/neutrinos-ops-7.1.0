@@ -1250,7 +1250,32 @@
                                     "_type": "kv",
                                     "_attrDef": "p"
                                 }
-                            ]
+                            ],
+                            "eac5913c-209a-d1ad-e3a0-776c852436e2": {
+                                "paletteKey": "NEUTRINOS_VIEW_uploadFile",
+                                "parentEditorKey": "4cf43a94-b3eb-8f3d-de5e-b9875ad446aa",
+                                "designerReference": [
+                                    {
+                                        "_key": "componentLabel",
+                                        "_value": "uploadFile",
+                                        "_type": "kv",
+                                        "_attrDef": "p",
+                                        "_useAsLabel": true
+                                    },
+                                    {
+                                        "_key": "style",
+                                        "_value": "",
+                                        "_type": "kv",
+                                        "_attrDef": "p"
+                                    },
+                                    {
+                                        "_key": "class",
+                                        "_value": "",
+                                        "_type": "dav",
+                                        "_attrDef": "p"
+                                    }
+                                ]
+                            }
                         },
                         "d2393b7d-007d-51c9-53de-030032c0e361": {
                             "paletteKey": "NG-tab",

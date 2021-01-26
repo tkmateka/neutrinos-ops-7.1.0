@@ -20,7 +20,9 @@
     <div fxLayout="row wrap" class="tabGroupContainer,marginTop1Em" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
       <div fxLayout="column wrap" class="tabContainer" fxFlex="100" fxLayoutGap="0.8em" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
         <mat-tab-group class="tabGroup">
-          <mat-tab label="Policy"></mat-tab>
+          <mat-tab label="Policy">
+            <bh-uploadfile></bh-uploadfile>
+          </mat-tab>
           <mat-tab label="Procedure"></mat-tab>
           <mat-tab label="Form">
             <div fxLayout="row wrap" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false">

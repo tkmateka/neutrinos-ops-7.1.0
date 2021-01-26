@@ -477,7 +477,7 @@
     </div>
     <div fxLayout="row wrap" fxLayoutAlign="space-between center" [fxShow]="true" [fxHide]="false" *ngIf="data.facility.emailId != currentUser.emailId">
       <div fxLayout="column wrap" fxFlex="32" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><button mat-raised-button class="blackButton" (click)="closeDialog()">Leave Unread</button></div>
-      <div fxLayout="column wrap" fxFlex="32" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><button mat-raised-button class="greenButton" (click)="approveDeclineRequest(&apos;approved&apos;, &apos;travel&apos;)">Approve</button></div>
+      <div fxLayout="column wrap" fxFlex="32" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><button mat-raised-button class="greenButton" (click)="approveDeclineRequest(&apos;approved&apos;, &apos;facility&apos;)">Approve</button></div>
       <div fxLayout="column wrap" fxFlex="32" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><button mat-raised-button class="redButton" (click)="approveDeclineRequest(&apos;declined&apos;, &apos;travel&apos;)">Decline</button></div>
     </div>
   </div>

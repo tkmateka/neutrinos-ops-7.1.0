@@ -82,5 +82,15 @@
         "componentName": "facilities_managementComponent",
         "isEntry": false,
         "createDate": "2020-10-17T10:27:46.637Z"
+    },
+    "2ab93ae5-80af-19d6-d3fc-9efe6245c96d": {
+        "appPageName": "employees",
+        "componentName": "employeesComponent",
+        "createDate": "2021-01-23T16:11:46.248Z"
+    },
+    "0d2413f2-4c0b-28a1-809b-886735d3c913": {
+        "appPageName": "uploadFile",
+        "componentName": "uploadfileComponent",
+        "createDate": "2021-01-24T00:47:06.092Z"
     }
 }

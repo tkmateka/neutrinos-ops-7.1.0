@@ -1,0 +1,14 @@
+{
+    "appPageId": "2ab93ae5-80af-19d6-d3fc-9efe6245c96d",
+    "appPageName": "employees",
+    "componentName": "employeesComponent",
+    "selectorName": "bh-employees",
+    "htmlFileName": "employees.template.html",
+    "tsFileName": "employees.component.ts",
+    "createDate": "2021-01-23T16:11:46.248Z",
+    "bkd": {
+        "designerHtml": "",
+        "designerReference": {},
+        "ts": ""
+    }
+}
