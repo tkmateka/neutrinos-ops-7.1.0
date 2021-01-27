@@ -21,26 +21,26 @@ export class facilities_managementComponent extends NBaseComponent implements On
     requestTypes = ["Office Hygine", "Guest House Accommodation", "Event Booking Request", "Office Electrical Issues", "Other Request"];
     countries = ["South Africa", "India"];
     facilities = {
-            'emailId': '',
-            'employeeId': '',
-            'employeeName': '',
-            'isRead': false,
-            'department': '',
-            'lineManager': '',
-            'lineManagerEmail': '',
-            'requestId': null,
-            'requestDate': null,
-            'status': '',
-            'request': {
-                'requestType': '',
-                'country': '',
-                'request': ''
-            },
-            'comments': []
-        };
+        'emailId': '',
+        'employeeId': '',
+        'employeeName': '',
+        'isRead': false,
+        'department': '',
+        'lineManager': '',
+        'lineManagerEmail': '',
+        'requestId': null,
+        'requestDate': null,
+        'status': '',
+        'request': {
+            'requestType': '',
+            'country': '',
+            'request': ''
+        },
+        'comments': []
+    };
 
     constructor(private bdms: NDataModelService, private router: Router, private activatedRoute: ActivatedRoute,
-        private ssd: ssd_integrationService, private common: commonService, private snackbar: NSnackbarService ) {
+        private ssd: ssd_integrationService, private common: commonService, private snackbar: NSnackbarService) {
         super();
 
         this.facilities = this.common.getFacilitiesModel();
@@ -68,22 +68,14 @@ export class facilities_managementComponent extends NBaseComponent implements On
         this.facilities.lineManager = this.currentUser['lineManager'];
         this.facilities.lineManagerEmail = this.currentUser['lineManagerEmail'];
         this.facilities.requestId = new Date().getTime();
-         this.facilities.requestDate = new Date();
+        this.facilities.requestDate = new Date();
         this.facilities.status = "new";
 
         console.log(this.facilities);
 
         let body = {
             data: this.facilities,
-            collection: "facilities",
-            // email: {
-            //     toEmail: 'tkmateka@gmail.com',
-            //     fromEmail: this.currentUser['givenName'] + " " + this.currentUser['surname'],
-            //     // cc: ['raghudas.panicker@neutrinos.co'],
-            //     topic: "Travel Application",
-            //     emailBody: this.currentUser['givenName'] + " " + this.currentUser['surname'] +
-            //         ` has requested a new ${this.transportType} ${this.tripType} trip ticket.`
-            // }
+            collection: "facilities"
         }
 
         if (this.currentUser['employeeId']) {
@@ -101,6 +93,30 @@ export class facilities_managementComponent extends NBaseComponent implements On
                 this.snackbar.openSnackBar(err['error']['error']);
             });
         }
+    }
+
+
+
+    uploadFile(file) {
+        let body = {
+            data: "this.facilities",
+            collection: "facilities"
+        }
+
+        console.log("FILE...", file);
+
+        // this.ssd.POST('uploadFiles', body).subscribe(res => {
+        //     this.spinner = false;
+        //     console.log(res);
+        //     this.snackbar.openSnackBar("Request was successfully added");
+        //     form.reset();
+        //     this.facilities = this.common.getFacilitiesModel();
+        //     // this.getTravelRequests();
+        // }, err => {
+        //     this.spinner = false;
+        //     console.log(err);
+        //     this.snackbar.openSnackBar(err['error']['error']);
+        // });
     }
 
 

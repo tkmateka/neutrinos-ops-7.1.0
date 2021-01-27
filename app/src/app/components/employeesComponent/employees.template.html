@@ -1,0 +1,29 @@
+<div fxLayout="row wrap" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+  <div>
+    <div fxLayout="row wrap" fxLayoutAlign="start stretch" fxShow="true" fxHide="false" *ngIf="spinner">
+      <mat-spinner style="position: fixed; z-index: 999;   height: 2em;   width: 2em;   overflow: show;   margin: auto;   top: 0;   left: 0;   bottom: 0;   right: 0;" id="2d474ed4-5064-2e80-1146-ba27d907aef5"></mat-spinner>
+    </div>
+  </div>
+</div>
+<div fxLayout="row wrap" class="opsManagementBG" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+  <div fxLayout="column wrap" fxFlex="100" fxLayoutGap="1em" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+    <div fxLayout="row wrap" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false">
+      <div class="textAlignCenter whiteColor">
+        <h1>Employees</h1>
+      </div>
+    </div>
+    <div fxLayout="row wrap" class="overflowX" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+      <div class="fullWidth">
+        <table mat-table [dataSource]="employeesDataSource" #requestsTable class="reqTable mat-elevation-z8">
+          <ng-container *ngFor="let column of employeesColumns; let i = index" [matColumnDef]="column">
+            <th mat-header-cell *matHeaderCellDef> {{employeesCells[i]}} </th>
+            <td mat-cell *matCellDef="let element; let INDEX = index;">{{element[column]}}</td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="employeesColumns; sticky: true"></tr>
+          <tr mat-row #rowId *matRowDef="let row; columns: employeesColumns;"></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -27,6 +27,7 @@ $blackShaddow: rgba(0,0,0,.38);
 // DEFAULT STYLES
 ::-webkit-scrollbar {
   width: 7px;/* Scroll width */
+  height: 7px;/* Scroll height */
 }
 ::-webkit-scrollbar-track {
   box-shadow: inset 0 0 5px $grey; /* Scroll Track Color */
@@ -37,7 +38,7 @@ $blackShaddow: rgba(0,0,0,.38);
   border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover, .darkGreyBackground {
-  background: $darkGrey !important; /* Scroll Handle on hover */
+  background: $red !important; /* Scroll Handle on hover */
 }
 * {
     font-family: 'Poppins';
@@ -45,9 +46,20 @@ $blackShaddow: rgba(0,0,0,.38);
 h1, h2, h3, h4, h5, h6, p {
   margin: 0em;
 }
+.overflowX {
+    width: 100%;
+    overflow-x: scroll;
+}
+.relative {
+    position: relative;
+}
 .reqTable {
     width: 100%;
+    white-space: nowrap;
     background: $greyShadowBG;
+    tr.mat-footer-row, tr.mat-row {
+        height: 40px;
+    }
     th.mat-header-cell {
         background: $blackShaddow;
         font-weight: bold;
@@ -55,8 +67,7 @@ h1, h2, h3, h4, h5, h6, p {
     }
     th.mat-header-cell, .mat-cell, .mat-footer-cell {
         color: white;
-        text-align: center;
-        padding: 2px !important;
+        padding: 0 10px !important;
     }
 }
 .mat-progress-spinner circle, .mat-spinner circle {
@@ -170,9 +181,34 @@ h1, h2, h3, h4, h5, h6, p {
     width: 40%;
     min-width: 300px;
 }
+.notificationSpinner {
+    position: absolute !important;
+    top: -4px !important;
+    right: 38px;
+    margin-right: 0 !important;
+}
+.notificationSpinner, .notificationSpinner svg {
+    width: 13px !important;
+    height: 13px !important;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 .notificationPopup {
     margin: auto;
     width: 50%;
+}
+.fullWidth {
+    width: 100%;
 }
 .fullHeightMinusTopBar {
     height: calc(100vh - 85px) !important;
@@ -314,6 +350,12 @@ h1, h2, h3, h4, h5, h6, p {
 .opsManagementBG {
     height: calc(100vh - 65px) !important;
     overflow-y: scroll;
+    .mat-tab-group {
+        width: 100%;
+        .mat-tab-header-pagination-controls-enabled .mat-tab-header-pagination{
+            background: $red;
+        }
+    }
     .mat-tab-group.mat-primary .mat-ink-bar {
         background-color: $red;
         height: 5px;
@@ -374,6 +416,7 @@ h1, h2, h3, h4, h5, h6, p {
     height: 65px;
 }
 .sideNavContainer {
+    width: 100%;
     height: calc(100% - 65px);
     .mat-drawer-backdrop.mat-drawer-shown {
         background: $lightGrey;
@@ -459,11 +502,15 @@ h1, h2, h3, h4, h5, h6, p {
 .tabContainer {
     border: solid 2px $grey;
     background: $greyShadowBG;
-    height: 73vh;
+    height: 69.5vh;
     margin: 0 20px;
     padding: 10px;
     overflow-x: auto;
     border-radius: 6px;
+    
+    .mat-tab-header-pagination-controls-enabled .mat-tab-header-pagination{
+        background: $red;
+    }
     .mat-tab-group.mat-primary .mat-ink-bar {
         background-color: $red;
         height: 5px;
@@ -483,6 +530,7 @@ h1, h2, h3, h4, h5, h6, p {
     height: 50vh;
 }
 .tabGroup {
+    width: 100%;
     .mat-tab-header {
         margin-bottom: 1em;
     }
@@ -497,7 +545,7 @@ h1, h2, h3, h4, h5, h6, p {
         color: $white;
     }
     mat-tab-body {
-        height: 60vh;
+        max-height: 55vh;
         overflow-y: auto;
         overflow-x: hidden;
     }

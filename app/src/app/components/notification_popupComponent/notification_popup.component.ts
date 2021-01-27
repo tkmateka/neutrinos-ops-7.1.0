@@ -45,6 +45,9 @@ export class notification_popupComponent extends NBaseComponent implements OnIni
             // Comment is required if the trip is Declined
             return false;
         }
+        
+        this.data[key].status = action;
+        
         if(this.comment) {
             this.data[key].comments.push({
                 'from': `${this.currentUser['givenName']} ${this.currentUser['surname']}`,
@@ -53,7 +56,10 @@ export class notification_popupComponent extends NBaseComponent implements OnIni
                 'comment': this.comment
             });
         }
-        this.data[key].status = action;
+        if(this.currentUser['designation'] == 'Operations Manager') {
+            this.data[key].isRead = true;
+        }
+        
         this.closeDialog(this.data);
     }
 

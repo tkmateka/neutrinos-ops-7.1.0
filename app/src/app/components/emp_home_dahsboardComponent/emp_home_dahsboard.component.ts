@@ -19,6 +19,7 @@ import { dialogService } from '../../services/dialog/dialog.service';
 
 export class emp_home_dahsboardComponent extends NBaseComponent implements OnInit {
     spinner = false;
+    notificationLoading = false;
     notificationsMessages = [];
     notifications: any = [];
     currentUser: any = {};
@@ -29,6 +30,7 @@ export class emp_home_dahsboardComponent extends NBaseComponent implements OnIni
         { icon: "school", name: "Human Resource", link: "/ops-app/hr", show: false },
         { icon: "flight", name: "Operations", link: "/ops-app/operations", show: true },
         { icon: "merge_type", name: "Operations Management", link: "/ops-app/operations-management", show: false },
+        { icon: "group", name: "Employees", link: "/ops-app/employees", show: false },
         { icon: "person", name: "My Profile", link: "/ops-app/profile", show: true }
     ];
 
@@ -81,15 +83,16 @@ export class emp_home_dahsboardComponent extends NBaseComponent implements OnIni
             this.router.navigate(['/welcome']);
         }
 
-        let body = {
-            collection: "travel"
-        }
+        if (this.currentUser['designation'] != 'Operations Manager') {
+            let body = {
+                collection: "travel"
+            }
 
-        this.spinner = true;
-        this.ssd.POST('getData', body).subscribe(res => {
-            this.notifications = (res == {}) ? [] : res;
+            this.notificationLoading = true;
 
-            if (this.currentUser['designation'] != 'Operations Manager') {
+            this.ssd.POST('getData', body).subscribe(res => {
+                this.notifications = (res == {}) ? [] : res;
+
                 for (let i = 0; i < this.notifications.length; i++) {
                     if (this.notifications[i]['emailId'] == this.currentUser['emailId']) {
                         // Approved
@@ -121,40 +124,62 @@ export class emp_home_dahsboardComponent extends NBaseComponent implements OnIni
                         }
                     }
                 }
-            } else {
-                let facBody = {
-                    collection: "facilities"
-                }
 
-                this.ssd.POST('getData', facBody).subscribe((facRes: any[]) => {
+                this.notifications = this.notifications.sort((a, b) => a.requestDate - b.requestDate);
+                this.notificationLoading = false;
+            }, err => {
+                this.notificationLoading = false;
+                this.snackbar.openSnackBar(err['error']['error']);
+                console.log(err);
+            });
+
+        } else {
+            let facBody = [
+                { collection: "travel" },
+                { collection: "facilities" }
+            ];
+
+            for (let j = 0; j < facBody.length; j++) {
+                this.notificationLoading = true;
+                this.ssd.POST('getData', facBody[j]).subscribe((facRes: any[]) => {
                     let facility = [];
                     facility = facRes;
                     this.notifications = this.notifications.concat(facility);
 
-                    for (let i = 0; i < facility.length; i++) {
-                        // Facilities Requests
-                        if ((facility[i]['status'] == "new") && (!facility[i]['isRead'])) {
-                            this.notificationsMessages.push({
-                                travel: facility[i],
-                                message: `${facility[i]['employeeName']} has requested your assistance on the ${facility[i]['request']['requestType']}.`,
-                                requestDate: facility[i]['requestDate']
-                            });
+                    if (facBody[j]['collection'] == "facilities") {
+                        for (let i = 0; i < facility.length; i++) {
+                            // Facilities Requests
+                            if ((facility[i]['status'] == "new") && (!facility[i]['isRead'])) {
+                                this.notificationsMessages.push({
+                                    facility: facility[i],
+                                    message: `${facility[i]['employeeName']} has requested your assistance on the ${facility[i]['request']['requestType']}.`,
+                                    requestDate: facility[i]['requestDate']
+                                });
+                            }
+                        }
+                    } else {
+                        for (let i = 0; i < facility.length; i++) {
+                            // Travel Requests
+                            if ((facility[i]['status'] == "approved") && (!facility[i]['isRead'])) {
+                                this.notificationsMessages.push({
+                                    travel: facility[i],
+                                    message: `${facility[i]['employeeName']} has requested your approval on his ${facility[i]['modeOfTransport']} ticket application.`,
+                                    requestDate: facility[i]['requestDate']
+                                });
+                            }
                         }
                     }
-                }, facErr => {
-                    this.snackbar.openSnackBar(facErr['error']['error']);
-                    console.log(facErr);
+
+                    this.notifications = this.notifications.sort((a, b) => a.requestDate - b.requestDate);
+                    this.notificationLoading = false;
+                }, err => {
+                    this.notificationLoading = false;
+                    this.snackbar.openSnackBar(err['error']['error']);
+                    console.log(err);
                 });
             }
 
-            this.notifications = this.notifications.sort((a, b) => a.requestDate - b.requestDate);
-
-            this.spinner = false;
-        }, err => {
-            this.snackbar.openSnackBar(err['error']['error']);
-            console.log(err);
-            this.spinner = false;
-        });
+        }
     }
 
     addNewUser() {
@@ -183,35 +208,31 @@ export class emp_home_dahsboardComponent extends NBaseComponent implements OnIni
     }
 
     openDialog(notification) {
-        let data = notification;
         let operation = 'updateRequest';
 
-        this.dialog.viewNotification(data).subscribe(results => {
+        this.dialog.viewNotification(notification).subscribe(results => {
             if (results) {
-                delete results['travel']['_id'];
+                let body: any;
+                let reqType: string = results['travel'] ? 'travel' : 'facility';
+                let collection: string = results['travel'] ? 'travel' : 'facilities';
 
-                if (results.travel.isRead) {
-                    operation = 'updateRequest';
-                }
+                delete results[reqType]['_id'];
 
-                let body = {
-                    collection: 'travel',
-                    data: results['travel']
+                body = {
+                    collection: collection,
+                    data: results[reqType]
                 }
 
                 this.spinner = true;
                 this.ssd.POST(operation, body).subscribe(res => {
+                    if (results[reqType]['status'] == 'approved') {
+                        this.snackbar.openSnackBar(`You have successfully approved ${results[reqType]['employeeName']}'s request`);
+                    } else {
+                        this.snackbar.openSnackBar(`You have successfully declined ${results[reqType]['employeeName']}'s request`);
+                    }
+                    this.spinner = false;
                     // Refresh Notifications
                     this.getNotifications();
-
-                    this.spinner = false;
-                    if (!results['travel']['isRead']) {
-                        if (results['travel']['status'] == 'approved') {
-                            this.snackbar.openSnackBar(`You have successfully approved ${results['travel']['employeeName']}'s request`);
-                        } else {
-                            this.snackbar.openSnackBar(`You have successfully declined ${results['travel']['employeeName']}'s request`);
-                        }
-                    }
                 }, err => {
                     this.spinner = false;
                     this.snackbar.openSnackBar(err['error']['error']);
@@ -236,6 +257,7 @@ export class emp_home_dahsboardComponent extends NBaseComponent implements OnIni
                     }
                     if ((this.currentUser['designation'] == "Operations Manager") || (this.currentUser['designation'] == "Operations Admin")) {
                         this.sidenavItems[4]['show'] = true;
+                        this.sidenavItems[5]['show'] = true;
                     }
                     this.getNotifications();
                 }

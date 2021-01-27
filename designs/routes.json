@@ -10,8 +10,7 @@
             "children": [
                 {
                     "component": "home_empComponent",
-                    "path": "home",
-                    "children": []
+                    "path": "home"
                 },
                 {
                     "path": "hr",
@@ -19,8 +18,7 @@
                 },
                 {
                     "component": "operations_empComponent",
-                    "path": "operations",
-                    "children": []
+                    "path": "operations"
                 },
                 {
                     "path": "operations/visa",
@@ -49,6 +47,10 @@
                 {
                     "component": "emp_profileComponent",
                     "path": "profile"
+                },
+                {
+                    "component": "employeesComponent",
+                    "path": "employees"
                 }
             ]
         },

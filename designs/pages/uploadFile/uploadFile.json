@@ -1,0 +1,14 @@
+{
+    "appPageId": "0d2413f2-4c0b-28a1-809b-886735d3c913",
+    "appPageName": "uploadFile",
+    "componentName": "uploadfileComponent",
+    "selectorName": "bh-uploadfile",
+    "htmlFileName": "uploadfile.template.html",
+    "tsFileName": "uploadfile.component.ts",
+    "createDate": "2021-01-24T00:47:06.092Z",
+    "bkd": {
+        "designerHtml": "",
+        "designerReference": {},
+        "ts": ""
+    }
+}

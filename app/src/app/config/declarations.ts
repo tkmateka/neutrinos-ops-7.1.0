@@ -16,6 +16,10 @@ window['neutrinos'] = {
 }
 
 //CORE_REFERENCE_IMPORTS
+//CORE_REFERENCE_IMPORT-uploadfileComponent
+import { uploadfileComponent } from '../components/uploadfileComponent/uploadfile.component';
+//CORE_REFERENCE_IMPORT-employeesComponent
+import { employeesComponent } from '../components/employeesComponent/employees.component';
 //CORE_REFERENCE_IMPORT-facilities_managementComponent
 import { facilities_managementComponent } from '../components/facilities_managementComponent/facilities_management.component';
 //CORE_REFERENCE_IMPORT-emp_profileComponent
@@ -87,6 +91,10 @@ export const appDeclarations = [
   NMapComponent,
   ArtImgSrcDirective,
   //CORE_REFERENCE_PUSH_TO_DEC_ARRAY
+//CORE_REFERENCE_PUSH_TO_DEC_ARRAY-uploadfileComponent
+uploadfileComponent,
+//CORE_REFERENCE_PUSH_TO_DEC_ARRAY-employeesComponent
+employeesComponent,
 //CORE_REFERENCE_PUSH_TO_DEC_ARRAY-facilities_managementComponent
 facilities_managementComponent,
 //CORE_REFERENCE_PUSH_TO_DEC_ARRAY-emp_profileComponent
@@ -148,7 +156,5 @@ ssd_integrationService,
 
 // CORE_REFERENCE_PUSH_TO_ROUTE_ARRAY_START
 export const appRoutes = [{path: 'welcome', component: welcomeComponent},{path: 'ops-app', component: emp_home_dahsboardComponent,
-children: [{path: 'home', component: home_empComponent,
-children: []},{path: 'hr', component: emp_hrComponent},{path: 'operations', component: operations_empComponent,
-children: []},{path: 'operations/visa', component: visaComponent},{path: 'operations/visa/:country', component: visa_detailsComponent},{path: 'operations/travel', component: travelComponent},{path: 'operations/facilities', component: facilities_managementComponent},{path: 'requests', component: requestsComponent},{path: 'operations-management', component: ops_managementComponent},{path: 'profile', component: emp_profileComponent}]},{path: '', redirectTo: 'welcome', pathMatch: 'full'},{path: '**', component: PageNotFoundComponent}]
+children: [{path: 'home', component: home_empComponent},{path: 'hr', component: emp_hrComponent},{path: 'operations', component: operations_empComponent},{path: 'operations/visa', component: visaComponent},{path: 'operations/visa/:country', component: visa_detailsComponent},{path: 'operations/travel', component: travelComponent},{path: 'operations/facilities', component: facilities_managementComponent},{path: 'requests', component: requestsComponent},{path: 'operations-management', component: ops_managementComponent},{path: 'profile', component: emp_profileComponent},{path: 'employees', component: employeesComponent}]},{path: '', redirectTo: 'welcome', pathMatch: 'full'},{path: '**', component: PageNotFoundComponent}]
 // CORE_REFERENCE_PUSH_TO_ROUTE_ARRAY_END

@@ -18,7 +18,7 @@
         "nodeType": "start",
         "name": "Send Request",
         "path": "/sendRequest",
-        "uploadpath": "\"\"",
+        "uploadpath": "",
         "summary": "",
         "description": "",
         "method": "post",
@@ -39,7 +39,6 @@
                 }
             }
         },
-        "uploadFileOptions": {},
         "editableListData": {
             "responses": [],
             "params": [],
@@ -52,7 +51,10 @@
         "__ssdTypeInputs__": {
             "uploadpath": {
                 "type": "str",
-                "value": ""
+                "value": "",
+                "nullable": "true",
+                "nullableValue": "",
+                "constant": false
             }
         },
         "__n_excludedFromValidation__": {},
