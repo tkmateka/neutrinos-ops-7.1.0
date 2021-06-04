@@ -1,0 +1,13 @@
+{
+    "appPageId": "1264de12-945d-458f-3034-942a19506cff",
+    "appPageName": "emp_home_dahsboard",
+    "componentName": "emp_home_dahsboardComponent",
+    "selectorName": "bh-emp_home_dahsboard",
+    "htmlFileName": "emp_home_dahsboard.template.html",
+    "tsFileName": "emp_home_dahsboard.component.ts",
+    "bkd": {
+        "designerHtml": "",
+        "designerReference": {},
+        "ts": ""
+    }
+}

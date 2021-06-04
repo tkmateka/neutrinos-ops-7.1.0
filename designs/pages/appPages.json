@@ -1,0 +1,96 @@
+{
+    "4f40edf0-82f4-b3e7-9da4-dcec8b164653": {
+        "appPageName": "welcome",
+        "componentName": "welcomeComponent",
+        "isEntry": false,
+        "createDate": "2020-09-15T09:17:49.060Z"
+    },
+    "330a08f2-510b-aafb-130c-05efe4753550": {
+        "appPageName": "emp_home_dahsboard",
+        "componentName": "emp_home_dahsboardComponent",
+        "isEntry": false,
+        "createDate": "2020-09-15T12:44:39.511Z"
+    },
+    "bd44d31c-6871-37e9-a00b-aa8bcba81490": {
+        "appPageName": "home_emp",
+        "componentName": "home_empComponent",
+        "isEntry": false,
+        "createDate": "2020-09-15T18:25:55.539Z"
+    },
+    "6fe7fdcd-34ca-07c4-465a-7ff7a003cf77": {
+        "appPageName": "emp_hr",
+        "componentName": "emp_hrComponent",
+        "isEntry": false,
+        "createDate": "2020-09-15T19:53:51.211Z"
+    },
+    "b379c5c6-0d0c-cb95-dbfc-876b9c034ebb": {
+        "appPageName": "operations_emp",
+        "componentName": "operations_empComponent",
+        "isEntry": false,
+        "createDate": "2020-09-15T21:48:30.049Z"
+    },
+    "a6f0da25-2816-06d4-9a23-8b42de0a2675": {
+        "appPageName": "visa",
+        "componentName": "visaComponent",
+        "isEntry": false,
+        "createDate": "2020-09-15T21:59:01.891Z"
+    },
+    "6549fc04-0789-669e-bce8-5a736bfc4697": {
+        "appPageName": "Visa_details",
+        "componentName": "visa_detailsComponent",
+        "isEntry": false,
+        "createDate": "2020-09-15T22:47:25.100Z"
+    },
+    "7f5333d8-18ae-60df-256f-be2bcd18f8c0": {
+        "appPageName": "travel",
+        "componentName": "travelComponent",
+        "isEntry": false,
+        "createDate": "2020-09-15T23:11:41.194Z"
+    },
+    "cee03a14-6e47-487c-67c6-4e4446224165": {
+        "appPageName": "ops_popup",
+        "componentName": "ops_popupComponent",
+        "isEntry": false,
+        "createDate": "2020-09-27T13:29:57.939Z"
+    },
+    "f043c0d9-2611-047c-a4eb-1df47bad58b6": {
+        "appPageName": "notification_popup",
+        "componentName": "notification_popupComponent",
+        "isEntry": false,
+        "createDate": "2020-09-27T13:30:33.354Z"
+    },
+    "f37cfdff-61a6-4f33-6c90-2fccbf65edab": {
+        "appPageName": "requests",
+        "componentName": "requestsComponent",
+        "isEntry": false,
+        "createDate": "2020-09-27T23:52:47.734Z"
+    },
+    "e64cee55-893a-6937-13a0-be3aac7d84b3": {
+        "appPageName": "ops_management",
+        "componentName": "ops_managementComponent",
+        "isEntry": false,
+        "createDate": "2020-09-29T22:43:16.600Z"
+    },
+    "758b35ef-4b19-2109-9d19-82a0c1ce81bc": {
+        "appPageName": "emp_profile",
+        "componentName": "emp_profileComponent",
+        "isEntry": false,
+        "createDate": "2020-10-17T10:26:23.457Z"
+    },
+    "759cc668-3446-0621-8fa6-2d5a51d93fb8": {
+        "appPageName": "facilities_management",
+        "componentName": "facilities_managementComponent",
+        "isEntry": false,
+        "createDate": "2020-10-17T10:27:46.637Z"
+    },
+    "2ab93ae5-80af-19d6-d3fc-9efe6245c96d": {
+        "appPageName": "employees",
+        "componentName": "employeesComponent",
+        "createDate": "2021-01-23T16:11:46.248Z"
+    },
+    "0d2413f2-4c0b-28a1-809b-886735d3c913": {
+        "appPageName": "uploadFile",
+        "componentName": "uploadfileComponent",
+        "createDate": "2021-01-24T00:47:06.092Z"
+    }
+}

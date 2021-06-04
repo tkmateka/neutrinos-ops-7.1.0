@@ -1,0 +1,33 @@
+<div fxLayout="row wrap" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+  <div>
+    <div fxLayout="row wrap" fxLayoutAlign="start stretch" fxShow="true" fxHide="false" *ngIf="spinner">
+      <mat-spinner style="position: fixed; z-index: 999;   height: 2em;   width: 2em;   overflow: show;   margin: auto;   top: 0;   left: 0;   bottom: 0;   right: 0;" id="2d474ed4-5064-2e80-1146-ba27d907aef5"></mat-spinner>
+    </div>
+  </div>
+</div>
+<div fxLayout="row wrap" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+  <div fxLayout="column wrap" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+    <div>
+      <input type="file" (change)="showPreviewImage($event)">
+    </div>
+  </div>
+  <div fxLayout="column wrap" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+    <div *ngFor="let sImg of selectedImages">
+      <img [src]="sImg.image" class="imgPlaceholder" width="100px" height="100px">
+      <a [href]="sImg.url" target="_blank">View</a>
+      <p (click)="onSubmit(sImg)">Upload</p>
+    </div>
+  </div>
+</div>
+<div fxLayout="row wrap" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+  <div>
+
+
+
+    <h1 style="margin-top:1em">Received Images</h1>
+    <div *ngFor="let image of mongoUrl">
+      <img [src]="image" class="imgPlaceholder" width="200px" height="200px">
+    </div>
+
+  </div>
+</div>

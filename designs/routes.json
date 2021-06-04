@@ -1,0 +1,68 @@
+{
+    "routes": [
+        {
+            "component": "welcomeComponent",
+            "path": "welcome"
+        },
+        {
+            "component": "emp_home_dahsboardComponent",
+            "path": "ops-app",
+            "children": [
+                {
+                    "component": "home_empComponent",
+                    "path": "home"
+                },
+                {
+                    "path": "hr",
+                    "component": "emp_hrComponent"
+                },
+                {
+                    "component": "operations_empComponent",
+                    "path": "operations"
+                },
+                {
+                    "path": "operations/visa",
+                    "component": "visaComponent"
+                },
+                {
+                    "component": "visa_detailsComponent",
+                    "path": "operations/visa/:country"
+                },
+                {
+                    "path": "operations/travel",
+                    "component": "travelComponent"
+                },
+                {
+                    "component": "facilities_managementComponent",
+                    "path": "operations/facilities"
+                },
+                {
+                    "path": "requests",
+                    "component": "requestsComponent"
+                },
+                {
+                    "path": "operations-management",
+                    "component": "ops_managementComponent"
+                },
+                {
+                    "component": "emp_profileComponent",
+                    "path": "profile"
+                },
+                {
+                    "component": "employeesComponent",
+                    "path": "employees"
+                }
+            ]
+        },
+        {
+            "path": "''",
+            "redirectTo": "welcome",
+            "pathMatch": "full",
+            "default": true
+        },
+        {
+            "path": "**",
+            "component": "PageNotFoundComponent"
+        }
+    ]
+}

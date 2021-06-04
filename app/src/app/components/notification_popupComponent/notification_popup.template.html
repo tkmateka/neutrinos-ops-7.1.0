@@ -1,0 +1,484 @@
+<div fxLayout="row wrap" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false" fxFill>
+  <div fxLayout="column wrap" fxFlex="100" fxLayoutGap="1em" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" *ngIf="data.travel">
+    <div fxLayout="row wrap" class="whiteColor" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false">
+      <h3>
+        Request Details</h3>
+    </div>
+    <div fxLayout="row wrap" class="whiteColor" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false">
+      <p class="textAlignCenter">
+        {{data.message}}
+      </p>
+    </div>
+    <div fxLayout="row wrap" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+      <div fxLayout="column wrap" class="rescheduleForm" fxFlex="100" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+        <form #roundTripForm="ngForm" autocomplete="off">
+          <div fxLayout="column wrap" fxFlex="99" fxLayoutGap="1em" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" *ngIf="data.travel.tripType != &apos;round-trip&apos;">
+            <div fxLayout="column wrap" class fxLayoutGap="1em" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" *ngFor="let trip of data.travel.tripList; let i = index">
+              <div fxLayout="row wrap" class="marginBottom1_5Em formBorder" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" *ngIf="data.travel.tripType == &apos;multi-city&apos;">
+                <h4 class="whiteColor">
+                  Trip - {{i + 1}}</h4>
+              </div>
+              <div fxLayout="row wrap" class="inputRowHeight" fxLayoutAlign="space-between center" [fxShow]="true" [fxHide]="false">
+                <div fxLayout="column wrap" fxFlex="49" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><label>
+                    <p>From<span class="redColor" id="from">*</span></p>
+                  </label>
+                  <div class="inputField-container">
+                    <mat-form-field [floatLabel]="&apos;never&apos;" appearance="legacy">
+                      <input matInput type="text" placeholder="From" required class="capitalize" [(ngModel)]="data.travel.tripList[i].from" name="[&apos;from&apos;+i]">
+                    </mat-form-field>
+
+                    <div class="errDiv">
+                      <mat-error *ngIf="submitted &amp;&amp; roundTripForm.controls[&apos;from&apos;+i]?.invalid &amp;&amp; (roundTripForm.controls[&apos;from&apos;+i].dirty || roundTripForm.controls[&apos;from&apos;+i].touched)">
+                        <span *ngIf="roundTripForm.controls[&apos;from&apos;+i].errors?.required">This field is required</span>
+                      </mat-error>
+                    </div>
+                  </div>
+                </div>
+                <div fxLayout="column wrap" fxFlex="49" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><label>
+                    <p>To<span class="redColor" id="to">*</span></p>
+                  </label>
+                  <div class="inputField-container">
+                    <mat-form-field [floatLabel]="&apos;never&apos;" appearance="legacy">
+                      <input matInput type="text" placeholder="To" required class="capitalize" [(ngModel)]="data.travel.tripList[i].to" name="[&apos;to&apos; + i]">
+                    </mat-form-field>
+
+                    <div class="errDiv">
+                      <mat-error *ngIf="submitted &amp;&amp; roundTripForm.controls[&apos;to&apos; + i]?.invalid &amp;&amp; (roundTripForm.controls[&apos;to&apos; + i].dirty || roundTripForm.controls[&apos;to&apos; + i].touched)">
+                        <span *ngIf="roundTripForm.controls[&apos;to&apos; + i].errors?.required">This field is required</span>
+                      </mat-error>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div fxLayout="row wrap" class="inputRowHeight" fxLayoutAlign="space-between center" [fxShow]="true" [fxHide]="false">
+                <div fxLayout="column wrap" fxFlex="49" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><label>
+                    <p>Departure Date<span class="redColor" id="from">*</span></p>
+                  </label>
+                  <div class="inputField-container">
+                    <mat-form-field [floatLabel]="&apos;never&apos;" appearance="legacy">
+                      <input matInput [matDatepicker]="departureDate" readonly placeholder="Select Departure Date" (click)="departureDate.open()" data-date-format="DD/MM/YYYY" required [min]="minDate" [(ngModel)]="data.travel.tripList[i].departureDate" name="[&apos;departureDate&apos;+i]">
+                      <mat-datepicker-toggle matSuffix [for]="departureDate"></mat-datepicker-toggle>
+                      <mat-datepicker #departureDate></mat-datepicker>
+                    </mat-form-field>
+
+                    <div class="errDiv">
+                      <mat-error *ngIf="submitted &amp;&amp; roundTripForm.controls[&apos;departureDate&apos;+i]?.invalid &amp;&amp; (roundTripForm.controls[&apos;departureDate&apos;+i].dirty || roundTripForm.controls[&apos;departureDate&apos;+i].touched)">
+                        <span *ngIf="roundTripForm.controls[&apos;departureDate&apos;+i].errors?.required">This field is required</span>
+                      </mat-error>
+                    </div>
+                  </div>
+                </div>
+                <div fxLayout="column wrap" fxFlex="49" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><label>
+                    <p>Preferred Time<span class="redColor" id="from">*</span></p>
+                  </label>
+                  <div class="inputField-container ">
+                    <mat-form-field>
+                      <mat-select (opened)="select1(preferredTime)" (closed)="select2(preferredTime, &apos;Preferred Time&apos;)" [floatLabel]="&apos;never&apos;" appearance="legacy" #preferredTime required class="smallFont" [(ngModel)]="data.travel.tripList[i].preferredTime" name="[&apos;preferredTime&apos;+i]">
+                        <mat-option *ngFor="let sel of preferredTimes" value="{{sel}}">{{sel | titlecase}}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+
+                    <div class="errDiv">
+                      <mat-error *ngIf="submitted &amp;&amp; roundTripForm.controls[&apos;preferredTime&apos;+i]?.invalid &amp;&amp; (roundTripForm.controls[&apos;preferredTime&apos;+i].dirty || roundTripForm.controls[&apos;preferredTime&apos;+i].touched)">
+                        <span *ngIf="roundTripForm.controls[&apos;preferredTime&apos;+i].errors?.required">This field is required</span>
+                      </mat-error>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div fxLayout="row wrap" class="inputRowHeight" fxLayoutAlign="space-between center" [fxShow]="true" [fxHide]="false">
+                <div fxLayout="column wrap" fxFlex="49" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><label>
+                    <p>Country of Accommodation</p>
+                  </label>
+                  <div class="inputField-container">
+                    <mat-form-field [floatLabel]="&apos;never&apos;" appearance="legacy">
+                      <input matInput type="text" placeholder="In which Country do you need Accommodation" class="capitalize" [(ngModel)]="data.travel.tripList[i].countryOfAccommodation" name="[&apos;countryOfAccommodation&apos;+i]">
+                    </mat-form-field>
+
+                    <div class="errDiv">
+
+                    </div>
+                  </div>
+                </div>
+                <div fxLayout="column wrap" fxFlex="49" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><label>
+                    <p>Client Address</p>
+                  </label>
+                  <div class="inputField-container ">
+                    <mat-form-field [floatLabel]="&apos;never&apos;" appearance="legacy">
+                      <input matInput type="text" placeholder="Please enter Client Address" class="capitalize" [(ngModel)]="data.travel.tripList[i].clientAddress" name="[&apos;clientAddress&apos;+i]">
+                    </mat-form-field>
+
+                    <div class="errDiv">
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div fxLayout="row wrap" class="inputRowHeight" fxLayoutAlign="space-between center" [fxShow]="true" [fxHide]="false">
+                <div fxLayout="column wrap" fxFlex="49" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><label>
+                    <p>Check-In Date</p>
+                  </label>
+                  <div class="inputField-container">
+                    <mat-form-field [floatLabel]="&apos;never&apos;" appearance="legacy">
+                      <input matInput [matDatepicker]="checkInDate" readonly placeholder="Select Check-In Date" (click)="checkInDate.open()" data-date-format="DD/MM/YYYY" [min]="minDate" [(ngModel)]="data.travel.tripList[i].checkInDate" name="[&apos;checkInDate&apos;+i]">
+                      <mat-datepicker-toggle matSuffix [for]="checkInDate"></mat-datepicker-toggle>
+                      <mat-datepicker #checkInDate></mat-datepicker>
+                    </mat-form-field>
+
+                    <div class="errDiv">
+
+                    </div>
+                  </div>
+                </div>
+                <div fxLayout="column wrap" fxFlex="49" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><label>
+                    <p>Client Address</p>
+                  </label>
+                  <div class="inputField-container ">
+                    <mat-form-field [floatLabel]="&apos;never&apos;" appearance="legacy">
+                      <input matInput [matDatepicker]="checkOutDate" readonly placeholder="Select Check-Out Date" (click)="checkOutDate.open()" data-date-format="DD/MM/YYYY" [min]="minDate" [(ngModel)]="data.travel.tripList[i].checkOutDate" name="[&apos;checkOutDate&apos;+i]">
+                      <mat-datepicker-toggle matSuffix [for]="checkOutDate"></mat-datepicker-toggle>
+                      <mat-datepicker #checkOutDate></mat-datepicker>
+                    </mat-form-field>
+
+                    <div class="errDiv">
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div fxLayout="row wrap" class="inputRowHeight" fxLayoutAlign="space-between center" [fxShow]="true" [fxHide]="false">
+                <div fxLayout="column wrap" fxFlex="100" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><label>
+                    <p>Add A Comment</p>
+                  </label>
+                  <div class="inputField-container">
+                    <mat-form-field [floatLabel]="&apos;never&apos;" appearance="legacy">
+                      <input matInput type="text" placeholder="Add a comment" class="capitalize" [(ngModel)]="comment" name="comment">
+                    </mat-form-field>
+
+                    <div class="errDiv">
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div fxLayout="row wrap" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" *ngIf="data.travel.comments &amp;&amp; data.travel.comments.length">
+                <div fxLayout="column wrap" fxFlex="100" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" *ngIf="data.travel.comments.length">
+                  <mat-card *ngFor="let com of data.travel.comments" class="marginBottom1Em">
+                    <mat-card-title>{{com.from}}</mat-card-title>
+
+                    <mat-card-subtitle>{{com.date | date}}</mat-card-subtitle>
+
+                    <mat-card-content>
+                      <p>
+                        {{com.comment}}
+                      </p>
+                    </mat-card-content>
+                  </mat-card>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div fxLayout="column wrap" fxFlex="99" fxLayoutGap="1em" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" *ngIf="data.travel.tripType == &apos;round-trip&apos;">
+            <div fxLayout="column wrap" class fxLayoutGap="1em" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" *ngFor="let trip of data.travel.tripList; let i = index">
+              <div fxLayout="row wrap" class="inputRowHeight" fxLayoutAlign="space-between center" [fxShow]="true" [fxHide]="false">
+                <div fxLayout="column wrap" fxFlex="49" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><label>
+                    <p>From<span class="redColor" id="from">*</span></p>
+                  </label>
+                  <div class="inputField-container">
+                    <mat-form-field [floatLabel]="&apos;never&apos;" appearance="legacy">
+                      <input matInput type="text" placeholder="From" required class="capitalize" [(ngModel)]="data.travel.tripList[i].from" name="[&apos;from&apos;+i]">
+                    </mat-form-field>
+
+                    <div class="errDiv">
+                      <mat-error *ngIf="submitted &amp;&amp; roundTripForm.controls[&apos;from&apos;+i]?.invalid &amp;&amp; (roundTripForm.controls[&apos;from&apos;+i].dirty || roundTripForm.controls[&apos;from&apos;+i].touched)">
+                        <span *ngIf="roundTripForm.controls[&apos;from&apos;+i].errors?.required">This field is required</span>
+                      </mat-error>
+                    </div>
+                  </div>
+                </div>
+                <div fxLayout="column wrap" fxFlex="49" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><label>
+                    <p>To<span class="redColor" id="to">*</span></p>
+                  </label>
+                  <div class="inputField-container">
+                    <mat-form-field [floatLabel]="&apos;never&apos;" appearance="legacy">
+                      <input matInput type="text" placeholder="To" required class="capitalize" [(ngModel)]="data.travel.tripList[i].to" name="[&apos;to&apos; + i]">
+                    </mat-form-field>
+
+                    <div class="errDiv">
+                      <mat-error *ngIf="submitted &amp;&amp; roundTripForm.controls[&apos;to&apos; + i]?.invalid &amp;&amp; (roundTripForm.controls[&apos;to&apos; + i].dirty || roundTripForm.controls[&apos;to&apos; + i].touched)">
+                        <span *ngIf="roundTripForm.controls[&apos;to&apos; + i].errors?.required">This field is required</span>
+                      </mat-error>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div fxLayout="row wrap" class="inputRowHeight" fxLayoutAlign="space-between center" [fxShow]="true" [fxHide]="false">
+                <div fxLayout="column wrap" fxFlex="49" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><label>
+                    <p>Departure Date<span class="redColor" id="from">*</span></p>
+                  </label>
+                  <div class="inputField-container">
+                    <mat-form-field [floatLabel]="&apos;never&apos;" appearance="legacy">
+                      <input matInput [matDatepicker]="departureDate" readonly placeholder="Select Departure Date" (click)="departureDate.open()" data-date-format="DD/MM/YYYY" required [min]="minDate" [(ngModel)]="data.travel.tripList[i].departureDate" name="[&apos;departureDate&apos;+i]">
+                      <mat-datepicker-toggle matSuffix [for]="departureDate"></mat-datepicker-toggle>
+                      <mat-datepicker #departureDate></mat-datepicker>
+                    </mat-form-field>
+
+                    <div class="errDiv">
+                      <mat-error *ngIf="submitted &amp;&amp; roundTripForm.controls[&apos;departureDate&apos;+i]?.invalid &amp;&amp; (roundTripForm.controls[&apos;departureDate&apos;+i].dirty || roundTripForm.controls[&apos;departureDate&apos;+i].touched)">
+                        <span *ngIf="roundTripForm.controls[&apos;departureDate&apos;+i].errors?.required">This field is required</span>
+                      </mat-error>
+                    </div>
+                  </div>
+                </div>
+                <div fxLayout="column wrap" fxFlex="49" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><label>
+                    <p>Preferred Time<span class="redColor" id="from">*</span></p>
+                  </label>
+                  <div class="inputField-container ">
+                    <mat-form-field>
+                      <mat-select (opened)="select1(preferredTime)" (closed)="select2(preferredTime, &apos;Preferred Time&apos;)" [floatLabel]="&apos;never&apos;" appearance="legacy" #preferredTime required class="smallFont" [(ngModel)]="data.travel.tripList[i].preferredTime" name="[&apos;preferredTime&apos;+i]">
+                        <mat-option *ngFor="let sel of preferredTimes" value="{{sel}}">{{sel | titlecase}}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+
+                    <div class="errDiv">
+                      <mat-error *ngIf="submitted &amp;&amp; roundTripForm.controls[&apos;preferredTime&apos;+i]?.invalid &amp;&amp; (roundTripForm.controls[&apos;preferredTime&apos;+i].dirty || roundTripForm.controls[&apos;preferredTime&apos;+i].touched)">
+                        <span *ngIf="roundTripForm.controls[&apos;preferredTime&apos;+i].errors?.required">This field is required</span>
+                      </mat-error>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div fxLayout="row wrap" class="inputRowHeight" fxLayoutAlign="space-between center" [fxShow]="true" [fxHide]="false">
+                <div fxLayout="column wrap" fxFlex="49" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><label>
+                    <p>Return Date<span class="redColor" id="from">*</span></p>
+                  </label>
+                  <div class="inputField-container">
+                    <mat-form-field [floatLabel]="&apos;never&apos;" appearance="legacy">
+                      <input matInput [matDatepicker]="returnDate" readonly placeholder="Select Return Date" (click)="returnDate.open()" data-date-format="DD/MM/YYYY" required [min]="minDate" [(ngModel)]="data.travel.tripList[i].returnDate" name="[&apos;returnDate&apos;+i]">
+                      <mat-datepicker-toggle matSuffix [for]="returnDate"></mat-datepicker-toggle>
+                      <mat-datepicker #returnDate></mat-datepicker>
+                    </mat-form-field>
+
+                    <div class="errDiv">
+                      <mat-error *ngIf="submitted &amp;&amp; roundTripForm.controls[&apos;returnDate&apos;+i]?.invalid &amp;&amp; (roundTripForm.controls[&apos;returnDate&apos;+i].dirty || roundTripForm.controls[&apos;returnDate&apos;+i].touched)">
+                        <span *ngIf="roundTripForm.controls[&apos;returnDate&apos;+i].errors?.required">This field is required</span>
+                      </mat-error>
+                    </div>
+                  </div>
+                </div>
+                <div fxLayout="column wrap" fxFlex="49" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><label>
+                    <p>Country of Accommodation</p>
+                  </label>
+                  <div class="inputField-container">
+                    <mat-form-field [floatLabel]="&apos;never&apos;" appearance="legacy">
+                      <input matInput type="text" placeholder="In which Country do you need Accommodation" class="capitalize" [(ngModel)]="data.travel.tripList[i].countryOfAccommodation" name="[&apos;countryOfAccommodation&apos;+i]">
+                    </mat-form-field>
+
+                    <div class="errDiv">
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div fxLayout="row wrap" class="inputRowHeight" fxLayoutAlign="space-between center" [fxShow]="true" [fxHide]="false">
+                <div fxLayout="column wrap" fxFlex="49" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><label>
+                    <p>Client Address</p>
+                  </label>
+                  <div class="inputField-container ">
+                    <mat-form-field [floatLabel]="&apos;never&apos;" appearance="legacy">
+                      <input matInput type="text" placeholder="Please enter Client Address" class="capitalize" [(ngModel)]="data.travel.tripList[i].clientAddress" name="[&apos;clientAddress&apos;+i]">
+                    </mat-form-field>
+
+                    <div class="errDiv">
+
+                    </div>
+                  </div>
+                </div>
+                <div fxLayout="column wrap" fxFlex="49" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><label>
+                    <p>Check-In Date</p>
+                  </label>
+                  <div class="inputField-container">
+                    <mat-form-field [floatLabel]="&apos;never&apos;" appearance="legacy">
+                      <input matInput [matDatepicker]="checkInDate" readonly placeholder="Select Check-In Date" (click)="checkInDate.open()" data-date-format="DD/MM/YYYY" [min]="minDate" [(ngModel)]="data.travel.tripList[i].checkInDate" name="[&apos;checkInDate&apos;+i]">
+                      <mat-datepicker-toggle matSuffix [for]="checkInDate"></mat-datepicker-toggle>
+                      <mat-datepicker #checkInDate></mat-datepicker>
+                    </mat-form-field>
+
+                    <div class="errDiv">
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div fxLayout="row wrap" class="inputRowHeight" fxLayoutAlign="space-between center" [fxShow]="true" [fxHide]="false">
+                <div fxLayout="column wrap" fxFlex="49" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><label>
+                    <p>Check-Out Date</p>
+                  </label>
+                  <div class="inputField-container ">
+                    <mat-form-field [floatLabel]="&apos;never&apos;" appearance="legacy">
+                      <input matInput [matDatepicker]="checkOutDate" readonly placeholder="Select Check-Out Date" (click)="checkOutDate.open()" data-date-format="DD/MM/YYYY" [min]="minDate" [(ngModel)]="data.travel.tripList[i].checkOutDate" name="[&apos;checkOutDate&apos;+i]">
+                      <mat-datepicker-toggle matSuffix [for]="checkOutDate"></mat-datepicker-toggle>
+                      <mat-datepicker #checkOutDate></mat-datepicker>
+                    </mat-form-field>
+
+                    <div class="errDiv">
+
+                    </div>
+                  </div>
+                </div>
+                <div fxLayout="column wrap" fxFlex="49" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><label>
+                    <p>Add A Comment</p>
+                  </label>
+                  <div class="inputField-container">
+                    <mat-form-field [floatLabel]="&apos;never&apos;" appearance="legacy">
+                      <input matInput type="text" placeholder="Add a comment" class="capitalize" [(ngModel)]="comment" name="comment">
+                    </mat-form-field>
+
+                    <div class="errDiv">
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div fxLayout="row wrap" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" *ngIf="data.travel.comments &amp;&amp; data.travel.comments.length">
+                <div fxLayout="column wrap" fxFlex="100" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" *ngIf="data.travel.comments.length">
+                  <mat-card *ngFor="let com of data.travel.comments" class="marginBottom1Em">
+                    <mat-card-title>{{com.from}}</mat-card-title>
+
+                    <mat-card-subtitle>{{com.date | date}}</mat-card-subtitle>
+
+                    <mat-card-content>
+                      <p>
+                        {{com.comment}}
+                      </p>
+                    </mat-card-content>
+                  </mat-card>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div fxLayout="row wrap" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false" *ngIf="(data.travel.emailId == currentUser.emailId) || (data.travel.status != &apos;new&apos;)">
+      <div fxLayout="column wrap" fxFlex="40" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><button mat-raised-button class="btnHeight redButton whiteColor  boldFont cursorPointer boldFont" (click)="markAsRead(&apos;travel&apos;)">Ok</button></div>
+    </div>
+    <div fxLayout="row wrap" fxLayoutAlign="space-between center" [fxShow]="true" [fxHide]="false" *ngIf="(data.travel.emailId != currentUser.emailId) &amp;&amp; (data.travel.status == &apos;new&apos;)">
+      <div fxLayout="column wrap" fxFlex="32" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><button mat-raised-button class="blackButton" (click)="closeDialog()">Leave Unread</button></div>
+      <div fxLayout="column wrap" fxFlex="32" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><button mat-raised-button class="greenButton" (click)="approveDeclineRequest(&apos;approved&apos;, &apos;travel&apos;)">Approve</button></div>
+      <div fxLayout="column wrap" fxFlex="32" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><button mat-raised-button class="redButton" (click)="approveDeclineRequest(&apos;declined&apos;, &apos;travel&apos;)">Decline</button></div>
+    </div>
+  </div>
+  <div fxLayout="column wrap" fxFlex="100" fxLayoutGap="1em" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" *ngIf="data.facility">
+    <div fxLayout="row wrap" class="whiteColor" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false">
+      <h3>
+        Request Details</h3>
+    </div>
+    <div fxLayout="row wrap" class="whiteColor" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false">
+      <p class="textAlignCenter">
+        {{data.message}}
+      </p>
+    </div>
+    <div fxLayout="row wrap" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+      <div fxLayout="column wrap" class="rescheduleForm" fxFlex="100" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+        <form #roundTripForm="ngForm" autocomplete="off">
+          <div fxLayout="column wrap" fxFlex="99" fxLayoutGap="1em" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+            <div fxLayout="column wrap" class fxLayoutGap="1em" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+              <div fxLayout="row wrap" class="inputRowHeight" fxLayoutAlign="space-between center" [fxShow]="true" [fxHide]="false">
+                <div fxLayout="column wrap" fxFlex="49" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><label>
+                    <p>Request Type<span class="redColor" id="requestType">*</span></p>
+                  </label>
+                  <div class="inputField-container">
+                    <mat-form-field>
+                      <mat-select (opened)="select1(requestType)" (closed)="select2(requestType, &apos;Request Type&apos;)" [floatLabel]="&apos;never&apos;" appearance="legacy" #requestType required class="smallFont" [(ngModel)]="data.facility.request.requestType" name="requestType">
+                        <mat-option *ngFor="let sel of requestTypes" value="{{sel}}">{{sel | titlecase}}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+
+                    <div class="errDiv">
+                      <mat-error *ngIf="submitted &amp;&amp; roundTripForm.controls.requestType?.invalid &amp;&amp; (roundTripForm.controls.requestType.dirty || roundTripForm.controls.requestType.touched)">
+                        <span *ngIf="roundTripForm.controls.requestType.errors?.required">This field is required</span>
+                      </mat-error>
+                    </div>
+                  </div>
+                </div>
+                <div fxLayout="column wrap" fxFlex="49" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><label>
+                    <p>Country<span class="redColor" id="country">*</span></p>
+                  </label>
+                  <div class="inputField-container">
+                    <mat-form-field>
+                      <mat-select (opened)="select1(country)" (closed)="select2(country, &apos;Country&apos;)" [floatLabel]="&apos;never&apos;" appearance="legacy" #country required class="smallFont" [(ngModel)]="data.facility.request.country" name="country">
+                        <mat-option *ngFor="let sel of countries" value="{{sel}}">{{sel | titlecase}}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+
+                    <div class="errDiv">
+                      <mat-error *ngIf="submitted &amp;&amp; roundTripForm.controls.country?.invalid &amp;&amp; (roundTripForm.controls.country.dirty || roundTripForm.controls.country.touched)">
+                        <span *ngIf="roundTripForm.controls.country.errors?.required">This field is required</span>
+                      </mat-error>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div fxLayout="row wrap" class="inputRowHeight" fxLayoutAlign="space-between center" [fxShow]="true" [fxHide]="false">
+                <div fxLayout="column wrap" fxFlex="100" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><label>
+                    <p>Request Type<span class="redColor" id="requestType">*</span></p>
+                  </label>
+                  <div class="inputField-container">
+                    <mat-form-field [floatLabel]="&apos;never&apos;" appearance="legacy">
+                      <input matInput type="text" placeholder="Request Type" required class="capitalize" [(ngModel)]="data.facility.request.requestType" name="requestType">
+                    </mat-form-field>
+
+                    <div class="errDiv">
+                      <mat-error *ngIf="submitted &amp;&amp; roundTripForm.controls.requestType?.invalid &amp;&amp; (roundTripForm.controls.requestType.dirty || roundTripForm.controls.requestType.touched)">
+                        <span *ngIf="roundTripForm.controls.requestType.errors?.required">This field is required</span>
+                      </mat-error>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div fxLayout="row wrap" class="inputRowHeight" fxLayoutAlign="space-between center" [fxShow]="true" [fxHide]="false">
+                <div fxLayout="column wrap" fxFlex="100" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><label>
+                    <p>Add A Comment</p>
+                  </label>
+                  <div class="inputField-container">
+                    <mat-form-field [floatLabel]="&apos;never&apos;" appearance="legacy">
+                      <input matInput type="text" placeholder="Add a comment" class="capitalize" [(ngModel)]="comment" name="comment">
+                    </mat-form-field>
+
+                    <div class="errDiv">
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div fxLayout="row wrap" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" *ngIf="data.facility.comments &amp;&amp; data.facility.comments.length">
+                <div fxLayout="column wrap" fxFlex="100" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" *ngIf="data.facility.comments.length">
+                  <mat-card *ngFor="let com of data.facility.comments" class="marginBottom1Em">
+                    <mat-card-title>{{com.from}}</mat-card-title>
+
+                    <mat-card-subtitle>{{com.date | date}}</mat-card-subtitle>
+
+                    <mat-card-content>
+                      <p>
+                        {{com.comment}}
+                      </p>
+                    </mat-card-content>
+                  </mat-card>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div fxLayout="row wrap" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false" *ngIf="data.facility.emailId == currentUser.emailId">
+      <div fxLayout="column wrap" fxFlex="40" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><button mat-raised-button class="btnHeight redButton whiteColor  boldFont cursorPointer boldFont" (click)="markAsRead(&apos;facility&apos;)">Ok</button></div>
+    </div>
+    <div fxLayout="row wrap" fxLayoutAlign="space-between center" [fxShow]="true" [fxHide]="false" *ngIf="data.facility.emailId != currentUser.emailId">
+      <div fxLayout="column wrap" fxFlex="32" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><button mat-raised-button class="blackButton" (click)="closeDialog()">Leave Unread</button></div>
+      <div fxLayout="column wrap" fxFlex="32" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><button mat-raised-button class="greenButton" (click)="approveDeclineRequest(&apos;approved&apos;, &apos;facility&apos;)">Approve</button></div>
+      <div fxLayout="column wrap" fxFlex="32" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><button mat-raised-button class="redButton" (click)="approveDeclineRequest(&apos;declined&apos;, &apos;travel&apos;)">Decline</button></div>
+    </div>
+  </div>
+</div>

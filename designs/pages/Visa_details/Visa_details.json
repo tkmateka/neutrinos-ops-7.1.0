@@ -1,0 +1,13 @@
+{
+    "appPageId": "9b0c4a79-4304-25d7-0fe6-8583a9c49fa9",
+    "appPageName": "Visa_details",
+    "componentName": "visa_detailsComponent",
+    "selectorName": "bh-visa_details",
+    "htmlFileName": "visa_details.template.html",
+    "tsFileName": "visa_details.component.ts",
+    "bkd": {
+        "designerHtml": "",
+        "designerReference": {},
+        "ts": ""
+    }
+}

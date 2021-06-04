@@ -1,0 +1,13 @@
+{
+    "appPageId": "c29681f0-3437-1c37-7d05-6cbe45da0eca",
+    "appPageName": "notification_popup",
+    "componentName": "notification_popupComponent",
+    "selectorName": "bh-notification_popup",
+    "htmlFileName": "notification_popup.template.html",
+    "tsFileName": "notification_popup.component.ts",
+    "bkd": {
+        "designerHtml": "",
+        "designerReference": {},
+        "ts": ""
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "appPageId": "f37cfdff-61a6-4f33-6c90-2fccbf65edab",
+    "appPageName": "requests",
+    "componentName": "requestsComponent",
+    "selectorName": "bh-requests",
+    "htmlFileName": "requests.template.html",
+    "tsFileName": "requests.component.ts",
+    "createDate": "2020-09-27T23:52:47.734Z",
+    "bkd": {
+        "designerHtml": "",
+        "designerReference": {},
+        "ts": ""
+    }
+}
