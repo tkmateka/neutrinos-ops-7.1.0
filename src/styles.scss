@@ -1,0 +1,655 @@
+/*Importing default angular material css theme. */
+
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+@import "nDefaults.scss";
+@font-face {
+  font-family: 'Poppins';
+  src: url('assets/fonts/Poppins-Regular.ttf') format("truetype");
+  font-weight:300;
+}
+
+// DEFAULT COLORS
+$black: #000000;
+$white: #FFFFFF;
+$grey: #A1A4B1;
+$darkGrey: #4A4A4A;
+$lightGrey: #E5E5E5;
+$red: #ED1C24;
+$skyBlue: #8FCFD1;
+$green: #70ff70;
+$yellow: rgb(255, 234, 0);
+$yellowish: #F6EFA6;
+$orange: #F6AB6C;
+$pink: #DF5E88;
+$greyShadowBG: rgba(132, 130, 130, 0.5);
+$blackShaddow: rgba(0,0,0,.38);
+
+// DEFAULT STYLES
+::-webkit-scrollbar {
+  width: 7px;/* Scroll width */
+  height: 7px;/* Scroll height */
+}
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px $grey; /* Scroll Track Color */
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: $grey; /* Scroll Handle Background */
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover, .darkGreyBackground {
+  background: $red !important; /* Scroll Handle on hover */
+}
+* {
+    font-family: 'Poppins';
+}
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0em;
+}
+.overflowX {
+    width: 100%;
+    overflow-x: scroll;
+}
+.relative {
+    position: relative;
+}
+.reqTable {
+    width: 100%;
+    white-space: nowrap;
+    background: $greyShadowBG;
+    tr.mat-footer-row, tr.mat-row {
+        height: 40px;
+    }
+    th.mat-header-cell {
+        background: $blackShaddow;
+        font-weight: bold;
+        font-size: 14px;
+    }
+    th.mat-header-cell, .mat-cell, .mat-footer-cell {
+        color: white;
+        padding: 0 10px !important;
+    }
+}
+.mat-progress-spinner circle, .mat-spinner circle {
+    stroke: $red;
+}
+.disabled {
+    pointer-events:none;
+    opacity:.5;
+}
+.capitalize {
+    text-transform: capitalize !important;
+}
+.textAlignCenter {
+    text-align: center;
+}
+.whiteColor, .greenButton, .blackButton {
+    color: $white;
+}
+.redColor, .hoverRed:hover, .logout:hover {
+    color: $red;
+}
+.blueLinkText {
+    color: $skyBlue !important;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.lightGreyColor {
+    color: $lightGrey;
+}
+.blackColor {
+    color: $black !important;
+}
+.greyColor {
+    color: $grey !important;
+    font-weight: bold;
+}
+.lightGreyBackground, .loginFormContainer, .darkGreyBackground:hover {
+    background: $lightGrey;
+}
+.general-snackbar {
+    background-color: $pink;
+    color: $white;
+    font-weight: bold;
+    position: absolute;
+    top: 65px;
+    right: 0;
+    max-width: 344px !important;
+    border-radius: 10px !important;
+    border: solid;
+}
+.smallFont {
+    font-size: 12px;
+}
+.mediumFont {
+    font-size: 1.5em;
+}
+.bigFont {
+    font-size: 3.5em;
+}
+.boldFont, .redButton, .greenButton, .blueLinkText:hover {
+    font-weight: bold;
+}
+.cursorPointer {
+    cursor: pointer;
+}
+.margin0 {
+    margin: 0 !important;
+}
+.marginRight2 {
+    margin-right: 2em;
+}
+.marginBottom2Em, .breadcrum {
+    margin-bottom: 2em;
+}
+.marginBottom1Em {
+    margin-bottom: 1em;
+}
+.marginBottom1_5Em {
+    margin-bottom: 1.5em !important;
+}
+.marginTop1Em {
+    margin-top: 1em;
+}
+.minWidth250 {
+    min-width: 250px;
+} 
+.matOptions {
+    line-height: 1.5 !important;
+    height: auto !important;
+    padding: 10px !important;
+}
+.opsPopup {
+    margin: auto;
+    width: 100%;
+    border: 1px solid $white;
+    border-radius: 6px;
+    mat-dialog-container {
+        background: $darkGrey;        
+    }
+    .mat-select-value {
+        color: white;
+    }
+}
+.rescheduleForm {
+    max-height: 60vh;
+    overflow-x: auto;
+    padding: 10px 0;
+}
+.loginPopup {
+    margin: auto;
+    width: 40%;
+    min-width: 300px;
+}
+.notificationSpinner {
+    position: absolute !important;
+    top: -4px !important;
+    right: 38px;
+    margin-right: 0 !important;
+}
+.notificationSpinner, .notificationSpinner svg {
+    width: 13px !important;
+    height: 13px !important;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.notificationPopup {
+    margin: auto;
+    width: 50%;
+}
+.fullWidth {
+    width: 100%;
+}
+.fullHeightMinusTopBar {
+    height: calc(100vh - 85px) !important;
+    overflow-y: scroll;
+}
+.breadcrumHeight, .breadcrum {
+    height: 40px;
+}
+.breadcrum {
+    height: 40px;
+}
+.height30px {
+    height: 30px;
+}
+.height90vh {
+    height: 90vh !important;
+}
+.paddingLeft, .breadcrum {
+    padding-left: 20px;
+}
+.paddingTopBottom15px {
+    padding: 15px;
+}
+.paddingNone {
+    padding: 0 !important;
+}
+.travelInfoRow {
+    padding: 0 20px;
+    background: $lightGrey;
+    border: 1px solid $white;
+}
+.inputRowHeight, .popupInputRowHeight {
+    height: 70px !important;
+    label {
+        color: $white;
+    }
+}
+.popupInputRowHeight {
+    height: 70px !important;
+    label {
+        color: $black;
+    }
+}
+.btnHeight, .formsLink {
+    height: 44px !important;
+}
+.dateAndSelectWidth {
+    width: 87% !important;
+}
+.greyShadow, .proFieldsContainer {
+    background: $greyShadowBG;
+    padding: 1em;
+    opacity: 0.8;
+    color: $white;
+}
+.blackShadow {
+    background: rgba(0, 0, 0, 0.7);
+}
+.notification { 
+    .mat-badge-content {
+        width: 17px;
+        height: 17px;
+        line-height: 17px;
+        margin: 3px;
+    }
+}
+.notificationBox {
+    border-radius: 6px;
+    height: 125px;
+    color: black;
+}
+.requestInfoContainer {
+    max-height: 45vh;
+    overflow: auto;
+}
+.commentField {
+    height: 150px !important;
+    textarea {
+        width: 95%;
+        height: 100px;
+    }
+}
+.navRectangle {
+    height: 65px;
+    padding: 7px;
+}
+.noBackground {
+    background: none;
+}
+.blackButton, .blackTopBar {
+    background: $black;
+}
+.greyButton, .blackButton:hover, .iconGreyRoundBg {
+    background: $grey;
+}
+.skyBlueBackground, .greenButton:hover {
+    background: $skyBlue !important;
+}
+.greenBackground, .greenButton {
+    background: $green !important;
+}
+.OriginalYellowBG {
+    background: $yellow;
+}
+.yellowBackground {
+    background: $yellowish !important;
+}
+.orangeBackground, .redButton:hover {
+    background: $orange !important;
+}
+.pinkBackground {
+    background: $pink !important;
+}
+.redBackground {
+    background: $red !important;
+}
+.whiteBackground, .breadcrum {
+    background: $white;
+}
+.loggedOffBG, .loggedOnBG, .homeBG, .operationsBG,  .opsManagementBG, .visaBG {
+    background-position: center;
+    background-size: cover;
+    padding: 20px;
+}
+.loggedOffBG {
+    background-image: url('assets/Web/lightBackground.png');
+    padding: 0 !important;
+}
+.loggedOnBG {
+    background-image: url('assets/Web/darkBackground.png');
+    padding: 0 !important;
+}
+.homeBG {
+    background-image: url('assets/Web/home.png');
+}
+.operationsBG,  .opsManagementBG {
+    background-image: url('assets/Web/operations.png');
+}
+.opsManagementBG {
+    height: calc(100vh - 65px) !important;
+    overflow-y: scroll;
+    .mat-tab-group {
+        width: 100%;
+        .mat-tab-header-pagination-controls-enabled .mat-tab-header-pagination{
+            background: $red;
+        }
+    }
+    .mat-tab-group.mat-primary .mat-ink-bar {
+        background-color: $red;
+        height: 5px;
+    }
+    .mat-select-value {
+        color: $white !important;
+    }
+}
+.visaBG {
+    background-image: url('assets/Web/visa.png');
+}
+.formBorder {
+    background: $blackShaddow;
+    border: 1px solid $white;
+    border-radius: 6px;
+    padding: 1em;
+}
+.formsLink {
+    a {
+        color: $black;
+        font-weight: bold;
+    } 
+    a:focus {
+        color: $skyBlue;
+        text-decoration: none;
+    }
+}
+.formsLink:hover, .orangeColor {
+    color: $orange;
+}
+.errDiv {
+    margin-top: 5px;
+    height: 15px;
+    font-size: 12px;
+    .mat-error {
+        color: $yellowish !important;
+    }    
+}
+.welcomeLogoHeight {
+    height: 15em;
+}
+.watermark {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0.1;
+}
+.loginFormContainer {
+    padding: 20px 0;
+    border-radius: 10px;
+    min-width: 300px;
+    .inputField-container .mat-form-field {
+        border: 1px solid $grey;
+    }
+}
+.blackTopBar {
+    padding: 0 10px;
+    height: 65px;
+}
+.sideNavContainer {
+    width: 100%;
+    height: calc(100% - 65px);
+    .mat-drawer-backdrop.mat-drawer-shown {
+        background: $lightGrey;
+    }
+}
+.sidenav {
+    background: $grey;
+    width: 20%;
+    min-width: 150px;
+    max-width: 200px;
+}
+.sidenavItem {
+    height: 50px;
+    padding: 0 10px;
+}
+.sidenavItem:hover, .selectedSidenavItem, .redButton {
+    color: $white;
+    background: $red;
+}
+.profileImage, .iconGreyRoundBg {
+    border-radius: 50%;
+}
+.profileImage {
+    width: 100px;
+    height: 100px;
+}
+.proFieldsContainer {
+    height: 48vh;
+    overflow: auto;
+}
+.iconGreyRoundBg {
+    width: 70px;
+    height: 70px;
+    padding: 5px;
+}
+.addRemoveIconsContainer {
+    .mat-icon {
+        height: 10px !important;
+        font-size: 32px !important;
+    }
+} 
+.whiteRadioButtons {
+    .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+        border-color: $red;
+    }
+    .mat-radio-button.mat-accent .mat-radio-inner-circle {
+        background-color: $red;
+    }
+    .mat-radio-outer-circle {
+        border-color: $white;
+    }
+}
+.checkbox {
+    .mat-checkbox-layout { 
+        white-space: normal !important; 
+    }
+    .mat-checkbox-checked.mat-accent .mat-checkbox-background, 
+    .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+        background-color: $red !important;
+    }
+    .mat-checkbox-inner-container {
+        border: white solid 2px;
+    }
+    .mat-checkbox-inner-container {
+        height: 12px !important;
+        width: 12px !important;
+    }
+}
+// Stepper
+.stepHeight {
+    height: 74.5vh;
+    .mat-horizontal-stepper-header-container {
+        width: fit-content;
+        margin: auto;
+    }
+    .mat-step-header .mat-step-icon-selected {
+        background-color: $red;
+    }
+    .mat-horizontal-content-container {
+        padding: 0 !important;
+    }
+}
+.tabContainer {
+    border: solid 2px $grey;
+    background: $greyShadowBG;
+    height: 69.5vh;
+    margin: 0 20px;
+    padding: 10px;
+    overflow-x: auto;
+    border-radius: 6px;
+    
+    .mat-tab-header-pagination-controls-enabled .mat-tab-header-pagination{
+        background: $red;
+    }
+    .mat-tab-group.mat-primary .mat-ink-bar {
+        background-color: $red;
+        height: 5px;
+    }
+    .mat-select-value {
+        color: $white !important;
+    }
+}
+// Step Label Color
+.mat-step-header .mat-step-label {
+    .mat-step-text-label {
+        color: $white !important;
+    }
+}
+// Tabs
+.tabBodyHeight {
+    height: 50vh;
+}
+.tabGroup {
+    width: 100%;
+    .mat-tab-header {
+        margin-bottom: 1em;
+    }
+    .mat-tab-label-container {
+        background: $white;
+    }
+    .mat-tab-label:hover {
+        background: $grey;
+    }
+    .mat-tab-label.mat-tab-label-active {
+        background: $black;
+        color: $white;
+    }
+    mat-tab-body {
+        max-height: 55vh;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+}
+.checklistContainer {
+    height: 69vh !important;
+    .mat-tab-body-content {
+        height: 55vh !important;
+    }
+}
+// Toogle Buttons
+.buttonToggleGroup {
+    .mat-button-toggle {
+        background-color: $grey;
+        color: $white;
+        width: 150px;
+    }
+    .mat-button-toggle-checked, .mat-button-toggle-button:hover {
+        background-color: $black;
+    }
+}
+
+// Facilities Management
+.facilityReqTxtArea {
+    height: 25vh !important;
+    textarea {
+        color: $white;
+        height: 22vh !important;
+        resize: none !important;
+    }
+}
+
+// Inputs
+.inputField-container .mat-form-field.mat-focused .mat-form-field-label {
+    color: $darkGrey !important;
+}
+.inputField-container .mat-focused .mat-form-field-required-marker,
+.inputField-container  .mat-form-field-required-marker {
+    display: none !important;
+}
+.inputRowHeight .inputField-container {
+    input.mat-input-element {
+        color: $white;
+    }
+}
+
+// Input field
+input.mat-input-element {
+    height: 1.6em;
+}
+@mixin input-box() {
+    border: 1px solid $lightGrey;
+    height: 42px;
+    padding: 0em;
+    .mat-select-arrow {
+        color: $white;
+    }
+    .mat-form-field-underline {
+        display: none;
+    }
+    .mat-form-field-infix {
+        border-top: 2px;
+        padding: 0.5em 1.1em .5em .8em;
+    }
+    .mat-form-field-flex{
+        align-items: center;
+    }
+    .mat-input-element {
+        caret-color: $darkGrey;
+        font-size: 12px;
+        padding-top: 4px;
+    }
+}
+.selectField {
+    .mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label, 
+    .mat-form-field-empty.mat-form-field-label {
+        display: none !important;
+    }
+}
+.inputField-container {
+    border-radius: 6px;
+    .mat-form-field {
+        @include input-box();
+        width: 100%;
+        border-radius: 3px;
+        line-height: 1.4;
+    }
+    .mat-form-field-suffix {
+        padding: 0.5em 0.5em 0.2em 0;
+        color: $darkGrey;
+        cursor: pointer;
+    }
+    .mat-form-field.mat-focused .mat-form-field-label {
+        color: $white;
+    }
+    .mat-form-field-appearance-legacy .mat-form-field-label {
+        padding: 11px 0 5px 1.2em;
+        font-size: 12px;
+        color: $grey;
+    }
+    .mat-form-field.mat-focused.mat-primary .mat-select-arrow {
+        color: $lightGrey;
+    }
+    .mat-form-field-hide-placeholder .mat-select-placeholder {
+        padding: 5px;
+    }
+}

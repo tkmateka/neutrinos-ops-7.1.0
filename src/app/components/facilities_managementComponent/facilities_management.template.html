@@ -1,0 +1,101 @@
+<div fxLayout="row wrap" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+  <div>
+    <div fxLayout="row wrap" fxLayoutAlign="start stretch" fxShow="true" fxHide="false" *ngIf="spinner">
+      <mat-spinner style="position: fixed; z-index: 999;   height: 2em;   width: 2em;   overflow: show;   margin: auto;   top: 0;   left: 0;   bottom: 0;   right: 0;" id="2d474ed4-5064-2e80-1146-ba27d907aef5"></mat-spinner>
+    </div>
+  </div>
+</div>
+<div fxLayout="row wrap" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false" fxFill>
+  <div fxLayout="column wrap" class="blackShadow" fxFlex="100" fxLayoutGap="1em" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+    <div fxLayout="row wrap" class="paddingLeft breadcrumHeight" fxLayoutAlign="start center" [fxShow]="true" [fxHide]="false">
+      <div class="whiteColor textAlignCenter">
+        <h3>Facility Management</h3>
+      </div>
+    </div>
+    <div fxLayout="row wrap" class="paddingLeft breadcrumHeight whiteBackground" fxLayoutAlign="start center" [fxShow]="true" [fxHide]="false">
+      <div class="textAlignCenter">
+        <b>
+          <span class="cursorPointer hoverRed" (click)="goTo(&apos;/ops-app/operations&apos;)">Operations &gt; </span>
+          <span class="redColor"> Facility Management</span>
+        </b>
+      </div>
+    </div>
+    <div fxLayout="row wrap" class="tabGroupContainer" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+      <div fxLayout="column wrap" class="tabContainer" fxFlex="100" fxLayoutGap="0.8em" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+        <mat-tab-group class="tabGroup">
+          <mat-tab label="Policy"></mat-tab>
+          <mat-tab label="Procedure"></mat-tab>
+          <mat-tab label="Form">
+            <div fxLayout="row wrap" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false">
+              <div fxLayout="column wrap" class="marginTop1Em" fxFlex="99" fxLayoutGap="1.5em" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+                <form #facilityManagement="ngForm">
+                  <div fxLayout="column wrap" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+                    <div fxLayout="column wrap" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+                      <div fxLayout="row wrap" class="inputRowHeight" fxLayoutAlign="space-between center" [fxShow]="true" [fxHide]="false">
+                        <div fxLayout="column wrap" fxFlex="49" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><label>
+                            <p>Type Of Request<span class="redColor" id="requestType">*</span></p>
+                          </label>
+                          <div [class.selectField]="facilities[&apos;requestType&apos;]" class="inputField-container">
+                            <mat-form-field>
+                              <mat-select placeholder="Request Type" (opened)="select1(requestType)" (closed)="select2(requestType, &apos;Request Type&apos;)" floatLabel="never" appearance="legacy" [(ngModel)]="facilities[&apos;request&apos;][&apos;requestType&apos;]" name="requestType" #requestType required class="smallFont">
+                                <mat-option *ngFor="let sel of requestTypes" value="{{sel}}">{{sel | titlecase}}</mat-option>
+                              </mat-select>
+                            </mat-form-field>
+
+                            <div class="errDiv">
+                              <mat-error *ngIf="submitted &amp;&amp; facilityManagement.controls.requestType?.invalid &amp;&amp; (facilityManagement.controls.requestType.dirty || facilityManagement.controls.requestType.touched)">
+                                <span *ngIf="facilityManagement.controls.requestType.errors?.required">This field is required</span>
+                              </mat-error>
+                            </div>
+                          </div>
+                        </div>
+                        <div fxLayout="column wrap" fxFlex="49" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><label>
+                            <p>Country<span class="redColor" id="country">*</span></p>
+                          </label>
+                          <div [class.selectField]="facilities[&apos;country&apos;]" class="inputField-container">
+                            <mat-form-field>
+                              <mat-select placeholder="Country" (opened)="select1(country)" (closed)="select2(country, &apos;Country&apos;)" floatLabel="never" appearance="legacy" [(ngModel)]="facilities[&apos;request&apos;][&apos;country&apos;]" name="country" #country required class="smallFont">
+                                <mat-option *ngFor="let sel of countries" value="{{sel}}">{{sel | titlecase}}</mat-option>
+                              </mat-select>
+                            </mat-form-field>
+
+                            <div class="errDiv">
+                              <mat-error *ngIf="submitted &amp;&amp; facilityManagement.controls.country?.invalid &amp;&amp; (facilityManagement.controls.country.dirty || facilityManagement.controls.country.touched)">
+                                <span *ngIf="facilityManagement.controls.country.errors?.required">This field is required</span>
+                              </mat-error>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div fxLayout="row wrap" fxLayoutAlign="space-between center" [fxShow]="true" [fxHide]="false">
+                        <div fxLayout="column wrap" fxFlex="100" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><label class="whiteColor">
+                            <p>Request<span class="redColor" id="request">*</span></p>
+                          </label>
+                          <div [class.selectField]="facilities[&apos;requestType&apos;]" class="inputField-container">
+                            <mat-form-field floatLabel="never" appearance="legacy" class="facilityReqTxtArea">
+                              <textarea matInput type="text" placeholder="Brief your Request" required [(ngModel)]="facilities[&apos;request&apos;][&apos;request&apos;]" name="request"></textarea>
+                            </mat-form-field>
+
+                            <div class="errDiv">
+                              <mat-error *ngIf="submitted &amp;&amp; facilityManagement.controls.request?.invalid &amp;&amp; (facilityManagement.controls.request.dirty || facilityManagement.controls.request.requestuched)">
+                                <span *ngIf="facilityManagement.controls.request.errors?.required">This field is required</span>
+                              </mat-error>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div fxLayout="row wrap" fxLayoutAlign="space-between center" [fxShow]="true" [fxHide]="false">
+                      <div fxLayout="column wrap" fxFlex="49" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><button mat-raised-button class="cursorPointer boldFont whiteColor redButton btnHeight" (click)="facilityManagement.reset()">Cancel</button></div>
+                      <div fxLayout="column wrap" fxFlex="49" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><button mat-raised-button class="blackButton cursorPointer boldFont whiteColor btnHeight" (click)="requestToOps(facilityManagement)">Submit</button></div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+    </div>
+  </div>
+</div>

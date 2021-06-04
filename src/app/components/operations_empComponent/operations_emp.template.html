@@ -1,0 +1,44 @@
+<div fxLayout="row wrap" class="fullHeightMinusTopBar operationsBG" fxLayoutAlign="center start" [fxShow]="true" [fxHide]="false" fxFill>
+  <div fxLayout="column wrap" fxFlex="100" fxLayoutGap="2em" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+    <div fxLayout="row wrap" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false">
+      <div class="textAlignCenter whiteColor">
+        <h1>Operations</h1>
+      </div>
+    </div>
+    <div fxLayout="row wrap" fxFlex="100" fxLayoutAlign="space-between center" [fxShow]="true" [fxHide]="false">
+      <div fxLayout="column wrap" class="whiteBackground cursorPointer navRectangle" fxFlex="30" fxLayoutAlign="center stretch" [fxShow]="true" [fxHide]="false" (click)="goTo(&apos;ops-app/operations/visa&apos;)">
+        <div fxLayout="row wrap" class="blackBoxHeight" fxLayoutAlign="space-between center" [fxShow]="true" [fxHide]="false">
+          <div fxLayout="column wrap" fxFlex="20" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false">
+            <mat-icon class="iconGreyRoundBg skyBlueBackground">flight</mat-icon>
+          </div>
+          <div fxLayout="column wrap" fxFlex="70" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+            <h4>
+              Visa</h4>
+          </div>
+        </div>
+      </div>
+      <div fxLayout="column wrap" class="whiteBackground cursorPointer navRectangle" fxFlex="30" fxLayoutAlign="center stretch" [fxShow]="true" [fxHide]="false" (click)="goTo(&apos;ops-app/operations/travel&apos;)">
+        <div fxLayout="row wrap" class="blackBoxHeight" fxLayoutAlign="space-between center" [fxShow]="true" [fxHide]="false">
+          <div fxLayout="column wrap" fxFlex="20" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false">
+            <mat-icon class="iconGreyRoundBg pinkBackground">flight_takeoff</mat-icon>
+          </div>
+          <div fxLayout="column wrap" fxFlex="70" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+            <h4>
+              Travel</h4>
+          </div>
+        </div>
+      </div>
+      <div fxLayout="column wrap" class="whiteBackground cursorPointer navRectangle" fxFlex="30" fxLayoutAlign="center stretch" [fxShow]="true" [fxHide]="false" (click)="goTo(&apos;ops-app/operations/facilities&apos;)">
+        <div fxLayout="row wrap" class="blackBoxHeight" fxLayoutAlign="space-between center" [fxShow]="true" [fxHide]="false">
+          <div fxLayout="column wrap" fxFlex="20" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false">
+            <mat-icon class="iconGreyRoundBg orangeBackground">home</mat-icon>
+          </div>
+          <div fxLayout="column wrap" fxFlex="70" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+            <h4>
+              Facilities Management</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

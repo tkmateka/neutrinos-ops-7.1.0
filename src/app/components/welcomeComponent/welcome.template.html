@@ -1,0 +1,22 @@
+<div fxLayout="row wrap" class="loggedOffBG" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false" fxFill="fxFill">
+  <div fxLayout="row wrap" class="watermark" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false">
+    <div fxLayout="column wrap" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><img imgSrc="Web/darkLogo.png" class="welcomeLogoHeight"></div>
+  </div>
+  <div fxLayout="column wrap" fxLayoutGap="2em" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false">
+    <div fxLayout="row wrap" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false">
+      <div fxLayout="column wrap" fxFlex="60" fxLayoutGap=".2em" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false">
+        <h1 class="bigFont">
+          Welcome</h1>
+        <div class="textAlignCenter mediumFont">
+          <p>The Operations Platform is a web, mobile and hologram application that is intended to simplify the function of operations and human resource departments.</p>
+        </div>
+        <div class="textAlignCenter mediumFont">
+          <p>It is the function of the operations and HR department to ensure the safe and smooth functionality of all working for Neutrinos in a harmonious manner.</p>
+        </div>
+      </div>
+    </div>
+    <div fxLayout="row wrap" fxLayoutAlign="center center" [fxShow]="true" [fxHide]="false">
+      <div fxLayout="column wrap" fxFlex="30" fxLayoutGap="20px" fxLayoutAlign="start stretch" [fxShow]="true" [fxHide]="false"><button mat-raised-button class="blackButton whiteColor boldFont cursorPointer" (click)="login()">Login</button></div>
+    </div>
+  </div>
+</div>
